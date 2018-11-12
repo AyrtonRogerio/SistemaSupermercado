@@ -1,0 +1,29 @@
+CREATE TABLE endereco(
+id serial PRIMARY KEY,
+cep VARCHAR(8),
+rua VARCHAR(255),
+numero VARCHAR(10),
+bairro VARCHAR(255),
+estado VARCHAR(2)
+);
+
+CREATE TABLE funcionario(
+id serial PRIMARY KEY,
+nome VARCHAR(255),
+cpf VARCHAR(11),
+cargo VARCHAR(255)
+);
+
+CREATE TABLE caixa(
+id serial PRIMARY KEY,
+entrada FLOAT,
+saida FLOAT,
+saldo FLOAT 
+);
+
+CREATE TABLE produto(
+id serial PRIMARY KEY,
+nome VARCHAR(255),
+marca VARCHAR(255),
+descricao VARCHAR(255)
+);

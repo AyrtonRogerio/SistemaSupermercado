@@ -20,8 +20,6 @@ public interface IFachada {
 
 	public void ativarDesativarProduto(int id) throws BusinessException;
 
-	public void validarProduto(Produto produto) throws BusinessException;
-
 	// Caixa
 	public void salvarEditarCaixa(Caixa caixa) throws BusinessException;
 
@@ -30,8 +28,6 @@ public interface IFachada {
 	public List<Caixa> getAllCaixa() throws BusinessException;
 
 	public void ativarDesativarCaixa(int id) throws BusinessException;
-
-	public void validarCaixa(Caixa caixa) throws ValidacaoException;
 
 	// Endereco
 	public void salvarEditarEndereco(Endereco endereco) throws BusinessException;
@@ -42,8 +38,6 @@ public interface IFachada {
 
 	public void ativarDesativarEndereco(int id) throws BusinessException;
 
-	public void validarEndereco(Endereco endereco) throws ValidacaoException;
-
 	// Funcionario
 	public void salvarEditarFuncionario(Funcionario funcionario) throws BusinessException;
 
@@ -52,7 +46,5 @@ public interface IFachada {
 	public List<Funcionario> getAllFuncionario() throws BusinessException;
 
 	public void ativarDesativarFuncionario(int id) throws BusinessException;
-
-	public void validarFuncionario(Funcionario funcionario) throws ValidacaoException;
 
 }

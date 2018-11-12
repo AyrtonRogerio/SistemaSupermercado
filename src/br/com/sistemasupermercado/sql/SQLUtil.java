@@ -76,6 +76,7 @@ public class SQLUtil {
         public static final String INSERT = "insert into " + NOME_TABELA + "(" 
         						+ COL_NOME + "," + COL_CPF + "," + COL_CARGO
         						+ " ) values (?,?,?) returning id";
+        
     }
     
     public static class Caixa {

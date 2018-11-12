@@ -9,15 +9,15 @@ import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Funcionario;
 
-public class BusinessFuncionario implements IBusinessFuncionario{
+public class BusinessFuncionario implements IBusinessFuncionario {
 
 	private IDaoFuncionario daoFuncionario;
-	
+
 	public BusinessFuncionario() {
-	
+
 		daoFuncionario = new DaoFuncionario();
 	}
-	
+
 	@Override
 	public void salvarEditar(Funcionario funcionario) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -73,8 +73,19 @@ public class BusinessFuncionario implements IBusinessFuncionario{
 	@Override
 	public void validar(Funcionario funcionario) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(funcionario.getNome() == null)
-			throw new ValidacaoException("Informe um nome!!!");
+		try {
+			
+			for(Funcionario f: daoFuncionario.getAll()) {
+				
+				if(funcionario.getNome() == null)
+					throw new ValidacaoException("Informe um nome!!!");
+				if(funcionario.getCpf().equals(f.getCpf()) )
+					throw new ValidacaoException("O CPF já está cadastrado!!!");
+}
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -2,10 +2,15 @@ package br.com.sistemasupermercado.fachada;
 
 import java.util.List;
 
+import br.com.sistemasupermercado.business.BusinessCaixa;
+import br.com.sistemasupermercado.business.BusinessEndereco;
+import br.com.sistemasupermercado.business.BusinessFuncionario;
 import br.com.sistemasupermercado.business.BusinessProduto;
+import br.com.sistemasupermercado.business.IBusinessCaixa;
+import br.com.sistemasupermercado.business.IBusinessEndereco;
+import br.com.sistemasupermercado.business.IBusinessFuncionario;
 import br.com.sistemasupermercado.business.IBusinessProduto;
 import br.com.sistemasupermercado.exception.BusinessException;
-import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Caixa;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
@@ -15,6 +20,9 @@ public class Fachada implements IFachada {
 
 	private static Fachada instance;
 	private IBusinessProduto businessProduto;
+	private IBusinessFuncionario businessFuncionario;
+	private IBusinessCaixa businessCaixa;
+	private IBusinessEndereco businessEndereco;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -26,9 +34,15 @@ public class Fachada implements IFachada {
 	private Fachada() {
 
 		businessProduto = new BusinessProduto();
+		businessFuncionario = new BusinessFuncionario();
+		businessCaixa = new BusinessCaixa();
+		businessEndereco = new BusinessEndereco();
+		
 
 	}
 
+	
+	//Produto
 	@Override
 	public void salvarEditarProduto(Produto produto) throws BusinessException {
 		this.businessProduto.salvarEditar(produto);
@@ -53,28 +67,23 @@ public class Fachada implements IFachada {
 
 	}
 
-	@Override
-	public void validarProduto(Produto produto) throws BusinessException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	//Caixa
 	@Override
 	public void salvarEditarCaixa(Caixa caixa) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessCaixa.salvarEditar(caixa);
 	}
 
 	@Override
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.buscarPorIdCaixa(id);
 	}
 
 	@Override
 	public List<Caixa> getAllCaixa() throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.businessCaixa.getAll();
 	}
 
 	@Override
@@ -83,28 +92,23 @@ public class Fachada implements IFachada {
 		
 	}
 
-	@Override
-	public void validarCaixa(Caixa caixa) throws ValidacaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	//Endereco
 	@Override
 	public void salvarEditarEndereco(Endereco endereco) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessEndereco.salvarEditar(endereco);
 	}
 
 	@Override
 	public Endereco buscarPorIdEndereco(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.businessEndereco.buscarPorId(id);
 	}
 
 	@Override
 	public List<Endereco> getAllEndereco() throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.businessEndereco.getAll();
 	}
 
 	@Override
@@ -113,38 +117,28 @@ public class Fachada implements IFachada {
 		
 	}
 
-	@Override
-	public void validarEndereco(Endereco endereco) throws ValidacaoException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	//Funcionário
 	@Override
 	public void salvarEditarFuncionario(Funcionario funcionario) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessFuncionario.salvarEditar(funcionario);
 	}
 
 	@Override
 	public Funcionario buscarPorIdFuncionario(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		 return this.businessFuncionario.buscarPorId(id);
 	}
 
 	@Override
 	public List<Funcionario> getAllFuncionario() throws BusinessException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.businessFuncionario.getAll();
 	}
 
 	@Override
 	public void ativarDesativarFuncionario(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void validarFuncionario(Funcionario funcionario) throws ValidacaoException {
 		// TODO Auto-generated method stub
 		
 	}
