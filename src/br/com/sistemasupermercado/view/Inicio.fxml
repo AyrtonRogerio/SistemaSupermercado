@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleTeste">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleTeste">
    <children>
       <BorderPane style="-fx-background-color: #0000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -27,7 +27,7 @@
                <children>
                   <ImageView fitHeight="82.0" fitWidth="82.0">
                      <image>
-                        <Image url="@../../../../../../../Downloads/FBD/263048-miscellaneous-elements/263048-miscellaneous-elements/png/user-1.png" />
+                        <Image url="@../../../../../res/user-1.png" />
                      </image>
                   </ImageView>
                   <TextField prefHeight="40.0" prefWidth="326.0" promptText="Login">
@@ -40,7 +40,7 @@
                   </TextField>
                   <ImageView fitHeight="82.0" fitWidth="82.0">
                      <image>
-                        <Image url="@../../../../../../../Downloads/FBD/263048-miscellaneous-elements/263048-miscellaneous-elements/png/safebox.png" />
+                        <Image url="@../../../../../res/safebox.png" />
                      </image>
                   </ImageView>
                   <TextField prefHeight="40.0" prefWidth="326.0" promptText="Senha">
