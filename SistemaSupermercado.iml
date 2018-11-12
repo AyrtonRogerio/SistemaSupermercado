@@ -15,5 +15,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER" level="application" />
+    <orderEntry type="library" name="postgresql-42.2.5" level="project" />
   </component>
 </module>
