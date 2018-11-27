@@ -2,6 +2,7 @@ package br.com.sistemasupermercado.dao;
 
 import br.com.sistemasupermercado.enuns.TipoContato;
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.sql.SQLConections;
@@ -27,11 +28,12 @@ public class DaoCommum {
         try {
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Endereco.INSERT);
-            statement.setString(1, end.getCep());
-            statement.setString(2, end.getRua());
+            statement.setString(1, end.getRua());
+            statement.setString(2, end.getCep());
             statement.setString(3, end.getNumero());
             statement.setString(4, end.getBairro());
-            statement.setString(5, end.getEstado());
+            statement.setString(5, end.getCidade());
+            statement.setString(6, end.getEstado());
 
             result = statement.executeQuery();
 
@@ -48,7 +50,8 @@ public class DaoCommum {
     public static int salvarContato(Contato contato, int cliente_id) {
         int id =0;
     	try {
-            System.out.println(contato);
+//            System.out.println(cli.getId());
+//            int cliente_id = cli.getId();
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Contato.INSERT);
             statement.setString(1, contato.getTipo().getValor());
@@ -77,10 +80,11 @@ public class DaoCommum {
 
             if(result.next()){
                 end.setId(result.getInt(1));
-                end.setCep(result.getString(SQLUtil.Endereco.COL_CEP));
                 end.setRua(result.getString(SQLUtil.Endereco.COL_RUA));
+                end.setCep(result.getString(SQLUtil.Endereco.COL_CEP));
                 end.setNumero(result.getString(SQLUtil.Endereco.COL_NUMERO));
                 end.setBairro(result.getString(SQLUtil.Endereco.COL_BAIRRO));
+                end.setCidade(result.getString(SQLUtil.Endereco.COL_CIDADE));
                 end.setEstado(result.getString(SQLUtil.Endereco.COL_ESTADO));
             }
 

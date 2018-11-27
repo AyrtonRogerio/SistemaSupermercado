@@ -50,21 +50,16 @@ public class Main extends Application {
         Contato contato = new Contato();
         Contato contato2 = new Contato();
         
-        cliente.setNome("Luiz Felipe");
-        cliente.setCpf("33333333333");
+        cliente.setNome("Joao");
+        cliente.setCpf("44444444444");
         endereco.setCep("56460000");
-        endereco.setRua("Quirino Cordeiro Magalhaes");
-        endereco.setNumero("1240");
-        endereco.setBairro("AABB");
+        endereco.setRua("Magalhaes Cordeiro Quirino ");
+        endereco.setNumero("1200");
+        endereco.setBairro("ISEP");
+        endereco.setCidade("Serra Talhada");
         endereco.setEstado("PE");
         
-        contato.setCliente(cliente);
-        contato.setTipo(TipoContato.EMAIL);
-        contato.setDescricao("ayrton.rogerio1@gmail.com");
         
-        contato2.setCliente(cliente);
-        contato2.setTipo(TipoContato.FACEBOOK);
-        contato2.setDescricao("Ayrton Rogerio");
         
         cliente.setEndereco(endereco);
 
@@ -73,6 +68,16 @@ public class Main extends Application {
 //			fachada.salvarEditarFuncionario(funcionario);
 //			fachada.salvarEditarFornecedor(fornecedor);
 			fachada.salvarEditarCliente(cliente);
+			
+			contato.setCliente(cliente);
+	        contato.setTipo(TipoContato.EMAIL);
+	        contato.setDescricao("ayrton.rogerio1@gmail.com");
+	        
+	        contato2.setCliente(cliente);
+	        contato2.setTipo(TipoContato.FACEBOOK);
+	        contato2.setDescricao("Ayrton Rogerio");
+	        
+	        
 			DaoCommum.salvarContato(contato, cliente.getId());
 			DaoCommum.salvarContato(contato2, cliente.getId());
 			System.out.println("----------------");
@@ -80,17 +85,17 @@ public class Main extends Application {
 //			fachada.buscarPorIdFuncionario(1);
 			System.out.println("0-----------------------");
 //			fachada.buscarPorIdFuncionario(2);
-//			fachada.buscarPorIdCliente(1);
+			fachada.buscarPorIdCliente(1);
 //			fachada.buscarPorIdFornecedor(1);
 			
 			System.out.println("2-----------------------");
 //			fachada.getAllFuncionario();
-//			fachada.getAllCliente();
+			fachada.getAllCliente();
 			System.out.println("3-----------------------");
 //			fachada.getAllFornecedor();
 			
-//			DaoCommum.buscarContato(contato);
-//			DaoCommum.buscarContato(contato2);
+			DaoCommum.buscarContato(contato);
+			DaoCommum.buscarContato(contato2);
 			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block

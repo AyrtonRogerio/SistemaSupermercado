@@ -15,7 +15,7 @@ public class SQLConections {
 
     public static String URL_POSTGRES = "jdbc:postgresql://localhost:5432/SistemaSupermercadoBD";
     public static String USUARIO_POSTGRES = "postgres";
-    public static String SENHA_POSTGRES = "ayrton";
+    public static String SENHA_POSTGRES = "admin";
 
     private static Connection conexao = null;
 

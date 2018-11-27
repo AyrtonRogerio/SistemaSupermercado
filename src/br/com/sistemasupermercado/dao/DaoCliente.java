@@ -26,8 +26,7 @@ public class DaoCliente implements IDaoCliente {
 
     @Override
     public void salvar(Cliente cliente) throws DaoException {
-
-
+    	
         try {
             int id_endereco = DaoCommum.salvarEndereco(cliente.getEndereco());
             this.conexao = SQLConections.getInstance();
@@ -37,14 +36,15 @@ public class DaoCliente implements IDaoCliente {
             this.statement.setInt(3, id_endereco);
             
             statement.execute();
+           
+         
         } catch (PSQLException e) {
 			e.printStackTrace();
-			throw new DaoException("Dados Iguais - CPF já cadastrado");
+			throw new DaoException("Dados Iguais - CPF ja cadastrado");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException("Erro ao salvar Cliente - Contate o ADM");
 		}
-
     }
 
     @Override

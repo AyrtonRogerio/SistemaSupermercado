@@ -23,15 +23,16 @@ public class SQLUtil {
     public static class Endereco {
 
         public static final String NOME_TABELA = "endereco";
-        public static final String COL_CEP = "cep";
         public static final String COL_RUA = "rua";
+        public static final String COL_CEP = "cep";
         public static final String COL_NUMERO = "numero";
         public static final String COL_BAIRRO = "bairro";
+        public static final String COL_CIDADE = "cidade";
         public static final String COL_ESTADO = "estado";
 
-        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_CEP + ","
-                + COL_RUA + "," + COL_NUMERO + "," + COL_BAIRRO + "," + COL_ESTADO + ""
-                + " ) values (?,?,?,?,?) returning id";
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_RUA + ","
+                + COL_CEP + "," + COL_NUMERO + "," + COL_BAIRRO + "," + COL_CIDADE + "," + COL_ESTADO + ""
+                + " ) values (?,?,?,?,?,?) returning id";
         
         //public static final String SELECT = " select * from " + NOME_TABELA + " where id = ?";
     }

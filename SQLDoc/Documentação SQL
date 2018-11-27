@@ -1,29 +1,110 @@
 CREATE TABLE endereco(
-id serial PRIMARY KEY,
-cep VARCHAR(8),
-rua VARCHAR(255),
-numero VARCHAR(10),
-bairro VARCHAR(255),
-estado VARCHAR(2)
+id serial PRIMARY KEY NOT NULL,
+rua VARCHAR(255) NOT NULL,
+cep VARCHAR(8) NOT NULL,
+numero VARCHAR(10) NOT NULL,
+bairro VARCHAR(255) NOT NULL,
+cidade VARCHAR(255) NOT NULL,
+estado VARCHAR(2) NOT NULL
 );
 
 CREATE TABLE funcionario(
-id serial PRIMARY KEY,
-nome VARCHAR(255),
-cpf VARCHAR(11),
-cargo VARCHAR(255)
+id serial PRIMARY KEY NOT NULL,
+nome VARCHAR(255) NOT NULL,
+cpf VARCHAR(11) UNIQUE NOT NULL,
+cargo VARCHAR(255) NOT NULL,
+endereco_id INTEGER REFERENCES endereco(id)
 );
 
 CREATE TABLE caixa(
-id serial PRIMARY KEY,
+id serial PRIMARY KEY NOT NULL,
 entrada FLOAT,
 saida FLOAT,
-saldo FLOAT 
+saldo FLOAT
 );
 
 CREATE TABLE produto(
 id serial PRIMARY KEY,
-nome VARCHAR(255),
-marca VARCHAR(255),
-descricao VARCHAR(255)
+Nome VARCHAR(255) NOT NULL,
+marca VARCHAR(255) NOT NULL,
+descricao VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE cliente(
+id serial PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+cpf VARCHAR(11) UNIQUE NOT NULL,
+endereco_id INTEGER REFERENCES endereco(id)
+);
+
+CREATE TABLE contato(
+id serial PRIMARY KEY,
+descricao VARCHAR(255) NOT NULL,
+tipo VARCHAR(255) NOT NULL,
+cliente_id INTEGER REFERENCES cliente(id)
+);
+
+CREATE TABLE pagamento(
+id serial PRIMARY KEY NOT NULL,
+valor FLOAT NOT NULL,
+forma_pagamento VARCHAR(20)
+);
+
+CREATE TABLE venda(
+id serial PRIMARY KEY NOT NULL,
+desc_geral FLOAT,
+quant_parc INTEGER,
+valor_total FLOAT,
+data_venda DATE,
+pagamento_id INTEGER REFERENCES pagamento(id),
+cliente_id INTEGER REFERENCES cliente(id),
+funcionario_id INTEGER REFERENCES funcionario(id)
+);
+
+CREATE TABLE fornecedor(
+id serial PRIMARY KEY NOT NULL,
+nome_fantasia VARCHAR(255) NOT NULL,
+razao_social VARCHAR(255) NOT NULL,
+cnpj VARCHAR(14) UNIQUE NOT NULL,
+estado VARCHAR(2),
+ciadade VARCHAR(60)
+);
+
+CREATE TABLE item_produto(
+id serial PRIMARY KEY NOT NULL,
+status BOOLEAN,
+porc_varej FLOAT,
+promocao BOOLEAN,
+quantidade INTEGER,
+porc_atacad FLOAT,
+cod_barras VARCHAR(255),
+unidade_medida FLOAT,
+data_validade DATE,
+data_compra DATE, 
+fornecedor_id INTEGER REFERENCES fornecedor(id),
+produto_id INTEGER REFERENCES produto(id)
+);
+
+CREATE TABLE item_venda(
+id serial PRIMARY KEY NOT NULL,
+valor_desc FLOAT,
+porc_promoc FLOAT,
+promocao BOOLEAN,
+tipo VARCHAR(255),
+quant INTEGER,
+valor_item FLOAT,
+desconto BOOLEAN,
+venda_id INTEGER REFERENCES venda(id),
+item_produro_id INTEGER REFERENCES item_produto(id)
+);
+
+CREATE TABLE parcela(
+id serial PRIMARY KEY NOT NULL,
+valor FLOAT,
+tipo VARCHAR(255),
+numero INTEGER,
+data_vencimento DATE,
+cliente_id INTEGER REFERENCES cliente(id) NOT NULL,
+funcionario_id INTEGER REFERENCES funcionario(id) NOT NULL,
+venda_id INTEGER REFERENCES venda(id) NOT NULL
 );

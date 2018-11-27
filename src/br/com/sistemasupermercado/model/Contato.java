@@ -1,5 +1,8 @@
 package br.com.sistemasupermercado.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.sistemasupermercado.enuns.TipoContato;
 
 public class Contato {
@@ -9,16 +12,21 @@ public class Contato {
 	private Cliente cliente;
 	private String descricao;
 
+	/**
+	 * 
+	 */
+
+
+	public Integer getId() {
+		return id;
+	}
+
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	public void setId(Integer id) {
