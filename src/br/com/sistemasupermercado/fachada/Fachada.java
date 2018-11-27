@@ -2,19 +2,9 @@ package br.com.sistemasupermercado.fachada;
 
 import java.util.List;
 
-import br.com.sistemasupermercado.business.BusinessCaixa;
-import br.com.sistemasupermercado.business.BusinessEndereco;
-import br.com.sistemasupermercado.business.BusinessFuncionario;
-import br.com.sistemasupermercado.business.BusinessProduto;
-import br.com.sistemasupermercado.business.IBusinessCaixa;
-import br.com.sistemasupermercado.business.IBusinessEndereco;
-import br.com.sistemasupermercado.business.IBusinessFuncionario;
-import br.com.sistemasupermercado.business.IBusinessProduto;
+import br.com.sistemasupermercado.business.*;
 import br.com.sistemasupermercado.exception.BusinessException;
-import br.com.sistemasupermercado.model.Caixa;
-import br.com.sistemasupermercado.model.Endereco;
-import br.com.sistemasupermercado.model.Funcionario;
-import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.*;
 
 public class Fachada implements IFachada {
 
@@ -22,7 +12,9 @@ public class Fachada implements IFachada {
 	private IBusinessProduto businessProduto;
 	private IBusinessFuncionario businessFuncionario;
 	private IBusinessCaixa businessCaixa;
-	private IBusinessEndereco businessEndereco;
+	private IBusinessFornecedor businessFornecedor;
+	private IBusinessPagamento businessPagamento;
+	private IBusinessCliente businessCliente;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -36,9 +28,9 @@ public class Fachada implements IFachada {
 		businessProduto = new BusinessProduto();
 		businessFuncionario = new BusinessFuncionario();
 		businessCaixa = new BusinessCaixa();
-		businessEndereco = new BusinessEndereco();
-		
-
+		businessFornecedor = new BusinessFornecedor();
+		businessPagamento = new BusinessPagamento();
+		businessCliente = new BusinessCliente();
 	}
 
 	
@@ -91,32 +83,6 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		
 	}
-
-	//Endereco
-	@Override
-	public void salvarEditarEndereco(Endereco endereco) throws BusinessException {
-		// TODO Auto-generated method stub
-		this.businessEndereco.salvarEditar(endereco);
-	}
-
-	@Override
-	public Endereco buscarPorIdEndereco(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		return this.businessEndereco.buscarPorId(id);
-	}
-
-	@Override
-	public List<Endereco> getAllEndereco() throws BusinessException {
-		// TODO Auto-generated method stub
-		return this.businessEndereco.getAll();
-	}
-
-	@Override
-	public void ativarDesativarEndereco(int id) throws BusinessException {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	//Funcionário
 	@Override
@@ -141,6 +107,84 @@ public class Fachada implements IFachada {
 	public void ativarDesativarFuncionario(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	//Fornecedor
+
+	@Override
+	public void salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException {
+
+	    this.businessFornecedor.salvarEditar(fornecedor);
+	}
+
+	@Override
+	public Fornecedor buscarPorIdFornecedor(int id) throws BusinessException {
+		return this.businessFornecedor.buscarPorId(id);
+	}
+
+	@Override
+	public List<Fornecedor> getAllFornecedor() throws BusinessException {
+		return this.businessFornecedor.getAll();
+	}
+
+	@Override
+	public void ativarDesativarFornecedor(int id) throws BusinessException {
+
+	}
+
+	//Pagamento
+	
+	@Override
+	public void salvarEditarPagamento(Pagamento pagamento) throws BusinessException {
+		// TODO Auto-generated method stub
+		this.businessPagamento.salvarEditar(pagamento);
+	}
+
+	
+	@Override
+	public Pagamento buscarPorIdPagamento(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessPagamento.buscarPorId(id);
+	}
+
+	
+	@Override
+	public List<Pagamento> getAllPagamento() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessPagamento.getAll();
+	}
+
+	
+	@Override
+	public void ativarDesativarPagamento(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		this.businessPagamento.ativarDesativar(id);
+	}
+
+	//Cliente
+	
+	@Override
+	public void salvarEditarCliente(Cliente cliente) throws BusinessException {
+		// TODO Auto-generated method stub
+		this.businessCliente.salvarEditar(cliente);
+	}
+
+	@Override
+	public Cliente buscarPorIdCliente(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessCliente.buscarPorId(id);
+	}
+
+	@Override
+	public List<Cliente> getAllCliente() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessCliente.getAll();
+	}
+
+	@Override
+	public void ativarDesativarCliente(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		this.businessCliente.ativarDesativar(id);
 	}
 
 }

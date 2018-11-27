@@ -4,10 +4,7 @@ import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
-import br.com.sistemasupermercado.model.Caixa;
-import br.com.sistemasupermercado.model.Endereco;
-import br.com.sistemasupermercado.model.Funcionario;
-import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.*;
 
 public interface IFachada {
 
@@ -29,14 +26,7 @@ public interface IFachada {
 
 	public void ativarDesativarCaixa(int id) throws BusinessException;
 
-	// Endereco
-	public void salvarEditarEndereco(Endereco endereco) throws BusinessException;
 
-	public Endereco buscarPorIdEndereco(int id) throws BusinessException;
-
-	public List<Endereco> getAllEndereco() throws BusinessException;
-
-	public void ativarDesativarEndereco(int id) throws BusinessException;
 
 	// Funcionario
 	public void salvarEditarFuncionario(Funcionario funcionario) throws BusinessException;
@@ -47,4 +37,35 @@ public interface IFachada {
 
 	public void ativarDesativarFuncionario(int id) throws BusinessException;
 
+	//Fornecedor
+
+	public void salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException;
+
+	public Fornecedor buscarPorIdFornecedor(int id) throws BusinessException;
+
+	public List<Fornecedor> getAllFornecedor() throws BusinessException;
+
+	public void ativarDesativarFornecedor(int id) throws BusinessException;
+
+
+	//Pagamento
+	
+	public void salvarEditarPagamento(Pagamento pagamento) throws BusinessException;
+
+	public Pagamento buscarPorIdPagamento(int id) throws BusinessException;
+
+	public List<Pagamento> getAllPagamento() throws BusinessException;
+
+	public void ativarDesativarPagamento(int id) throws BusinessException;
+	
+	//Cliente
+	
+	
+	public void salvarEditarCliente(Cliente cliente) throws BusinessException;
+
+	public Cliente buscarPorIdCliente(int id) throws BusinessException;
+
+	public List<Cliente> getAllCliente() throws BusinessException;
+
+	public void ativarDesativarCliente(int id) throws BusinessException;
 }

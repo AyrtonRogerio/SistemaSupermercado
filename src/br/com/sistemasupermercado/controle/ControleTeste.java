@@ -15,7 +15,7 @@ public class ControleTeste implements Initializable{
 
     @FXML
     void action(ActionEvent event) {
-    	System.out.println("click	");
+    	System.out.println("click");
     }
 	
 	@Override

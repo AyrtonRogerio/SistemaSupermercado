@@ -32,7 +32,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 			this.statement.setString(3, funcionario.getCargo());
 			statement.execute();
 		} catch (SQLException ex) {
-			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
@@ -43,8 +43,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 		Funcionario funcionario = null;
 		try {
 			this.conexao = SQLConections.getInstance();
-			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, id));
-//			statement.setInt(1, id);
+			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Funcionario.NOME_TABELA, id));
 			this.result = this.statement.executeQuery();
 
 			if (result.next()) {
@@ -53,9 +52,11 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
 				funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
+				System.out.println(funcionario.getNome());
+				System.out.println(funcionario.getCpf());
+				System.out.println(funcionario.getCargo());
 			}
 			this.conexao.close();
-
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -68,7 +69,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 		List<Funcionario> funcionarios = new ArrayList<>();
 		try {
 			this.conexao = SQLConections.getInstance();
-			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Endereco.NOME_TABELA));
+			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Funcionario.NOME_TABELA));
 			this.result = this.statement.executeQuery();
 			Funcionario funcionario;
 			while (result.next()) {
@@ -78,9 +79,12 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
 				funcionarios.add(funcionario);
+				System.out.println(funcionario.getCargo());
+				System.out.println(funcionario.getNome());
+				System.out.println(funcionario.getCpf());
 			}
 			this.conexao.close();
-
+			
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -90,7 +94,14 @@ public class DaoFuncionario implements IDaoFuncionario {
 	@Override
 	public void editar(Funcionario funcionario) throws DaoException {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

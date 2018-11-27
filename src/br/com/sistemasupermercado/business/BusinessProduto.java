@@ -75,7 +75,6 @@ public class BusinessProduto implements IBusinessProduto {
 		
 		if(produto.getNome() == null)
 			throw new ValidacaoException("Informe um nome!!!");
-		
 	}
 
 }

@@ -30,10 +30,8 @@ public class SQLUtil {
         public static final String COL_ESTADO = "estado";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_CEP + ","
-                + COL_RUA + ","
-                + COL_NUMERO + ","
-                + COL_BAIRRO + ","
-                + COL_ESTADO + "" + " ) values (?,?,?,?,?) returning id";
+                + COL_RUA + "," + COL_NUMERO + "," + COL_BAIRRO + "," + COL_ESTADO + ""
+                + " ) values (?,?,?,?,?) returning id";
         
         //public static final String SELECT = " select * from " + NOME_TABELA + " where id = ?";
     }
@@ -56,14 +54,12 @@ public class SQLUtil {
         public static final String COL_NOME = "nome";
         public static final String COL_CPF = "cpf";
         public static final String COL_TIPO = "tipo";
-        public static final String COL_DOCUMENTO = "documento";
         public static final String COL_ENDERECO_ID = "endereco_id";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_NOME + ","
                 + COL_CPF + ","
                 + COL_TIPO + ","
-                + COL_DOCUMENTO + ","
-                + COL_ENDERECO_ID + " ) values (?,?,?,?,?) returning id";
+                + COL_ENDERECO_ID + " ) values (?,?,?,?) returning id";
     }
 
     public static class Funcionario {
@@ -77,6 +73,8 @@ public class SQLUtil {
         						+ COL_NOME + "," + COL_CPF + "," + COL_CARGO
         						+ " ) values (?,?,?) returning id";
         
+        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ? where funcionario.id";
+        			
     }
     
     public static class Caixa {
@@ -90,7 +88,34 @@ public class SQLUtil {
     										+ COL_SAIDA + "," + COL_SALDO + " ) values (?,?,?) ";
     	
     }
-    
+
+    public static class Pagamento {
+
+        public static final String NOME_TABELA = "pagamento";
+        public static final String COL_FORMA_PAGAMENTO = "forma_pagamento";
+        public static final String COL_VALOR = "valor";
+        public static final String COL_TROCO = "troco";
+        public static final String COL_DESCONTO = "desconto";
+
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_FORMA_PAGAMENTO + "," + COL_VALOR + ","
+                + COL_TROCO + "," + COL_DESCONTO + " ) values (?,?,?,?) ";
+
+    }
+
+    public static class Fornecedor {
+
+        public static final String NOME_TABELA = "fornecedor";
+        public static final String COL_NOME = "nome";
+        public static final String COL_RAZAO_SOCIAL = "razao_social";
+        public static final String COL_CNPJ = "cnpj";
+        public static final String COL_ESTADO = "estado";
+        public static final String COL_CIDADE = "cidade";
+
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_NOME + "," + COL_RAZAO_SOCIAL + ","
+                + COL_CNPJ + "," + COL_ESTADO + "," + COL_CIDADE + " ) values (?,?,?,?,?) ";
+
+    }
+
     public static String selectAll(String nomeTabela) {
         return "select * from " + nomeTabela;
     }

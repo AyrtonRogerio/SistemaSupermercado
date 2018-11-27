@@ -74,14 +74,14 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	public void validar(Funcionario funcionario) throws ValidacaoException {
 		// TODO Auto-generated method stub
 		try {
-			
-			for(Funcionario f: daoFuncionario.getAll()) {
-				
-				if(funcionario.getNome() == null)
+
+			for (Funcionario f : daoFuncionario.getAll()) {
+
+				if (funcionario.getNome() == null)
 					throw new ValidacaoException("Informe um nome!!!");
-				if(funcionario.getCpf().equals(f.getCpf()) )
+				if (funcionario.getCpf().equals(f.getCpf()))
 					throw new ValidacaoException("O CPF já está cadastrado!!!");
-}
+			}
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
