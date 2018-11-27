@@ -25,12 +25,12 @@ public class BusinessCliente implements  IBusinessCliente {
 	@Override
     public void salvarEditar(Cliente cliente) throws BusinessException {
 		try {
-			validar(cliente);
+//			validar(cliente);
 			if (cliente.getId() == null)
 				daoCliente.salvar(cliente);
 			else
 				daoCliente.editar(cliente);
-		} catch (DaoException | ValidacaoException e) {
+		} catch (DaoException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
@@ -72,18 +72,10 @@ public class BusinessCliente implements  IBusinessCliente {
 
     @Override
     public void validar(Cliente cliente) throws ValidacaoException {
-    	try {
-
-			for (Cliente f : daoCliente.getAll()) {
-
-				if (cliente.getNome() == null)
-					throw new ValidacaoException("Informe um nome!!!");
-				if (cliente.getCpf().equals(f.getCpf()))
-					throw new ValidacaoException("O CPF já está cadastrado!!!");
-			}
-		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	if (cliente.getNome() == null)
+			throw new ValidacaoException("Informe um nome!!!");
+//				if (cliente.getCpf().equals(f.getCpf()))
+//					throw new ValidacaoException("O CPF já está cadastrado!!!");
+//			}
     }
 }

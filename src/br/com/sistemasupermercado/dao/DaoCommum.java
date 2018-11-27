@@ -1,11 +1,13 @@
 package br.com.sistemasupermercado.dao;
 
 import br.com.sistemasupermercado.enuns.TipoContato;
+import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 import org.postgresql.core.SqlCommand;
+import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,14 +100,13 @@ public class DaoCommum {
 			if(result.next()) {
 				cont.setId(result.getInt(1));
 				cont.setTipo(TipoContato.getTipoContato(result.getString(SQLUtil.Contato.COL_TIPO)));
-				
+				System.out.println(cont.getTipo());
 				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
     	return cont;
     }
 }

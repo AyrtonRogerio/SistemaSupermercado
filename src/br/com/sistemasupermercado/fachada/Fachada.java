@@ -81,7 +81,7 @@ public class Fachada implements IFachada {
 	@Override
 	public void ativarDesativarCaixa(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessCaixa.ativarDesativar(id);
 	}
 	
 	//Funcionário

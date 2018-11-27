@@ -2,49 +2,40 @@ package br.com.sistemasupermercado.model;
 
 public class Cliente {
 
-    private Integer id;
-    private Endereco  endereco;
-    private String nome;
-    private String cpf;
-    private Contato contato;
+	private Integer id;
+	private Endereco endereco;
+	private String nome;
+	private String cpf;
 
-    public Contato getContato() {
-		return contato;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 }

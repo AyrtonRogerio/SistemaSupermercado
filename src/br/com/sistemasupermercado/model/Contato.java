@@ -4,31 +4,40 @@ import br.com.sistemasupermercado.enuns.TipoContato;
 
 public class Contato {
 
-    private Integer id;
-    private TipoContato tipo;
-    private String descricao;
+	private Integer id;
+	private TipoContato tipo;
+	private Cliente cliente;
+	private String descricao;
 
-    public Integer getId() {
-        return id;
-    }
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
-    public TipoContato getTipo() {
-        return tipo;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setTipo(TipoContato tipo) {
-        this.tipo = tipo;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public TipoContato getTipo() {
+		return tipo;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public void setTipo(TipoContato tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 }

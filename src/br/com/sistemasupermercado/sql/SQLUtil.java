@@ -53,13 +53,11 @@ public class SQLUtil {
         public static final String NOME_TABELA = "cliente";
         public static final String COL_NOME = "nome";
         public static final String COL_CPF = "cpf";
-        public static final String COL_TIPO = "tipo";
         public static final String COL_ENDERECO_ID = "endereco_id";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_NOME + ","
                 + COL_CPF + ","
-                + COL_TIPO + ","
-                + COL_ENDERECO_ID + " ) values (?,?,?,?) returning id";
+                + COL_ENDERECO_ID + " ) values (?,?,?) returning id";
     }
 
     public static class Funcionario {

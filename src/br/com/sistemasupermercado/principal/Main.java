@@ -2,6 +2,7 @@ package br.com.sistemasupermercado.principal;
 
 import java.io.IOException;
 
+import br.com.sistemasupermercado.dao.DaoCommum;
 import br.com.sistemasupermercado.enuns.TipoContato;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
@@ -57,34 +58,39 @@ public class Main extends Application {
         endereco.setBairro("AABB");
         endereco.setEstado("PE");
         
+        contato.setCliente(cliente);
         contato.setTipo(TipoContato.EMAIL);
         contato.setDescricao("ayrton.rogerio1@gmail.com");
         
+        contato2.setCliente(cliente);
         contato2.setTipo(TipoContato.FACEBOOK);
         contato2.setDescricao("Ayrton Rogerio");
         
         cliente.setEndereco(endereco);
-        cliente.setContato(contato);
-        cliente.setContato(contato2);
+
         
         try {
 //			fachada.salvarEditarFuncionario(funcionario);
 //			fachada.salvarEditarFornecedor(fornecedor);
 			fachada.salvarEditarCliente(cliente);
-			
+			DaoCommum.salvarContato(contato, cliente.getId());
+			DaoCommum.salvarContato(contato2, cliente.getId());
 			System.out.println("----------------");
 			
 //			fachada.buscarPorIdFuncionario(1);
 			System.out.println("0-----------------------");
 //			fachada.buscarPorIdFuncionario(2);
-			fachada.buscarPorIdCliente(1);
+//			fachada.buscarPorIdCliente(1);
 //			fachada.buscarPorIdFornecedor(1);
 			
 			System.out.println("2-----------------------");
 //			fachada.getAllFuncionario();
-			fachada.getAllCliente();
+//			fachada.getAllCliente();
 			System.out.println("3-----------------------");
 //			fachada.getAllFornecedor();
+			
+//			DaoCommum.buscarContato(contato);
+//			DaoCommum.buscarContato(contato2);
 			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
