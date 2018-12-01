@@ -64,7 +64,7 @@ public interface IFachada {
 	public void salvarEditarCliente(Cliente cliente) throws BusinessException;
 
 	public Cliente buscarPorIdCliente(int id) throws BusinessException;
-
+	
 	public List<Cliente> getAllCliente() throws BusinessException;
 
 	public void ativarDesativarCliente(int id) throws BusinessException;

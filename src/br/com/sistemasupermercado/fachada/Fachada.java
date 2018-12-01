@@ -166,7 +166,7 @@ public class Fachada implements IFachada {
 	@Override
 	public void salvarEditarCliente(Cliente cliente) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessCliente.salvarEditar(cliente);
+		 this.businessCliente.salvarEditar(cliente);
 	}
 
 	@Override

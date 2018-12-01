@@ -27,7 +27,7 @@ public class BusinessCliente implements  IBusinessCliente {
 		try {
 //			validar(cliente);
 			if (cliente.getId() == null)
-				daoCliente.salvar(cliente);
+				 daoCliente.salvar(cliente);
 			else
 				daoCliente.editar(cliente);
 		} catch (DaoException  e) {
@@ -35,6 +35,7 @@ public class BusinessCliente implements  IBusinessCliente {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
+		
     }
 
     @Override

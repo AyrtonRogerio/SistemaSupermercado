@@ -1,11 +1,24 @@
 package br.com.sistemasupermercado.model;
 
+import java.util.List;
+
 public class Cliente {
 
 	private Integer id;
 	private Endereco endereco;
 	private String nome;
 	private String cpf;
+	private List<Contato> contatos;
+	
+	
+	
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
+	}
 
 	public Integer getId() {
 		return id;
