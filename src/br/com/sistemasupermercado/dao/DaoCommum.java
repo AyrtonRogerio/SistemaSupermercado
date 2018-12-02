@@ -72,7 +72,7 @@ public class DaoCommum {
 
     public  static  Endereco buscarEndereco(Endereco end){
 
-
+    	Endereco endereco = null;
         try {
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, end.getId()));
