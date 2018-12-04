@@ -70,12 +70,12 @@ public class DaoCommum {
         return id;
     }
 
-    public  static  Endereco buscarEndereco(Endereco end){
+    public  static  Endereco buscarEndereco(int id){
 
-    	Endereco endereco = null;
+    	Endereco end = new Endereco();
         try {
             conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, end.getId()));
+            statement = conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, id));
             result = statement.executeQuery();
 
             if(result.next()){

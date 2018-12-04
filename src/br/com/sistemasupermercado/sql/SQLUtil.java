@@ -9,6 +9,9 @@ import jdk.internal.dynalink.beans.StaticClass;
 
 public class SQLUtil {
 
+	/*
+	 * itemProduto é o estoque
+	*/
     public static class Produto {
 
         public static final String NOME_TABELA = "produto";
@@ -22,23 +25,21 @@ public class SQLUtil {
     public static class Item_Produto {
     	
     	public static final String NOME_TABELA = "item_produto";
-    	public static final String COL_STATUS = "status";
-    	public static final String COL_PORC_VAREJ = "porc_varej";
-    	public static final String COL_PROMOCAO = "promocao";
+    	public static final String COL_PERECIVEL = "perecivel";
     	public static final String COL_QUANTIDADE = "quantidade";
-    	public static final String COL_PORC_ATACAD = "porc_atacad";
     	public static final String COL_COD_BARRAS = "cod_barras";
     	public static final String COL_UNIADE_MEDIDA = "unidade_medida";
     	public static final String COL_DATA_VALIDADE = "data_validade";
+    	public static final String COL_DATA_FABRICACAO = "data_fabricacao";
     	public static final String COL_DATA_COMPRA = "data_compra";
+    	public static final String COL_PRECO_UNIDADE = "preco_unidade";
     	public static final String COL_FORNECEDOR_ID = "fornecedor_id";
     	public static final String COL_PRODUTO_ID = "produto_id";
     	
     	public static final String INSERT = "insert into" + NOME_TABELA + "(" 
-    	+ COL_STATUS + "," + COL_PORC_VAREJ	+ "," + COL_PROMOCAO + "," + COL_QUANTIDADE +
-    	"," + COL_PORC_ATACAD + "," + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + "," + COL_DATA_VALIDADE +
-    	"," + COL_DATA_COMPRA + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID 
-    	+ ") values (?,?,?,?,?,?,?,?,?,?,?) returning id";
+    	+ COL_PERECIVEL + "," + COL_QUANTIDADE + "," + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + "," + COL_DATA_VALIDADE +
+    	"," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID 
+    	+ ") values (?,?,?,?,?,?,?,?,?,?) returning id";
     	
     }
     
@@ -87,12 +88,17 @@ public class SQLUtil {
         public static final String COL_NOME = "nome";
         public static final String COL_CPF = "cpf";
         public static final String COL_CARGO = "cargo";
+        public static final String COL_LOGIN = "login";
+        public static final String COL_SENHA = "senha";
+        
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" 
-        + COL_NOME + "," + COL_CPF + "," + COL_CARGO + " ) values (?,?,?) returning id";
+        + COL_NOME + "," + COL_CPF + "," + COL_CARGO + "," + COL_LOGIN + "," + 
+        COL_SENHA + " ) values (?,?,?,?,?) returning id";
         
-        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ? where funcionario.id";
-        			
+        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where funcionario.id";
+        	
+        public static final String SELECT_LOGIN = "select * from funcionario where login = ?  and senha = ?";
     }
     
     public static class Caixa {
@@ -124,7 +130,7 @@ public class SQLUtil {
     public static class Fornecedor {
 
         public static final String NOME_TABELA = "fornecedor";
-        public static final String COL_NOME = "nome";
+        public static final String COL_NOME = "nome_fantasia";
         public static final String COL_RAZAO_SOCIAL = "razao_social";
         public static final String COL_CNPJ = "cnpj";
         public static final String COL_ESTADO = "estado";
@@ -201,5 +207,9 @@ public class SQLUtil {
     public static String selectById(String nomeTabela, int id) {
         return "select * from " + nomeTabela + " where id = " + id;
     }
+    
+//    public static String selectTabela(String nomeTabela, String nomeColuna) {
+//    	return "select * from " + nomeTabela + ""
+//    }
 
 }

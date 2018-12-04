@@ -6,6 +6,8 @@ public class Funcionario {
 	private String nome;
 	private String cpf;
 	private String cargo;
+	private String login;
+	private String senha;
 
 	public Integer getId() {
 		return id;
@@ -37,6 +39,22 @@ public class Funcionario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }

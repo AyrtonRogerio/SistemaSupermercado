@@ -30,6 +30,8 @@ public class DaoFuncionario implements IDaoFuncionario {
 			this.statement.setString(1, funcionario.getNome());
 			this.statement.setString(2, funcionario.getCpf());
 			this.statement.setString(3, funcionario.getCargo());
+			this.statement.setString(4, funcionario.getLogin());
+			this.statement.setString(5, funcionario.getSenha());
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,9 +54,13 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
 				funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
+				funcionario.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
+				funcionario.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
 				System.out.println(funcionario.getNome());
 				System.out.println(funcionario.getCpf());
 				System.out.println(funcionario.getCargo());
+				System.out.println(funcionario.getLogin());
+				System.out.println(funcionario.getSenha());
 			}
 			this.conexao.close();
 		} catch (SQLException ex) {
@@ -78,10 +84,14 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
 				funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
+				funcionario.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
+				funcionario.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
 				funcionarios.add(funcionario);
-				System.out.println(funcionario.getCargo());
 				System.out.println(funcionario.getNome());
 				System.out.println(funcionario.getCpf());
+				System.out.println(funcionario.getCargo());
+				System.out.println(funcionario.getLogin());
+				System.out.println(funcionario.getSenha());
 			}
 			this.conexao.close();
 			

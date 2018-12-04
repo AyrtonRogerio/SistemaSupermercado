@@ -25,10 +25,10 @@
                 </Menu>
                 <Menu mnemonicParsing="false">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Novo Produto" />
-                        <MenuItem mnemonicParsing="false" text="Exibir " />
-                        <MenuItem mnemonicParsing="false" text="Alterar" />
-                        <MenuItem mnemonicParsing="false" text="Remover" />
+                    <MenuItem fx:id="novo_produto_menu" mnemonicParsing="false" onAction="#action" text="Novo Produto" />
+                        <MenuItem fx:id="exibir_produto_menu" mnemonicParsing="false" onAction="#action" text="Exibir " />
+                        <MenuItem fx:id="alterar_produto_menu" mnemonicParsing="false" onAction="#action" text="Alterar" />
+                        <MenuItem fx:id="remover_produto_menu" mnemonicParsing="false" onAction="#action" text="Remover" />
                   </items>
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
@@ -40,14 +40,26 @@
                 </Menu>
                   <Menu mnemonicParsing="false">
                     <items>
-                      <MenuItem fx:id="novaVendaButton" mnemonicParsing="false" onAction="#action" text="Nova Venda" />
-                        <MenuItem fx:id="historicoButton" mnemonicParsing="false" onAction="#action" text="Histórico" />
-                        <MenuItem mnemonicParsing="false" text="Relatório" />
+                      <MenuItem fx:id="nova_venda_menu" mnemonicParsing="false" onAction="#action" text="Nova Venda" />
+                        <MenuItem fx:id="historico_venda_menu" mnemonicParsing="false" onAction="#action" text="Histórico" />
+                        <MenuItem fx:id="relatorio_venda_menu" mnemonicParsing="false" onAction="#action" text="Relatório" />
                     </items>
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
                            <image>
                               <Image url="@../../../../../res/025-cashbox.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false">
+                    <items>
+                      <MenuItem fx:id="novo_cliente_menu" mnemonicParsing="false" onAction="#action" text="Novo Cliente" />
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0">
+                           <image>
+                              <Image url="@../../../../../res/users.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -61,14 +73,14 @@
                         </ImageView>
                      </graphic>
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Controle de Caixa" />
-                        <MenuItem mnemonicParsing="false" text="Contas a Pagar" />
-                        <MenuItem mnemonicParsing="false" text="Contas a Receber" />
+                        <MenuItem fx:id="financas_caixa_menu" mnemonicParsing="false" onAction="#action" text="Controle de Caixa" />
+                        <MenuItem fx:id="financas_contas_pagar_menu" mnemonicParsing="false" onAction="#action" text="Contas a Pagar" />
+                        <MenuItem fx:id="financas_contas_receber_menu" mnemonicParsing="false" onAction="#action" text="Contas a Receber" />
                      </items>
                   </Menu>
                 <Menu mnemonicParsing="false">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Ajuda" />
+                    <MenuItem fx:id="ajuda_menu" mnemonicParsing="false" onAction="#action" text="Ajuda" />
                   </items>
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">

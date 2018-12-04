@@ -1,6 +1,6 @@
 package br.com.sistemasupermercado.model;
 
-import sun.util.calendar.LocalGregorianCalendar.Date;
+import java.util.Date;
 
 public class Venda {
 

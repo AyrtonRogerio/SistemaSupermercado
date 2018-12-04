@@ -22,23 +22,28 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	private Pane login;
-	private Pane inicio;
-	private Scene sceneTeste;
+	private static Pane login;
+	private static Pane inicio;
+	private static Pane CadastroCliente;
+	private static Scene sceneLogin;
+	private static Scene sceneMenu;
+	private static Stage stage;
 	
     public static void main(String[] args) {
-//        launch(args);
+        launch(args);
         IFachada fachada = Fachada.getInstance();
-        System.out.println("ssss");
+//        System.out.println("ssss");
 //        Funcionario funcionario = new Funcionario();
 //        funcionario.setNome("Joao");
-//        funcionario.setCpf("22222222222");
-//        funcionario.setCargo("gerente");
+//        funcionario.setCpf("22222552400");
+//        funcionario.setCargo("Caixa");
+//        funcionario.setLogin("admi2n");
+//        funcionario.setSenha("adm2in");
       
 //        Fornecedor fornecedor = new Fornecedor();
 //        fornecedor.setNome("Pajeu");
 //        fornecedor.setRazao_social("Pajeu LTDA");
-//        fornecedor.setCnpj("12345678901234");
+//        fornecedor.setCnpj("12311678903334");
 //        fornecedor.setEstado("PE");
 //        fornecedor.setCidade("Serra Talhada");
 //        System.out.println(fornecedor.getNome());
@@ -47,35 +52,35 @@ public class Main extends Application {
 //		System.out.println(fornecedor.getEstado());
 //		System.out.println(fornecedor.getCidade());
         
-        Cliente cliente = new Cliente();
-        Endereco endereco = new Endereco();
-        Contato contato = new Contato();
-        Contato contato2 = new Contato();
-        List<Contato> contatos = new ArrayList<>();
-        
-        cliente.setNome("PegaPfv6");
-        cliente.setCpf("54566133224");
-        endereco.setCep("56460000");
-        endereco.setRua("Magalhaes Cordeiro Quirino ");
-        endereco.setNumero("1200");
-        endereco.setBairro("ISEP");
-        endereco.setCidade("Serra Talhada");
-        endereco.setEstado("PE");
-        
-        contato.setCliente(cliente);
-        contato.setTipo(TipoContato.EMAIL);
-        contato.setDescricao("ayrton.rogerio1@gmail.com");
-        
-        contato2.setCliente(cliente);
-        contato2.setTipo(TipoContato.FACEBOOK);
-        contato2.setDescricao("Ayrton Rogerio");
-
-        contatos.add(contato);
-        contatos.add(contato2);
-        
-        
-        cliente.setEndereco(endereco);
-        cliente.setContatos(contatos);
+//        Cliente cliente = new Cliente();
+//        Endereco endereco = new Endereco();
+//        Contato contato = new Contato();
+//        Contato contato2 = new Contato();
+//        List<Contato> contatos = new ArrayList<>();
+////        
+//        cliente.setNome("Maria");
+//        cliente.setCpf("54566133122");
+//        endereco.setCep("56460000");
+//        endereco.setRua("Magalhaes Cordeiro Quirino ");
+//        endereco.setNumero("1200");
+//        endereco.setBairro("ISEP");
+//        endereco.setCidade("Serra Talhada");
+//        endereco.setEstado("PE");
+//        
+//        contato.setCliente(cliente);
+//        contato.setTipo(TipoContato.EMAIL);
+//        contato.setDescricao("ayrton.rogerio1@gmail.com");
+//        
+//        contato2.setCliente(cliente);
+//        contato2.setTipo(TipoContato.FACEBOOK);
+//        contato2.setDescricao("Ayrton Rogerio");
+//
+//        contatos.add(contato);
+//        contatos.add(contato2);
+//        
+//        
+//        cliente.setEndereco(endereco);
+//        cliente.setContatos(contatos);
         
         try {
 //			fachada.salvarEditarFuncionario(funcionario);
@@ -86,18 +91,18 @@ public class Main extends Application {
 	        
 //			DaoCommum.salvarContato(contato, cliente.getId());
 //			DaoCommum.salvarContato(contato2, cliente.getId());
-			System.out.println("----------------");
+//			System.out.println("----------------");
 			
 //			fachada.buscarPorIdFuncionario(1);
-			System.out.println("0-----------------------");
+//			System.out.println("0-----------------------");
 //			fachada.buscarPorIdFuncionario(2);
 			fachada.buscarPorIdCliente(1);
 //			fachada.buscarPorIdFornecedor(1);
 			
-			System.out.println("2-----------------------");
+//			System.out.println("2-----------------------");
 //			fachada.getAllFuncionario();
-			fachada.getAllCliente();
-			System.out.println("3-----------------------");
+//			fachada.getAllCliente();
+//			System.out.println("3-----------------------");
 //			fachada.getAllFornecedor();
 			
 //			DaoCommum.buscarContato(contato);
@@ -112,19 +117,30 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-//    	try {
-//			login = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Login.fxml"));
-//			inicio = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Inicio.fxml"));
-//		} catch (IOException e) {
+    	try {
+			login = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Login.fxml"));
+			inicio = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Inicio.fxml"));
+			
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+			e.printStackTrace();
+		}
     	
-//    	sceneTeste = new Scene(login);
-//    	primaryStage.setScene(sceneTeste);
-//    	primaryStage.centerOnScreen();
-//    	primaryStage.show();
-
+    	sceneLogin = new Scene(login);
+    	sceneMenu = new Scene(inicio);
+    	primaryStage.setScene(sceneLogin);
+    	primaryStage.centerOnScreen();
+    	primaryStage.show();
+    	stage = primaryStage;
+    	
+    }
+    
+    public static void changeStage(String nomeTela) {
+    	
+    	if(nomeTela.equals("Menu")) {
+    		stage.setScene(sceneMenu);
+    		
+    	}
     	
     }
 }

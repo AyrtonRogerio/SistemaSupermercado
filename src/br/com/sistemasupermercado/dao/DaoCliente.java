@@ -73,28 +73,12 @@ public class DaoCliente implements IDaoCliente {
                 cliente.setId(result.getInt(1));
                 cliente.setNome(result.getString(SQLUtil.Cliente.COL_NOME));
                 cliente.setCpf(result.getString(SQLUtil.Cliente.COL_CPF));
-                endereco = DaoCommum.buscarEndereco(cliente.getEndereco());
+                endereco = DaoCommum.buscarEndereco(result.getInt(SQLUtil.Cliente.COL_ENDERECO_ID));
                 cliente.setEndereco(endereco);
                 System.out.println(cliente.getNome());
 				System.out.println(cliente.getCpf());
 				System.out.println(cliente.getEndereco().getCep());
 				
-//				Contato contato = new Contato();
-//		        Contato contato2 = new Contato();
-//				
-//		        contato.setCliente(cliente);
-//		        contato.setTipo(TipoContato.EMAIL);
-//		        contato.setDescricao("ayrton.rogerio1@gmail.com");
-//		        
-//		        contato2.setCliente(cliente);
-//		        contato2.setTipo(TipoContato.FACEBOOK);
-//		        contato2.setDescricao("Ayrton Rogerio");
-//		        
-//				DaoCommum.salvarContato(contato, cliente.getId());
-//				DaoCommum.salvarContato(contato2, cliente.getId());
-//
-//				DaoCommum.buscarContato(contato);
-//				DaoCommum.buscarContato(contato2);
             }
             this.conexao.close();
 
@@ -119,7 +103,7 @@ public class DaoCliente implements IDaoCliente {
                 cliente.setId(result.getInt(1));
                 cliente.setNome(result.getString(SQLUtil.Cliente.COL_NOME));
                 cliente.setCpf(result.getString(SQLUtil.Cliente.COL_CPF));
-                Endereco endereco = DaoCommum.buscarEndereco(cliente.getEndereco());
+                Endereco endereco = DaoCommum.buscarEndereco(cliente.getId());
                 cliente.setEndereco(endereco);
                 clientes.add(cliente);
             }

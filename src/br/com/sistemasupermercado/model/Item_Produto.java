@@ -3,7 +3,7 @@
  */
 package br.com.sistemasupermercado.model;
 
-import sun.util.calendar.LocalGregorianCalendar.Date;
+import java.util.Date;
 
 /**
  * @author ayrton
@@ -12,7 +12,7 @@ import sun.util.calendar.LocalGregorianCalendar.Date;
 public class Item_Produto {
 
 //	id serial PRIMARY KEY NOT NULL,
-//	status BOOLEAN,
+//	perecivel BOOLEAN,
 //	porc_varej FLOAT,
 //	promocao BOOLEAN,
 //	quantidade INTEGER,
@@ -26,54 +26,33 @@ public class Item_Produto {
 //	);
 
 	private Integer id;
-	private boolean status;
-	private double porc_varejo;
-	private boolean promocao;
+	private boolean perecivel;
 	private int quantidade;
-	private double proc_atacado;
 	private int cod_barras;
 	private double unid_medida;
 	private Date data_validade;
 	private Date data_fabricacao;
 	private Date data_compra;
+	private double preco_unidade;
 	private Integer fornecedor_id;
 	private Integer produto_id;
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-	public double getPorc_varejo() {
-		return porc_varejo;
-	}
-	public void setPorc_varejo(double porc_varejo) {
-		this.porc_varejo = porc_varejo;
-	}
-	public boolean isPromocao() {
-		return promocao;
-	}
-	public void setPromocao(boolean promocao) {
-		this.promocao = promocao;
-	}
+	
 	public int getQuantidade() {
 		return quantidade;
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public double getProc_atacado() {
-		return proc_atacado;
-	}
-	public void setProc_atacado(double proc_atacado) {
-		this.proc_atacado = proc_atacado;
-	}
+	
 	public int getCod_barras() {
 		return cod_barras;
 	}
@@ -115,6 +94,18 @@ public class Item_Produto {
 	}
 	public void setProduto_id(Integer produto_id) {
 		this.produto_id = produto_id;
+	}
+	public boolean isPerecivel() {
+		return perecivel;
+	}
+	public void setPerecivel(boolean perecivel) {
+		this.perecivel = perecivel;
+	}
+	public double getPreco_unidade() {
+		return preco_unidade;
+	}
+	public void setPreco_unidade(double preco_unidade) {
+		this.preco_unidade = preco_unidade;
 	}
 	
 }
