@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  */
 public class ControleCadastroFuncionario implements Initializable {
 
-	private Funcionario funcionario;
+	private Funcionario funcionario;Fachada fachada = Fachada.getInstance();
 
 	@FXML
 	private Button cadastrar_func_button;

@@ -4,8 +4,14 @@
 package br.com.sistemasupermercado.controle;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.sistemasupermercado.fachada.Fachada;
+import br.com.sistemasupermercado.model.Cliente;
+import br.com.sistemasupermercado.model.Contato;
+import br.com.sistemasupermercado.model.Endereco;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +23,12 @@ import javafx.scene.control.TextField;
  *
  */
 public class ControleCadastroCliente implements Initializable {
+	
+	private Cliente cliente;
+	private Endereco endereco;
+	private Contato contato;
+	private List<Contato> contatos;
+	
 
 	@FXML
 	private ComboBox<?> tipo_contato_combo;
@@ -47,6 +59,8 @@ public class ControleCadastroCliente implements Initializable {
 
 	@FXML
 	private TextField estado_cliente_field;
+	
+	Fachada fachada = Fachada.getInstance();
 
 	@FXML
     void action(ActionEvent event) {
@@ -57,6 +71,21 @@ public class ControleCadastroCliente implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void cadastrarCliente() {
+		cliente = new Cliente();
+		
+		cliente.setNome(nome_cliente_field.getText());
+		cliente.setCpf(cpf_cliente_field.getText());
+		
+		endereco = new Endereco();
+		
+		endereco.setRua();
+		
+		contato = new Contato();
+		contatos = new ArrayList<>();
+		
 	}
 
 }
