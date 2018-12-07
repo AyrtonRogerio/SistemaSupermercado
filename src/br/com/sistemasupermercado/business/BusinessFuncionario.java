@@ -88,4 +88,21 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessFuncionario#buscarPorLogin(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Funcionario buscarPorLogin(String login, String senha) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+		try {
+			return daoFuncionario.buscarLogin(login,senha);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		
+	}
+
 }

@@ -76,10 +76,16 @@ public class SQLUtil {
         public static final String NOME_TABELA = "cliente";
         public static final String COL_NOME = "nome";
         public static final String COL_CPF = "cpf";
+        public static final String COL_SEXO = "sexo";
+        public static final String COL_ESTADO_CIVIL = "estado_civil";
+        public static final String COL_OCUPACAO = "ocupacao";
+        public static final String COL_DATA_NASCIMENTO = "data_nascimento";
         public static final String COL_ENDERECO_ID = "endereco_id";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_NOME + ","
-        + COL_CPF + "," + COL_ENDERECO_ID + " ) values (?,?,?) returning id";
+        + COL_CPF + "," + COL_SEXO + "," + COL_ESTADO_CIVIL + "," +
+        COL_OCUPACAO + "," + COL_DATA_NASCIMENTO + "," +
+        COL_ENDERECO_ID + " ) values (?,?,?,?,?,?,?) returning id";
     }
 
     public static class Funcionario {

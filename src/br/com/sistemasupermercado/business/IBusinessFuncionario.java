@@ -13,6 +13,8 @@ public interface IBusinessFuncionario {
 	public Funcionario buscarPorId(int id) throws BusinessException;
 
 	public List<Funcionario> getAll() throws BusinessException;
+	
+	public Funcionario buscarPorLogin(String login, String senha) throws BusinessException;
 
 	public void ativarDesativar(int id) throws BusinessException;
 

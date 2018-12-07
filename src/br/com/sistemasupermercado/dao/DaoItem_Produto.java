@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Item_Produto;
 import br.com.sistemasupermercado.model.Produto;
 import br.com.sistemasupermercado.sql.SQLConections;
@@ -28,7 +29,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	private Connection conexao;
 	private PreparedStatement statement;
 	private ResultSet result;
-	
+	private Fachada fachada = Fachada.getInstance();
 	/* (non-Javadoc)
 	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#salvar(br.com.sistemasupermercado.model.Item_Produto)
 	 */
@@ -36,6 +37,9 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	public void salvar(Item_Produto item_Produto) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
+
+//			int fornecedor_id = fachada.salvarEditarFornecedor(item_Produto.get); 
+			
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
 			this.statement.setBoolean(1, item_Produto.isPerecivel());
@@ -46,6 +50,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.setDate(6, new java.sql.Date(item_Produto.getData_validade().getTime()));
 			this.statement.setDate(7, new java.sql.Date( item_Produto.getData_compra().getTime()));
 			this.statement.setDouble(8, item_Produto.getPreco_unidade());
+			
 			this.statement.setInt(10, item_Produto.getFornecedor_id());
 			this.statement.setInt(11, item_Produto.getProduto_id());
 			statement.execute();

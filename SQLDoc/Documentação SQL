@@ -35,6 +35,10 @@ CREATE TABLE cliente(
 id serial PRIMARY KEY,
 nome VARCHAR(255) NOT NULL,
 cpf VARCHAR(11) UNIQUE NOT NULL,
+sexo VARCHAR(20),
+estado_civil VARCHAR(25),
+ocupacao VARCHAR(25),
+data_nascimento DATE,
 endereco_id INTEGER REFERENCES endereco(id)
 );
 

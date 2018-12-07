@@ -24,24 +24,24 @@ public class ControleCadastroFuncionario implements Initializable {
 	private Funcionario funcionario;Fachada fachada = Fachada.getInstance();
 
 	@FXML
-	private Button cadastrar_func_button;
+    private Button cadastrar_func_button;
 
-	@FXML
-	private TextField nome_func_field;
+    @FXML
+    private TextField nome_func_field;
 
-	@FXML
-	private TextField cpf_func_field;
+    @FXML
+    private TextField cpf_func_field;
 
-	@FXML
-	private TextField cargo_func_field;
+    @FXML
+    private TextField cargo_func_field;
 
-	@FXML
-	private TextField login_func_field;
+    @FXML
+    private TextField login_func_field;
 
-	@FXML
-	private TextField senha_func_field;
+    @FXML
+    private TextField senha_func_field;
 
-	Fachada fachada = Fachada.getInstance();
+//	Fachada fachada = Fachada.getInstance();
 
 	@FXML
 	void action(ActionEvent event) {

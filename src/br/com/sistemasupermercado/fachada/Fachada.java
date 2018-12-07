@@ -102,6 +102,15 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return this.businessFuncionario.getAll();
 	}
+	
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.fachada.IFachada#buscarPorLoginFuncionario(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public Funcionario buscarPorLoginFuncionario(String login, String senha) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessFuncionario.buscarPorLogin(login, senha);
+	}
 
 	@Override
 	public void ativarDesativarFuncionario(int id) throws BusinessException {

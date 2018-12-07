@@ -19,8 +19,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 	private Connection conexao;
 	private PreparedStatement statement;
 	private ResultSet result;
-	
-	
+
 	@Override
 	public void salvar(Funcionario funcionario) throws DaoException {
 		// TODO Auto-generated method stub
@@ -94,7 +93,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 				System.out.println(funcionario.getSenha());
 			}
 			this.conexao.close();
-			
+
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -107,7 +106,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +116,45 @@ public class DaoFuncionario implements IDaoFuncionario {
 	@Override
 	public void ativarDesativar(int id) throws DaoException {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * br.com.sistemasupermercado.dao.IDaoFuncionario#buscarLogin(java.lang.String,
+	 * java.lang.String)
+	 */
+	@Override
+	public Funcionario buscarLogin(String login, String senha) throws DaoException {
+		try {
+			Funcionario func = null;
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.SELECT_LOGIN);
+			this.result = this.statement.executeQuery();
+
+			this.statement.setString(4, login);
+			this.statement.setString(5, senha);
+
+			if (result.next()) {
+				func = new Funcionario();
+				func.setId(result.getInt(1));
+				func.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
+				func.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+				func.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
+				func.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
+				func.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
+
+			}
+			return func;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DaoException("Erro na buscaPorLogin");
+		}
+
 	}
 
 }
