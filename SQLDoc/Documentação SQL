@@ -78,13 +78,18 @@ cidade VARCHAR(60)
 CREATE TABLE item_produto(
 id serial PRIMARY KEY NOT NULL,
 perecivel BOOLEAN,
+status BOOLEAN,
 quantidade INTEGER,
 cod_barras VARCHAR(255),
 unidade_medida DOUBLE PRECISION,
 data_fabricacao DATE,
 data_validade DATE,
 data_compra DATE,
-preco_unidade DOUBLE PRECISION, 
+preco_unidade DOUBLE PRECISION,
+preco_atacado DOUBLE PRECISION,
+preco_varejo DOUBLE PRECISION,
+porc_atacado DOUBLE PRECISION,
+porc_varejo DOUBLE PRECISION, 
 fornecedor_id INTEGER REFERENCES fornecedor(id),
 produto_id INTEGER REFERENCES produto(id)
 );

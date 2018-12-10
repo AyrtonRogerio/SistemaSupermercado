@@ -54,8 +54,17 @@
                   </Menu>
                   <Menu mnemonicParsing="false">
                     <items>
-                      <MenuItem fx:id="novo_cliente_menu" mnemonicParsing="false" onAction="#action" text="Novo Cliente" />
+                      <MenuItem fx:id="funcionario_menu" mnemonicParsing="false" onAction="#action" text="Funcionários" />
                     </items>
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0">
+                           <image>
+                              <Image url="@../../../../../res/016-manager.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+                  <Menu fx:id="cliente_menu" mnemonicParsing="false" onAction="#action">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
                            <image>
@@ -63,6 +72,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <items>
+                        <MenuItem fx:id="cliente_menu" mnemonicParsing="false" onAction="#action" text="Cliente" />
+                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false">
                      <graphic>

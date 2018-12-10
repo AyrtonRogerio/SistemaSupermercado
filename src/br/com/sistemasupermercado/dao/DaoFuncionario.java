@@ -132,10 +132,11 @@ public class DaoFuncionario implements IDaoFuncionario {
 			Funcionario func = null;
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.SELECT_LOGIN);
+			this.statement.setString(1, login);
+			this.statement.setString(2, senha);
 			this.result = this.statement.executeQuery();
 
-			this.statement.setString(4, login);
-			this.statement.setString(5, senha);
+			
 
 			if (result.next()) {
 				func = new Funcionario();

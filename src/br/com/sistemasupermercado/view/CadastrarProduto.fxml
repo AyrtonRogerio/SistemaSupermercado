@@ -1,122 +1,436 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
-  <tabs>
-    <Tab text="Produto">
-         <content>
-            <FlowPane prefHeight="200.0" prefWidth="200.0">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleCadastroProduto">
+   <children>
+      <BorderPane layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TabPane prefHeight="354.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab fx:id="lista_prod_tabPane" text="Lista de Produtos">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <GridPane alignment="CENTER" prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="busca_avanc_produto_field" onAction="#action" promptText="Nome do Produto" GridPane.rowIndex="1">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="cod_produto_field" onAction="#action" promptText="Cód. de Barras" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Nome ">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Código " GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Data de Compra" GridPane.columnIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Data de Validade" GridPane.columnIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <DatePicker fx:id="data_compra_produto_field" onAction="#action" promptText="Data de Compra" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </DatePicker>
+                                    <DatePicker fx:id="data_valid_produto_field" onAction="#action" promptText="Data de Validade" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </DatePicker>
+                                    <Button fx:id="busca_avanc_produto_button" mnemonicParsing="false" onAction="#action" text="Busca Avançada" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </GridPane>
+                           </top>
+                           <center>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="232.0" prefWidth="308.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TableView fx:id="tabela_produto" prefHeight="232.0" prefWidth="181.0">
+                                       <columns>
+                                          <TableColumn fx:id="nome_tabela" prefWidth="84.0" text="Nome" />
+                                          <TableColumn fx:id="marca_tabela" prefWidth="109.0" text="Marca" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <TableView fx:id="tabela_item_produto" prefHeight="232.0" prefWidth="419.0">
+                                      <columns>
+                                          <TableColumn fx:id="codigo_tabela" prefWidth="60.0" text="Código" />
+                                          <TableColumn fx:id="valor_varejo_tabela" prefWidth="90.0" text="Valor Varejo" />
+                                          <TableColumn fx:id="estoque_tabela" prefWidth="66.0" text="Estoque" />
+                                          <TableColumn fx:id="data_cadastro_tabela" prefWidth="125.0" text="Data de Cadastro" />
+                                          <TableColumn fx:id="status_tabela" prefWidth="77.0" text="Status" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </FlowPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab fx:id="novo_produto_tab" text="Novo Produto">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <FlowPane prefHeight="35.0" prefWidth="601.0" BorderPane.alignment="CENTER" />
+                           </top>
+                           <bottom>
+                              <FlowPane alignment="CENTER" prefHeight="56.0" prefWidth="601.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="continuar_prod_cadast_button" mnemonicParsing="false" onAction="#action" text="Continuar" />
+                                 </children>
+                              </FlowPane>
+                           </bottom>
+                           <center>
+                              <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <GridPane alignment="CENTER" prefHeight="191.0" prefWidth="601.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="220.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="180.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Nome">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Quantidade" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Código de Barras" GridPane.columnIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Status" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Descrição" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="quant_prod_cadast_field" onAction="#action" promptText="Quantidade do produto..." GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="nome_prod_cadast_field" onAction="#action" promptText="Nome do produto..." GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="cod_prod_cadast_field" onAction="#action" promptText="Código de barras..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <Label text="Marca" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="descri_prod_cadast_field" onAction="#action" promptText="Descrição..." GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="marca_prod_cadastro_field" onAction="#action" promptText="Marca..." GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <DatePicker fx:id="dataCad_prod_cadast_data" onAction="#action" prefHeight="26.0" prefWidth="173.0" promptText="Cadastrado em..." GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </DatePicker>
+                                          <DatePicker fx:id="data_valid_prod_cadast_data" onAction="#action" promptText="Válido até..." GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </DatePicker>
+                                          <DatePicker fx:id="data_fabric_prod_cadast_data" onAction="#action" promptText="Fabricado em..." GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </DatePicker>
+                                          <Label text="Cadastrado em" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Fabricação" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets left="120.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Validade" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <GridPane.margin>
+                                                <Insets left="135.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <CheckBox fx:id="perecivel_prod_cadast_checkB" mnemonicParsing="false" onAction="#action" text="Perecível" GridPane.rowIndex="4">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </CheckBox>
+                                          <CheckBox fx:id="status_prod_cadast_checkB" mnemonicParsing="false" onAction="#action" text="Ativo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </CheckBox>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </FlowPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                  <Tab fx:id="valores_tab" text="Valores">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <FlowPane prefHeight="62.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+                           </top>
+                           <bottom>
+                              <FlowPane alignment="CENTER" prefHeight="77.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="voltar_prod_cadast_button" mnemonicParsing="false" onAction="#action" text="Voltar">
+                                       <FlowPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button fx:id="cont_valores_prod_cadast_button" mnemonicParsing="false" onAction="#action" text="Continuar">
+                                       <FlowPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                           </bottom>
+                           <center>
+                              <GridPane BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Preço Unitário (R$)">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Preço Varejo (R$)" GridPane.columnIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Porcentagem Varejo (%)" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Preço Atacado (R$)" GridPane.columnIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label text="Porcentagem Atacado (%)" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextField fx:id="preco_unit_prod_cadastro_field" onAction="#action" promptText="Preço por unidade..." GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="preco_varej_prod_cadastro_field" onAction="#action" promptText="Preço Varejo..." GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="preco_atac_prod_cadast_field" onAction="#action" promptText="Preço Atacado..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="porc_varej_prod_cadast_field" onAction="#action" promptText="Porcentagem Varejo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <TextField fx:id="porc_atac_prod_cadast_field" onAction="#action" promptText="Porcentamgem Atacado..." GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Fornecedor">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Buscar Fornecedor">
+                                       <FlowPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </FlowPane.margin>
+                                    </Label>
+                                    <TextField fx:id="busca_fornec_field" onAction="#action" promptText="Buscar fornecedor...">
+                                       <FlowPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </FlowPane.margin>
+                                    </TextField>
+                                    <Button fx:id="busca_fornec_button" mnemonicParsing="false" onAction="#action" text="Buscar">
+                                       <FlowPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                           </top>
+                           <center>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="214.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TableView fx:id="tebela_fornec" prefHeight="202.0" prefWidth="600.0">
+                                      <columns>
+                                        <TableColumn prefWidth="117.0" text="Nome Fantasia" />
+                                        <TableColumn prefWidth="133.0" text="Razão/Social" />
+                                          <TableColumn prefWidth="141.0" text="CNPJ" />
+                                          <TableColumn prefWidth="130.0" text="Cidade" />
+                                          <TableColumn prefWidth="78.0" text="Estado" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="add_fornec_button" mnemonicParsing="false" onAction="#action" text="Adicionar Fornecedor">
+                                       <FlowPane.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                 </children>
+                              </FlowPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <top>
+            <GridPane alignment="CENTER" prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="165.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="257.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="194.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <BorderPane prefHeight="367.0" prefWidth="600.0">
-                     <center>
-                        <GridPane BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="227.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="94.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="276.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Nome">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Quantidade" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Código de Barras" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label text="Descrição" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <RadioButton mnemonicParsing="false" text="Perecível" GridPane.rowIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Não Perecível" GridPane.rowIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="110.0" right="5.0" />
-                                 </GridPane.margin>
-                              </RadioButton>
-                              <Label text="Marca" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="5.0" right="5.0" />
-                                 </GridPane.margin>
-                              </TextField>
-                           </children>
-                        </GridPane>
-                     </center>
-                     <bottom>
-                        <FlowPane prefHeight="124.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-                     </bottom>
-                     <top>
-                        <FlowPane prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-                     </top>
-                  </BorderPane>
+                  <Label text="Produto">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="busca_prod_nome_field" onAction="#action" prefHeight="26.0" prefWidth="77.0" promptText="Buscar por nome..." GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="busca_prod_nome_button" mnemonicParsing="false" onAction="#action" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
-            </FlowPane>
-         </content>
-    </Tab>
-    <Tab text="Fornecedor">
-         <content>
-            <FlowPane prefHeight="200.0" prefWidth="200.0" />
-         </content>
-    </Tab>
-  </tabs>
-</TabPane>
+            </GridPane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

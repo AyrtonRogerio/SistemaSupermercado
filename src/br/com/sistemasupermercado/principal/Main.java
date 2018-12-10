@@ -24,7 +24,7 @@ public class Main extends Application {
 
 	private static Pane login;
 	private static Pane inicio;
-	private static Pane CadastroCliente;
+//	private static Pane CadastroCliente;
 	private static Scene sceneLogin;
 	private static Scene sceneMenu;
 	private static Stage stage;

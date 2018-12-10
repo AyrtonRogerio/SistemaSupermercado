@@ -14,45 +14,47 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ControleLogin implements Initializable{
+public class ControleLogin implements Initializable {
 
 	private Fachada fachada = Fachada.getInstance();
-	
+
 	@FXML
-    private TextField login_field;
+	private TextField login_field;
 
-    @FXML
-    private PasswordField senha_pass_field;
+	@FXML
+	private PasswordField senha_pass_field;
 
-    @FXML
-    private Button logarButton;
+	@FXML
+	private Button logarButton;
 
-    @FXML
-    void action(ActionEvent event) {
-    	
-    	if(event.getSource() == logarButton) {
-    		if(efetuarLogin())
-    		Main.changeStage("Menu");
-    	}
-    	else {
-    		{
-    			System.out.println("eita");
+	@FXML
+	void action(ActionEvent event) {
+
+		if (event.getSource() == logarButton) {
+			if (efetuarLogin()) {
+				System.out.println("login certo");
+				Main.changeStage("Menu");
+			} else
+				System.out.println("login errado");
+		} else {
+			{
+				System.out.println("eita");
 //    			Main.changeStage("");
-    		}
+			}
 		}
-    }
-	
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public boolean efetuarLogin() {
 		Funcionario funcionario;
 		try {
 			funcionario = fachada.buscarPorLoginFuncionario(login_field.getText(), senha_pass_field.getText());
-			if(funcionario == null) {
+			if (funcionario == null) {
 				return false;
 			}
 			return true;
@@ -62,9 +64,7 @@ public class ControleLogin implements Initializable{
 			System.out.println("controle login");
 			return false;
 		}
-		
-		
+
 	}
-	
-	
+
 }
