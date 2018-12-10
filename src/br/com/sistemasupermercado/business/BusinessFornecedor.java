@@ -18,12 +18,12 @@ public class BusinessFornecedor implements IBusinessFornecedor {
     }
 
     @Override
-    public void salvarEditar(Fornecedor fornecedor) throws BusinessException {
+    public int salvarEditar(Fornecedor fornecedor) throws BusinessException {
 
         try {
             validar(fornecedor);
             if (fornecedor.getId() == null)
-                daoFornecedor.salvar(fornecedor);
+              return daoFornecedor.salvar(fornecedor);
             else
                 daoFornecedor.editar(fornecedor);
         } catch (DaoException | ValidacaoException e) {
@@ -31,7 +31,7 @@ public class BusinessFornecedor implements IBusinessFornecedor {
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
-
+        return 0;
     }
 
     @Override
@@ -74,4 +74,19 @@ public class BusinessFornecedor implements IBusinessFornecedor {
         if(fornecedor.getCnpj() == null)
             throw new ValidacaoException("Informe um CNPJ!!!");
     }
+
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessFornecedor#buscarPorNome(java.lang.String)
+	 */
+	@Override
+	public Fornecedor buscarPorNome(String nome) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoFornecedor.buscarPorNome(nome);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

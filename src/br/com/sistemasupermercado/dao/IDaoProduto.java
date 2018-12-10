@@ -9,7 +9,7 @@ import br.com.sistemasupermercado.model.Produto;
 
 public interface IDaoProduto {
 
-	public void salvar(Produto produto) throws DaoException;
+	public int salvar(Produto produto) throws DaoException;
 
 	public Produto buscarPorId(int id) throws DaoException;
 

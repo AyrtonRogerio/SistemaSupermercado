@@ -9,7 +9,7 @@ import br.com.sistemasupermercado.model.*;
 public interface IFachada {
 
 	// Produto
-	public void salvarEditarProduto(Produto produto) throws BusinessException;
+	public int salvarEditarProduto(Produto produto) throws BusinessException;
 
 	public Produto buscarPorIdProduto(int id) throws BusinessException;
 
@@ -41,10 +41,12 @@ public interface IFachada {
 
 	//Fornecedor
 
-	public void salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException;
+	public int salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException;
 
 	public Fornecedor buscarPorIdFornecedor(int id) throws BusinessException;
 
+	public Fornecedor buscarPorNomeFornecedor(String nome) throws BusinessException;
+	
 	public List<Fornecedor> getAllFornecedor() throws BusinessException;
 
 	public void ativarDesativarFornecedor(int id) throws BusinessException;

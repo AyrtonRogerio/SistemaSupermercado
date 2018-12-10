@@ -348,7 +348,7 @@
                         </BorderPane>
                      </content>
                   </Tab>
-                  <Tab text="Fornecedor">
+                  <Tab fx:id="fornecedor_tab" text="Fornecedor">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
@@ -375,18 +375,28 @@
                            <center>
                               <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="214.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TableView fx:id="tebela_fornec" prefHeight="202.0" prefWidth="600.0">
+                                    <TableView fx:id="tabela_fornec" prefHeight="202.0" prefWidth="600.0">
                                       <columns>
-                                        <TableColumn prefWidth="117.0" text="Nome Fantasia" />
-                                        <TableColumn prefWidth="133.0" text="Razão/Social" />
-                                          <TableColumn prefWidth="141.0" text="CNPJ" />
-                                          <TableColumn prefWidth="130.0" text="Cidade" />
-                                          <TableColumn prefWidth="78.0" text="Estado" />
+                                        <TableColumn fx:id="nome_forn" prefWidth="117.0" text="Nome Fantasia" />
+                                        <TableColumn fx:id="razao_forn" prefWidth="133.0" text="Razão/Social" />
+                                          <TableColumn fx:id="cnpj_forn" prefWidth="141.0" text="CNPJ" />
+                                          <TableColumn fx:id="cidade_forn" prefWidth="130.0" text="Cidade" />
+                                          <TableColumn fx:id="estado_forn" prefWidth="78.0" text="Estado" />
                                       </columns>
                                     </TableView>
                                     <Button fx:id="add_fornec_button" mnemonicParsing="false" onAction="#action" text="Adicionar Fornecedor">
                                        <FlowPane.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button fx:id="cadast_forn_button" mnemonicParsing="false" onAction="#action" text="Novo Fornecedor">
+                                       <FlowPane.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button fx:id="finalizar_cadas_prod_button" mnemonicParsing="false" onAction="#action" text="Finalizar Cadastro">
+                                       <FlowPane.margin>
+                                          <Insets left="5.0" right="5.0" />
                                        </FlowPane.margin>
                                     </Button>
                                  </children>

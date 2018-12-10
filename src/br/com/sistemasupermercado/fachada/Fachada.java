@@ -36,8 +36,8 @@ public class Fachada implements IFachada {
 	
 	//Produto
 	@Override
-	public void salvarEditarProduto(Produto produto) throws BusinessException {
-		this.businessProduto.salvarEditar(produto);
+	public int salvarEditarProduto(Produto produto) throws BusinessException {
+		return this.businessProduto.salvarEditar(produto);
 
 	}
 
@@ -121,9 +121,10 @@ public class Fachada implements IFachada {
 	//Fornecedor
 
 	@Override
-	public void salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException {
+	public int salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException {
 
-	    this.businessFornecedor.salvarEditar(fornecedor);
+	    return this.businessFornecedor.salvarEditar(fornecedor);
+		
 	}
 
 	@Override
@@ -134,6 +135,15 @@ public class Fachada implements IFachada {
 	@Override
 	public List<Fornecedor> getAllFornecedor() throws BusinessException {
 		return this.businessFornecedor.getAll();
+	}
+	
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.fachada.IFachada#buscarPorNomeFornecedor(java.lang.String)
+	 */
+	@Override
+	public Fornecedor buscarPorNomeFornecedor(String nome) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessFornecedor.buscarPorNome(nome);
 	}
 
 	@Override

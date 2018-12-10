@@ -8,7 +8,7 @@ import br.com.sistemasupermercado.model.Produto;
 
 public interface IBusinessProduto {
 
-	public void salvarEditar(Produto produto) throws BusinessException;
+	public int salvarEditar(Produto produto) throws BusinessException;
 
 	public Produto buscarPorId(int id) throws BusinessException;
 

@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.fachada.Fachada;
+import br.com.sistemasupermercado.model.Fornecedor;
 import br.com.sistemasupermercado.model.Item_Produto;
 import br.com.sistemasupermercado.model.Produto;
 import br.com.sistemasupermercado.sql.SQLConections;
@@ -38,7 +40,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		// TODO Auto-generated method stub
 		try {
 
-//			int fornecedor_id = fachada.salvarEditarFornecedor(item_Produto.get); 
+			int fornecedor_id = fachada.salvarEditarFornecedor(item_Produto.getFornecedor_id()); 
+			int produto_id = fachada.salvarEditarProduto(item_Produto.getProduto_id());
 			
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
@@ -55,10 +58,10 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.setDouble(11, item_Produto.getPreco_varejo());
 			this.statement.setDouble(12, item_Produto.getPorc_atacado());
 			this.statement.setDouble(13, item_Produto.getPorc_varejo());
-			this.statement.setInt(14, item_Produto.getFornecedor_id());
-			this.statement.setInt(15, item_Produto.getProduto_id());
+			this.statement.setInt(14, fornecedor_id);
+			this.statement.setInt(15, produto_id);
 			statement.execute();
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
@@ -72,6 +75,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		// TODO Auto-generated method stub
 		Item_Produto item_Produto = null;
 		try {
+			Fornecedor fornecedor = null;
+			Produto produto = null;
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Item_Produto.NOME_TABELA, id));
 			this.result = this.statement.executeQuery();
@@ -92,13 +97,17 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPreco_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PRECO_VAREJO));
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
-				item_Produto.setFornecedor_id(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
-				item_Produto.setProduto_id(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				
+				fornecedor = fachada.buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
+				produto = fachada.buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				
+				item_Produto.setFornecedor_id(fornecedor);
+				item_Produto.setProduto_id(produto);
 				
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return item_Produto;
@@ -112,6 +121,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		// TODO Auto-generated method stub
 		List<Item_Produto> item_Produtos = new ArrayList<>();
 		try {
+			Fornecedor fornecedor = null;
+			Produto produto = null;
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Item_Produto.NOME_TABELA));
 			this.result = this.statement.executeQuery();
@@ -132,13 +143,17 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPreco_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PRECO_VAREJO));
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
-				item_Produto.setFornecedor_id(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
-				item_Produto.setProduto_id(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				
+				fornecedor = fachada.buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
+				produto = fachada.buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				
+				item_Produto.setFornecedor_id(fornecedor);
+				item_Produto.setProduto_id(produto);
 				item_Produtos.add(item_Produto);
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return item_Produtos;

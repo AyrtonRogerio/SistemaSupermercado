@@ -153,6 +153,8 @@ public class SQLUtil {
         "," + COL_RAZAO_SOCIAL + "," + COL_CNPJ + "," + COL_ESTADO + ","
         + COL_CIDADE + " ) values (?,?,?,?,?) returning id ";
 
+        public static final String SELECT_NOME = "select * from fornecedor where nome_fantasia = ?";
+        
     }
     
     public static class Venda {

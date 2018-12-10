@@ -21,8 +21,8 @@ public class DaoFornecedor implements IDaoFornecedor {
     private ResultSet result;
 
     @Override
-    public void salvar(Fornecedor fornecedor) throws DaoException {
-
+    public int salvar(Fornecedor fornecedor) throws DaoException {
+    	int id = 0;
         try {
         	System.out.println("fornec");
             this.conexao = SQLConections.getInstance();
@@ -32,11 +32,17 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.statement.setString(3, fornecedor.getCnpj());
             this.statement.setString(4, fornecedor.getEstado());
             this.statement.setString(5, fornecedor.getCidade());
-            statement.execute();
+            
+            result = statement.executeQuery();
+//            statement.execute();
+            if(result.next()) {
+            	id = result.getInt(1);
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        	
+        	return id;
     }
 
     @Override
@@ -103,6 +109,35 @@ public class DaoFornecedor implements IDaoFornecedor {
 
     }
 
+    public Fornecedor buscarPorNome(String nome) {
+    	
+    	Fornecedor fornecedor = null;
+    	try {
+    		this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.SELECT_NOME);
+			this.statement.setString(1, nome);
+			this.result = statement.executeQuery();
+			
+			if(result.next()) {
+				fornecedor = new Fornecedor();
+				
+				fornecedor.setId(result.getInt(1));
+				fornecedor.setNome(result.getString(SQLUtil.Fornecedor.COL_NOME));
+				fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAL));
+				fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+				fornecedor.setCidade(result.getString(SQLUtil.Fornecedor.COL_CIDADE));
+				fornecedor.setEstado(result.getString(SQLUtil.Fornecedor.COL_ESTADO));
+				
+			}
+			
+    	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return fornecedor;
+    	
+    }
+    
     @Override
     public void editar(Fornecedor fornecedor) throws DaoException {
 

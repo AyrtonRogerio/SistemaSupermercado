@@ -18,11 +18,11 @@ public class BusinessProduto implements IBusinessProduto {
 	}
 
 	@Override
-	public void salvarEditar(Produto produto) throws BusinessException {
+	public int  salvarEditar(Produto produto) throws BusinessException {
 		try {
 			validar(produto);
 			if (produto.getId() == null)
-				daoProduto.salvar(produto);
+			return daoProduto.salvar(produto);
 			else
 				daoProduto.editar(produto);
 		} catch (DaoException | ValidacaoException e) {
@@ -30,7 +30,7 @@ public class BusinessProduto implements IBusinessProduto {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
-
+		return 0;
 	}
 
 	@Override

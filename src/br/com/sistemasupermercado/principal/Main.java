@@ -24,9 +24,10 @@ public class Main extends Application {
 
 	private static Pane login;
 	private static Pane inicio;
-//	private static Pane CadastroCliente;
+	private static Pane cadastroFornecedor;
 	private static Scene sceneLogin;
 	private static Scene sceneMenu;
+	private static Scene sceneFornecedor;
 	private static Stage stage;
 	
     public static void main(String[] args) {
@@ -118,8 +119,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
     	try {
-			login = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Login.fxml"));
-			inicio = FXMLLoader.load(getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Inicio.fxml"));
+			
+    		login = FXMLLoader.load(getClass().getClassLoader().getResource
+    				("br/com/sistemasupermercado/view/Login.fxml"));
+    		
+			inicio = FXMLLoader.load(getClass().getClassLoader().getResource
+					("br/com/sistemasupermercado/view/Inicio.fxml"));
+			
+			cadastroFornecedor = FXMLLoader.load(getClass().getClassLoader().getResource
+					("br/com/sistemasupermercado/view/CadastrarFornecedor.fxml"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -128,6 +136,7 @@ public class Main extends Application {
     	
     	sceneLogin = new Scene(login);
     	sceneMenu = new Scene(inicio);
+//    	sceneFornecedor = new Scene(cadastroFornecedor);
     	primaryStage.setScene(sceneLogin);
     	primaryStage.centerOnScreen();
     	primaryStage.show();
@@ -143,4 +152,10 @@ public class Main extends Application {
     	}
     	
     }
+    
+    public static Pane telaFornecedor() {
+    	
+    	return cadastroFornecedor;
+    }
+    
 }

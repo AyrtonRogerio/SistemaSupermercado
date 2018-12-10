@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.model.Produto;
 import br.com.sistemasupermercado.sql.SQLConections;
@@ -22,20 +21,27 @@ public class DaoProduto implements IDaoProduto {
 	private ResultSet result;
 
 	@Override
-	public void salvar(Produto produto) throws DaoException {
+	public int salvar(Produto produto) throws DaoException {
 		// TODO Auto-generated method stub
-
+		int id = 0;
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Produto.INSERT);
 			this.statement.setString(1, produto.getNome());
 			this.statement.setString(2, produto.getMarca());
 			this.statement.setString(3, produto.getDescricao());
-			statement.execute();
+
+			result = statement.executeQuery();
+//			statement.execute();
+			
+			if(result.next()) {
+				id = result.getInt(1);
+			}
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
+		
+		return id;
 	}
 
 	@Override

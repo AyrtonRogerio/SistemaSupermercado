@@ -25,8 +25,8 @@ public class Item_Produto {
 	private double preco_varejo;
 	private double porc_atacado;
 	private double porc_varejo;
-	private Integer fornecedor_id;
-	private Integer produto_id;
+	private Fornecedor fornecedor_id;
+	private Produto produto_id;
 
 	public Integer getId() {
 		return id;
@@ -84,22 +84,6 @@ public class Item_Produto {
 		this.data_compra = data_compra;
 	}
 
-	public Integer getFornecedor_id() {
-		return fornecedor_id;
-	}
-
-	public void setFornecedor_id(Integer fornecedor_id) {
-		this.fornecedor_id = fornecedor_id;
-	}
-
-	public Integer getProduto_id() {
-		return produto_id;
-	}
-
-	public void setProduto_id(Integer produto_id) {
-		this.produto_id = produto_id;
-	}
-
 	public boolean isPerecivel() {
 		return perecivel;
 	}
@@ -154,6 +138,22 @@ public class Item_Produto {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public Fornecedor getFornecedor_id() {
+		return fornecedor_id;
+	}
+
+	public void setFornecedor_id(Fornecedor fornecedor_id) {
+		this.fornecedor_id = fornecedor_id;
+	}
+
+	public Produto getProduto_id() {
+		return produto_id;
+	}
+
+	public void setProduto_id(Produto produto_id) {
+		this.produto_id = produto_id;
 	}
 
 }
