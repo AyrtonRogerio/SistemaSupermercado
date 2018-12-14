@@ -31,7 +31,7 @@ public class DaoProduto implements IDaoProduto {
 			this.statement.setString(2, produto.getMarca());
 			this.statement.setString(3, produto.getDescricao());
 
-			result = statement.executeQuery();
+			this.result = this.statement.executeQuery();
 //			statement.execute();
 			
 			if(result.next()) {

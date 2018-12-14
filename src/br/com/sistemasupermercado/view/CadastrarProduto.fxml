@@ -65,17 +65,17 @@
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Data de Validade" GridPane.columnIndex="3">
+                                    <Label text="Data de Vencimento" GridPane.columnIndex="3">
                                        <GridPane.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <DatePicker fx:id="data_compra_produto_field" onAction="#action" promptText="Data de Compra" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <DatePicker fx:id="compra_prod_data" onAction="#action" promptText="Data de Compra" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
                                     </DatePicker>
-                                    <DatePicker fx:id="data_valid_produto_field" onAction="#action" promptText="Data de Validade" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <DatePicker fx:id="vencim_prod_data" onAction="#action" promptText="Data de Validade" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </GridPane.margin>
@@ -208,17 +208,17 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </TextField>
-                                          <DatePicker fx:id="dataCad_prod_cadast_data" onAction="#action" prefHeight="26.0" prefWidth="173.0" promptText="Cadastrado em..." GridPane.rowIndex="6">
+                                          <DatePicker fx:id="cadast_prod_data" onAction="#action" prefHeight="26.0" prefWidth="173.0" promptText="Cadastrado em..." GridPane.rowIndex="6">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </DatePicker>
-                                          <DatePicker fx:id="data_valid_prod_cadast_data" onAction="#action" promptText="Válido até..." GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                          <DatePicker fx:id="valid_prod_data" onAction="#action" promptText="Válido até..." GridPane.columnIndex="2" GridPane.rowIndex="6">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </DatePicker>
-                                          <DatePicker fx:id="data_fabric_prod_cadast_data" onAction="#action" promptText="Fabricado em..." GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                          <DatePicker fx:id="fabric_prod_data" onAction="#action" promptText="Fabricado em..." GridPane.columnIndex="2" GridPane.rowIndex="5">
                                              <GridPane.margin>
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>

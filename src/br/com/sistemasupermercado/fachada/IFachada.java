@@ -72,4 +72,16 @@ public interface IFachada {
 	public List<Cliente> getAllCliente() throws BusinessException;
 
 	public void ativarDesativarCliente(int id) throws BusinessException;
+	
+	//ItemProduto
+	
+	public void salvarEditarItemProduto(Item_Produto item_Produto) throws BusinessException;
+
+	public Item_Produto buscarPorIdItemProduto(int id) throws BusinessException;
+	
+//	public 
+	
+	public List<Item_Produto> getAllItemProduto() throws BusinessException;
+
+	public void ativarDesativarItemProduto(int id) throws BusinessException;
 }

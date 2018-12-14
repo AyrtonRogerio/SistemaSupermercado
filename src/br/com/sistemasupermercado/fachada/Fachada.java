@@ -15,6 +15,7 @@ public class Fachada implements IFachada {
 	private IBusinessFornecedor businessFornecedor;
 	private IBusinessPagamento businessPagamento;
 	private IBusinessCliente businessCliente;
+	private IBusinessItem_Produto businessItem_Produto;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -31,6 +32,8 @@ public class Fachada implements IFachada {
 		businessFornecedor = new BusinessFornecedor();
 		businessPagamento = new BusinessPagamento();
 		businessCliente = new BusinessCliente();
+		businessItem_Produto = new BusinessItem_Produto();
+		
 	}
 
 	
@@ -204,6 +207,36 @@ public class Fachada implements IFachada {
 	public void ativarDesativarCliente(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		this.businessCliente.ativarDesativar(id);
+	}
+	
+	//ItemProduto
+
+	
+	@Override
+	public void salvarEditarItemProduto(Item_Produto item_Produto) throws BusinessException {
+		// TODO Auto-generated method stub
+		this.businessItem_Produto.salvarEditar(item_Produto);
+	}
+
+	
+	@Override
+	public Item_Produto buscarPorIdItemProduto(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessItem_Produto.buscarPorId(id);
+	}
+
+	
+	@Override
+	public List<Item_Produto> getAllItemProduto() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessItem_Produto.getAll();
+	}
+
+	
+	@Override
+	public void ativarDesativarItemProduto(int id) throws BusinessException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

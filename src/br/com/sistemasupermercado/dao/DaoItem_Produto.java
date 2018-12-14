@@ -31,7 +31,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	private Connection conexao;
 	private PreparedStatement statement;
 	private ResultSet result;
-	private Fachada fachada = Fachada.getInstance();
+//	private Fachada fachada = Fachada.getInstance();
 	/* (non-Javadoc)
 	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#salvar(br.com.sistemasupermercado.model.Item_Produto)
 	 */
@@ -40,8 +40,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		// TODO Auto-generated method stub
 		try {
 
-			int fornecedor_id = fachada.salvarEditarFornecedor(item_Produto.getFornecedor_id()); 
-			int produto_id = fachada.salvarEditarProduto(item_Produto.getProduto_id());
+			int fornecedor_id = Fachada.getInstance().salvarEditarFornecedor(item_Produto.getFornecedor_id()); 
+			int produto_id = Fachada.getInstance().salvarEditarProduto(item_Produto.getProduto_id());
 			
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
@@ -98,8 +98,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
 				
-				fornecedor = fachada.buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
-				produto = fachada.buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				fornecedor = Fachada.getInstance().buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
+				produto = Fachada.getInstance().buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
 				
 				item_Produto.setFornecedor_id(fornecedor);
 				item_Produto.setProduto_id(produto);
@@ -144,8 +144,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
 				
-				fornecedor = fachada.buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
-				produto = fachada.buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
+				fornecedor = Fachada.getInstance().buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
+				produto = Fachada.getInstance().buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
 				
 				item_Produto.setFornecedor_id(fornecedor);
 				item_Produto.setProduto_id(produto);
