@@ -36,13 +36,13 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#salvar(br.com.sistemasupermercado.model.Item_Produto)
 	 */
 	@Override
-	public void salvar(Item_Produto item_Produto) throws DaoException {
+	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
 
-			int fornecedor_id = Fachada.getInstance().salvarEditarFornecedor(item_Produto.getFornecedor_id()); 
+			int fornecedor_id = id_fornecedor;
 			int produto_id = Fachada.getInstance().salvarEditarProduto(item_Produto.getProduto_id());
-			
+						
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
 			this.statement.setBoolean(1, item_Produto.isPerecivel());
@@ -60,7 +60,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.setDouble(13, item_Produto.getPorc_varejo());
 			this.statement.setInt(14, fornecedor_id);
 			this.statement.setInt(15, produto_id);
-			statement.execute();
+			this.statement.execute();
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}

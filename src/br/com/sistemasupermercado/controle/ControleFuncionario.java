@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
  * @author ayrton
  *
  */
-public class ControleCadastroFuncionario implements Initializable {
+public class ControleFuncionario implements Initializable {
 
 	private Funcionario funcionario;Fachada fachada = Fachada.getInstance();
 

@@ -19,7 +19,7 @@ public class SQLUtil {
         public static final String MARCA = "marca";
         public static final String DESCRICAO = "descricao";
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + NOME_PRODUTO + ","
-        + MARCA + "," + DESCRICAO + ") values (?,?,?)";
+        + MARCA + "," + DESCRICAO + ") values (?,?,?) returning id";
     }
 
     public static class Item_Produto {
@@ -30,8 +30,8 @@ public class SQLUtil {
     	public static final String COL_QUANTIDADE = "quantidade";
     	public static final String COL_COD_BARRAS = "cod_barras";
     	public static final String COL_UNIADE_MEDIDA = "unidade_medida";
-    	public static final String COL_DATA_VALIDADE = "data_validade";
     	public static final String COL_DATA_FABRICACAO = "data_fabricacao";
+    	public static final String COL_DATA_VALIDADE = "data_validade";
     	public static final String COL_DATA_COMPRA = "data_compra";
     	public static final String COL_PRECO_UNIDADE = "preco_unidade";
     	public static final String COL_PRECO_ATACADO = "preco_atacado";
@@ -41,12 +41,12 @@ public class SQLUtil {
     	public static final String COL_FORNECEDOR_ID = "fornecedor_id";
     	public static final String COL_PRODUTO_ID = "produto_id";
     	
-    	public static final String INSERT = "insert into" + NOME_TABELA + "(" 
-    	+ COL_PERECIVEL + "," + COL_STATUS + "," + COL_QUANTIDADE + "," + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + "," + COL_DATA_VALIDADE +
-    	"," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + 
-    	"," + COL_PRECO_VAREJO + "," + COL_PORC_ATACADO + ","+ COL_PORC_VAREJO + 
-    	"," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID 
-    	+ ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
+    	public static final String INSERT = "insert into " + NOME_TABELA + "(" 
+    	+ COL_PERECIVEL + "," + COL_STATUS + "," + COL_QUANTIDADE + "," + COL_COD_BARRAS + "," 
+    	+ COL_UNIADE_MEDIDA + "," + COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," 
+    	+ COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + "," 
+    	+ COL_PRECO_VAREJO + ","+ COL_PORC_ATACADO + "," + COL_PORC_VAREJO + ","
+    	+ COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
     	
     }
     

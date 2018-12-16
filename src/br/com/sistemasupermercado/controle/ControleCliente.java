@@ -33,7 +33,7 @@ import javafx.scene.control.TextField;
  * @author ayrton
  *
  */
-public class ControleCadastroCliente implements Initializable {
+public class ControleCliente implements Initializable {
 
 	private Fachada fachada = Fachada.getInstance();
 	private Cliente cliente;

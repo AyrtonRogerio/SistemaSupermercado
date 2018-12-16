@@ -42,7 +42,7 @@ public class DaoCliente implements IDaoCliente {
 			this.statement.setInt(7, id_endereco);
 			this.result = this.statement.executeQuery();
 			int id = 0;
-//            statement.executeQuery();
+			
 			if (result.next()) {
 				id = result.getInt(1);
 			}

@@ -10,7 +10,9 @@ import br.com.sistemasupermercado.dao.IDaoItem_Produto;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
+import br.com.sistemasupermercado.model.Fornecedor;
 import br.com.sistemasupermercado.model.Item_Produto;
+import br.com.sistemasupermercado.model.Produto;
 
 /**
  * @author ayrton
@@ -25,12 +27,12 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 	}
 
 	@Override
-	public void salvarEditar(Item_Produto item_Produto) throws BusinessException {
+	public void salvarEditar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
 		
 		try {
 			validar(item_Produto);
 			if (item_Produto.getId() == null)
-				daoItemProduto.salvar(item_Produto);
+				daoItemProduto.salvar(item_Produto, id_fornecedor);
 			else
 				daoItemProduto.editar(item_Produto);
 		} catch (DaoException | ValidacaoException e) {

@@ -20,12 +20,12 @@ public class BusinessProduto implements IBusinessProduto {
 	@Override
 	public int  salvarEditar(Produto produto) throws BusinessException {
 		try {
-			validar(produto);
+//			validar(produto);
 			if (produto.getId() == null)
-			return daoProduto.salvar(produto);
+				return daoProduto.salvar(produto);
 			else
 				daoProduto.editar(produto);
-		} catch (DaoException | ValidacaoException e) {
+		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

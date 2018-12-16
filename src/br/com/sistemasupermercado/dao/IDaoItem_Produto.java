@@ -6,6 +6,7 @@ package br.com.sistemasupermercado.dao;
 import java.util.List;
 
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.model.Fornecedor;
 import br.com.sistemasupermercado.model.Item_Produto;
 import br.com.sistemasupermercado.model.Produto;
 
@@ -15,7 +16,7 @@ import br.com.sistemasupermercado.model.Produto;
  */
 public interface IDaoItem_Produto {
 
-	public void salvar(Item_Produto item_Produto) throws DaoException;
+	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws DaoException;
 
 	public Item_Produto buscarPorId(int id) throws DaoException;
 

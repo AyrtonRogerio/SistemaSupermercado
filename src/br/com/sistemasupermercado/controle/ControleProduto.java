@@ -34,9 +34,9 @@ import javafx.stage.Stage;
  * @author ayrton
  *
  */
-public class ControleCadastroProduto implements Initializable {
+public class ControleProduto implements Initializable {
 
-	private Produto produto;
+	private Produto produto = null;
 	private Fornecedor fornecedor = null;
 	private Item_Produto item_Produto;
 
@@ -247,8 +247,6 @@ public class ControleCadastroProduto implements Initializable {
 		if (event.getSource() == add_fornec_button) {
 
 			fornecedor = tabela_fornec.getSelectionModel().getSelectedItem();
-
-//			item_Produto.setFornecedor_id(fornec);
 		}
 
 		if (event.getSource() == cadast_forn_button) {
@@ -257,18 +255,16 @@ public class ControleCadastroProduto implements Initializable {
 
 			cadastrarFornecedor.getDialogPane().setContent(Main.telaFornecedor());
 			cadastrarFornecedor.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-//			cadastrarFornecedor.getDialogPane().getContent(Main.telaFornecedor())
 			cadastrarFornecedor.showAndWait();
 
 		}
 
 		if (event.getSource() == finalizar_cadas_prod_button) {
 
-			cadastrarProduto(fornecedor);
 			try {
-				fachada.salvarEditarProduto(produto);
-				fachada.salvarEditarItemProduto(item_Produto);
+				cadastrarProduto(fornecedor);
+				System.out.println(fornecedor.getId());
+				fachada.salvarEditarItemProduto(item_Produto, fornecedor.getId());
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -323,7 +319,7 @@ public class ControleCadastroProduto implements Initializable {
 		item_Produto.setPreco_varejo(Double.parseDouble(preco_varej_prod_cadastro_field.getText()));
 
 		item_Produto.setFornecedor_id(forne);
-
+		item_Produto.setProduto_id(produto);
 	}
 
 }

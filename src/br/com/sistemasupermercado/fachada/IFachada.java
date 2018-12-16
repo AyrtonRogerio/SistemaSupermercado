@@ -75,11 +75,9 @@ public interface IFachada {
 	
 	//ItemProduto
 	
-	public void salvarEditarItemProduto(Item_Produto item_Produto) throws BusinessException;
+	public void salvarEditarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
 
 	public Item_Produto buscarPorIdItemProduto(int id) throws BusinessException;
-	
-//	public 
 	
 	public List<Item_Produto> getAllItemProduto() throws BusinessException;
 

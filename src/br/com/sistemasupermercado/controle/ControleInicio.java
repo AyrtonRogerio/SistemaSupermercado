@@ -92,11 +92,11 @@ public class ControleInicio implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			CadastroCliente = FXMLLoader.load(
-					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/CadastroCliente.fxml"));
+					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Cliente.fxml"));
 			CadastroFuncionario = FXMLLoader.load(getClass().getClassLoader()
-					.getResource("br/com/sistemasupermercado/view/CadastroFuncionario.fxml"));
+					.getResource("br/com/sistemasupermercado/view/Funcionario.fxml"));
 			CadastroProduto = FXMLLoader.load(
-					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/CadastrarProduto.fxml"));
+					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Produto.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

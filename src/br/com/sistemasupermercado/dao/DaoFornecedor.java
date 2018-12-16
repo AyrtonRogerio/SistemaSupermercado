@@ -33,8 +33,8 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.statement.setString(4, fornecedor.getEstado());
             this.statement.setString(5, fornecedor.getCidade());
             
-            result = statement.executeQuery();
-//            statement.execute();
+            this.result = this.statement.executeQuery();
+
             if(result.next()) {
             	id = result.getInt(1);
             }
@@ -51,7 +51,6 @@ public class DaoFornecedor implements IDaoFornecedor {
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Fornecedor.NOME_TABELA, id));
-//			statement.setInt(1, id);
             this.result = this.statement.executeQuery();
 
             if (result.next()) {

@@ -40,7 +40,7 @@ public class Fachada implements IFachada {
 	//Produto
 	@Override
 	public int salvarEditarProduto(Produto produto) throws BusinessException {
-		return this.businessProduto.salvarEditar(produto);
+		 return this.businessProduto.salvarEditar(produto);
 
 	}
 
@@ -213,9 +213,9 @@ public class Fachada implements IFachada {
 
 	
 	@Override
-	public void salvarEditarItemProduto(Item_Produto item_Produto) throws BusinessException {
+	public void salvarEditarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessItem_Produto.salvarEditar(item_Produto);
+		this.businessItem_Produto.salvarEditar(item_Produto, id_fornecedor);
 	}
 
 	
