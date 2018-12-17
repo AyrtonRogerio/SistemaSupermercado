@@ -3,6 +3,7 @@ package br.com.sistemasupermercado.dao;
 import br.com.sistemasupermercado.enuns.TipoContato;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.model.Cliente;
+import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.sql.SQLConections;
@@ -97,6 +98,42 @@ public class DaoCliente implements IDaoCliente {
 		return cliente;
 
 	}
+
+	@Override
+	public ClienteTabAdapter buscarPorCPF(String cpf) throws DaoException {
+
+		ClienteTabAdapter clienteTabAdapter = null;
+		Endereco endereco = null;
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
+			this.statement.setString(1,cpf);
+			this.result = this.statement.executeQuery();
+
+			if (result.next()) {
+				clienteTabAdapter = new ClienteTabAdapter();
+				clienteTabAdapter.setId(result.getInt(1));
+				clienteTabAdapter.setNome(result.getString("nome"));
+				clienteTabAdapter.setCpf(result.getString("cpf"));
+				clienteTabAdapter.setData_nascimento(
+						new java.util.Date(result.getDate("data_nascimento").getTime()));
+				clienteTabAdapter.setRua(result.getString("rua"));
+				clienteTabAdapter.setBairro(result.getString("bairro"));
+				clienteTabAdapter.setNumero(result.getString("numero"));
+				clienteTabAdapter.setTipo_contato(result.getString("tipo"));
+				clienteTabAdapter.setContato(result.getString("descricao"));
+
+
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return clienteTabAdapter;
+	}
+
 
 	@Override
 	public List<Cliente> getAll() throws DaoException {

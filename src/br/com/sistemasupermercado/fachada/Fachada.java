@@ -198,6 +198,11 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
+	public ClienteTabAdapter buscarPorCPFCliente(String cpf) throws BusinessException {
+		return this.businessCliente.buscarPorCPF(cpf);
+	}
+
+	@Override
 	public List<Cliente> getAllCliente() throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessCliente.getAll();

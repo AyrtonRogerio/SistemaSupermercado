@@ -6,6 +6,7 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Cliente;
+import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Funcionario;
 
 import java.util.List;
@@ -49,7 +50,18 @@ public class BusinessCliente implements  IBusinessCliente {
 		}
     }
 
-    @Override
+	@Override
+	public ClienteTabAdapter buscarPorCPF(String cpf) throws BusinessException {
+		try {
+			return daoCliente.buscarPorCPF(cpf);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+
+	@Override
     public List<Cliente> getAll() throws BusinessException {
     	try {
 			return daoCliente.getAll();

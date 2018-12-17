@@ -68,6 +68,8 @@ public interface IFachada {
 	public void salvarEditarCliente(Cliente cliente) throws BusinessException;
 
 	public Cliente buscarPorIdCliente(int id) throws BusinessException;
+
+	public ClienteTabAdapter buscarPorCPFCliente(String cpf) throws BusinessException;
 	
 	public List<Cliente> getAllCliente() throws BusinessException;
 

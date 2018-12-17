@@ -18,16 +18,14 @@ import br.com.sistemasupermercado.enuns.TipoSexo;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Cliente;
+import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * @author ayrton
@@ -37,11 +35,51 @@ public class ControleCliente implements Initializable {
 
 	private Fachada fachada = Fachada.getInstance();
 	private Cliente cliente;
+	private ClienteTabAdapter clienteTabAdapter;
 	private Endereco endereco;
 	private Contato contato;
 	private Contato contato2;
 	private Contato contato3;
 	private List<Contato> contatos;
+
+	@FXML
+	private Tab lista_cliente_tab;
+
+	@FXML
+	private TextField busca_cliente_field;
+
+	@FXML
+	private Button busca_cliente_button;
+
+	@FXML
+	private Button novo_cliente_button;
+
+	@FXML
+	private TableView<ClienteTabAdapter> tabela_clentes;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> nome_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> cpf_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> nasc_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> rua_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> bairro_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> num_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> tipo_cliente_col;
+
+	@FXML
+	private TableColumn<ClienteTabAdapter, String> contato_cliente_col;
 
 	@FXML
 	private Tab dados_cliente_tab;
@@ -118,7 +156,20 @@ public class ControleCliente implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
-		cadastrarCliente();
+
+		if(event.getSource() == busca_cliente_button){
+			try {
+				clienteTabAdapter = fachada.buscarPorCPFCliente(busca_cliente_field.getText());
+				tabela_clentes.getItems().setAll(clienteTabAdapter);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if(event.getSource() == novo_cliente_button){
+			dados_cliente_tab.getTabPane().getSelectionModel().select(dados_cliente_tab);
+		}
+
 		if(event.getSource() == continuar_cliente_button) {
 			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
 		}
@@ -128,8 +179,8 @@ public class ControleCliente implements Initializable {
 		}
 		
 		if(event.getSource() == cadast_clien_button) {
-			
-			
+
+			cadastrarCliente();
 			try {
 				fachada.salvarEditarCliente(cliente);
 				
@@ -146,6 +197,15 @@ public class ControleCliente implements Initializable {
 		sexo_cliente_combo.getItems().setAll(TipoSexo.values());
 		estad_civ_client_combo.getItems().setAll(TipoEstadoCivil.values());
 		ocupacao_cliente_combo.getItems().setAll(TipoOcupacao.values());
+
+		nome_cliente_col.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		cpf_cliente_col.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		nasc_cliente_col.setCellValueFactory(new PropertyValueFactory<>("data_nascimento"));
+		rua_cliente_col.setCellValueFactory(new PropertyValueFactory<>("rua"));
+		bairro_cliente_col.setCellValueFactory(new PropertyValueFactory<>("bairro"));
+		num_cliente_col.setCellValueFactory(new PropertyValueFactory<>("numero"));
+		tipo_cliente_col.setCellValueFactory(new PropertyValueFactory<>("tipo_contato"));
+		contato_cliente_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 	}
 
 	/**
