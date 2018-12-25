@@ -85,9 +85,7 @@ public class DaoCliente implements IDaoCliente {
 						new java.util.Date(result.getDate(SQLUtil.Cliente.COL_DATA_NASCIMENTO).getTime()));
 				endereco = DaoCommum.buscarEndereco(result.getInt(SQLUtil.Cliente.COL_ENDERECO_ID));
 				cliente.setEndereco(endereco);
-				System.out.println(cliente.getNome());
-				System.out.println(cliente.getCpf());
-				System.out.println(cliente.getEndereco().getCep());
+
 
 			}
 			this.conexao.close();
@@ -104,7 +102,9 @@ public class DaoCliente implements IDaoCliente {
 
 		ClienteTabAdapter clienteTabAdapter = null;
 		Endereco endereco = null;
+
 		try {
+
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
 			this.statement.setString(1,cpf);
@@ -121,7 +121,7 @@ public class DaoCliente implements IDaoCliente {
 				clienteTabAdapter.setBairro(result.getString("bairro"));
 				clienteTabAdapter.setNumero(result.getString("numero"));
 				clienteTabAdapter.setTipo_contato(result.getString("tipo"));
-				clienteTabAdapter.setContato(result.getString("descricao"));
+				clienteTabAdapter.setDescricao(result.getString("descricao"));
 
 
 			}

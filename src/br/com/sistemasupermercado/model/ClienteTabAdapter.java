@@ -1,19 +1,31 @@
 package br.com.sistemasupermercado.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ClienteTabAdapter {
 
     private Integer id;
-
     private String nome;
     private String cpf;
     private Date data_nascimento;
     private String rua;
     private String bairro;
     private String numero;
+    private ArrayList<Contato> contatos;
     private String tipo_contato;
     private String descricao;
+
+
+    public ArrayList<Contato> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(ArrayList<Contato> contatos) {
+        this.contatos = contatos;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -38,8 +50,6 @@ public class ClienteTabAdapter {
     public void setTipo_contato(String tipo_contato) {
         this.tipo_contato = tipo_contato;
     }
-
-    private String contato;
 
     public String getNome() {
         return nome;
@@ -89,11 +99,11 @@ public class ClienteTabAdapter {
         this.numero = numero;
     }
 
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
+//    public String getContato() {
+//        return contato;
+//    }
+//
+//    public void setContato(String contato) {
+//        this.contato = contato;
+//    }
 }

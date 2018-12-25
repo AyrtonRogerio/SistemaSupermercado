@@ -94,12 +94,10 @@ public class SQLUtil {
         COL_OCUPACAO + "," + COL_DATA_NASCIMENTO + "," +
         COL_ENDERECO_ID + " ) values (?,?,?,?,?,?,?) returning id";
 
-        public static final String SELECT_CPF = "select * from cliente cli, endereco end, contato cont where cli.nome = ? and cli.cpf = ? and cli.data_nascimento = ? and end.rua = ? and end.bairro = ? end.numero = ? and cont.tipo = ? and cont.descricao = ?";
+        public static final String SELECT_CPF = "select c. id, c.nome, c.cpf, c.data_nascimento, " +
+                "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
+                "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id where c.cpf = ?";
 
-        //public static String SELECT_ALL_CPF = "select funcionario.nome, cpf, rg , telefone, admim ,nome_usuario, senha ,data_acesso,id_endereco,id_cargos,cargo.nome,cargo.descricao_cargo,cep,estado,logradouro,complemento,bairro,pais,cidade,rua,numero,funcionario.id from funcionario inner join endereco on funcionario.id_endereco = endereco.id"
-       //         +" inner join cargo on cargo.id = funcionario.id and funcionario.cpf = ?";
-
-//        public static final String SELECT_CPF = "select n.nome, c.cpf, d.data_nascimento
 
     }
 
