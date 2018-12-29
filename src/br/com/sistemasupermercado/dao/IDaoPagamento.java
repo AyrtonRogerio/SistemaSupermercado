@@ -15,7 +15,7 @@ import br.com.sistemasupermercado.model.Pagamento;
  */
 public interface IDaoPagamento {
 
-	public void salvar(Pagamento pagamento) throws DaoException;
+	public void salvar(Pagamento pagamento, int cliente_id) throws DaoException;
 
 	public Pagamento buscarPorId(int id) throws DaoException;
 

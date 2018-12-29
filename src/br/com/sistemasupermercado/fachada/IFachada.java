@@ -54,7 +54,7 @@ public interface IFachada {
 
 	//Pagamento
 	
-	public void salvarEditarPagamento(Pagamento pagamento) throws BusinessException;
+	public void salvarEditarPagamento(Pagamento pagamento, int cliente_id) throws BusinessException;
 
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException;
 

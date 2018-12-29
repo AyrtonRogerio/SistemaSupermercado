@@ -236,7 +236,6 @@ public class ControleProduto implements Initializable {
 
 				fornecedor = fachada.buscarPorNomeFornecedor(busca_fornec_field.getText());
 				tabela_fornec.getItems().add(fornecedor);
-//				fornecedor = tabela_fornec.getSelectionModel().getSelectedItem();
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

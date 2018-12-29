@@ -135,14 +135,17 @@ public class SQLUtil {
     public static class Pagamento {
 
         public static final String NOME_TABELA = "pagamento";
-        public static final String COL_FORMA_PAGAMENTO = "forma_pagamento";
+
         public static final String COL_VALOR = "valor";
-        public static final String COL_TROCO = "troco";
-        public static final String COL_DESCONTO = "desconto";
+        public static final String COL_DATA_VENCIMENTO = "data_vencimento";
+        public static final String COL_NUMERO = "numero";
+        public static final String COL_FORMA_PAGAMENTO = "forma_pagamento";
+        public static final String COL_CLIENTE_ID = "cliente_id";
+        public static final String COL_STATUS = "status";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" 
-        + COL_FORMA_PAGAMENTO + "," + COL_VALOR + "," + COL_TROCO + "," + COL_DESCONTO +
-        " ) values (?,?,?,?) returning id";
+        + COL_VALOR + "," + COL_DATA_VENCIMENTO + "," + COL_NUMERO + "," + COL_FORMA_PAGAMENTO +
+        "," + COL_CLIENTE_ID + "," + COL_STATUS +" ) values (?,?,?,?,?,?) returning id";
 
     }
 
@@ -167,18 +170,21 @@ public class SQLUtil {
     	
     	
     	public static final String NOME_TABELA = "venda";
+        public static final String COL_VALOR_TOTAL = "valor_total";
     	public static final String COL_DESC_GERAL = "desc_geral";
-    	public static final String COL_QUANT_PARC = "quant_parc";
-    	public static final String COL_VALOR_TOTAL = "valor_total";
+    	public static final String COL_QTD_PAGMT = "qtd_pagmt";
+        public static final String COL_VALOR_TROCO = "valor_troco";
     	public static final String COL_DATA_VENDA = "data_venda";
     	public static final String COL_PAGAMENTO_ID = "pagamento_id";
     	public static final String COL_CLIENTE_ID = "cliente_id";
     	public static final String COL_FUNCIONARIO_ID = "funcionario_id";
+    	public static final String COL_CAIXA_ID = "caixa_id";
     	
-    	public static final String INSERT = "insert into" + NOME_TABELA + "(" + COL_DESC_GERAL + 
-    	"," + COL_QUANT_PARC + "," + COL_VALOR_TOTAL + "," + COL_DATA_VENDA + "," + 
-    	COL_PAGAMENTO_ID + "," + COL_CLIENTE_ID + "," + COL_FUNCIONARIO_ID +
-    	" ) values (?,?,?,?,?,?,?) returning id";
+    	public static final String INSERT = "insert into" + NOME_TABELA +
+        "(" + COL_VALOR_TOTAL + "," + COL_DESC_GERAL + "," + COL_QTD_PAGMT +
+        "," + COL_VALOR_TROCO + "," + COL_DATA_VENDA + "," + COL_PAGAMENTO_ID +
+        "," + COL_CLIENTE_ID + "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
+         " ) values (?.?.?,?,?,?,?,?,?) returning id";
     	
     	
     }
@@ -202,24 +208,7 @@ public class SQLUtil {
     	COL_VENDA_ID + "," + COL_ITEM_PRODUTO_ID +
     	" ) values (?,?,?,?,?,?,?,?,?) returning id";
     }
-    
-    public static class Parcela {
-    	
-    	public static final String NOME_TABELA = "parcela";
-    	public static final String COL_VALOR = "valor";
-    	public static final String COL_TIPO = "tipo";
-    	public static final String COL_NUMERO = "numero";
-    	public static final String COL_DATA_VENCIMENTO = "data_vencimento";
-    	public static final String COL_CLIENTE_ID = "cliente_id";
-    	public static final String COL_FUNCIONARIO_ID = "funcionario_id";
-    	public static final String COL_VENDA_ID = "venda_id";
-    	
-    	public static final String INSERT = "insert into" + NOME_TABELA + 
-    	"(" + COL_VALOR + 	"," + COL_TIPO + "," + COL_NUMERO + "," + COL_DATA_VENCIMENTO 
-    	+ "," + COL_CLIENTE_ID + "," + COL_FUNCIONARIO_ID + "," + COL_VENDA_ID + 
-    	" ) values (?,?,?,?,?,?,?) returning id";
-    	
-    }
+
 
     public static String selectAll(String nomeTabela) {
         return "select * from " + nomeTabela;
@@ -228,9 +217,5 @@ public class SQLUtil {
     public static String selectById(String nomeTabela, int id) {
         return "select * from " + nomeTabela + " where id = " + id;
     }
-    
-//    public static String selectTabela(String nomeTabela, String nomeColuna) {
-//    	return "select * from " + nomeTabela + ""
-//    }
 
 }

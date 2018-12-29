@@ -41,8 +41,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 			this.statement.setInt(5, item_Venda.getQuantidade());
 			this.statement.setDouble(6, item_Venda.getValor_item());
 			this.statement.setBoolean(7, item_Venda.isDesconto());
-			this.statement.setInt(8, item_Venda.getVenda_id());
-			this.statement.setInt(9, item_Venda.getItem_produto_id());
+//			this.statement.setInt(8, item_Venda.getVenda_id());
+//			this.statement.setInt(9, item_Venda.getItem_produto_id());
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,8 +68,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 				item_Venda.setQuantidade(result.getInt(SQLUtil.Item_Venda.COL_QUANT));
 				item_Venda.setValor_item(result.getDouble(SQLUtil.Item_Venda.COL_VALOR_ITEM));
 				item_Venda.setDesconto(result.getBoolean(SQLUtil.Item_Venda.COL_DESCONTO));
-				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
-				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
+//				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
+//				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
 				
 			}
 			this.conexao.close();
@@ -99,8 +99,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 				item_Venda.setQuantidade(result.getInt(SQLUtil.Item_Venda.COL_QUANT));
 				item_Venda.setValor_item(result.getDouble(SQLUtil.Item_Venda.COL_VALOR_ITEM));
 				item_Venda.setDesconto(result.getBoolean(SQLUtil.Item_Venda.COL_DESCONTO));
-				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
-				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
+//				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
+//				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
 				item_Vendas.add(item_Venda);
 			}
 			this.conexao.close();

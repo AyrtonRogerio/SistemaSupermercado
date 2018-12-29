@@ -15,7 +15,7 @@ import br.com.sistemasupermercado.model.Pagamento;
  */
 public interface IBusinessPagamento {
 	
-	public void salvarEditar(Pagamento pagamento) throws BusinessException;
+	public void salvarEditar(Pagamento pagamento, int cliente_id) throws BusinessException;
 
 	public Pagamento buscarPorId(int id) throws BusinessException;
 

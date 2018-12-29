@@ -1,8 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleVenda">
+   <children>
+      <BorderPane layoutX="300.0" layoutY="155.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <FlowPane alignment="CENTER" prefHeight="52.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane alignment="TOP_CENTER" prefHeight="125.0" prefWidth="794.0" rowValignment="TOP">
+                     <children>
+                        <GridPane alignment="TOP_CENTER" prefHeight="86.0" prefWidth="794.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.6666717529297" minWidth="10.0" prefWidth="210.6666717529297" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.6666564941406" minWidth="10.0" prefWidth="193.33334350585938" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="195.3333740234375" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                              <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Quantidade" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Preço Unid.(R$)" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="qtd_prod_ven_field" alignment="CENTER_RIGHT" onAction="#action" prefHeight="35.0" prefWidth="232.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="210.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="pr_un_prod_ven_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="50.0" prefWidth="280.0" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Total(R$)" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="pr_total_vend_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="50.0" prefWidth="280.0" promptText="0,00" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                        <ButtonBar prefHeight="20.0" prefWidth="491.0">
+                          <buttons>
+                              <Button fx:id="nova_ven_button" mnemonicParsing="false" onAction="#action" prefHeight="40.0" prefWidth="155.0" text="Nova Venda">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                            <Button fx:id="canc_ven_button" mnemonicParsing="false" onAction="#action" prefHeight="40.0" prefWidth="155.0" text="Cancelar">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="fin_ven_button" mnemonicParsing="false" onAction="#action" prefHeight="40.0" prefWidth="155.0" text="Finalizar">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                          </buttons>
+                        </ButtonBar>
+                     </children>
+                  </FlowPane>
+               </children>
+            </FlowPane>
+         </bottom>
+         <center>
+            <FlowPane alignment="CENTER" prefHeight="293.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="prod_tab" prefHeight="250.0" prefWidth="275.0">
+                    <columns>
+                        <TableColumn fx:id="prod_cod_col" prefWidth="75.0" text="Cód." />
+                      <TableColumn fx:id="prod_desc_col" prefWidth="83.0" text="Descrição" />
+                        <TableColumn fx:id="prod_qtd_col" prefWidth="36.66667175292969" text="Qtd." />
+                        <TableColumn fx:id="prod_prec_col" prefWidth="79.0" text="Pr.Un." />
+                    </columns>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </TableView>
+                  <TableView fx:id="vend_tab" prefHeight="250.0" prefWidth="473.0">
+                    <columns>
+                        <TableColumn fx:id="vend_item_col" prefWidth="37.0" text="Item" />
+                      <TableColumn fx:id="vend_cod_col" prefWidth="60.666656494140625" text="Cód." />
+                      <TableColumn fx:id="vend_desc_col" prefWidth="243.33334350585938" text="Descrição" />
+                        <TableColumn fx:id="vend_qtd_col" minWidth="6.0" prefWidth="37.33331298828125" text="Qtd." />
+                        <TableColumn fx:id="vend_prec_col" prefWidth="94.66665649414062" text="Pr.Un." />
+                    </columns>
+                     <FlowPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </FlowPane.margin>
+                  </TableView>
+                  <Button fx:id="rem_prod_ven_button" mnemonicParsing="false" text="Remover">
+                     <FlowPane.margin>
+                        <Insets left="300.0" top="5.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+         </center>
+         <top>
+            <FlowPane prefHeight="92.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="90.0" prefWidth="800.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.0" minWidth="10.0" prefWidth="308.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.6666564941406" minWidth="10.0" prefWidth="492.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="66.33333587646484" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="37.0" minHeight="0.0" prefHeight="23.666664123535156" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <FlowPane alignment="CENTER" prefHeight="47.0" prefWidth="308.0">
+                           <children>
+                              <TextField fx:id="busc_prod_ven_field" onAction="#action" prefHeight="25.0" prefWidth="275.0" promptText="Buscar produto...">
+                                 <FlowPane.margin>
+                                    <Insets left="5.0" right="5.0" top="10.0" />
+                                 </FlowPane.margin>
+                              </TextField>
+                              <Button fx:id="busc_prod_ven_button" mnemonicParsing="false" onAction="#action" text="Buscar">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
+                              </Button>
+                              <Button fx:id="adic_prod_ven_button" mnemonicParsing="false" onAction="#action" text="Adicionar">
+                                 <FlowPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </FlowPane.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextField fx:id="info_cx_ven_field" alignment="CENTER" editable="false" onAction="#action" prefHeight="48.0" prefWidth="256.0" promptText="CAIXA LIVRE!">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets right="10.0" top="10.0" />
+                                 </FlowPane.margin>
+                              </TextField>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Op.:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="oper_vend_field" editable="false" onAction="#action" prefHeight="26.0" prefWidth="143.0" promptText="Operador" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER" prefHeight="22.0" prefWidth="308.0" GridPane.rowIndex="1">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estoque">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Venda">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </FlowPane>
+         </top>
+      </BorderPane>
+   </children>
 </AnchorPane>
-

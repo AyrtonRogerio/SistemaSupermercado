@@ -8,15 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.sistemasupermercado.enuns.FormaPagamento;
+import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Cliente;
-import br.com.sistemasupermercado.model.Endereco;
-import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.model.Pagamento;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
@@ -38,16 +39,20 @@ public class DaoPagamento implements IDaoPagamento {
 	 * sistemasupermercado.model.Pagamento)
 	 */
 	@Override
-	public void salvar(Pagamento pagamento) throws DaoException {
+	public void salvar(Pagamento pagamento, int cliente_id) throws DaoException {
 		// TODO Auto-generated method stub
+
+
 		try {
 
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.INSERT);
-			this.statement.setString(1, pagamento.getFormaPagamento().getValor());
-			this.statement.setFloat(2, pagamento.getValor());
-			this.statement.setFloat(3, pagamento.getTroco());
-			this.statement.setFloat(4, pagamento.getDesconto());
+			this.statement.setDouble(1, pagamento.getValor());
+			this.statement.setDate(2, new java.sql.Date(pagamento.getData_vencimento().getTime()));
+			this.statement.setInt(3, pagamento.getNumero());
+			this.statement.setString(4, pagamento.getFormaPagamento().getValor());
+			this.statement.setInt(5, cliente_id);
+			this.statement.setBoolean(6, pagamento.isStatus());
 
 			statement.execute();
 		} catch (SQLException ex) {
@@ -70,18 +75,25 @@ public class DaoPagamento implements IDaoPagamento {
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, id));
 			this.result = this.statement.executeQuery();
 
+
 			if (result.next()) {
 				pagamento = new Pagamento();
+
 				pagamento.setId(result.getInt(1));
+
+				pagamento.setValor(result.getDouble(SQLUtil.Pagamento.COL_VALOR));
+				pagamento.setData_vencimento( new Date(result.getDate(SQLUtil.Pagamento.COL_DATA_VENCIMENTO).getTime()));
+				pagamento.setNumero(result.getInt(result.getString(SQLUtil.Pagamento.COL_NUMERO)));
 				pagamento.setFormaPagamento(
-						FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
-				pagamento.setValor(result.getFloat(SQLUtil.Pagamento.COL_VALOR));
-				pagamento.setTroco(result.getFloat((SQLUtil.Pagamento.COL_TROCO)));
-				pagamento.setDesconto(result.getFloat((SQLUtil.Pagamento.COL_DESCONTO)));
+					FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
+				Cliente cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
+				pagamento.setCliente_id(cliente);
+				pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
+
 			}
 			this.conexao.close();
 
-		} catch (SQLException e) {
+		} catch (SQLException | BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -105,16 +117,22 @@ public class DaoPagamento implements IDaoPagamento {
 			Pagamento pagamento;
 			while (result.next()) {
 				pagamento = new Pagamento();
+
 				pagamento.setId(result.getInt(1));
+
+				pagamento.setValor(result.getDouble(SQLUtil.Pagamento.COL_VALOR));
+				pagamento.setData_vencimento( new Date(result.getDate(SQLUtil.Pagamento.COL_DATA_VENCIMENTO).getTime()));
+				pagamento.setNumero(result.getInt(result.getString(SQLUtil.Pagamento.COL_NUMERO)));
 				pagamento.setFormaPagamento(
-				FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
-				pagamento.setValor(result.getFloat(SQLUtil.Pagamento.COL_VALOR));
-				pagamento.setTroco(result.getFloat(SQLUtil.Pagamento.COL_TROCO));
-				pagamento.setDesconto(result.getFloat(SQLUtil.Pagamento.COL_DESCONTO));
+						FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
+				Cliente cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
+				pagamento.setCliente_id(cliente);
+				pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
+
 				pagamentos.add(pagamento);
 			}
 			this.conexao.close();
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return pagamentos;

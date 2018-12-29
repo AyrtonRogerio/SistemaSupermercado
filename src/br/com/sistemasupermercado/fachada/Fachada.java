@@ -157,9 +157,9 @@ public class Fachada implements IFachada {
 	//Pagamento
 	
 	@Override
-	public void salvarEditarPagamento(Pagamento pagamento) throws BusinessException {
+	public void salvarEditarPagamento(Pagamento pagamento, int cliente_id) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessPagamento.salvarEditar(pagamento);
+		this.businessPagamento.salvarEditar(pagamento, cliente_id);
 	}
 
 	

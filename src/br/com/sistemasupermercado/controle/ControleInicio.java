@@ -1,15 +1,17 @@
 package br.com.sistemasupermercado.controle;
 
+import br.com.sistemasupermercado.model.Venda;
+import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +24,7 @@ public class ControleInicio implements Initializable {
 	private Pane CadastroProduto;
 
 	@FXML
-	private Menu inicioButton;
+	private MenuItem inicioMenu;
 
 	@FXML
 	private MenuItem novo_produto_menu;
@@ -72,6 +74,7 @@ public class ControleInicio implements Initializable {
 		if (event.getSource() == cliente_menu) {
 			System.out.println("asdasd");
 			atualizarTela("cliente");
+
 		}
 
 		if (event.getSource() == funcionario_menu) {
@@ -83,10 +86,22 @@ public class ControleInicio implements Initializable {
 			atualizarTela("produto");
 		}
 
-		if (event.getSource() == inicioButton) {
+		if (event.getSource() == inicioMenu) {
 			System.out.println("ta pegano");
 		}
+
+		if(event.getSource() == nova_venda_menu){
+			Dialog<Venda> vendaDialog = new Dialog<>();
+
+			vendaDialog.initModality(Modality.NONE);
+			vendaDialog.setResizable(true);
+			vendaDialog.getDialogPane().setContent(Main.telaVenda());
+			vendaDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+			vendaDialog.showAndWait();
+		}
+
 	}
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -97,6 +112,9 @@ public class ControleInicio implements Initializable {
 					.getResource("br/com/sistemasupermercado/view/Funcionario.fxml"));
 			CadastroProduto = FXMLLoader.load(
 					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Produto.fxml"));
+
+
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,6 +147,13 @@ public class ControleInicio implements Initializable {
 			AnchorPane.setTopAnchor(CadastroProduto, 0.0);
 			pane.getChildren().setAll(CadastroProduto);
 		}
+	}
+
+	public void telaVenda(){
+
+
+
+
 	}
 
 }

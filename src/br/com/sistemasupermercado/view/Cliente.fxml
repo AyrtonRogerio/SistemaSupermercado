@@ -78,16 +78,16 @@
                               </GridPane>
                            </top>
                            <center>
-                              <TableView fx:id="tabela_clentes" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <TableView fx:id="tabela_clentes" BorderPane.alignment="CENTER">
                                 <columns>
                                   <TableColumn fx:id="nome_cliente_col" prefWidth="75.0" text="Nome" />
-                                  <TableColumn fx:id="cpf_cliente_col" prefWidth="66.0" text="CPF" />
-                                    <TableColumn fx:id="nasc_cliente_col" prefWidth="110.0" text="Data de Nasc" />
-                                    <TableColumn fx:id="rua_cliente_col" prefWidth="49.0" text="Rua" />
-                                    <TableColumn fx:id="bairro_cliente_col" prefWidth="83.0" text="Bairro" />
-                                    <TableColumn fx:id="num_cliente_col" prefWidth="87.0" text="Número" />
-                                    <TableColumn fx:id="tipo_cliente_col" prefWidth="64.0" text="Tipo" />
-                                    <TableColumn fx:id="contato_cliente_col" prefWidth="65.0" text="Contato" />
+                                  <TableColumn fx:id="cpf_cliente_col" prefWidth="91.0" text="CPF" />
+                                    <TableColumn fx:id="nasc_cliente_col" prefWidth="97.0" text="Nascimento" />
+                                    <TableColumn fx:id="rua_cliente_col" prefWidth="76.0" text="Rua" />
+                                    <TableColumn fx:id="bairro_cliente_col" prefWidth="79.0" text="Bairro" />
+                                    <TableColumn fx:id="num_cliente_col" prefWidth="74.0" text="Número" />
+                                    <TableColumn fx:id="tipo_cliente_col" prefWidth="46.0" text="Tipo" />
+                                    <TableColumn fx:id="contato_cliente_col" prefWidth="61.0" text="Contato" />
                                 </columns>
                               </TableView>
                            </center>

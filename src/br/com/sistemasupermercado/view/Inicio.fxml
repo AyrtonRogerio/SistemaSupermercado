@@ -14,7 +14,7 @@
          <top>
             <MenuBar style="-fx-background-color: #345D7E;" BorderPane.alignment="CENTER">
               <menus>
-                <Menu fx:id="inicioButton" mnemonicParsing="false" onAction="#action">
+                <Menu mnemonicParsing="false" onAction="#action">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
                            <image>
@@ -22,6 +22,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <items>
+                        <MenuItem fx:id="inicioMenu" mnemonicParsing="false" onAction="#action" text="Inicio" />
+                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false">
                   <items>
@@ -40,7 +43,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false">
                     <items>
-                      <MenuItem fx:id="nova_venda_menu" mnemonicParsing="false" onAction="#action" text="Nova Venda" />
+                      <MenuItem fx:id="nova_venda_menu" mnemonicParsing="false" onAction="#action" text="Venda" />
                         <MenuItem fx:id="historico_venda_menu" mnemonicParsing="false" onAction="#action" text="Histórico" />
                         <MenuItem fx:id="relatorio_venda_menu" mnemonicParsing="false" onAction="#action" text="Relatório" />
                     </items>

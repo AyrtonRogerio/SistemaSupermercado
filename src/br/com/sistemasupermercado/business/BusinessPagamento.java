@@ -32,12 +32,12 @@ public class BusinessPagamento implements IBusinessPagamento{
 	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#salvarEditar(br.com.sistemasupermercado.model.Pagamento)
 	 */
 	@Override
-	public void salvarEditar(Pagamento pagamento) throws BusinessException {
+	public void salvarEditar(Pagamento pagamento, int cliente_id) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
 			validar(pagamento);
 			if (pagamento.getId() == null)
-				daoPagamento.salvar(pagamento);
+				daoPagamento.salvar(pagamento, cliente_id);
 			else
 				daoPagamento.editar(pagamento);
 		} catch (DaoException | ValidacaoException e) {
@@ -98,7 +98,7 @@ public class BusinessPagamento implements IBusinessPagamento{
 	@Override
 	public void validar(Pagamento pagamento) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(pagamento.getValor() == null)
+		if(pagamento.getValor() == 0)
 			throw new ValidacaoException("Sem valor no pagamento!!!");
 	}
 
