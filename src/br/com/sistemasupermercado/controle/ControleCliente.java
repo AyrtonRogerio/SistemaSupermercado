@@ -173,11 +173,19 @@ public class ControleCliente implements Initializable {
 		if(event.getSource() == continuar_cliente_button) {
 			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
 		}
-		
+
+		if(event.getSource() == voltar_cliente_button){
+			lista_cliente_tab.getTabPane().getSelectionModel().select(lista_cliente_tab);
+		}
+
 		if(event.getSource() == contin_end_clien_button) {
 			cont_cliente_tab.getTabPane().getSelectionModel().select(cont_cliente_tab);
 		}
-		
+
+		if(event.getSource() == voltar_end_clien_button){
+			dados_cliente_tab.getTabPane().getSelectionModel().select(dados_cliente_tab);
+		}
+
 		if(event.getSource() == cadast_clien_button) {
 
 			cadastrarCliente();
@@ -188,6 +196,10 @@ public class ControleCliente implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+
+		if(event.getSource() == voltar_cont_clie_button){
+			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
 		}
 	}
 

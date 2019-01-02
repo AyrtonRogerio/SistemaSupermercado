@@ -47,7 +47,11 @@ public class SQLUtil {
     	+ COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + "," 
     	+ COL_PRECO_VAREJO + ","+ COL_PORC_ATACADO + "," + COL_PORC_VAREJO + ","
     	+ COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
-    	
+
+        public static final String SELECT_PRODUTO_ALL = "select p.descricao, p.marca, i.cod_barras, " +
+                "i.preco_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
+                "on i.produto_id = p.id";
+
     }
     
     public static class Endereco {

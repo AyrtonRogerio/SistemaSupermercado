@@ -1,5 +1,7 @@
 package br.com.sistemasupermercado.controle;
 
+import br.com.sistemasupermercado.model.EstoqueTabAdapter;
+import br.com.sistemasupermercado.model.VendaTabAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,37 +33,37 @@ public class ControleVenda implements Initializable {
     private Button fin_ven_button;
 
     @FXML
-    private TableView<?> prod_tab;
+    private TableView<EstoqueTabAdapter> prod_tab;
 
     @FXML
-    private TableColumn<?, ?> prod_cod_col;
+    private TableColumn<EstoqueTabAdapter, Integer> prod_cod_col;
 
     @FXML
-    private TableColumn<?, ?> prod_desc_col;
+    private TableColumn<EstoqueTabAdapter, String> prod_desc_col;
 
     @FXML
-    private TableColumn<?, ?> prod_qtd_col;
+    private TableColumn<EstoqueTabAdapter, Integer> prod_qtd_col;
 
     @FXML
-    private TableColumn<?, ?> prod_prec_col;
+    private TableColumn<EstoqueTabAdapter, Double> prod_prec_col;
 
     @FXML
-    private TableView<?> vend_tab;
+    private TableView<VendaTabAdapter> vend_tab;
 
     @FXML
-    private TableColumn<?, ?> vend_item_col;
+    private TableColumn<VendaTabAdapter, Integer> vend_item_col;
 
     @FXML
-    private TableColumn<?, ?> vend_cod_col;
+    private TableColumn<VendaTabAdapter, Integer> vend_cod_col;
 
     @FXML
-    private TableColumn<?, ?> vend_desc_col;
+    private TableColumn<VendaTabAdapter, String> vend_desc_col;
 
     @FXML
-    private TableColumn<?, ?> vend_qtd_col;
+    private TableColumn<VendaTabAdapter, Integer> vend_qtd_col;
 
     @FXML
-    private TableColumn<?, ?> vend_prec_col;
+    private TableColumn<VendaTabAdapter, Double> vend_prec_col;
 
     @FXML
     private Button rem_prod_ven_button;

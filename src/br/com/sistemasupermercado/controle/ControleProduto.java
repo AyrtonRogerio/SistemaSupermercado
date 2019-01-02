@@ -14,6 +14,7 @@ import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Fornecedor;
 import br.com.sistemasupermercado.model.Item_Produto;
 import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.ProdutoTabAdapter;
 import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,32 +43,50 @@ public class ControleProduto implements Initializable {
 
 	private Fachada fachada = Fachada.getInstance();
 
-	// Date
+	@FXML
+	private Tab lista_prod_tabPane;
 
 	@FXML
-	private DatePicker compra_prod_data;
+	private TextField busca_prod_nome_field;
 
 	@FXML
-	private DatePicker vencim_prod_data;
+	private Button novo_prod_button;
 
 	@FXML
-	private DatePicker cadast_prod_data;
+	private Button busca_prod_nome_button;
 
 	@FXML
-	private DatePicker valid_prod_data;
+	private TableView<ProdutoTabAdapter> list_prod_tab;
 
 	@FXML
-	private DatePicker fabric_prod_data;
-
-	// Fim DataPicker
-	
-	// TextField
+	private TableColumn<ProdutoTabAdapter, String> desc_list_tab;
 
 	@FXML
-	private TextField busca_avanc_produto_field;
+	private TableColumn<ProdutoTabAdapter, String> marca_list_tab;
 
 	@FXML
-	private TextField cod_produto_field;
+	private TableColumn<ProdutoTabAdapter, Integer> codigo_list_tab;
+
+	@FXML
+	private TableColumn<ProdutoTabAdapter, Double> valor_varejo_list_tab;
+
+	@FXML
+	private TableColumn<ProdutoTabAdapter, Integer> estoque_list_tab;
+
+	@FXML
+	private TableColumn<ProdutoTabAdapter, Date> data_cadastro_list_tab;
+
+	@FXML
+	private TableColumn<ProdutoTabAdapter, Boolean> status_list_tab;
+
+	@FXML
+	private Button editar_prod_button;
+
+	@FXML
+	private Tab novo_produto_tab;
+
+	@FXML
+	private Button continuar_prod_cadast_button;
 
 	@FXML
 	private TextField quant_prod_cadast_field;
@@ -85,6 +104,30 @@ public class ControleProduto implements Initializable {
 	private TextField marca_prod_cadastro_field;
 
 	@FXML
+	private DatePicker cadast_prod_data;
+
+	@FXML
+	private DatePicker valid_prod_data;
+
+	@FXML
+	private DatePicker fabric_prod_data;
+
+	@FXML
+	private CheckBox perecivel_prod_cadast_checkB;
+
+	@FXML
+	private CheckBox status_prod_cadast_checkB;
+
+	@FXML
+	private Tab valores_tab;
+
+	@FXML
+	private Button voltar_prod_cadast_button;
+
+	@FXML
+	private Button cont_valores_prod_cadast_button;
+
+	@FXML
 	private TextField preco_unit_prod_cadastro_field;
 
 	@FXML
@@ -100,94 +143,16 @@ public class ControleProduto implements Initializable {
 	private TextField porc_atac_prod_cadast_field;
 
 	@FXML
+	private Tab fornecedor_tab;
+
+	@FXML
 	private TextField busca_fornec_field;
-
-	@FXML
-	private TextField busca_prod_nome_field;
-
-	// Fim TexteField
-
-	// Button
-
-	@FXML
-	private Button busca_avanc_produto_button;
-
-	@FXML
-	private Button continuar_prod_cadast_button;
-
-	@FXML
-	private Button voltar_prod_cadast_button;
-
-	@FXML
-	private Button cont_valores_prod_cadast_button;
-
-	@FXML
-	private Button finalizar_cadas_prod_button;
-
-	@FXML
-	private Button add_fornec_button;
-
-	@FXML
-	private Button cadast_forn_button;
 
 	@FXML
 	private Button busca_fornec_button;
 
 	@FXML
-	private Button busca_prod_nome_button;
-
-	// Fim Button
-
-	// Tab
-
-	@FXML
-	private Tab lista_prod_tabPane;
-
-	@FXML
-	private Tab novo_produto_tab;
-
-	@FXML
-	private Tab valores_tab;
-
-	@FXML
-	private Tab fornecedor_tab;
-
-	// Fim Tab
-
-	// TableView
-
-	@FXML
-	private TableView<Produto> tabela_produto;
-
-	@FXML
-	private TableView<Item_Produto> tabela_item_produto;
-
-	@FXML
 	private TableView<Fornecedor> tabela_fornec;
-
-	// Fim TableView
-
-	// TableColumm
-	@FXML
-	private TableColumn<Produto, String> nome_tabela;
-
-	@FXML
-	private TableColumn<Produto, String> marca_tabela;
-
-	@FXML
-	private TableColumn<Item_Produto, Integer> codigo_tabela;
-
-	@FXML
-	private TableColumn<Item_Produto, Double> valor_varejo_tabela;
-
-	@FXML
-	private TableColumn<Item_Produto, Integer> estoque_tabela;
-
-	@FXML
-	private TableColumn<Item_Produto, Date> data_cadastro_tabela;
-
-	@FXML
-	private TableColumn<Item_Produto, Boolean> status_tabela;
 
 	@FXML
 	private TableColumn<Fornecedor, String> nome_forn;
@@ -204,62 +169,63 @@ public class ControleProduto implements Initializable {
 	@FXML
 	private TableColumn<Fornecedor, String> estado_forn;
 
-	// Fim TableColumm
-
-	// CheckBox
 	@FXML
-	private CheckBox perecivel_prod_cadast_checkB;
+	private Button volt_prod_fornc_button;
 
 	@FXML
-	private CheckBox status_prod_cadast_checkB;
+	private Button add_fornec_button;
 
-	// Fim CheckBox
+	@FXML
+	private Button cadast_forn_button;
+
+	@FXML
+	private Button finalizar_cadas_prod_button;
 
 	@FXML
 	void action(ActionEvent event) {
 
+		if(event.getSource() == novo_prod_button){
+			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
+		}
+
 		if (event.getSource() == continuar_prod_cadast_button) {
-
 			valores_tab.getTabPane().getSelectionModel().select(valores_tab);
+		}
 
+		if(event.getSource() == voltar_prod_cadast_button){
+			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
 		}
 
 		if (event.getSource() == cont_valores_prod_cadast_button) {
-
 			fornecedor_tab.getTabPane().getSelectionModel().select(fornecedor_tab);
+		}
 
+		if(event.getSource() == volt_prod_fornc_button){
+			valores_tab.getTabPane().getSelectionModel().select(valores_tab);
 		}
 
 		if (event.getSource() == busca_fornec_button) {
-
 			try {
-
 				fornecedor = fachada.buscarPorNomeFornecedor(busca_fornec_field.getText());
 				tabela_fornec.getItems().add(fornecedor);
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 
 		if (event.getSource() == add_fornec_button) {
-
 			fornecedor = tabela_fornec.getSelectionModel().getSelectedItem();
 		}
 
 		if (event.getSource() == cadast_forn_button) {
-
 			Dialog<Fornecedor> cadastrarFornecedor = new Dialog<>();
-
 			cadastrarFornecedor.getDialogPane().setContent(Main.telaFornecedor());
 			cadastrarFornecedor.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 			cadastrarFornecedor.showAndWait();
-
 		}
 
 		if (event.getSource() == finalizar_cadas_prod_button) {
-
 			try {
 				cadastrarProduto(fornecedor);
 				System.out.println(fornecedor.getId());
@@ -280,6 +246,15 @@ public class ControleProduto implements Initializable {
 		cnpj_forn.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
 		cidade_forn.setCellValueFactory(new PropertyValueFactory<>("cidade"));
 		estado_forn.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+		desc_list_tab.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		marca_list_tab.setCellValueFactory(new PropertyValueFactory<>("marca"));
+		codigo_list_tab.setCellValueFactory(new PropertyValueFactory<>("cod_barras"));
+		valor_varejo_list_tab.setCellValueFactory(new PropertyValueFactory<>("preco_varejo"));
+		estoque_list_tab.setCellValueFactory(new PropertyValueFactory<>("estoque"));
+		data_cadastro_list_tab.setCellValueFactory(new PropertyValueFactory<>("data_cadastro"));
+		status_list_tab.setCellValueFactory(new PropertyValueFactory<>("status"));
+
 
 	}
 
@@ -313,7 +288,7 @@ public class ControleProduto implements Initializable {
 
 		item_Produto.setPorc_atacado(Double.parseDouble(porc_atac_prod_cadast_field.getText()));
 		item_Produto.setPorc_varejo(Double.parseDouble(porc_varej_prod_cadast_field.getText()));
-
+		item_Produto.setPreco_unidade(Double.parseDouble(preco_unit_prod_cadastro_field.getText()));
 		item_Produto.setPreco_atacado(Double.parseDouble(preco_atac_prod_cadast_field.getText()));
 		item_Produto.setPreco_varejo(Double.parseDouble(preco_varej_prod_cadastro_field.getText()));
 
