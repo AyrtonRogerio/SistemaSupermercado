@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
-import br.com.sistemasupermercado.model.Venda;
+import br.com.sistemasupermercado.fachada.Fachada;
+import br.com.sistemasupermercado.model.*;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 
@@ -32,20 +34,20 @@ public class DaoVenda implements IDaoVenda{
 	 * @see br.com.sistemasupermercado.dao.IDaoVenda#salvar(br.com.sistemasupermercado.model.Venda)
 	 */
 	@Override
-	public void salvar(Venda venda) throws DaoException {
+	public void salvar(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.INSERT);
 			this.statement.setDouble(1, venda.getValor_total());
 			this.statement.setDouble(2, venda.getDesc_geral());
-			this.statement.setInt(3, venda.getQtd_pagmt() );
+			this.statement.setInt(3, venda.getQtd_pagmt());
 			this.statement.setDouble(4, venda.getValor_troco());
 			this.statement.setDate(5, new java.sql.Date(venda.getData_venda().getTime()));
-//			this.statement.setInt(6, venda.getPagamento_id());
-//			this.statement.setInt(7, venda.getCliente_id());
-//			this.statement.setInt(8, venda.getFuncionario_id());
-//			this.statement.setInt(9, venda.getCaixa_id());
+			this.statement.setInt(6, id_cliente);
+			this.statement.setInt(7, id_funcionario);
+			this.statement.setInt(8,id_caixa);
+
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,6 +61,11 @@ public class DaoVenda implements IDaoVenda{
 	public Venda buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
 		Venda venda = null;
+
+		Cliente cliente = null;
+		Funcionario funcionario = null;
+		Caixa caixa = null;
+
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Venda.NOME_TABELA, id));
@@ -72,14 +79,22 @@ public class DaoVenda implements IDaoVenda{
 				venda.setQtd_pagmt(result.getInt(SQLUtil.Venda.COL_QTD_PAGMT));
 				venda.setValor_troco(result.getDouble(SQLUtil.Venda.COL_VALOR_TROCO));
 				venda.setData_venda(new Date(result.getDate(SQLUtil.Venda.COL_DATA_VENDA).getTime()));
-//				venda.setPagamento_id(result.getInt(SQLUtil.Venda.COL_PAGAMENTO_ID));
-//				venda.setCliente_id(result.getInt(SQLUtil.Venda.COL_CLIENTE_ID));
-//				venda.setFuncionario_id(result.getInt(SQLUtil.Venda.COL_FUNCIONARIO_ID));
-//				venda.setCaixa_id(result.getInt(SQLUtil.Venda.COL_CAIXA_ID));
+
+
+				cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Venda.COL_CLIENTE_ID));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Venda.COL_FUNCIONARIO_ID));
+				caixa = Fachada.getInstance().buscarPorIdCaixa(result.getInt(SQLUtil.Venda.COL_CAIXA_ID));
+
+
+				venda.setCliente_id(cliente);
+				venda.setFuncionario_id(funcionario);
+				venda.setCaixa_id(caixa);
+
+
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return venda;
@@ -92,11 +107,17 @@ public class DaoVenda implements IDaoVenda{
 	public List<Venda> getAll() throws DaoException {
 		// TODO Auto-generated method stub
 		List<Venda> vendas = new ArrayList<>();
+		Venda venda = null;
+
+		Cliente cliente = null;
+		Funcionario funcionario = null;
+		Caixa caixa = null;
+
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Produto.NOME_TABELA));
 			this.result = this.statement.executeQuery();
-			Venda venda;
+
 			while (result.next()) {
 
 				venda = new Venda();
@@ -106,15 +127,19 @@ public class DaoVenda implements IDaoVenda{
 				venda.setQtd_pagmt(result.getInt(SQLUtil.Venda.COL_QTD_PAGMT));
 				venda.setValor_troco(result.getDouble(SQLUtil.Venda.COL_VALOR_TROCO));
 				venda.setData_venda(new Date(result.getDate(SQLUtil.Venda.COL_DATA_VENDA).getTime()));
-//				venda.setPagamento_id(result.getInt(SQLUtil.Venda.COL_PAGAMENTO_ID));
-//				venda.setCliente_id(result.getInt(SQLUtil.Venda.COL_CLIENTE_ID));
-//				venda.setFuncionario_id(result.getInt(SQLUtil.Venda.COL_FUNCIONARIO_ID));
-//				venda.setCaixa_id(result.getInt(SQLUtil.Venda.COL_CAIXA_ID));
+
+				cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Venda.COL_CLIENTE_ID));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Venda.COL_FUNCIONARIO_ID));
+				caixa = Fachada.getInstance().buscarPorIdCaixa(result.getInt(SQLUtil.Venda.COL_CAIXA_ID));
+
+				venda.setCliente_id(cliente);
+				venda.setFuncionario_id(funcionario);
+				venda.setCaixa_id(caixa);
 				vendas.add(venda);
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return vendas;

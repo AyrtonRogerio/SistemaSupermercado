@@ -19,6 +19,7 @@ import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.Pagamento;
+import br.com.sistemasupermercado.model.Venda;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 
@@ -39,7 +40,7 @@ public class DaoPagamento implements IDaoPagamento {
 	 * sistemasupermercado.model.Pagamento)
 	 */
 	@Override
-	public void salvar(Pagamento pagamento, int cliente_id) throws DaoException {
+	public void salvar(Pagamento pagamento, int id_cliente, int id_venda) throws DaoException {
 		// TODO Auto-generated method stub
 
 
@@ -51,8 +52,9 @@ public class DaoPagamento implements IDaoPagamento {
 			this.statement.setDate(2, new java.sql.Date(pagamento.getData_vencimento().getTime()));
 			this.statement.setInt(3, pagamento.getNumero());
 			this.statement.setString(4, pagamento.getFormaPagamento().getValor());
-			this.statement.setInt(5, cliente_id);
-			this.statement.setBoolean(6, pagamento.isStatus());
+			this.statement.setInt(5, id_cliente);
+			this.statement.setInt(6, id_venda);
+			this.statement.setBoolean(7, pagamento.isStatus());
 
 			statement.execute();
 		} catch (SQLException ex) {
@@ -68,7 +70,10 @@ public class DaoPagamento implements IDaoPagamento {
 	@Override
 	public Pagamento buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
+
 		Pagamento pagamento;
+		Cliente cliente = null;
+		Venda venda = null;
 
 		try {
 			this.conexao = SQLConections.getInstance();
@@ -84,10 +89,14 @@ public class DaoPagamento implements IDaoPagamento {
 				pagamento.setValor(result.getDouble(SQLUtil.Pagamento.COL_VALOR));
 				pagamento.setData_vencimento( new Date(result.getDate(SQLUtil.Pagamento.COL_DATA_VENCIMENTO).getTime()));
 				pagamento.setNumero(result.getInt(result.getString(SQLUtil.Pagamento.COL_NUMERO)));
-				pagamento.setFormaPagamento(
-					FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
-				Cliente cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
+				pagamento.setFormaPagamento(FormaPagamento.getFormaPagamento
+						(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
+				cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
 				pagamento.setCliente_id(cliente);
+
+				venda = Fachada.getInstance().buscarPorIdVenda(result.getInt(SQLUtil.Pagamento.COL_VENDA_ID));
+				pagamento.setVenda_id(venda);
+
 				pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
 
 			}
@@ -109,24 +118,29 @@ public class DaoPagamento implements IDaoPagamento {
 	@Override
 	public List<Pagamento> getAll() throws DaoException {
 		// TODO Auto-generated method stub
+
 		List<Pagamento> pagamentos = new ArrayList<>();
+		Pagamento pagamento;
+		Cliente cliente = null;
+		Venda venda = null;
+
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Pagamento.NOME_TABELA));
 			this.result = this.statement.executeQuery();
-			Pagamento pagamento;
+
 			while (result.next()) {
 				pagamento = new Pagamento();
-
 				pagamento.setId(result.getInt(1));
-
 				pagamento.setValor(result.getDouble(SQLUtil.Pagamento.COL_VALOR));
 				pagamento.setData_vencimento( new Date(result.getDate(SQLUtil.Pagamento.COL_DATA_VENCIMENTO).getTime()));
 				pagamento.setNumero(result.getInt(result.getString(SQLUtil.Pagamento.COL_NUMERO)));
-				pagamento.setFormaPagamento(
-						FormaPagamento.getFormaPagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
-				Cliente cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
+				pagamento.setFormaPagamento(FormaPagamento.getFormaPagamento
+						(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO)));
+				 cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Pagamento.COL_CLIENTE_ID));
 				pagamento.setCliente_id(cliente);
+				venda = Fachada.getInstance().buscarPorIdVenda(result.getInt(SQLUtil.Pagamento.COL_VENDA_ID));
+				pagamento.setVenda_id(venda);
 				pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
 
 				pagamentos.add(pagamento);

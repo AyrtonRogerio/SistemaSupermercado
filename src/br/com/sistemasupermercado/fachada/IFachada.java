@@ -54,7 +54,7 @@ public interface IFachada {
 
 	//Pagamento
 	
-	public void salvarEditarPagamento(Pagamento pagamento, int cliente_id) throws BusinessException;
+	public void salvarEditarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException;
 
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException;
 
@@ -84,4 +84,15 @@ public interface IFachada {
 	public List<Item_Produto> getAllItemProduto() throws BusinessException;
 
 	public void ativarDesativarItemProduto(int id) throws BusinessException;
+
+	//Venda
+
+	public void salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
+
+	public Venda buscarPorIdVenda(int id) throws BusinessException;
+
+	public List<Venda> getAllVenda() throws BusinessException;
+
+	public void ativarDesativarVenda(int id) throws BusinessException;
+
 }

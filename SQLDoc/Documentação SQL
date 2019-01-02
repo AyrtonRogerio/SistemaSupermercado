@@ -56,6 +56,7 @@ data_vencimento DATE,
 numero INTEGER,
 forma_pagamento VARCHAR(40),
 cliente_id INTEGER REFERENCES cliente(id),
+venda_id INTEGER REFERENCES venda(id),
 status boolean
 );
 
@@ -66,7 +67,6 @@ desc_geral DOUBLE PRECISION,
 qtd_pagmt INTEGER,
 valor_troco DOUBLE PRECISION,
 data_venda DATE,
-pagamento_id INTEGER REFERENCES pagamento(id),
 cliente_id INTEGER REFERENCES cliente(id),
 funcionario_id INTEGER REFERENCES funcionario(id),
 caixa_id INTEGER REFERENCES caixa(id)

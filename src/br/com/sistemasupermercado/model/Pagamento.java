@@ -12,6 +12,7 @@ public class Pagamento {
 	private int numero;
 	private FormaPagamento formaPagamento;
 	private Cliente cliente_id;
+	private Venda venda_id;
 	private boolean status;
 
 
@@ -61,6 +62,14 @@ public class Pagamento {
 
 	public void setCliente_id(Cliente cliente_id) {
 		this.cliente_id = cliente_id;
+	}
+
+	public Venda getVenda_id() {
+		return venda_id;
+	}
+
+	public void setVenda_id(Venda venda_id) {
+		this.venda_id = venda_id;
 	}
 
 	public boolean isStatus() {

@@ -86,7 +86,6 @@ public class DaoCliente implements IDaoCliente {
 				endereco = DaoCommum.buscarEndereco(result.getInt(SQLUtil.Cliente.COL_ENDERECO_ID));
 				cliente.setEndereco(endereco);
 
-
 			}
 			this.conexao.close();
 

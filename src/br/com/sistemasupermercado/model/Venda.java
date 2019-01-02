@@ -11,7 +11,7 @@ public class Venda {
 	private int qtd_pagmt;
 	private double valor_troco;
 	private double valor_total;
-	private Pagamento pagamento_id;
+
 	private Cliente cliente_id;
 	private Funcionario funcionario_id;
 	private Caixa caixa_id;
@@ -63,14 +63,6 @@ public class Venda {
 
 	public void setValor_total(double valor_total) {
 		this.valor_total = valor_total;
-	}
-
-	public Pagamento getPagamento_id() {
-		return pagamento_id;
-	}
-
-	public void setPagamento_id(Pagamento pagamento_id) {
-		this.pagamento_id = pagamento_id;
 	}
 
 	public Cliente getCliente_id() {

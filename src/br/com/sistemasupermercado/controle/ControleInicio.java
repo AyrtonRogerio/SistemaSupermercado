@@ -149,11 +149,4 @@ public class ControleInicio implements Initializable {
 		}
 	}
 
-	public void telaVenda(){
-
-
-
-
-	}
-
 }

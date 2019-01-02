@@ -141,11 +141,12 @@ public class SQLUtil {
         public static final String COL_NUMERO = "numero";
         public static final String COL_FORMA_PAGAMENTO = "forma_pagamento";
         public static final String COL_CLIENTE_ID = "cliente_id";
+        public static final String COL_VENDA_ID = "venda_id";
         public static final String COL_STATUS = "status";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" 
         + COL_VALOR + "," + COL_DATA_VENCIMENTO + "," + COL_NUMERO + "," + COL_FORMA_PAGAMENTO +
-        "," + COL_CLIENTE_ID + "," + COL_STATUS +" ) values (?,?,?,?,?,?) returning id";
+        "," + COL_CLIENTE_ID + "," + COL_VENDA_ID + "," + COL_STATUS +" ) values (?,?,?,?,?,?,?) returning id";
 
     }
 

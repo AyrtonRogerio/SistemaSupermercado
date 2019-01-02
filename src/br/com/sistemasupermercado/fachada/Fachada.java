@@ -16,6 +16,7 @@ public class Fachada implements IFachada {
 	private IBusinessPagamento businessPagamento;
 	private IBusinessCliente businessCliente;
 	private IBusinessItem_Produto businessItem_Produto;
+	private IBusinessVenda businessVenda;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -33,7 +34,7 @@ public class Fachada implements IFachada {
 		businessPagamento = new BusinessPagamento();
 		businessCliente = new BusinessCliente();
 		businessItem_Produto = new BusinessItem_Produto();
-		
+		businessVenda = new BusinessVenda();
 	}
 
 	
@@ -157,9 +158,9 @@ public class Fachada implements IFachada {
 	//Pagamento
 	
 	@Override
-	public void salvarEditarPagamento(Pagamento pagamento, int cliente_id) throws BusinessException {
+	public void salvarEditarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessPagamento.salvarEditar(pagamento, cliente_id);
+		this.businessPagamento.salvarEditar(pagamento, id_cliente,id_venda);
 	}
 
 	
@@ -242,6 +243,26 @@ public class Fachada implements IFachada {
 	public void ativarDesativarItemProduto(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
+			this.businessVenda.salvarEditar(venda, id_cliente, id_funcionario, id_caixa);
+	}
+
+	@Override
+	public Venda buscarPorIdVenda(int id) throws BusinessException {
+		return this.businessVenda.buscarPorId(id);
+	}
+
+	@Override
+	public List<Venda> getAllVenda() throws BusinessException {
+		return this.businessVenda.getAll();
+	}
+
+	@Override
+	public void ativarDesativarVenda(int id) throws BusinessException {
+
 	}
 
 }

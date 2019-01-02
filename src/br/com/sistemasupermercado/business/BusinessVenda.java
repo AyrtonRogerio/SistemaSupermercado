@@ -26,13 +26,13 @@ public class BusinessVenda implements IBusinessVenda {
 	
 	
 	@Override
-	public void salvarEditar(Venda venda) throws BusinessException {
+	public void salvarEditar(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
 		// TODO Auto-generated method stub
 		
 		try {
 			validar(venda);
 			if (venda.getId() == null)
-				daoVenda.salvar(venda);
+				daoVenda.salvar(venda, id_cliente, id_funcionario, id_caixa);
 			else
 				daoVenda.editar(venda);
 		} catch (DaoException | ValidacaoException e) {
@@ -85,8 +85,8 @@ public class BusinessVenda implements IBusinessVenda {
 	@Override
 	public void validar(Venda venda) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(venda.getDesc_geral() <= 0)
-			throw new ValidacaoException("BUsines venda!!!");
+		if(venda.getValor_total() <= 0)
+			throw new ValidacaoException("Business venda!!!");
 	}
 
 }
