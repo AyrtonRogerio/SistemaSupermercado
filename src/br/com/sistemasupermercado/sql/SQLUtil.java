@@ -20,6 +20,9 @@ public class SQLUtil {
         public static final String DESCRICAO = "descricao";
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + NOME_PRODUTO + ","
         + MARCA + "," + DESCRICAO + ") values (?,?,?) returning id";
+
+        public static final String UPDATE = "update produto set nome = ?, marca = ?, descricao = ? where produto.id order by id";
+
     }
 
     public static class Item_Produto {
@@ -52,12 +55,15 @@ public class SQLUtil {
                 "i.preco_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
                 "on i.produto_id = p.id";
 
-        public static final String SELECT_PROD_LIST_EST_ALL = "select i.cod_barras, " +
+        public static final String SELECT_PROD_LIST_EST_ALL = "select i.id, i.cod_barras, " +
                 "i.quantidade, i.preco_unidade, p.descricao from item_produto i inner join produto p on i.produto_id = p.id";
 
-        public static final String SELECT_PROD_LIST_VEND = "select i.cod_barras, p.descricao, i.quantidade, " +
-                "i.preco_unidade from item_produto i inner join produto p" +
-                "on i.produto_id = p.id";
+        public static final String SELECT_PROD_LIST_VEND = "select i.id, i.cod_barras, " +
+                "i.quantidade, i.preco_unidade, p.descricao from item_produto i inner join produto p on i.produto_id = p.id where i.id = ?";
+
+        public static  final String UPDATE = "update item_produto set perecivel = ?, status = ?, quantidade = ?, cod_barras = ?, " +
+                "unidade_medida = ?, data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?, preco_atacado = ?," +
+                "preco_varejo = ?, porc_atacado = ?, porc_varejo = ?, fornecedor_id = ?, produto_id = ? where item_produto.id order by id";
     }
     
     public static class Endereco {
@@ -75,6 +81,9 @@ public class SQLUtil {
         + " ) values (?,?,?,?,?,?) returning id";
         
         //public static final String SELECT = " select * from " + NOME_TABELA + " where id = ?";
+
+        public static final String UPDATE = "update endereco set rua = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ? " +
+                "where endereco.id order by id";
     }
 
     public static class Contato {
@@ -86,6 +95,8 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_TIPO + ","
         + COL_DESCRICAO + "," + COL_CLIENTE_ID + " ) values (?,?,?)";
+
+        public static  final  String UPDATE = "update contato set tipo = ?, descricao = ?, cliente_id = ? where contato.id order by id";
     }
 
     public static class Cliente {
@@ -108,6 +119,8 @@ public class SQLUtil {
                 "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
                 "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id where c.cpf = ?";
 
+        public static  final  String UPDATE = "update cliente set nome = ?, cpf = ?, sexo = ?, estado_civil = ?," +
+                "ocupacao = ?, data_nascimento = ?, endereco_id = ? where cliente.id order by id";
 
     }
 
@@ -128,6 +141,8 @@ public class SQLUtil {
         public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where funcionario.id";
         	
         public static final String SELECT_LOGIN = "select * from funcionario where login = ?  and senha = ?";
+
+
     }
     
     public static class Caixa {
@@ -139,6 +154,8 @@ public class SQLUtil {
     	
     	public static final String INSERT = "insert into " + NOME_TABELA + "(" 
     	+ COL_ENTRADA + ","	+ COL_SAIDA + "," + COL_SALDO + " ) values (?,?,?) ";
+
+    	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ? where caixa.id order by id";
     	
     }
 
@@ -158,6 +175,9 @@ public class SQLUtil {
         + COL_VALOR + "," + COL_DATA_VENCIMENTO + "," + COL_NUMERO + "," + COL_FORMA_PAGAMENTO +
         "," + COL_CLIENTE_ID + "," + COL_VENDA_ID + "," + COL_STATUS +" ) values (?,?,?,?,?,?,?) returning id";
 
+        public static final String UPDATE = "update pagamento set valor = ?, data_vencimento = ?, numero = ?," +
+                "forma_pagamento = ?, cliente_id = ?, venda_id = ?, status = ? where pagamento.id order by id";
+
     }
 
     public static class Fornecedor {
@@ -174,7 +194,10 @@ public class SQLUtil {
         + COL_CIDADE + " ) values (?,?,?,?,?) returning id ";
 
         public static final String SELECT_NOME = "select * from fornecedor where nome_fantasia = ?";
-        
+
+        public static  final String UPDATE = "update fornecedor set nome_fantasia = ?, razao_social = ?, cnpj = ?," +
+                "estado = ?, cidade = ? where fornecedor.id order by id";
+
     }
     
     public static class Venda {
@@ -196,7 +219,10 @@ public class SQLUtil {
         "," + COL_VALOR_TROCO + "," + COL_DATA_VENDA + "," + COL_PAGAMENTO_ID +
         "," + COL_CLIENTE_ID + "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
          " ) values (?.?.?,?,?,?,?,?,?) returning id";
-    	
+
+    	public static final String UPDATE = "update venda set valor_total = ?, desc_geral = ?, qtd_pgmt = ?," +
+                "valor_troco = ?, data_venda = ?, pagamento_id = ?, cliente_id = ?, funcionario_id = ?, caixa_id = ?" +
+                "where venda.id order by id";
     	
     }
     
@@ -218,6 +244,9 @@ public class SQLUtil {
     	"," + COL_TIPO + "," + COL_QUANT + "," + COL_VALOR_ITEM + "," + COL_DESCONTO + "," +
     	COL_VENDA_ID + "," + COL_ITEM_PRODUTO_ID +
     	" ) values (?,?,?,?,?,?,?,?,?) returning id";
+
+    	public static final String UPDATE = "update item_venda set valor_desc = ?, porc_promoc = ?, promocao = ?, tipo = ?," +
+                "quant = ?, valor_item = ?, desconto = ?, venda_id = ? item_produto_id where item_venda.id order by id ";
     }
 
 

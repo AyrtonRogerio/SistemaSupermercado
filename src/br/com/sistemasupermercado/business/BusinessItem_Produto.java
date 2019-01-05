@@ -85,7 +85,17 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 		}
 	}
 
-	@Override
+    @Override
+    public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException {
+        try {
+            return daoItemProduto.buscarPorIdVendaAdapter(id);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+    }
+
+    @Override
 	public void ativarDesativar(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {

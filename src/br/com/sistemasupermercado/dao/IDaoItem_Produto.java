@@ -24,6 +24,8 @@ public interface IDaoItem_Produto {
 
 	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws DaoException;
 
+	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws DaoException;
+
 	public void editar(Item_Produto item_Produto) throws DaoException;
 
 	public void ativarDesativar(int id) throws DaoException;

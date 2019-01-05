@@ -26,6 +26,8 @@ public interface IBusinessItem_Produto {
 
 	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException;
 
+	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException;
+
 	public void ativarDesativar(int id) throws BusinessException;
 
 	public void validar(Item_Produto item_Produto) throws ValidacaoException;

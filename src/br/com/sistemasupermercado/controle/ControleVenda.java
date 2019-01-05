@@ -19,10 +19,11 @@ import java.util.ResourceBundle;
 
 public class ControleVenda implements Initializable {
 
+    int cont = 1;
     Caixa caixa;
     Funcionario funcionario;
     Venda venda;
-    Item_Produto item_produto;
+    VendaTabAdapter item_produtoVenda;
     Item_Venda item_venda;
     List<Item_Venda> item_vendas;
     Pagamento pagamento;
@@ -116,7 +117,19 @@ public class ControleVenda implements Initializable {
         }
 
         if(event.getSource() == adic_prod_ven_button){
-//            item_produto = fachada.
+
+            try {
+
+                EstoqueTabAdapter prod = prod_tab.getSelectionModel().getSelectedItem();
+                item_produtoVenda = Fachada.getInstance().buscarPorIdVendaAdapterProduto(prod.getId());
+
+                item_produtoVenda.setItem(cont);
+                cont++;
+
+                vend_tab.getItems().addAll(item_produtoVenda);
+            } catch (BusinessException e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -132,7 +145,7 @@ public class ControleVenda implements Initializable {
         prod_prec_col.setCellValueFactory(new PropertyValueFactory<>("preco_unidade"));
 
         try {
-            estoqueTabAdapters = Fachada.getInstance().getAllEstoqueAdapter();
+            estoqueTabAdapters = Fachada.getInstance().getAllEstoqueAdapterProduto();
             prod_tab.getItems().addAll(estoqueTabAdapters);
         } catch (BusinessException e) {
             e.printStackTrace();
@@ -140,11 +153,11 @@ public class ControleVenda implements Initializable {
 
 
 
-        vend_item_col.setCellValueFactory(new PropertyValueFactory<>(""));
-        vend_cod_col.setCellValueFactory(new PropertyValueFactory<>(""));
-        vend_desc_col.setCellValueFactory(new PropertyValueFactory<>(""));
-        vend_qtd_col.setCellValueFactory(new PropertyValueFactory<>(""));
-        vend_prec_col.setCellValueFactory(new PropertyValueFactory<>(""));
+        vend_item_col.setCellValueFactory(new PropertyValueFactory<>("item"));
+        vend_cod_col.setCellValueFactory(new PropertyValueFactory<>("venda_cod_barras"));
+        vend_desc_col.setCellValueFactory(new PropertyValueFactory<>("venda_descricao"));
+        vend_qtd_col.setCellValueFactory(new PropertyValueFactory<>("venda_quantidade"));
+        vend_prec_col.setCellValueFactory(new PropertyValueFactory<>("venda_preco_unidade"));
 
     }
 

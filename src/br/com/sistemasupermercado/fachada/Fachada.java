@@ -244,8 +244,14 @@ public class Fachada implements IFachada {
 		return this.businessItem_Produto.getAllAdapter();
 	}
 
+
 	@Override
-	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException {
+	public VendaTabAdapter buscarPorIdVendaAdapterProduto(int id) throws BusinessException {
+		return this.businessItem_Produto.buscarPorIdVendaAdapter(id);
+	}
+
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterProduto() throws BusinessException {
 		return this.businessItem_Produto.getAllEstoqueAdapter();
 	}
 

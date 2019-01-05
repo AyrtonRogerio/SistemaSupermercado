@@ -2,11 +2,19 @@ package br.com.sistemasupermercado.model;
 
 public class EstoqueTabAdapter {
 
+    private int id;
     private int cod_barras;
     private String descricao;
     private int quantidade;
     private double preco_unidade;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCod_barras() {
         return cod_barras;
