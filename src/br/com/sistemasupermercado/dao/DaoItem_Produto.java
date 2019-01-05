@@ -42,21 +42,22 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 						
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
-			this.statement.setBoolean(1, item_Produto.isPerecivel());
-			this.statement.setBoolean(2, item_Produto.isStatus());
-			this.statement.setInt(3, item_Produto.getQuantidade());
-			this.statement.setInt(4, item_Produto.getCod_barras());
-			this.statement.setDouble(5, item_Produto.getUnid_medida());
-			this.statement.setDate(6, new java.sql.Date(item_Produto.getData_fabricacao().getTime()));
-			this.statement.setDate(7, new java.sql.Date(item_Produto.getData_validade().getTime()));
-			this.statement.setDate(8, new java.sql.Date( item_Produto.getData_compra().getTime()));
-			this.statement.setDouble(9, item_Produto.getPreco_unidade());
-			this.statement.setDouble(10, item_Produto.getPreco_atacado());
-			this.statement.setDouble(11, item_Produto.getPreco_varejo());
-			this.statement.setDouble(12, item_Produto.getPorc_atacado());
-			this.statement.setDouble(13, item_Produto.getPorc_varejo());
-			this.statement.setInt(14, fornecedor_id);
-			this.statement.setInt(15, produto_id);
+			this.statement.setLong(1, item_Produto.getCod_barras());
+			this.statement.setDouble(2, item_Produto.getUnid_medida());
+			this.statement.setDate(3, new java.sql.Date(item_Produto.getData_fabricacao().getTime()));
+			this.statement.setDate(4, new java.sql.Date(item_Produto.getData_validade().getTime()));
+			this.statement.setDate(5, new java.sql.Date( item_Produto.getData_compra().getTime()));
+			this.statement.setDouble(6, item_Produto.getPreco_unidade());
+			this.statement.setDouble(7, item_Produto.getPreco_atacado());
+			this.statement.setDouble(8, item_Produto.getPreco_varejo());
+			this.statement.setDouble(9, item_Produto.getPorc_atacado());
+			this.statement.setDouble(10, item_Produto.getPorc_varejo());
+			this.statement.setInt(11, item_Produto.getQuantidade());
+			this.statement.setInt(12,item_Produto.getVendidos());
+			this.statement.setBoolean(13, item_Produto.isPerecivel());
+			this.statement.setBoolean(14,item_Produto.isStatus());
+			this.statement.setInt(15, fornecedor_id);
+			this.statement.setInt(16, produto_id);
 			this.statement.execute();
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
@@ -81,9 +82,6 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			if (result.next()) {
 				item_Produto = new Item_Produto();
 				item_Produto.setId(result.getInt(1));
-				item_Produto.setPerecivel(result.getBoolean(SQLUtil.Item_Produto.COL_PERECIVEL));
-				item_Produto.setStatus(result.getBoolean(SQLUtil.Item_Produto.COL_STATUS));
-				item_Produto.setQuantidade(result.getInt(SQLUtil.Item_Produto.COL_QUANTIDADE));
 				item_Produto.setCod_barras(result.getInt(SQLUtil.Item_Produto.COL_COD_BARRAS));
 				item_Produto.setUnid_medida(result.getDouble(SQLUtil.Item_Produto.COL_UNIADE_MEDIDA));
 				item_Produto.setData_fabricacao(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_FABRICACAO).getTime()));
@@ -94,7 +92,11 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPreco_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PRECO_VAREJO));
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
-				
+				item_Produto.setQuantidade(result.getInt(SQLUtil.Item_Produto.COL_QUANTIDADE));
+				item_Produto.setVendidos(result.getInt(SQLUtil.Item_Produto.COL_VENDIDOS));
+				item_Produto.setPerecivel(result.getBoolean(SQLUtil.Item_Produto.COL_PERECIVEL));
+				item_Produto.setStatus(result.getBoolean(SQLUtil.Item_Produto.COL_STATUS));
+
 				fornecedor = Fachada.getInstance().buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
 				produto = Fachada.getInstance().buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
 				
@@ -155,9 +157,6 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			while (result.next()) {
 				item_Produto = new Item_Produto();
 				item_Produto.setId(result.getInt(1));
-				item_Produto.setPerecivel(result.getBoolean(SQLUtil.Item_Produto.COL_PERECIVEL));
-				item_Produto.setStatus(result.getBoolean(SQLUtil.Item_Produto.COL_STATUS));
-				item_Produto.setQuantidade(result.getInt(SQLUtil.Item_Produto.COL_QUANTIDADE));
 				item_Produto.setCod_barras(result.getInt(SQLUtil.Item_Produto.COL_COD_BARRAS));
 				item_Produto.setUnid_medida(result.getDouble(SQLUtil.Item_Produto.COL_UNIADE_MEDIDA));
 				item_Produto.setData_fabricacao(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_FABRICACAO).getTime()));
@@ -168,7 +167,12 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				item_Produto.setPreco_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PRECO_VAREJO));
 				item_Produto.setPorc_atacado(result.getDouble(SQLUtil.Item_Produto.COL_PORC_ATACADO));
 				item_Produto.setPorc_varejo(result.getDouble(SQLUtil.Item_Produto.COL_PORC_VAREJO));
-				
+				item_Produto.setQuantidade(result.getInt(SQLUtil.Item_Produto.COL_QUANTIDADE));
+				item_Produto.setVendidos(result.getInt(SQLUtil.Item_Produto.COL_VENDIDOS));
+				item_Produto.setPerecivel(result.getBoolean(SQLUtil.Item_Produto.COL_PERECIVEL));
+				item_Produto.setStatus(result.getBoolean(SQLUtil.Item_Produto.COL_STATUS));
+
+
 				fornecedor = Fachada.getInstance().buscarPorIdFornecedor(result.getInt(SQLUtil.Item_Produto.COL_FORNECEDOR_ID));
 				produto = Fachada.getInstance().buscarPorIdProduto(result.getInt(SQLUtil.Item_Produto.COL_PRODUTO_ID));
 				

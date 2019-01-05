@@ -33,11 +33,11 @@ public class BusinessItem_Venda implements IBusinessItem_Venda{
 	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#salvarEditar(br.com.sistemasupermercado.model.Item_Venda)
 	 */
 	@Override
-	public void salvarEditar(Item_Venda item_Venda) throws BusinessException {
+	public void salvarEditar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException {
 		try {
 			validar(item_Venda);
 			if (item_Venda.getId() == null)
-				daoItemVenda.salvar(item_Venda);
+				daoItemVenda.salvar(item_Venda,venda_id,item_produto_id);
 			else
 				daoItemVenda.editar(item_Venda);
 		} catch (DaoException | ValidacaoException e) {

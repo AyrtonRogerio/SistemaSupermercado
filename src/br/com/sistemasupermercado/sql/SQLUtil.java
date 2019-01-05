@@ -28,9 +28,6 @@ public class SQLUtil {
     public static class Item_Produto {
     	
     	public static final String NOME_TABELA = "item_produto";
-    	public static final String COL_PERECIVEL = "perecivel";
-    	public static final String COL_STATUS = "status";
-    	public static final String COL_QUANTIDADE = "quantidade";
     	public static final String COL_COD_BARRAS = "cod_barras";
     	public static final String COL_UNIADE_MEDIDA = "unidade_medida";
     	public static final String COL_DATA_FABRICACAO = "data_fabricacao";
@@ -41,15 +38,20 @@ public class SQLUtil {
     	public static final String COL_PRECO_VAREJO = "preco_varejo";
     	public static final String COL_PORC_ATACADO = "porc_atacado";
     	public static final String COL_PORC_VAREJO = "porc_varejo";
+        public static final String COL_QUANTIDADE = "quantidade";
+        public static final String COL_VENDIDOS = "vendidos";
+        public static final String COL_PERECIVEL = "perecivel";
+        public static final String COL_STATUS = "status";
     	public static final String COL_FORNECEDOR_ID = "fornecedor_id";
     	public static final String COL_PRODUTO_ID = "produto_id";
-    	
-    	public static final String INSERT = "insert into " + NOME_TABELA + "(" 
-    	+ COL_PERECIVEL + "," + COL_STATUS + "," + COL_QUANTIDADE + "," + COL_COD_BARRAS + "," 
-    	+ COL_UNIADE_MEDIDA + "," + COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," 
-    	+ COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + "," 
-    	+ COL_PRECO_VAREJO + ","+ COL_PORC_ATACADO + "," + COL_PORC_VAREJO + ","
-    	+ COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
+
+
+
+
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + ","  +
+                COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + "," +
+                COL_PRECO_VAREJO + "," + COL_PORC_ATACADO + "," + COL_PORC_VAREJO + "," + COL_QUANTIDADE + "," + COL_VENDIDOS + "," + COL_PERECIVEL + "," +
+                COL_STATUS + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
 
         public static final String SELECT_PRODUTO_ALL = "select p.descricao, p.marca, i.cod_barras, " +
                 "i.preco_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
@@ -96,7 +98,7 @@ public class SQLUtil {
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_TIPO + ","
         + COL_DESCRICAO + "," + COL_CLIENTE_ID + " ) values (?,?,?)";
 
-        public static  final  String UPDATE = "update contato set tipo = ?, descricao = ?, cliente_id = ? where contato.id order by id";
+        public static  final  String UPDATE = "update contato set tipo = ?, descricao = ?, cliente_id = ? where contato.id";
     }
 
     public static class Cliente {
@@ -138,7 +140,7 @@ public class SQLUtil {
         + COL_NOME + "," + COL_CPF + "," + COL_CARGO + "," + COL_LOGIN + "," + 
         COL_SENHA + " ) values (?,?,?,?,?) returning id";
         
-        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where funcionario.id";
+        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where funcionario.id order by id";
         	
         public static final String SELECT_LOGIN = "select * from funcionario where login = ?  and senha = ?";
 

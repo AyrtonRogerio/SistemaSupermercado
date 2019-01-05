@@ -107,6 +107,10 @@ public class ControleVenda implements Initializable {
         if(event.getSource() == nova_ven_button){
 
             venda = new Venda();
+
+//            venda.setCaixa_id();
+
+
             info_cx_ven_field.setText("Caixa em uso!");
             oper_vend_field.setText(ControleLogin.nomeOp());
             funcionario = ControleLogin.getFuncionario();
@@ -125,8 +129,8 @@ public class ControleVenda implements Initializable {
 
                 item_produtoVenda.setItem(cont);
                 cont++;
-
                 vend_tab.getItems().addAll(item_produtoVenda);
+//                item_vendas.add(Fachada.getInstance().)
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
@@ -137,7 +141,7 @@ public class ControleVenda implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        caixa = new Caixa();
+
 
         prod_cod_col.setCellValueFactory(new PropertyValueFactory<>("cod_barras"));
         prod_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
@@ -160,8 +164,6 @@ public class ControleVenda implements Initializable {
         vend_prec_col.setCellValueFactory(new PropertyValueFactory<>("venda_preco_unidade"));
 
     }
-
-
 
 
 }

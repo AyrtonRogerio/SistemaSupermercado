@@ -286,7 +286,7 @@ public class ControleProduto implements Initializable {
 		produto.setMarca(marca_prod_cadastro_field.getText());
 		produto.setDescricao(descri_prod_cadast_field.getText());
 
-		item_Produto.setCod_barras(Integer.parseInt(cod_prod_cadast_field.getText()));
+		item_Produto.setCod_barras(Long.parseLong(cod_prod_cadast_field.getText()));
 		item_Produto.setQuantidade(Integer.parseInt(quant_prod_cadast_field.getText()));
 
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");

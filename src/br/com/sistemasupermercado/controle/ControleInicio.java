@@ -1,5 +1,8 @@
 package br.com.sistemasupermercado.controle;
 
+import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.fachada.Fachada;
+import br.com.sistemasupermercado.model.Caixa;
 import br.com.sistemasupermercado.model.Venda;
 import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
@@ -22,6 +25,7 @@ public class ControleInicio implements Initializable {
 	private Pane CadastroCliente;
 	private Pane CadastroFuncionario;
 	private Pane CadastroProduto;
+	private Caixa caixa;
 
 	@FXML
 	private MenuItem inicioMenu;
@@ -91,6 +95,12 @@ public class ControleInicio implements Initializable {
 		}
 
 		if(event.getSource() == nova_venda_menu){
+
+			Dialog<Caixa> caixaDialog = new Dialog<>();
+			caixaDialog.getDialogPane().setContent(Main.telaCaixa());
+			caixaDialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
+			caixaDialog.showAndWait();
+
 			Dialog<Venda> vendaDialog = new Dialog<>();
 
 			vendaDialog.initModality(Modality.NONE);
@@ -148,5 +158,6 @@ public class ControleInicio implements Initializable {
 			pane.getChildren().setAll(CadastroProduto);
 		}
 	}
+
 
 }

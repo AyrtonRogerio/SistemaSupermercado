@@ -28,7 +28,7 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 	private ResultSet result;
 
 	@Override
-	public void salvar(Item_Venda item_Venda) throws DaoException {
+	public void salvar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws DaoException {
 		// TODO Auto-generated method stub
 
 		try {
@@ -41,8 +41,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 			this.statement.setInt(5, item_Venda.getQuantidade());
 			this.statement.setDouble(6, item_Venda.getValor_item());
 			this.statement.setBoolean(7, item_Venda.isDesconto());
-//			this.statement.setInt(8, item_Venda.getVenda_id());
-//			this.statement.setInt(9, item_Venda.getItem_produto_id());
+			this.statement.setInt(8, venda_id);
+			this.statement.setInt(9, item_produto_id);
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);

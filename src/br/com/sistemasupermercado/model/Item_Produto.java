@@ -12,10 +12,7 @@ import java.util.Date;
 public class Item_Produto {
 
 	private Integer id;
-	private boolean perecivel;
-	private boolean status;
-	private int quantidade;
-	private int cod_barras;
+	private long cod_barras;
 	private double unid_medida;
 	private Date data_validade;
 	private Date data_fabricacao;
@@ -27,6 +24,11 @@ public class Item_Produto {
 	private double porc_varejo;
 	private Fornecedor fornecedor_id;
 	private Produto produto_id;
+	private int quantidade;
+	private int vendidos;
+	private boolean perecivel;
+	private boolean status;
+
 
 	public Integer getId() {
 		return id;
@@ -34,6 +36,14 @@ public class Item_Produto {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public int getVendidos() {
+		return vendidos;
+	}
+
+	public void setVendidos(int vendidos) {
+		this.vendidos = vendidos;
 	}
 
 	public int getQuantidade() {
@@ -44,11 +54,11 @@ public class Item_Produto {
 		this.quantidade = quantidade;
 	}
 
-	public int getCod_barras() {
+	public long getCod_barras() {
 		return cod_barras;
 	}
 
-	public void setCod_barras(int cod_barras) {
+	public void setCod_barras(long cod_barras) {
 		this.cod_barras = cod_barras;
 	}
 

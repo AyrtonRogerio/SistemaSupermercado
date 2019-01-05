@@ -28,9 +28,9 @@ public class DaoCaixa implements IDaoCaixa {
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.INSERT);
-			this.statement.setString(1, caixa.getEntrada());
-			this.statement.setString(2, caixa.getSaida());
-			this.statement.setString(3, caixa.getSaldo());
+			this.statement.setDouble(1, caixa.getEntrada());
+			this.statement.setDouble(2, caixa.getSaida());
+			this.statement.setDouble(3, caixa.getSaldo());
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,9 +50,9 @@ public class DaoCaixa implements IDaoCaixa {
 			if (result.next()) {
 				caixa = new Caixa();
 				caixa.setId(result.getInt(1));
-				caixa.setEntrada(result.getString(SQLUtil.Caixa.COL_ENTRADA));
-				caixa.setSaida(result.getString(SQLUtil.Caixa.COL_SAIDA));
-				caixa.setSaldo(result.getString(SQLUtil.Caixa.COL_SALDO));
+				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
+				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
+				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
 				
 			}
 			this.conexao.close();
@@ -75,9 +75,9 @@ public class DaoCaixa implements IDaoCaixa {
 			while (result.next()) {
 				caixa = new Caixa();
 				caixa.setId(result.getInt(1));
-				caixa.setEntrada(result.getString(SQLUtil.Caixa.COL_ENTRADA));
-				caixa.setSaida(result.getString(SQLUtil.Caixa.COL_SAIDA));
-				caixa.setSaldo(result.getString(SQLUtil.Caixa.COL_SALDO));
+				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
+				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
+				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
 				caixas.add(caixa);
 			}
 			this.conexao.close();

@@ -14,7 +14,7 @@ import br.com.sistemasupermercado.model.Item_Venda;
  */
 public interface IDaoItem_Venda {
 
-	public void salvar(Item_Venda item_Venda) throws DaoException;
+	public void salvar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws DaoException;
 
 	public Item_Venda buscarPorId(int id) throws DaoException;
 

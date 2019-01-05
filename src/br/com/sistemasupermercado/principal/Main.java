@@ -28,6 +28,7 @@ public class Main extends Application {
 	private static Pane inicio;
 	private static Pane cadastroFornecedor;
 	private static Pane venda;
+	private static Pane caixa;
 	private static Scene sceneLogin;
 	private static Scene sceneMenu;
 	private static Scene sceneVenda;
@@ -58,6 +59,8 @@ public class Main extends Application {
 			venda = FXMLLoader.load(getClass().getClassLoader().getResource
 					("br/com/sistemasupermercado/view/Venda.fxml"));
 
+			caixa = FXMLLoader.load(getClass().getClassLoader().getResource
+					("br/com/sistemasupermercado/view/AberturaCaixa.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,6 +88,10 @@ public class Main extends Application {
     public static Pane telaVenda(){
 
 		return venda;
+	}
+
+	public static  Pane telaCaixa(){
+    	return  caixa;
 	}
 
     public static Pane telaFornecedor() {

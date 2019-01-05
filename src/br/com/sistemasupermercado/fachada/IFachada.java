@@ -101,4 +101,17 @@ public interface IFachada {
 
 	public void ativarDesativarVenda(int id) throws BusinessException;
 
+	//Item_Venda
+
+	public void salvarEditar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException;
+
+	public Item_Venda buscarPorId_Item_Venda(int id) throws BusinessException;
+
+	public List<Item_Venda> getAll_Item_Venda() throws BusinessException;
+
+	public void ativarDesativar_Item_Venda(int id) throws BusinessException;
+
+
+
+
 }

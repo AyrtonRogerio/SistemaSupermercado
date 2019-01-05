@@ -73,8 +73,8 @@ public class BusinessCaixa implements IBusinessCaixa {
 	@Override
 	public void validar(Caixa caixa) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(caixa.getSaida() == null)
-			throw new ValidacaoException("Informe um nome!!!");
+		if(caixa.getEntrada() == 0)
+			throw new ValidacaoException("O caixa não pode ser inicado sem Valor definido!");
 	}
 
 }

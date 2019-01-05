@@ -3,9 +3,9 @@ package br.com.sistemasupermercado.model;
 public class Caixa {
 
 	private Integer id;
-	private String entrada;
-	private String saida;
-	private String saldo;
+	private Double entrada;
+	private Double saida;
+	private Double saldo;
 
 	public Integer getId() {
 		return id;
@@ -15,28 +15,27 @@ public class Caixa {
 		this.id = id;
 	}
 
-	public String getEntrada() {
+	public Double getEntrada() {
 		return entrada;
 	}
 
-	public void setEntrada(String entrada) {
+	public void setEntrada(Double entrada) {
 		this.entrada = entrada;
 	}
 
-	public String getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(String saldo) {
-		this.saldo = saldo;
-	}
-
-	public String getSaida() {
+	public Double getSaida() {
 		return saida;
 	}
 
-	public void setSaida(String saida) {
+	public void setSaida(Double saida) {
 		this.saida = saida;
 	}
 
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
 }

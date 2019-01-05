@@ -17,6 +17,7 @@ public class Fachada implements IFachada {
 	private IBusinessCliente businessCliente;
 	private IBusinessItem_Produto businessItem_Produto;
 	private IBusinessVenda businessVenda;
+	private IBusinessItem_Venda businessItem_venda;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -35,6 +36,7 @@ public class Fachada implements IFachada {
 		businessCliente = new BusinessCliente();
 		businessItem_Produto = new BusinessItem_Produto();
 		businessVenda = new BusinessVenda();
+		businessItem_venda = new BusinessItem_Venda();
 	}
 
 	
@@ -60,7 +62,7 @@ public class Fachada implements IFachada {
 	@Override
 	public void ativarDesativarProduto(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-
+		this.businessProduto.ativarDesativar(id);
 	}
 
 	//Caixa
@@ -119,7 +121,7 @@ public class Fachada implements IFachada {
 	@Override
 	public void ativarDesativarFuncionario(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessFuncionario.ativarDesativar(id);
 	}
 
 	//Fornecedor
@@ -153,6 +155,7 @@ public class Fachada implements IFachada {
 	@Override
 	public void ativarDesativarFornecedor(int id) throws BusinessException {
 
+		this.businessFornecedor.ativarDesativar(id);
 	}
 
 	//Pagamento
@@ -259,8 +262,10 @@ public class Fachada implements IFachada {
 	@Override
 	public void ativarDesativarItemProduto(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		
+		this.businessItem_Produto.ativarDesativar(id);
 	}
+
+	//Venda
 
 	@Override
 	public void salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
@@ -279,7 +284,29 @@ public class Fachada implements IFachada {
 
 	@Override
 	public void ativarDesativarVenda(int id) throws BusinessException {
+		this.businessVenda.ativarDesativar(id);
+	}
 
+	//Item_Venda
+
+	@Override
+	public void salvarEditar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException {
+		this.businessItem_venda.salvarEditar(item_Venda,venda_id,item_produto_id);
+	}
+
+	@Override
+	public Item_Venda buscarPorId_Item_Venda(int id) throws BusinessException {
+		return this.businessItem_venda.buscarPorId(id);
+	}
+
+	@Override
+	public List<Item_Venda> getAll_Item_Venda() throws BusinessException {
+		return this.businessItem_venda.getAll();
+	}
+
+	@Override
+	public void ativarDesativar_Item_Venda(int id) throws BusinessException {
+		this.businessItem_venda.ativarDesativar(id);
 	}
 
 }
