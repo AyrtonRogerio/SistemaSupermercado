@@ -52,6 +52,12 @@ public class SQLUtil {
                 "i.preco_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
                 "on i.produto_id = p.id";
 
+        public static final String SELECT_PROD_LIST_EST_ALL = "select i.cod_barras, " +
+                "i.quantidade, i.preco_unidade, p.descricao from item_produto i inner join produto p on i.produto_id = p.id";
+
+        public static final String SELECT_PROD_LIST_VEND = "select i.cod_barras, p.descricao, i.quantidade, " +
+                "i.preco_unidade from item_produto i inner join produto p" +
+                "on i.produto_id = p.id";
     }
     
     public static class Endereco {

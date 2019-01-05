@@ -12,13 +12,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.fachada.Fachada;
-import br.com.sistemasupermercado.model.Fornecedor;
-import br.com.sistemasupermercado.model.Item_Produto;
-import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.*;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 
@@ -157,6 +154,66 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return item_Produtos;
+	}
+
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapter() throws DaoException {
+		// TODO Auto-generated method stub
+		List<ProdutoTabAdapter> produtoTabAdapters = new ArrayList<>();
+		try {
+
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.SELECT_PRODUTO_ALL);
+			this.result = this.statement.executeQuery();
+			ProdutoTabAdapter produtoTabAdapter;
+			while (result.next()) {
+				produtoTabAdapter = new ProdutoTabAdapter();
+				produtoTabAdapter.setDescricao(result.getString("descricao"));
+				produtoTabAdapter.setMarca(result.getString("marca"));
+				produtoTabAdapter.setCod_barras(result.getInt("cod_barras"));
+				produtoTabAdapter.setPreco_varejo(result.getDouble("preco_varejo"));
+				produtoTabAdapter.setEstoque(result.getInt("quantidade"));
+				produtoTabAdapter.setData_cadastro(new java.util.Date(result.getDate("data_compra").getTime()));
+				produtoTabAdapter.setStatus(result.getBoolean("status"));
+
+				produtoTabAdapters.add(produtoTabAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return produtoTabAdapters;
+	}
+
+
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws DaoException {
+		// TODO Auto-generated method stub
+		List<EstoqueTabAdapter> estoqueTabAdapters = new ArrayList<>();
+		try {
+
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.SELECT_PROD_LIST_EST_ALL);
+			this.result = this.statement.executeQuery();
+			EstoqueTabAdapter estoqueTabAdapter;
+			while (result.next()) {
+				estoqueTabAdapter = new EstoqueTabAdapter();
+
+				estoqueTabAdapter.setCod_barras(result.getInt("cod_barras"));
+				estoqueTabAdapter.setDescricao(result.getString("descricao"));
+				estoqueTabAdapter.setQuantidade(result.getInt("quantidade"));
+				estoqueTabAdapter.setPreco_unidade(result.getDouble("preco_unidade"));
+				estoqueTabAdapters.add(estoqueTabAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return estoqueTabAdapters;
 	}
 
 	/* (non-Javadoc)

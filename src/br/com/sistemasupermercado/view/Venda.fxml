@@ -120,8 +120,8 @@
                     <columns>
                         <TableColumn fx:id="prod_cod_col" prefWidth="75.0" text="Cód." />
                       <TableColumn fx:id="prod_desc_col" prefWidth="83.0" text="Descrição" />
-                        <TableColumn fx:id="prod_qtd_col" prefWidth="36.66667175292969" text="Qtd." />
-                        <TableColumn fx:id="prod_prec_col" prefWidth="79.0" text="Pr.Un." />
+                        <TableColumn fx:id="prod_qtd_col" prefWidth="48.0" text="Qtd." />
+                        <TableColumn fx:id="prod_prec_col" prefWidth="68.0" text="Pr.Un." />
                     </columns>
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />
@@ -129,8 +129,8 @@
                   </TableView>
                   <TableView fx:id="vend_tab" prefHeight="250.0" prefWidth="473.0">
                     <columns>
-                        <TableColumn fx:id="vend_item_col" prefWidth="37.0" text="Item" />
-                      <TableColumn fx:id="vend_cod_col" prefWidth="60.666656494140625" text="Cód." />
+                        <TableColumn fx:id="vend_item_col" prefWidth="46.0" text="Item" />
+                      <TableColumn fx:id="vend_cod_col" prefWidth="52.0" text="Cód." />
                       <TableColumn fx:id="vend_desc_col" prefWidth="243.33334350585938" text="Descrição" />
                         <TableColumn fx:id="vend_qtd_col" minWidth="6.0" prefWidth="37.33331298828125" text="Qtd." />
                         <TableColumn fx:id="vend_prec_col" prefWidth="94.66665649414062" text="Pr.Un." />
@@ -184,7 +184,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="info_cx_ven_field" alignment="CENTER" editable="false" onAction="#action" prefHeight="48.0" prefWidth="256.0" promptText="CAIXA LIVRE!">
+                              <TextField fx:id="info_cx_ven_field" alignment="CENTER" editable="false" onAction="#action" prefHeight="48.0" prefWidth="256.0" text="CAIXA LIVRE!">
                                  <font>
                                     <Font size="25.0" />
                                  </font>

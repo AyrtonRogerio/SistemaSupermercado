@@ -83,6 +83,10 @@ public interface IFachada {
 	
 	public List<Item_Produto> getAllItemProduto() throws BusinessException;
 
+	public List<ProdutoTabAdapter> getAllAdapterItemProduto() throws BusinessException;
+
+	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException;
+
 	public void ativarDesativarItemProduto(int id) throws BusinessException;
 
 	//Venda

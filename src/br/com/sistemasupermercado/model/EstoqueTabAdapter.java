@@ -5,7 +5,7 @@ public class EstoqueTabAdapter {
     private int cod_barras;
     private String descricao;
     private int quantidade;
-    private double preco_inidade;
+    private double preco_unidade;
 
 
     public int getCod_barras() {
@@ -32,11 +32,11 @@ public class EstoqueTabAdapter {
         this.quantidade = quantidade;
     }
 
-    public double getPreco_inidade() {
-        return preco_inidade;
+    public double getPreco_unidade() {
+        return preco_unidade;
     }
 
-    public void setPreco_inidade(double preco_inidade) {
-        this.preco_inidade = preco_inidade;
+    public void setPreco_unidade(double preco_unidade) {
+        this.preco_unidade = preco_unidade;
     }
 }

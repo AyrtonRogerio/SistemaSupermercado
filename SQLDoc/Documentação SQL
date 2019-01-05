@@ -49,17 +49,6 @@ tipo VARCHAR(255) NOT NULL,
 cliente_id INTEGER REFERENCES cliente(id)
 );
 
-CREATE TABLE pagamento(
-id serial PRIMARY KEY NOT NULL,
-valor DOUBLE PRECISION NOT NULL,
-data_vencimento DATE,
-numero INTEGER,
-forma_pagamento VARCHAR(40),
-cliente_id INTEGER REFERENCES cliente(id),
-venda_id INTEGER REFERENCES venda(id),
-status boolean
-);
-
 CREATE TABLE venda(
 id serial PRIMARY KEY NOT NULL,
 valor_total DOUBLE PRECISION,
@@ -70,6 +59,17 @@ data_venda DATE,
 cliente_id INTEGER REFERENCES cliente(id),
 funcionario_id INTEGER REFERENCES funcionario(id),
 caixa_id INTEGER REFERENCES caixa(id)
+);
+
+CREATE TABLE pagamento(
+id serial PRIMARY KEY NOT NULL,
+valor DOUBLE PRECISION NOT NULL,
+data_vencimento DATE,
+numero INTEGER,
+forma_pagamento VARCHAR(40),
+cliente_id INTEGER REFERENCES cliente(id),
+venda_id INTEGER REFERENCES venda(id),
+status boolean
 );
 
 CREATE TABLE fornecedor(

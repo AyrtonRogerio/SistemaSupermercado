@@ -7,9 +7,7 @@ import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
-import br.com.sistemasupermercado.model.Fornecedor;
-import br.com.sistemasupermercado.model.Item_Produto;
-import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.*;
 
 
 /**
@@ -23,6 +21,10 @@ public interface IBusinessItem_Produto {
 	public Item_Produto buscarPorId(int id) throws BusinessException;
 
 	public List<Item_Produto> getAll() throws BusinessException;
+
+	public List<ProdutoTabAdapter> getAllAdapter() throws BusinessException;
+
+	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException;
 
 	public void ativarDesativar(int id) throws BusinessException;
 

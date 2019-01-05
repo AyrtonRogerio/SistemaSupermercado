@@ -238,7 +238,18 @@ public class Fachada implements IFachada {
 		return this.businessItem_Produto.getAll();
 	}
 
-	
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapterItemProduto() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessItem_Produto.getAllAdapter();
+	}
+
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException {
+		return this.businessItem_Produto.getAllEstoqueAdapter();
+	}
+
+
 	@Override
 	public void ativarDesativarItemProduto(int id) throws BusinessException {
 		// TODO Auto-generated method stub

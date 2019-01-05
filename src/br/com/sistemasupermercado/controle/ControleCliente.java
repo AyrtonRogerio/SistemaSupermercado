@@ -64,7 +64,7 @@ public class ControleCliente implements Initializable {
 	private TableColumn<ClienteTabAdapter, String> cpf_cliente_col;
 
 	@FXML
-	private TableColumn<ClienteTabAdapter, String> nasc_cliente_col;
+	private TableColumn<ClienteTabAdapter, Date> nasc_cliente_col;
 
 	@FXML
 	private TableColumn<ClienteTabAdapter, String> rua_cliente_col;
@@ -218,6 +218,23 @@ public class ControleCliente implements Initializable {
 		num_cliente_col.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		tipo_cliente_col.setCellValueFactory(new PropertyValueFactory<>("tipo_contato"));
 		contato_cliente_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+
+		nasc_cliente_col.setCellFactory(coluna -> {
+
+			return new TableCell<ClienteTabAdapter, Date>() {
+				protected void updateItem(Date item, boolean empty) {
+
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
 	}
 
 	/**

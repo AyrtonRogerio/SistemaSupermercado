@@ -10,9 +10,7 @@ import br.com.sistemasupermercado.dao.IDaoItem_Produto;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
-import br.com.sistemasupermercado.model.Fornecedor;
-import br.com.sistemasupermercado.model.Item_Produto;
-import br.com.sistemasupermercado.model.Produto;
+import br.com.sistemasupermercado.model.*;
 
 /**
  * @author ayrton
@@ -61,6 +59,27 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 			return daoItemProduto.getAll();
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapter() throws BusinessException {
+		try {
+			return daoItemProduto.getAllAdapter();
+		} catch (DaoException e) {
+			e.printStackTrace();
+
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException {
+		try {
+			return daoItemProduto.getAllEstoqueAdapter();
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

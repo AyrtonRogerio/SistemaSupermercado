@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 public class ControleLogin implements Initializable {
 
 	private Fachada fachada = Fachada.getInstance();
+	private static Funcionario funcionario;
 
 	@FXML
 	private TextField login_field;
@@ -51,7 +52,7 @@ public class ControleLogin implements Initializable {
 	}
 
 	public boolean efetuarLogin() {
-		Funcionario funcionario;
+
 		try {
 			funcionario = fachada.buscarPorLoginFuncionario(login_field.getText(), senha_pass_field.getText());
 			if (funcionario == null) {
@@ -67,4 +68,12 @@ public class ControleLogin implements Initializable {
 
 	}
 
+	public static  Funcionario getFuncionario(){
+		return funcionario;
+	}
+
+	public static String nomeOp(){
+
+		return  funcionario.getNome().toString();
+	}
 }

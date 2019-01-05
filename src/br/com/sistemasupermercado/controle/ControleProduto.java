@@ -7,6 +7,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.sistemasupermercado.exception.BusinessException;
@@ -19,15 +20,7 @@ import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -39,6 +32,7 @@ public class ControleProduto implements Initializable {
 
 	private Produto produto = null;
 	private Fornecedor fornecedor = null;
+	private List<ProdutoTabAdapter> produtoTabAdapters;
 	private Item_Produto item_Produto;
 
 	private Fachada fachada = Fachada.getInstance();
@@ -184,6 +178,8 @@ public class ControleProduto implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
+
+
 		if(event.getSource() == novo_prod_button){
 			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
 		}
@@ -247,6 +243,7 @@ public class ControleProduto implements Initializable {
 		cidade_forn.setCellValueFactory(new PropertyValueFactory<>("cidade"));
 		estado_forn.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
+
 		desc_list_tab.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		marca_list_tab.setCellValueFactory(new PropertyValueFactory<>("marca"));
 		codigo_list_tab.setCellValueFactory(new PropertyValueFactory<>("cod_barras"));
@@ -255,6 +252,28 @@ public class ControleProduto implements Initializable {
 		data_cadastro_list_tab.setCellValueFactory(new PropertyValueFactory<>("data_cadastro"));
 		status_list_tab.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+		data_cadastro_list_tab.setCellFactory(coluna -> {
+
+			return new TableCell<ProdutoTabAdapter, Date>() {
+				protected void updateItem(Date item, boolean empty) {
+
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
+		try {
+			produtoTabAdapters = Fachada.getInstance().getAllAdapterItemProduto();
+			list_prod_tab.getItems().addAll(produtoTabAdapters);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 
 	}
 

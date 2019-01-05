@@ -1,7 +1,8 @@
 package br.com.sistemasupermercado.controle;
 
-import br.com.sistemasupermercado.model.EstoqueTabAdapter;
-import br.com.sistemasupermercado.model.VendaTabAdapter;
+import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.fachada.Fachada;
+import br.com.sistemasupermercado.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,10 +10,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControleVenda implements Initializable {
+
+    Caixa caixa;
+    Funcionario funcionario;
+    Venda venda;
+    Item_Produto item_produto;
+    Item_Venda item_venda;
+    List<Item_Venda> item_vendas;
+    Pagamento pagamento;
+    Cliente cliente;
+
+    List<EstoqueTabAdapter> estoqueTabAdapters;
 
     @FXML
     private TextField qtd_prod_ven_field;
@@ -86,10 +102,53 @@ public class ControleVenda implements Initializable {
     @FXML
     void action(ActionEvent event) {
 
+
+        if(event.getSource() == nova_ven_button){
+
+            venda = new Venda();
+            info_cx_ven_field.setText("Caixa em uso!");
+            oper_vend_field.setText(ControleLogin.nomeOp());
+            funcionario = ControleLogin.getFuncionario();
+            item_vendas = new ArrayList<Item_Venda>();
+
+
+
+        }
+
+        if(event.getSource() == adic_prod_ven_button){
+//            item_produto = fachada.
+        }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        caixa = new Caixa();
+
+        prod_cod_col.setCellValueFactory(new PropertyValueFactory<>("cod_barras"));
+        prod_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        prod_qtd_col.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+        prod_prec_col.setCellValueFactory(new PropertyValueFactory<>("preco_unidade"));
+
+        try {
+            estoqueTabAdapters = Fachada.getInstance().getAllEstoqueAdapter();
+            prod_tab.getItems().addAll(estoqueTabAdapters);
+        } catch (BusinessException e) {
+            e.printStackTrace();
+        }
+
+
+
+        vend_item_col.setCellValueFactory(new PropertyValueFactory<>(""));
+        vend_cod_col.setCellValueFactory(new PropertyValueFactory<>(""));
+        vend_desc_col.setCellValueFactory(new PropertyValueFactory<>(""));
+        vend_qtd_col.setCellValueFactory(new PropertyValueFactory<>(""));
+        vend_prec_col.setCellValueFactory(new PropertyValueFactory<>(""));
+
     }
+
+
+
+
 }
