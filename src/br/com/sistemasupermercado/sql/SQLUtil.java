@@ -215,7 +215,7 @@ public class SQLUtil {
     	public static final String COL_FUNCIONARIO_ID = "funcionario_id";
     	public static final String COL_CAIXA_ID = "caixa_id";
     	
-    	public static final String INSERT = "insert into" + NOME_TABELA +
+    	public static final String INSERT = "insert into " + NOME_TABELA +
         "(" + COL_VALOR_TOTAL + "," + COL_DESC_GERAL + "," + COL_QTD_PAGMT +
         "," + COL_VALOR_TROCO + "," + COL_DATA_VENDA + "," +  COL_CLIENTE_ID +
                 "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +

@@ -22,6 +22,8 @@ import java.util.ResourceBundle;
 public class ControleVenda implements Initializable {
 
     int cont = 1;
+    int venda_id = 0;
+
     Caixa caixa;
     Funcionario funcionario;
     Venda venda;
@@ -129,13 +131,13 @@ public class ControleVenda implements Initializable {
                 venda.setQtd_pagmt(0);
                 venda.setItem_vendas(item_vendas);
 
-                System.out.println(caixa);
-                System.out.println(funcionario);
-                System.out.println(cliente);
-                System.out.println(item_vendas);
-                System.out.println(venda);
+//                System.out.println(caixa);
+//                System.out.println(funcionario);
+//                System.out.println(cliente);
+//                System.out.println(item_vendas);
+//                System.out.println(venda);
 
-                Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
+                venda_id = Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
 
             } catch (BusinessException e) {
                 e.printStackTrace();
@@ -173,12 +175,13 @@ public class ControleVenda implements Initializable {
                 item_venda.setValor_desc(0.00);
                 item_venda.setValor_item(item_produto.getPorc_varejo());
                 item_venda.setItem_produto_id(item_produto);
+
                 item_venda.setVenda_id(venda);
 
-                for(int i = 0; i < item_venda.getQuantidade(); i++ ) {
-                    Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda.getId(), item_produto.getId());
+//                for(int i = 0; i < item_venda.getQuantidade(); i++ ) {
+                    Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda_id, item_produto.getId());
                     item_vendas.add(item_venda);
-                }
+//                }
                 pr_total_vend_field.setText(String.valueOf(item_venda.getValor_item() * item_venda.getQuantidade()));
 
             } catch (BusinessException e) {

@@ -93,7 +93,7 @@ public interface IFachada {
 
 	//Venda
 
-	public void salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
+	public int salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
 
 	public Venda buscarPorIdVenda(int id) throws BusinessException;
 

@@ -111,5 +111,5 @@ quant INTEGER,
 valor_item DOUBLE PRECISION,
 desconto BOOLEAN,
 venda_id INTEGER REFERENCES venda(id),
-item_produro_id INTEGER REFERENCES item_produto(id)
+item_produto_id INTEGER REFERENCES item_produto(id)
 );

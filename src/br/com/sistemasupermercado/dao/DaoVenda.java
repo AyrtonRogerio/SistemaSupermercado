@@ -34,8 +34,9 @@ public class DaoVenda implements IDaoVenda{
 	 * @see br.com.sistemasupermercado.dao.IDaoVenda#salvar(br.com.sistemasupermercado.model.Venda)
 	 */
 	@Override
-	public void salvar(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws DaoException {
+	public int salvar(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws DaoException {
 		// TODO Auto-generated method stub
+		int id = 0;
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.INSERT);
@@ -48,10 +49,16 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setInt(7, id_funcionario);
 			this.statement.setInt(8,id_caixa);
 
-			this.statement.execute();
+			this.result = this.statement.executeQuery();
+
+			if(this.result.next()){
+				id = this.result.getInt(1);
+			}
+
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		return  id;
 	}
 
 	/* (non-Javadoc)

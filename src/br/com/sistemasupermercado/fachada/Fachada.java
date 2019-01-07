@@ -268,8 +268,8 @@ public class Fachada implements IFachada {
 	//Venda
 
 	@Override
-	public void salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
-			this.businessVenda.salvarEditar(venda, id_cliente, id_funcionario, id_caixa);
+	public int salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
+			return this.businessVenda.salvarEditar(venda, id_cliente, id_funcionario, id_caixa);
 	}
 
 	@Override
