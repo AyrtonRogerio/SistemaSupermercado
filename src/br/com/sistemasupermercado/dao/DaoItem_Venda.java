@@ -115,6 +115,20 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 	public void editar(Item_Venda item_Venda) throws DaoException {
 		// TODO Auto-generated method stub
 
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Venda.UPDATE);
+			this.statement.setDouble(1, item_Venda.getValor_desc());
+			this.statement.setDouble(2, item_Venda.getProc_promoc());
+			this.statement.setBoolean(3, item_Venda.isPromocao());
+			this.statement.setString(4, item_Venda.getTipo());
+			this.statement.setInt(5, item_Venda.getQuantidade());
+			this.statement.setDouble(6, item_Venda.getValor_item());
+			this.statement.setBoolean(7, item_Venda.isDesconto());
+			statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	@Override

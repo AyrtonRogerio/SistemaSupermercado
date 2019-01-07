@@ -95,6 +95,18 @@ public class DaoProduto implements IDaoProduto {
 	public void editar(Produto produto) throws DaoException {
 		// TODO Auto-generated method stub
 
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Produto.UPDATE);
+			this.statement.setString(1, produto.getNome());
+			this.statement.setString(2, produto.getMarca());
+			this.statement.setString(3, produto.getDescricao());
+
+			this.statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override

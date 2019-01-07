@@ -31,9 +31,9 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.setDouble(1, caixa.getEntrada());
 			this.statement.setDouble(2, caixa.getSaida());
 			this.statement.setDouble(3, caixa.getSaldo());
-			statement.execute();
+			this.statement.execute();
 		} catch (SQLException ex) {
-			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -43,8 +43,7 @@ public class DaoCaixa implements IDaoCaixa {
 		Caixa caixa = null;
 		try {
 			this.conexao = SQLConections.getInstance();
-			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, id));
-//			statement.setInt(1, id);
+			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Caixa.NOME_TABELA, id));
 			this.result = this.statement.executeQuery();
 
 			if (result.next()) {
@@ -58,7 +57,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.conexao.close();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return caixa;
 	}
@@ -83,7 +82,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.conexao.close();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return caixas;
 	}

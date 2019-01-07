@@ -58,7 +58,7 @@ public class DaoPagamento implements IDaoPagamento {
 
 			statement.execute();
 		} catch (SQLException ex) {
-			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -162,6 +162,21 @@ public class DaoPagamento implements IDaoPagamento {
 	@Override
 	public void editar(Pagamento pagamento) throws DaoException {
 		// TODO Auto-generated method stub
+
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.UPDATE);
+			this.statement.setDouble(1, pagamento.getValor());
+			this.statement.setDate(2, new java.sql.Date(pagamento.getData_vencimento().getTime()));
+			this.statement.setInt(3, pagamento.getNumero());
+			this.statement.setString(4, pagamento.getFormaPagamento().getValor());
+			this.statement.setBoolean(5, pagamento.isStatus());
+
+			statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
 	}
 

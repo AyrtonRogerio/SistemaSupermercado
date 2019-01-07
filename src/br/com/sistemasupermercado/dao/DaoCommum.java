@@ -47,11 +47,29 @@ public class DaoCommum {
         return id;
     }
 
+    public static void editarEndereco(Endereco end) {
+        int id = 0;
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Endereco.UPDATE);
+            statement.setString(1, end.getRua());
+            statement.setString(2, end.getCep());
+            statement.setString(3, end.getNumero());
+            statement.setString(4, end.getBairro());
+            statement.setString(5, end.getCidade());
+            statement.setString(6, end.getEstado());
+
+            statement.execute();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static int salvarContato(Contato contato, int cliente_id) {
         int id =0;
     	try {
-//            System.out.println(cli.getId());
-//            int cliente_id = cli.getId();
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Contato.INSERT);
             statement.setString(1, contato.getTipo().getValor());
@@ -68,6 +86,24 @@ public class DaoCommum {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
+    }
+
+    public static void editarContato(Contato contato) {
+
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Contato.UPDATE);
+            statement.setString(1, contato.getTipo().getValor());
+            statement.setString(2, contato.getDescricao());
+
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public  static  Endereco buscarEndereco(int id){

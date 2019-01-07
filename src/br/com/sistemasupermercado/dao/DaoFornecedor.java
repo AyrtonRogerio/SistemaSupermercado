@@ -140,6 +140,20 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public void editar(Fornecedor fornecedor) throws DaoException {
 
+        try {
+
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.UPDATE);
+            this.statement.setString(1, fornecedor.getNome());
+            this.statement.setString(2, fornecedor.getRazao_social());
+            this.statement.setString(3, fornecedor.getCnpj());
+            this.statement.setString(4, fornecedor.getEstado());
+            this.statement.setString(5, fornecedor.getCidade());
+
+            this.result = this.statement.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

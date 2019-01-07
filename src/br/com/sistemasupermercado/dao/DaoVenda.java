@@ -48,7 +48,7 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setInt(7, id_funcionario);
 			this.statement.setInt(8,id_caixa);
 
-			statement.execute();
+			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -151,7 +151,20 @@ public class DaoVenda implements IDaoVenda{
 	@Override
 	public void editar(Venda venda) throws DaoException {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.UPDATE);
+			this.statement.setDouble(1, venda.getValor_total());
+			this.statement.setDouble(2, venda.getDesc_geral());
+			this.statement.setInt(3, venda.getQtd_pagmt());
+			this.statement.setDouble(4, venda.getValor_troco());
+			this.statement.setDate(5, new java.sql.Date(venda.getData_venda().getTime()));
+
+
+			this.statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	/* (non-Javadoc)

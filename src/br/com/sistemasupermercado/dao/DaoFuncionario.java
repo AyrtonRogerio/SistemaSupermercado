@@ -106,10 +106,14 @@ public class DaoFuncionario implements IDaoFuncionario {
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.statement.setString(1, funcionario.getNome());
+			this.statement.setString(2, funcionario.getCpf());
+			this.statement.setString(3, funcionario.getCargo());
+			this.statement.setString(4, funcionario.getLogin());
+			this.statement.setString(5, funcionario.getSenha());
+			statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

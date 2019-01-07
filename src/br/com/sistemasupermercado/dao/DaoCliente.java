@@ -169,6 +169,24 @@ public class DaoCliente implements IDaoCliente {
 	@Override
 	public void editar(Cliente cliente) throws DaoException {
 
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.UPDATE);
+			this.statement.setString(1, cliente.getNome());
+			this.statement.setString(2, cliente.getCpf());
+			this.statement.setString(3, cliente.getSexo());
+			this.statement.setString(4, cliente.getEstado_civil());
+			this.statement.setString(5, cliente.getOcupacao());
+			this.statement.setDate(6, new java.sql.Date(cliente.getData_nascimento().getTime()));
+			this.statement.execute();
+
+
+			this.statement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

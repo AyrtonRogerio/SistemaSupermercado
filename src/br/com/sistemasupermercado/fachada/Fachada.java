@@ -75,7 +75,7 @@ public class Fachada implements IFachada {
 	@Override
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException {
 		// TODO Auto-generated method stub
-		return this.buscarPorIdCaixa(id);
+		return this.businessCaixa.buscarPorId(id);
 	}
 
 	@Override

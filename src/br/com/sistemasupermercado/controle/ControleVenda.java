@@ -3,6 +3,7 @@ package br.com.sistemasupermercado.controle;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.*;
+import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -23,7 +25,8 @@ public class ControleVenda implements Initializable {
     Caixa caixa;
     Funcionario funcionario;
     Venda venda;
-    VendaTabAdapter item_produtoVenda;
+    VendaTabAdapter item_produtoVendaTabela;
+    Item_Produto item_produto;
     Item_Venda item_venda;
     List<Item_Venda> item_vendas;
     Pagamento pagamento;
@@ -106,15 +109,42 @@ public class ControleVenda implements Initializable {
 
         if(event.getSource() == nova_ven_button){
 
-            venda = new Venda();
+            try {
+                caixa = ControleAberturaCaixa.informacaoCaixa();
+                venda = new Venda();
+                funcionario = ControleLogin.getFuncionario();
+                item_vendas = new ArrayList<Item_Venda>();
 
-//            venda.setCaixa_id();
+                cliente = Fachada.getInstance().buscarPorIdCliente(1);
+
+                java.util.Date date = new Date();
+                venda.setData_venda(date);
+                System.out.println(venda.getData_venda());
+                venda.setCaixa_id(caixa);
+                venda.setFuncionario_id(funcionario);
+                venda.setCliente_id(cliente);
+                venda.setValor_total(0.00);
+                venda.setValor_troco(0.00);
+                venda.setDesc_geral(0.00);
+                venda.setQtd_pagmt(0);
+                venda.setItem_vendas(item_vendas);
+
+                System.out.println(caixa);
+                System.out.println(funcionario);
+                System.out.println(cliente);
+                System.out.println(item_vendas);
+                System.out.println(venda);
+
+                Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
+
+            } catch (BusinessException e) {
+                e.printStackTrace();
+            }
 
 
             info_cx_ven_field.setText("Caixa em uso!");
             oper_vend_field.setText(ControleLogin.nomeOp());
-            funcionario = ControleLogin.getFuncionario();
-            item_vendas = new ArrayList<Item_Venda>();
+
 
 
 
@@ -124,13 +154,33 @@ public class ControleVenda implements Initializable {
 
             try {
 
+                item_venda = new Item_Venda();
                 EstoqueTabAdapter prod = prod_tab.getSelectionModel().getSelectedItem();
-                item_produtoVenda = Fachada.getInstance().buscarPorIdVendaAdapterProduto(prod.getId());
 
-                item_produtoVenda.setItem(cont);
+                item_produto = Fachada.getInstance().buscarPorIdItemProduto(prod.getId());
+
+                item_produtoVendaTabela = Fachada.getInstance().buscarPorIdVendaAdapterProduto(prod.getId());
+                item_produtoVendaTabela.setItem(cont);
                 cont++;
-                vend_tab.getItems().addAll(item_produtoVenda);
-//                item_vendas.add(Fachada.getInstance().)
+                vend_tab.getItems().addAll(item_produtoVendaTabela);
+
+
+                item_venda.setDesconto(false);
+                item_venda.setProc_promoc(0.00);
+                item_venda.setPromocao(false);
+                item_venda.setQuantidade(Integer.parseInt(qtd_prod_ven_field.getText()));
+                item_venda.setTipo("n sei");
+                item_venda.setValor_desc(0.00);
+                item_venda.setValor_item(item_produto.getPorc_varejo());
+                item_venda.setItem_produto_id(item_produto);
+                item_venda.setVenda_id(venda);
+
+                for(int i = 0; i < item_venda.getQuantidade(); i++ ) {
+                    Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda.getId(), item_produto.getId());
+                    item_vendas.add(item_venda);
+                }
+                pr_total_vend_field.setText(String.valueOf(item_venda.getValor_item() * item_venda.getQuantidade()));
+
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
@@ -164,6 +214,13 @@ public class ControleVenda implements Initializable {
         vend_prec_col.setCellValueFactory(new PropertyValueFactory<>("venda_preco_unidade"));
 
     }
+
+
+
+
+
+
+
 
 
 }
