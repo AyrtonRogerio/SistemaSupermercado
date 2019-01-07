@@ -130,13 +130,6 @@ public class ControleVenda implements Initializable {
                 venda.setDesc_geral(0.00);
                 venda.setQtd_pagmt(0);
                 venda.setItem_vendas(item_vendas);
-
-//                System.out.println(caixa);
-//                System.out.println(funcionario);
-//                System.out.println(cliente);
-//                System.out.println(item_vendas);
-//                System.out.println(venda);
-
                 venda_id = Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
 
             } catch (BusinessException e) {
@@ -173,7 +166,7 @@ public class ControleVenda implements Initializable {
                 item_venda.setQuantidade(Integer.parseInt(qtd_prod_ven_field.getText()));
                 item_venda.setTipo("n sei");
                 item_venda.setValor_desc(0.00);
-                item_venda.setValor_item(item_produto.getPorc_varejo());
+                item_venda.setValor_item(item_produto.getPreco_atacado());
                 item_venda.setItem_produto_id(item_produto);
 
                 item_venda.setVenda_id(venda);
@@ -182,12 +175,23 @@ public class ControleVenda implements Initializable {
                     Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda_id, item_produto.getId());
                     item_vendas.add(item_venda);
 //                }
+                pr_un_prod_ven_field.setText(String.valueOf(item_venda.getValor_item()));
                 pr_total_vend_field.setText(String.valueOf(item_venda.getValor_item() * item_venda.getQuantidade()));
+
 
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
         }
+
+        if(event.getSource() == fin_ven_button){
+
+
+
+
+
+        }
+
 
     }
 

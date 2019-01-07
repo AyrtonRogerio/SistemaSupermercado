@@ -166,8 +166,6 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setInt(3, venda.getQtd_pagmt());
 			this.statement.setDouble(4, venda.getValor_troco());
 			this.statement.setDate(5, new java.sql.Date(venda.getData_venda().getTime()));
-
-
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);

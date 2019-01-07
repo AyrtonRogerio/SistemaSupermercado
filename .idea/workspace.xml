@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="32e71f22-7a3e-40e3-bfe3-0f86d7646ba5" name="Default Changelist" comment="Modificações na model e dao Pagamento, venda e caixa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQLDoc/Documentação SQL" beforeDir="false" afterPath="$PROJECT_DIR$/SQLDoc/Documentação SQL" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/IBusinessVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/IBusinessVenda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/IDaoVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/IDaoVenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/Fachada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/Fachada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/IFachada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/IFachada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="169" column="44" selection-start-line="169" selection-start-column="44" selection-end-line="169" selection-end-column="44" />
+            <state relative-caret-position="365">
+              <caret line="180" selection-start-line="180" selection-end-line="180" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,41 +41,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoItem_Venda.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Para Fazer/Coisas para concertar no projeto">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="75">
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleAberturaCaixa.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/view/Venda.fxml">
+          <provider editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+            <state relative-caret-position="1460">
+              <caret line="162" column="78" selection-start-line="162" selection-start-column="78" selection-end-line="162" selection-end-column="78" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -94,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+            <state relative-caret-position="345">
+              <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -125,7 +103,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/enuns/FormaPagamento.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/TableColumn.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessCliente.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/IBusinessCliente.java" />
@@ -168,14 +145,15 @@
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoCommum.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoCliente.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java" />
-        <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/IDaoVenda.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/business/IBusinessVenda.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/IFachada.java" />
         <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/Fachada.java" />
-        <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java" />
         <option value="$PROJECT_DIR$/SQLDoc/Documentação SQL" />
+        <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java" />
+        <option value="$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java" />
+        <option value="$PROJECT_DIR$/Para Fazer/Coisas para concertar no projeto" />
       </list>
     </option>
   </component>
@@ -204,7 +182,7 @@
             <path>
               <item name="SistemaSupermercado" type="b2602c69:ProjectViewProjectNode" />
               <item name="SistemaSupermercado" type="462c0819:PsiDirectoryNode" />
-              <item name="SQLDoc" type="462c0819:PsiDirectoryNode" />
+              <item name="Para Fazer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemaSupermercado" type="b2602c69:ProjectViewProjectNode" />
@@ -216,13 +194,6 @@
               <item name="SistemaSupermercado" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sistemasupermercado" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SistemaSupermercado" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SistemaSupermercado" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sistemasupermercado" type="462c0819:PsiDirectoryNode" />
-              <item name="fachada" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SistemaSupermercado" type="b2602c69:ProjectViewProjectNode" />
@@ -245,7 +216,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546892171201" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546904787367" />
     <property name="last_opened_file_path" value="$USER_HOME$/NetBeansProjects/FBD_2018_2" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -342,18 +313,18 @@
       <workItem from="1546489784775" duration="14469000" />
       <workItem from="1546605104125" duration="33721000" />
       <workItem from="1546688073918" duration="44643000" />
-      <workItem from="1546897669042" duration="3732000" />
+      <workItem from="1546897669042" duration="7019000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252171000" />
+    <option name="totallyTimeSpent" value="255458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49834436" visible="true" weight="0.22954546" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49834436" visible="true" weight="0.22954546" />
       <window_info id="Structure" order="1" sideWeight="0.50165564" side_tool="true" weight="0.2659091" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -362,7 +333,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931036" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33488372" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1751938" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -465,13 +436,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessPagamento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/IDaoPagamento.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -764,10 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/view/Venda.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/model/Item_Produto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -899,17 +859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/model/Venda.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -924,20 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/IFachada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="95" column="14" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/Fachada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="271" column="19" selection-start-line="271" selection-start-column="19" selection-end-line="271" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/business/IBusinessVenda.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
@@ -945,24 +880,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java">
+    <entry file="file://$PROJECT_DIR$/SQLDoc/Documentação SQL">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoItem_Venda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="245" column="44" lean-forward="true" selection-start-line="245" selection-start-column="44" selection-end-line="245" selection-end-column="44" />
+        <state relative-caret-position="189">
+          <caret line="107" column="17" lean-forward="true" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -976,20 +897,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SQLDoc/Documentação SQL">
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoItem_Venda.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="107" column="17" lean-forward="true" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+        <state relative-caret-position="313">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/sql/SQLUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="223" column="35" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/IFachada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="95" column="14" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/fachada/Fachada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="271" column="19" selection-start-line="271" selection-start-column="19" selection-end-line="271" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/dao/DaoVenda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1460">
+          <caret line="162" column="78" selection-start-line="162" selection-start-column="78" selection-end-line="162" selection-end-column="78" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/business/BusinessVenda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/controle/ControleVenda.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="169" column="44" selection-start-line="169" selection-start-column="44" selection-end-line="169" selection-end-column="44" />
+        <state relative-caret-position="365">
+          <caret line="180" selection-start-line="180" selection-end-line="180" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/br/com/sistemasupermercado/view/Venda.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Para Fazer/Coisas para concertar no projeto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
         </state>
       </provider>
     </entry>
