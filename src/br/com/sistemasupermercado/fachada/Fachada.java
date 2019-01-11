@@ -67,9 +67,9 @@ public class Fachada implements IFachada {
 
 	//Caixa
 	@Override
-	public void salvarEditarCaixa(Caixa caixa) throws BusinessException {
+	public void salvarEditarCaixa(Caixa caixa, int funcionario_id) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessCaixa.salvarEditar(caixa);
+		this.businessCaixa.salvarEditar(caixa, funcionario_id);
 	}
 
 	@Override

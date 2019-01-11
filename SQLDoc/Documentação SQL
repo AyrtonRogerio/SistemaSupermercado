@@ -21,7 +21,8 @@ CREATE TABLE caixa(
 id serial PRIMARY KEY NOT NULL,
 entrada DOUBLE PRECISION,
 saida DOUBLE PRECISION,
-saldo DOUBLE PRECISION
+saldo DOUBLE PRECISION,
+funcionario_id INTEGER REFERECES funcionario(id)
 );
 
 CREATE TABLE produto(
@@ -53,7 +54,6 @@ CREATE TABLE venda(
 id serial PRIMARY KEY NOT NULL,
 valor_total DOUBLE PRECISION,
 desc_geral DOUBLE PRECISION,
-qtd_pagmt INTEGER,
 valor_troco DOUBLE PRECISION,
 data_venda DATE,
 cliente_id INTEGER REFERENCES cliente(id),
@@ -83,7 +83,7 @@ cidade VARCHAR(60)
 
 CREATE TABLE item_produto(
 id serial PRIMARY KEY NOT NULL,
-cod_barras VARCHAR(255),
+cod_barras VARCHAR(255) UNIQUE NOT NULL,
 unidade_medida DOUBLE PRECISION,
 data_fabricacao DATE,
 data_validade DATE,
@@ -112,4 +112,23 @@ valor_item DOUBLE PRECISION,
 desconto BOOLEAN,
 venda_id INTEGER REFERENCES venda(id),
 item_produto_id INTEGER REFERENCES item_produto(id)
+);
+
+CREATE TABLE contas_a_pagar(
+id serial PRIMARY KEY NOT NULL,
+valor DOUBLE PRECISION,
+descricao VARCHAR(255),
+caixa_id INTEGER REFERENCES caixa(id),
+fornecedor_id INTEGER REFERENCES fornecedor(id),
+status BOOLEAN
+);
+
+CREATE TABLE contas_a_receber(
+id serial PRIMARY KEY NOT NULL,
+valor DOUBLE PRECISION,
+descricao VARCHAR(255),
+caixa_id INTEGER REFERENCES caixa(id),
+qtd_pagmt INTEGER,
+venda_id INTEGER REFERENCES venda(id),
+status BOOLEAN
 );

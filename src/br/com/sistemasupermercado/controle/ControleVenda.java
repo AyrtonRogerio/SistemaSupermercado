@@ -128,7 +128,6 @@ public class ControleVenda implements Initializable {
                 venda.setValor_total(0.00);
                 venda.setValor_troco(0.00);
                 venda.setDesc_geral(0.00);
-                venda.setQtd_pagmt(0);
                 venda.setItem_vendas(item_vendas);
                 venda_id = Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
 
@@ -171,10 +170,10 @@ public class ControleVenda implements Initializable {
 
                 item_venda.setVenda_id(venda);
 
-//                for(int i = 0; i < item_venda.getQuantidade(); i++ ) {
-                    Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda_id, item_produto.getId());
-                    item_vendas.add(item_venda);
-//                }
+
+                Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda_id, item_produto.getId());
+                item_vendas.add(item_venda);
+
                 pr_un_prod_ven_field.setText(String.valueOf(item_venda.getValor_item()));
                 pr_total_vend_field.setText(String.valueOf(item_venda.getValor_item() * item_venda.getQuantidade()));
 
@@ -207,7 +206,7 @@ public class ControleVenda implements Initializable {
 
         try {
             estoqueTabAdapters = Fachada.getInstance().getAllEstoqueAdapterProduto();
-            prod_tab.getItems().addAll(estoqueTabAdapters);
+            prod_tab.getItems().setAll(estoqueTabAdapters);
         } catch (BusinessException e) {
             e.printStackTrace();
         }

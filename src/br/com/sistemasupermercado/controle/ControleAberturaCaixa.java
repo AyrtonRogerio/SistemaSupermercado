@@ -25,25 +25,25 @@ public class ControleAberturaCaixa {
     @FXML
     void action(ActionEvent event) {
 
-        if(event.getSource() == abrir_caixa_button){
+//        if(event.getSource() == abrir_caixa_button){
+//
+//            try {
+//
+//                int id = Integer.parseInt(id_caixa_field.getText());
+//                caixa = Fachada.getInstance().buscarPorIdCaixa(id);
+//
 
-            try {
-
-                int id = Integer.parseInt(id_caixa_field.getText());
-                caixa = Fachada.getInstance().buscarPorIdCaixa(id);
-
-//                System.out.println(caixa.getEntrada());
-                if(caixa == null) {
-                    caixa = new Caixa();
-                    caixa.setEntrada(Double.parseDouble(valor_field.getText()));
-                    caixa.setSaida(0.00);
-                    caixa.setSaldo(0.00);
-                    Fachada.getInstance().salvarEditarCaixa(caixa);
-                }
-            } catch (BusinessException e) {
-                e.printStackTrace();
-            }
-        }
+//                if(caixa == null) {
+//                    caixa = new Caixa();
+//                    caixa.setEntrada(Double.parseDouble(valor_field.getText()));
+//                    caixa.setSaida(0.00);
+//                    caixa.setSaldo(0.00);
+//                    Fachada.getInstance().salvarEditarCaixa(caixa);
+//                }
+//            } catch (BusinessException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 
     }

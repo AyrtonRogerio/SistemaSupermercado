@@ -19,12 +19,12 @@ public class BusinessCaixa implements IBusinessCaixa {
 	}
 
 	@Override
-	public void salvarEditar(Caixa caixa) throws BusinessException {
+	public void salvarEditar(Caixa caixa, int funcionario_id) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
 			validar(caixa);
 			if (caixa.getId() == null)
-				daoCaixa.salvar(caixa);
+				daoCaixa.salvar(caixa, funcionario_id);
 			else
 				daoCaixa.editar(caixa);
 		} catch (DaoException | ValidacaoException e) {

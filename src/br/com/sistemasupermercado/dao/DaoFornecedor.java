@@ -102,7 +102,7 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.conexao.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         return fornecedores;
 

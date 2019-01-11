@@ -7,7 +7,7 @@ import br.com.sistemasupermercado.model.Caixa;
 
 public interface IDaoCaixa {
 
-	public void salvar(Caixa caixa) throws DaoException;
+	public void salvar(Caixa caixa, int funcionario_id) throws DaoException;
 
 	public Caixa buscarPorId(int id) throws DaoException;
 

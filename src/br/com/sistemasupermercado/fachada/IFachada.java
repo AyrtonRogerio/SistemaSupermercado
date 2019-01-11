@@ -18,7 +18,7 @@ public interface IFachada {
 	public void ativarDesativarProduto(int id) throws BusinessException;
 
 	// Caixa
-	public void salvarEditarCaixa(Caixa caixa) throws BusinessException;
+	public void salvarEditarCaixa(Caixa caixa, int funcionario_id) throws BusinessException;
 
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException;
 

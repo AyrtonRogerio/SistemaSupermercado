@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Caixa;
+import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 
@@ -22,7 +25,7 @@ public class DaoCaixa implements IDaoCaixa {
 	
 	
 	@Override
-	public void salvar(Caixa caixa) throws DaoException {
+	public void salvar(Caixa caixa, int funcionario_id) throws DaoException {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -31,6 +34,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.setDouble(1, caixa.getEntrada());
 			this.statement.setDouble(2, caixa.getSaida());
 			this.statement.setDouble(3, caixa.getSaldo());
+			this.statement.setInt(4, funcionario_id);
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,6 +45,7 @@ public class DaoCaixa implements IDaoCaixa {
 	public Caixa buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
 		Caixa caixa = null;
+		Funcionario funcionario = null;
 		try {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Caixa.NOME_TABELA, id));
@@ -52,11 +57,13 @@ public class DaoCaixa implements IDaoCaixa {
 				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
 				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
 				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
+				caixa.setFuncionario_id(funcionario);
 				
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return caixa;
@@ -71,17 +78,20 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Endereco.NOME_TABELA));
 			this.result = this.statement.executeQuery();
 			Caixa caixa;
+			Funcionario funcionario;
 			while (result.next()) {
 				caixa = new Caixa();
 				caixa.setId(result.getInt(1));
 				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
 				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
 				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
+				caixa.setFuncionario_id(funcionario);
 				caixas.add(caixa);
 			}
 			this.conexao.close();
 
-		} catch (SQLException ex) {
+		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return caixas;

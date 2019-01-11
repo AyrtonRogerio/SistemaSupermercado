@@ -96,11 +96,6 @@ public class ControleInicio implements Initializable {
 
 		if(event.getSource() == nova_venda_menu){
 
-			Dialog<Caixa> caixaDialog = new Dialog<>();
-			caixaDialog.getDialogPane().setContent(Main.telaCaixa());
-			caixaDialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
-			caixaDialog.showAndWait();
-
 			Dialog<Venda> vendaDialog = new Dialog<>();
 
 			vendaDialog.initModality(Modality.NONE);

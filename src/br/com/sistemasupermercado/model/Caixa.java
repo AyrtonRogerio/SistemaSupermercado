@@ -6,6 +6,7 @@ public class Caixa {
 	private Double entrada;
 	private Double saida;
 	private Double saldo;
+	private Funcionario funcionario_id;
 
 	public Integer getId() {
 		return id;
@@ -37,5 +38,13 @@ public class Caixa {
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
+	}
+
+	public Funcionario getFuncionario_id() {
+		return funcionario_id;
+	}
+
+	public void setFuncionario_id(Funcionario funcionario_id) {
+		this.funcionario_id = funcionario_id;
 	}
 }

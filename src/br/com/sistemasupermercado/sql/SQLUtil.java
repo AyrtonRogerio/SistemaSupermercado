@@ -153,9 +153,10 @@ public class SQLUtil {
     	public static final String COL_ENTRADA = "entrada";
     	public static final String COL_SAIDA = "saida";
     	public static final String COL_SALDO = "saldo";
+    	public static final String COL_FUNCIONARIO = "funcionario_id";
     	
     	public static final String INSERT = "insert into " + NOME_TABELA + "(" 
-    	+ COL_ENTRADA + ","	+ COL_SAIDA + "," + COL_SALDO + " ) values (?,?,?) ";
+    	+ COL_ENTRADA + ","	+ COL_SAIDA + "," + COL_SALDO + "," + COL_FUNCIONARIO + " ) values (?,?,?,?) ";
 
     	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ? where caixa.id order by id";
     	
@@ -208,7 +209,6 @@ public class SQLUtil {
     	public static final String NOME_TABELA = "venda";
         public static final String COL_VALOR_TOTAL = "valor_total";
     	public static final String COL_DESC_GERAL = "desc_geral";
-    	public static final String COL_QTD_PAGMT = "qtd_pagmt";
         public static final String COL_VALOR_TROCO = "valor_troco";
     	public static final String COL_DATA_VENDA = "data_venda";
     	public static final String COL_CLIENTE_ID = "cliente_id";
@@ -216,12 +216,12 @@ public class SQLUtil {
     	public static final String COL_CAIXA_ID = "caixa_id";
     	
     	public static final String INSERT = "insert into " + NOME_TABELA +
-        "(" + COL_VALOR_TOTAL + "," + COL_DESC_GERAL + "," + COL_QTD_PAGMT +
-        "," + COL_VALOR_TROCO + "," + COL_DATA_VENDA + "," +  COL_CLIENTE_ID +
+        "(" + COL_VALOR_TOTAL + "," + COL_DESC_GERAL + "," + COL_VALOR_TROCO +
+                "," + COL_DATA_VENDA + "," +  COL_CLIENTE_ID +
                 "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
-         " ) values (?,?,?,?,?,?,?,?) returning id";
+         " ) values (?,?,?,?,?,?,?) returning id";
 
-    	public static final String UPDATE = "update venda set valor_total = ?, desc_geral = ?, qtd_pgmt = ?," +
+    	public static final String UPDATE = "update venda set valor_total = ?, desc_geral = ?" +
                 "valor_troco = ?, data_venda = ?" +
                 "where venda.id order by id";
     	
@@ -240,7 +240,7 @@ public class SQLUtil {
     	public static final String COL_VENDA_ID = "venda_id";
     	public static final String COL_ITEM_PRODUTO_ID = "item_produto_id";
     	
-    	public static final String INSERT = " insert into " 
+    	public static final String INSERT = " insert into "
     	+ NOME_TABELA + "(" + COL_VALOR_DESC + 	"," + COL_PORC_PROMOC + "," + COL_PROMOCAO +
     	"," + COL_TIPO + "," + COL_QUANT + "," + COL_VALOR_ITEM + "," + COL_DESCONTO + "," +
     	COL_VENDA_ID + "," + COL_ITEM_PRODUTO_ID +
@@ -250,6 +250,43 @@ public class SQLUtil {
                 "quant = ?, valor_item = ?, desconto = ? where item_venda.id order by id ";
     }
 
+
+    public static class Contas_a_Receber{
+
+
+        public static final String NOME_TABELA = "contas_a_receber";
+        public static final String COL_VALOR = "valor";
+        public static final String COL_DESCRICAO = "descricao";
+        public static final String COL_CAIXA_ID = "caixa_id";
+        public static final String COL_QTD_PAGMT = "qtd_pagmt";
+        public static final String COL_VENDA_ID = "venda_id";
+        public static final String COL_STATUS = "status";
+
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" +
+                COL_VALOR + "," + COL_DESCRICAO + "," + COL_CAIXA_ID + "," +
+                COL_QTD_PAGMT + "," + COL_VENDA_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?) returning id";
+
+        public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, qtd_pagmt = ?, status = ? " +
+                "where contas_a_receber.id order by id";
+
+    }
+
+    public static  class Contas_a_Pagar{
+
+        public static final String NOME_TABELA = "contas_a_pagar";
+        public static final String COL_VALOR = "valor";
+        public static final String COL_DESCRICAO = "descricao";
+        public static final String COL_CAIXA_ID = "caixa_id";
+        public static final String COL_FORNEC_ID = "fornecedor_id";
+        public static final String COL_STATUS = "status";
+
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" +
+                COL_VALOR + "," + COL_DESCRICAO + "," + COL_CAIXA_ID + "," +
+                COL_FORNEC_ID + "," + COL_STATUS + ") values (?,?,?,?,?) returning id";
+
+        public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, fornecedor_id = ?, status = ? " +
+                "where contas_a_receber.id order by id";
+    }
 
     public static String selectAll(String nomeTabela) {
         return "select * from " + nomeTabela;

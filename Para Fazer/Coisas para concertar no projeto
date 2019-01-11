@@ -1,6 +1,28 @@
 *Concertar busca estoque;
+*Caixa vai ser o operador que logar;
 *Ja deixar a porcentagem de varejo em 100% e atacado a 50;
-*Quando cadastrar o produto ja voltar para a parte de lisar produto;
-*Contole de contas a pagar e receber;
+*Quando cadastrar o produto ja voltar para a parte de listar produto;
+*Controle de contas a pagar e receber;
 *Nas contas a pagar ter o status de pago ou nao pago;
 *Relatorio financeiro dia, mês e ano;
+
+Como tem que ser o relatório:
+cabeçallho
+periodo
+datainicial - data final
+
+como tem que ser feito o relatorio!
+contas pagas
+
+
+contas recebidas
+
+
+contas a receber.
+
+
+
+resumo
+
+
+ireport

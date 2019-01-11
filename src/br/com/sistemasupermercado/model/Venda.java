@@ -8,7 +8,6 @@ public class Venda {
 	private Integer id;
 	private Date data_venda;
 	private double desc_geral;
-	private int qtd_pagmt;
 	private double valor_troco;
 	private double valor_total;
 
@@ -39,14 +38,6 @@ public class Venda {
 
 	public void setDesc_geral(double desc_geral) {
 		this.desc_geral = desc_geral;
-	}
-
-	public int getQtd_pagmt() {
-		return qtd_pagmt;
-	}
-
-	public void setQtd_pagmt(int qtd_pagmt) {
-		this.qtd_pagmt = qtd_pagmt;
 	}
 
 	public double getValor_troco() {
