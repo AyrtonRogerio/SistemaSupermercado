@@ -16,7 +16,9 @@ import br.com.sistemasupermercado.model.*;
  */
 public interface IBusinessItem_Produto {
 
-	public void salvarEditar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+
+	public void editar(Item_Produto item_produto) throws BusinessException;
 
 	public Item_Produto buscarPorId(int id) throws BusinessException;
 
@@ -27,6 +29,8 @@ public interface IBusinessItem_Produto {
 	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException;
 
 	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException;
+
+	public void atualizarVenidos(Item_Produto item_Produto) throws BusinessException;
 
 	public void ativarDesativar(int id) throws BusinessException;
 

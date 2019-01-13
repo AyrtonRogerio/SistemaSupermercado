@@ -47,7 +47,7 @@ public class ControleFuncionario implements Initializable {
 	void action(ActionEvent event) {
 		if (event.getSource() == this.cadastrar_func_button) {
 			try {
-				fachada.salvarEditarFuncionario(funcionario);
+				fachada.salvarFuncionario(funcionario);
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

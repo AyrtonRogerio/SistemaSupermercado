@@ -36,6 +36,7 @@ public class ControleCliente implements Initializable {
 	private Fachada fachada = Fachada.getInstance();
 	private Cliente cliente;
 	private ClienteTabAdapter clienteTabAdapter;
+	private List<ClienteTabAdapter> clienteTabAdapters;
 	private Endereco endereco;
 	private Contato contato;
 	private Contato contato2;
@@ -158,49 +159,73 @@ public class ControleCliente implements Initializable {
 
 
 		if(event.getSource() == busca_cliente_button){
+
 			try {
+
 				clienteTabAdapter = fachada.buscarPorCPFCliente(busca_cliente_field.getText());
 				tabela_clentes.getItems().setAll(clienteTabAdapter);
+
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
 		}
 
 		if(event.getSource() == novo_cliente_button){
+
 			dados_cliente_tab.getTabPane().getSelectionModel().select(dados_cliente_tab);
+
 		}
 
 		if(event.getSource() == continuar_cliente_button) {
+
 			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
+
 		}
 
 		if(event.getSource() == voltar_cliente_button){
+
 			lista_cliente_tab.getTabPane().getSelectionModel().select(lista_cliente_tab);
+
 		}
 
 		if(event.getSource() == contin_end_clien_button) {
+
 			cont_cliente_tab.getTabPane().getSelectionModel().select(cont_cliente_tab);
+
 		}
 
 		if(event.getSource() == voltar_end_clien_button){
+
 			dados_cliente_tab.getTabPane().getSelectionModel().select(dados_cliente_tab);
+
 		}
 
 		if(event.getSource() == cadast_clien_button) {
 
 			cadastrarCliente();
+
 			try {
-				fachada.salvarEditarCliente(cliente);
-				
+
+				fachada.salvarCliente(cliente);
+				clienteTabAdapters = fachada.getAllAdapterCliente();
+				tabela_clentes.getItems().setAll(clienteTabAdapters);
+
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			limparCampos();
+			lista_cliente_tab.getTabPane().getSelectionModel().select(lista_cliente_tab);
+
 		}
 
 		if(event.getSource() == voltar_cont_clie_button){
+
 			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
+
 		}
+
 	}
 
 	@Override
@@ -218,6 +243,17 @@ public class ControleCliente implements Initializable {
 		num_cliente_col.setCellValueFactory(new PropertyValueFactory<>("numero"));
 		tipo_cliente_col.setCellValueFactory(new PropertyValueFactory<>("tipo_contato"));
 		contato_cliente_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+
+		try {
+
+			clienteTabAdapters = fachada.getAllAdapterCliente();
+			tabela_clentes.getItems().setAll(clienteTabAdapters);
+
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+
+
 
 		nasc_cliente_col.setCellFactory(coluna -> {
 
@@ -237,10 +273,6 @@ public class ControleCliente implements Initializable {
 
 	}
 
-	/**
-	 * @param strings
-	 * aceita indeterminadas variaveis
-	 */
 //	public void teste(String...strings)
 //	{
 //		
@@ -248,17 +280,22 @@ public class ControleCliente implements Initializable {
 	
 	
 	public void cadastrarCliente() {
+
 		cliente = new Cliente();
 
 		cliente.setNome(nome_cliente_field.getText());
 		cliente.setCpf(cpf_cliente_field.getText());
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
 		try {
+
 			cliente.setData_nascimento(format.parse(data_cliente.getEditor().getText()));
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		cliente.setSexo(sexo_cliente_combo.getValue()+"");
 		cliente.setEstado_civil(estad_civ_client_combo.getValue()+"");
 		cliente.setOcupacao(ocupacao_cliente_combo.getValue()+"");
@@ -292,16 +329,36 @@ public class ControleCliente implements Initializable {
 		contatos.add(contato2);
 
 		if(!fone_cont_cliente_field2.getText().isEmpty()) {
+
 			contato3 = new Contato();	
 			contato3.setCliente(cliente);
 			contato3.setTipo(TipoContato.TELEFONE);
 			contato3.setDescricao(fone_cont_cliente_field2.getText());
 			
 			contatos.add(contato3);
+
 		}
 		
 		
 		cliente.setContatos(contatos);
+	}
+
+	public void limparCampos(){
+
+		nome_cliente_field.clear();
+		cpf_cliente_field.clear();
+		rua_end_cliente_field.clear();
+		data_cliente.getEditor().clear();
+
+		num_end_cliente_field.clear();
+		cep_end_cliente_field.clear();
+		bairro_end_cliente_field.clear();
+		cidade_end_cliente_field.clear();
+		uf_end_cliente_field.clear();
+		fone_cont_cliente_field1.clear();
+		email_cont_cliente_field.clear();
+		fone_cont_cliente_field2.clear();
+
 	}
 
 }

@@ -133,6 +133,40 @@ public class DaoCliente implements IDaoCliente {
 		return clienteTabAdapter;
 	}
 
+	@Override
+	public List<ClienteTabAdapter> getAllAdapter() throws DaoException {
+
+		List<ClienteTabAdapter> clienteTabAdapters = new ArrayList<>();
+
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.SELECT_ALL_ADAPTER);
+			this.result = this.statement.executeQuery();
+			ClienteTabAdapter clienteTabAdapter = null;
+			Endereco endereco = null;
+			while(result.next()) {
+				clienteTabAdapter = new ClienteTabAdapter();
+				clienteTabAdapter.setId(result.getInt(1));
+				clienteTabAdapter.setNome(result.getString("nome"));
+				clienteTabAdapter.setCpf(result.getString("cpf"));
+				clienteTabAdapter.setData_nascimento(
+						new java.util.Date(result.getDate("data_nascimento").getTime()));
+				clienteTabAdapter.setRua(result.getString("rua"));
+				clienteTabAdapter.setBairro(result.getString("bairro"));
+				clienteTabAdapter.setNumero(result.getString("numero"));
+				clienteTabAdapter.setTipo_contato(result.getString("tipo"));
+				clienteTabAdapter.setDescricao(result.getString("descricao"));
+				clienteTabAdapters.add(clienteTabAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		return clienteTabAdapters;
+	}
+
 
 	@Override
 	public List<Cliente> getAll() throws DaoException {

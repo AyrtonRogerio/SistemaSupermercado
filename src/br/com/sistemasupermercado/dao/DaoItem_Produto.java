@@ -36,7 +36,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
-			int produto_id = Fachada.getInstance().salvarEditarProduto(item_Produto.getProduto_id());
+			int produto_id = Fachada.getInstance().salvarProduto(item_Produto.getProduto_id());
 						
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
@@ -263,6 +263,20 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.setInt(10,item_Produto.getVendidos());
 			this.statement.setBoolean(11, item_Produto.isPerecivel());
 			this.statement.setBoolean(12,item_Produto.isStatus());
+			this.statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	@Override
+	public void atualizarVenidos(Item_Produto item_Produto) throws DaoException {
+		// TODO Auto-generated method stub
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.UPDATE_VENDIDOS);
+			this.statement.setLong(1, item_Produto.getVendidos());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);

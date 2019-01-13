@@ -10,7 +10,9 @@ import br.com.sistemasupermercado.model.*;
 public interface IFachada {
 
 	// Produto
-	public int salvarEditarProduto(Produto produto) throws BusinessException;
+	public int salvarProduto(Produto produto) throws BusinessException;
+
+	public void editarProduto(Produto produto) throws BusinessException;
 
 	public Produto buscarPorIdProduto(int id) throws BusinessException;
 
@@ -19,11 +21,15 @@ public interface IFachada {
 	public void ativarDesativarProduto(int id) throws BusinessException;
 
 	// Caixa
-	public void salvarEditarCaixa(Caixa caixa, int funcionario_id) throws BusinessException;
+	public void salvarCaixa(Caixa caixa, int funcionario_id) throws BusinessException;
+
+	public void editarCaixa(Caixa caixa) throws BusinessException;
 
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException;
 
 	public Caixa buscarPorDataCaixa(Date data) throws BusinessException;
+
+	public Caixa buscarPorAnterior() throws BusinessException;
 
 	public List<Caixa> getAllCaixa() throws BusinessException;
 
@@ -32,7 +38,9 @@ public interface IFachada {
 
 
 	// Funcionario
-	public void salvarEditarFuncionario(Funcionario funcionario) throws BusinessException;
+	public void salvarFuncionario(Funcionario funcionario) throws BusinessException;
+
+	public void editarFuncionario(Funcionario funcionario) throws BusinessException;
 
 	public Funcionario buscarPorIdFuncionario(int id) throws BusinessException;
 
@@ -44,7 +52,9 @@ public interface IFachada {
 
 	//Fornecedor
 
-	public int salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException;
+	public int salvarFornecedor(Fornecedor fornecedor) throws BusinessException;
+
+	public void editarFornecedor(Fornecedor fornecedor) throws BusinessException;
 
 	public Fornecedor buscarPorIdFornecedor(int id) throws BusinessException;
 
@@ -57,7 +67,9 @@ public interface IFachada {
 
 	//Pagamento
 	
-	public void salvarEditarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException;
+	public void salvarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException;
+
+	public void editarPagamento(Pagamento pagamento) throws BusinessException;
 
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException;
 
@@ -68,11 +80,15 @@ public interface IFachada {
 	//Cliente
 	
 	
-	public void salvarEditarCliente(Cliente cliente) throws BusinessException;
+	public void salvarCliente(Cliente cliente) throws BusinessException;
+
+	public void editarCliente(Cliente cliente) throws BusinessException;
 
 	public Cliente buscarPorIdCliente(int id) throws BusinessException;
 
 	public ClienteTabAdapter buscarPorCPFCliente(String cpf) throws BusinessException;
+
+	public List<ClienteTabAdapter> getAllAdapterCliente() throws BusinessException;
 	
 	public List<Cliente> getAllCliente() throws BusinessException;
 
@@ -80,7 +96,9 @@ public interface IFachada {
 	
 	//ItemProduto
 	
-	public void salvarEditarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+	public void salvarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+
+	public void editar_Item_Produto(Item_Produto item_produto) throws BusinessException;
 
 	public Item_Produto buscarPorIdItemProduto(int id) throws BusinessException;
 	
@@ -92,11 +110,15 @@ public interface IFachada {
 
 	public VendaTabAdapter buscarPorIdVendaAdapterProduto(int id) throws BusinessException;
 
+	public void atualizarVendidos_Item_Produto(Item_Produto item_produto) throws BusinessException;
+
 	public void ativarDesativarItemProduto(int id) throws BusinessException;
 
 	//Venda
 
-	public int salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
+	public int salvarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
+
+	public void editar_Venda(Venda venda) throws BusinessException;
 
 	public Venda buscarPorIdVenda(int id) throws BusinessException;
 
@@ -106,7 +128,9 @@ public interface IFachada {
 
 	//Item_Venda
 
-	public void salvarEditar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException;
+	public void salvar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException;
+
+	public void editar_Item_Venda(Item_Venda item_venda) throws BusinessException;
 
 	public Item_Venda buscarPorId_Item_Venda(int id) throws BusinessException;
 

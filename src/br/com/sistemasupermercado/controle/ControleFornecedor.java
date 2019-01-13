@@ -49,7 +49,7 @@ public class ControleFornecedor implements Initializable{
 	    	if(event.getSource() == cadastrar_forn_button) {
 	    		
 	    		try {
-					fachada.salvarEditarFornecedor(fornecedor);
+					fachada.salvarFornecedor(fornecedor);
 				} catch (BusinessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

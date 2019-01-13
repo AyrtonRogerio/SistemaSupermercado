@@ -9,11 +9,15 @@ import br.com.sistemasupermercado.model.Caixa;
 
 public interface IBusinessCaixa {
 
-	public void salvarEditar(Caixa caixa, int funcionario_id) throws BusinessException;
+	public void salvar(Caixa caixa, int funcionario_id) throws BusinessException;
+
+	public void editar(Caixa caixa) throws BusinessException;
 
 	public Caixa buscarPorId(int id) throws BusinessException;
 
 	public Caixa buscarPorData(Date data) throws BusinessException;
+
+	public Caixa buscarPorAnterior() throws BusinessException;
 
 	public List<Caixa> getAll() throws BusinessException;
 

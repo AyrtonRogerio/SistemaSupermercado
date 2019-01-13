@@ -28,6 +28,8 @@ public interface IDaoItem_Produto {
 
 	public void editar(Item_Produto item_Produto) throws DaoException;
 
+	public void atualizarVenidos(Item_Produto item_Produto) throws DaoException;
+
 	public void ativarDesativar(int id) throws DaoException;
 	
 }

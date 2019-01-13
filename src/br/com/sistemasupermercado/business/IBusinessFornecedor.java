@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface IBusinessFornecedor {
 
-    public int salvarEditar(Fornecedor fornecedor) throws BusinessException;
+    public int salvar(Fornecedor fornecedor) throws BusinessException;
+
+    public void editar(Fornecedor fornecedor) throws BusinessException;
 
     public Fornecedor buscarPorId(int id) throws BusinessException;
 

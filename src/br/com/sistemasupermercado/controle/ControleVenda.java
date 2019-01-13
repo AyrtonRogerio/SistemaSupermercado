@@ -21,18 +21,19 @@ import java.util.ResourceBundle;
 
 public class ControleVenda implements Initializable {
 
-    int cont = 1;
-    int venda_id = 0;
+    private int cont = 1;
+    private int venda_id = 0;
+    private double valor_total = 0.00;
 
-    Caixa caixa;
-    Funcionario funcionario;
-    Venda venda;
-    VendaTabAdapter item_produtoVendaTabela;
-    Item_Produto item_produto;
-    Item_Venda item_venda;
-    List<Item_Venda> item_vendas;
-    Pagamento pagamento;
-    Cliente cliente;
+    private Caixa caixa;
+    private Funcionario funcionario;
+    private Venda venda;
+    private VendaTabAdapter item_produtoVendaTabela;
+    private Item_Produto item_produto;
+    private Item_Venda item_venda;
+    private List<Item_Venda> item_vendas;
+    private Pagamento pagamento;
+    private Cliente cliente;
 
     List<EstoqueTabAdapter> estoqueTabAdapters;
 
@@ -112,12 +113,12 @@ public class ControleVenda implements Initializable {
         if(event.getSource() == nova_ven_button){
 
             try {
-                caixa = ControleAberturaCaixa.informacaoCaixa();
+                caixa = ControleLogin.getCaixa();
                 venda = new Venda();
                 funcionario = ControleLogin.getFuncionario();
                 item_vendas = new ArrayList<Item_Venda>();
 
-                cliente = Fachada.getInstance().buscarPorIdCliente(1);
+                cliente = Fachada.getInstance().buscarPorIdCliente(2);
 
                 java.util.Date date = new Date();
                 venda.setData_venda(date);
@@ -128,8 +129,13 @@ public class ControleVenda implements Initializable {
                 venda.setValor_total(0.00);
                 venda.setValor_troco(0.00);
                 venda.setDesc_geral(0.00);
+                venda.setValor_recebido(0.00);
                 venda.setItem_vendas(item_vendas);
-                venda_id = Fachada.getInstance().salvarEditarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
+                System.out.println(venda);
+                System.out.println(cliente.getId());
+                System.out.println(funcionario.getId());
+                System.out.println(caixa.getId());
+                venda_id = Fachada.getInstance().salvarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
 
             } catch (BusinessException e) {
                 e.printStackTrace();
@@ -153,6 +159,10 @@ public class ControleVenda implements Initializable {
 
                 item_produto = Fachada.getInstance().buscarPorIdItemProduto(prod.getId());
 
+                item_produto.setVendidos(item_produto.getVendidos() + Integer.parseInt(qtd_prod_ven_field.getText()));
+
+                Fachada.getInstance().atualizarVendidos_Item_Produto(item_produto);
+
                 item_produtoVendaTabela = Fachada.getInstance().buscarPorIdVendaAdapterProduto(prod.getId());
                 item_produtoVendaTabela.setItem(cont);
                 cont++;
@@ -170,12 +180,14 @@ public class ControleVenda implements Initializable {
 
                 item_venda.setVenda_id(venda);
 
-
-                Fachada.getInstance().salvarEditar_Item_Venda(item_venda, venda_id, item_produto.getId());
-                item_vendas.add(item_venda);
-
+                for(int i = 0; i < item_venda.getQuantidade(); i++) {
+                    Fachada.getInstance().salvar_Item_Venda(item_venda, venda_id, item_produto.getId());
+                    item_vendas.add(item_venda);
+                }
                 pr_un_prod_ven_field.setText(String.valueOf(item_venda.getValor_item()));
-                pr_total_vend_field.setText(String.valueOf(item_venda.getValor_item() * item_venda.getQuantidade()));
+
+                valor_total += item_venda.getValor_item() * item_venda.getQuantidade();
+                pr_total_vend_field.setText(String.valueOf(valor_total));
 
 
             } catch (BusinessException e) {

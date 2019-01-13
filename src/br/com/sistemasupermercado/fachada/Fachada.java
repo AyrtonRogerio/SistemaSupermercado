@@ -48,9 +48,14 @@ public class Fachada implements IFachada {
 	
 	//Produto
 	@Override
-	public int salvarEditarProduto(Produto produto) throws BusinessException {
-		 return this.businessProduto.salvarEditar(produto);
+	public int salvarProduto(Produto produto) throws BusinessException {
+		 return this.businessProduto.salvar(produto);
 
+	}
+
+	@Override
+	public void editarProduto(Produto produto) throws BusinessException {
+			this.businessProduto.editar(produto);
 	}
 
 	@Override
@@ -73,9 +78,14 @@ public class Fachada implements IFachada {
 
 	//Caixa
 	@Override
-	public void salvarEditarCaixa(Caixa caixa, int funcionario_id) throws BusinessException {
+	public void salvarCaixa(Caixa caixa, int funcionario_id) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessCaixa.salvarEditar(caixa, funcionario_id);
+		this.businessCaixa.salvar(caixa, funcionario_id);
+	}
+
+	@Override
+	public void editarCaixa(Caixa caixa) throws BusinessException {
+		this.businessCaixa.editar(caixa);
 	}
 
 	@Override
@@ -87,6 +97,11 @@ public class Fachada implements IFachada {
 	@Override
 	public Caixa buscarPorDataCaixa(Date data) throws BusinessException {
 		return this.businessCaixa.buscarPorData(data);
+	}
+
+	@Override
+	public Caixa buscarPorAnterior() throws BusinessException {
+		return this.businessCaixa.buscarPorAnterior();
 	}
 
 	@Override
@@ -103,9 +118,14 @@ public class Fachada implements IFachada {
 	
 	//Funcionário
 	@Override
-	public void salvarEditarFuncionario(Funcionario funcionario) throws BusinessException {
+	public void salvarFuncionario(Funcionario funcionario) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessFuncionario.salvarEditar(funcionario);
+		this.businessFuncionario.salvar(funcionario);
+	}
+
+	@Override
+	public void editarFuncionario(Funcionario funcionario) throws BusinessException {
+		this.businessFuncionario.editar(funcionario);
 	}
 
 	@Override
@@ -138,10 +158,15 @@ public class Fachada implements IFachada {
 	//Fornecedor
 
 	@Override
-	public int salvarEditarFornecedor(Fornecedor fornecedor) throws BusinessException {
+	public int salvarFornecedor(Fornecedor fornecedor) throws BusinessException {
 
-	    return this.businessFornecedor.salvarEditar(fornecedor);
+	    return this.businessFornecedor.salvar(fornecedor);
 		
+	}
+
+	@Override
+	public void editarFornecedor(Fornecedor fornecedor) throws BusinessException {
+		this.businessFornecedor.editar(fornecedor);
 	}
 
 	@Override
@@ -172,12 +197,17 @@ public class Fachada implements IFachada {
 	//Pagamento
 	
 	@Override
-	public void salvarEditarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException {
+	public void salvarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessPagamento.salvarEditar(pagamento, id_cliente,id_venda);
+		this.businessPagamento.salvar(pagamento, id_cliente,id_venda);
 	}
 
-	
+	@Override
+	public void editarPagamento(Pagamento pagamento) throws BusinessException {
+		this.businessPagamento.editar(pagamento);
+	}
+
+
 	@Override
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -201,9 +231,14 @@ public class Fachada implements IFachada {
 	//Cliente
 	
 	@Override
-	public void salvarEditarCliente(Cliente cliente) throws BusinessException {
+	public void salvarCliente(Cliente cliente) throws BusinessException {
 		// TODO Auto-generated method stub
-		 this.businessCliente.salvarEditar(cliente);
+		 this.businessCliente.salvar(cliente);
+	}
+
+	@Override
+	public void editarCliente(Cliente cliente) throws BusinessException {
+		this.businessCliente.editar(cliente);
 	}
 
 	@Override
@@ -215,6 +250,11 @@ public class Fachada implements IFachada {
 	@Override
 	public ClienteTabAdapter buscarPorCPFCliente(String cpf) throws BusinessException {
 		return this.businessCliente.buscarPorCPF(cpf);
+	}
+
+	@Override
+	public List<ClienteTabAdapter> getAllAdapterCliente() throws BusinessException {
+		return this.businessCliente.getAllAdapter();
 	}
 
 	@Override
@@ -233,12 +273,17 @@ public class Fachada implements IFachada {
 
 	
 	@Override
-	public void salvarEditarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
+	public void salvarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessItem_Produto.salvarEditar(item_Produto, id_fornecedor);
+		this.businessItem_Produto.salvar(item_Produto, id_fornecedor);
 	}
 
-	
+	@Override
+	public void editar_Item_Produto(Item_Produto item_produto) throws BusinessException {
+		this.businessItem_Produto.editar(item_produto);
+	}
+
+
 	@Override
 	public Item_Produto buscarPorIdItemProduto(int id) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -265,6 +310,11 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
+	public void atualizarVendidos_Item_Produto(Item_Produto item_produto) throws BusinessException {
+			this.businessItem_Produto.atualizarVenidos(item_produto);
+	}
+
+	@Override
 	public List<EstoqueTabAdapter> getAllEstoqueAdapterProduto() throws BusinessException {
 		return this.businessItem_Produto.getAllEstoqueAdapter();
 	}
@@ -279,8 +329,13 @@ public class Fachada implements IFachada {
 	//Venda
 
 	@Override
-	public int salvarEditarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
-			return this.businessVenda.salvarEditar(venda, id_cliente, id_funcionario, id_caixa);
+	public int salvarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException {
+			return this.businessVenda.salvar(venda, id_cliente, id_funcionario, id_caixa);
+	}
+
+	@Override
+	public void editar_Venda(Venda venda) throws BusinessException {
+		this.businessVenda.editar(venda);
 	}
 
 	@Override
@@ -301,8 +356,13 @@ public class Fachada implements IFachada {
 	//Item_Venda
 
 	@Override
-	public void salvarEditar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException {
-		this.businessItem_venda.salvarEditar(item_Venda,venda_id,item_produto_id);
+	public void salvar_Item_Venda(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException {
+		this.businessItem_venda.salvar(item_Venda,venda_id,item_produto_id);
+	}
+
+	@Override
+	public void editar_Item_Venda(Item_Venda item_venda) throws BusinessException {
+		this.businessItem_venda.editar(item_venda);
 	}
 
 	@Override

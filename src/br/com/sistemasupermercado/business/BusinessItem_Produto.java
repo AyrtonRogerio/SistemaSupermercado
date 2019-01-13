@@ -25,16 +25,26 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 	}
 
 	@Override
-	public void salvarEditar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
+	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
 		
 		try {
 			validar(item_Produto);
 			if (item_Produto.getId() == null)
 				daoItemProduto.salvar(item_Produto, id_fornecedor);
-			else
-				daoItemProduto.editar(item_Produto);
+
+
 		} catch (DaoException | ValidacaoException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void editar(Item_Produto item_produto) throws BusinessException {
+		try {
+			daoItemProduto.editar(item_produto);
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
@@ -95,7 +105,17 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
         }
     }
 
-    @Override
+	@Override
+	public void atualizarVenidos(Item_Produto item_Produto) throws BusinessException {
+		try {
+			daoItemProduto.atualizarVenidos(item_Produto);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
 	public void ativarDesativar(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {

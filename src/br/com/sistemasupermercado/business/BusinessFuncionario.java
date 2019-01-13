@@ -19,16 +19,26 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvarEditar(Funcionario funcionario) throws BusinessException {
+	public void salvar(Funcionario funcionario) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
 			validar(funcionario);
 			if (funcionario.getId() == null)
 				daoFuncionario.salvar(funcionario);
-			else
-				daoFuncionario.editar(funcionario);
+
+
 		} catch (DaoException | ValidacaoException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void editar(Funcionario funcionario) throws BusinessException {
+		try {
+			daoFuncionario.editar(funcionario);
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

@@ -20,16 +20,25 @@ public class BusinessCaixa implements IBusinessCaixa {
 	}
 
 	@Override
-	public void salvarEditar(Caixa caixa, int funcionario_id) throws BusinessException {
+	public void salvar(Caixa caixa, int funcionario_id) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
 			validar(caixa);
 			if (caixa.getId() == null)
 				daoCaixa.salvar(caixa, funcionario_id);
-			else
-				daoCaixa.editar(caixa);
+
 		} catch (DaoException | ValidacaoException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void editar(Caixa caixa) throws BusinessException {
+		try {
+			daoCaixa.editar(caixa);
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
@@ -51,6 +60,16 @@ public class BusinessCaixa implements IBusinessCaixa {
 	public Caixa buscarPorData(Date data) throws BusinessException {
 		try {
 			return daoCaixa.buscarPorData(data);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public Caixa buscarPorAnterior() throws BusinessException {
+		try {
+			return daoCaixa.buscarPorAnterior();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

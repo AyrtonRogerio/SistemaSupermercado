@@ -65,9 +65,9 @@ public class SQLUtil {
                 "unidade_medida = ?, data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?," +
                 "porc_atacado = ?, porc_varejo = ? where item_produto.id order by id";
 
-//        public static final String SELECT_VENDIDOS = "select "
+        public static final String SELECT_VENDIDOS = "select i.vendidos from item_produto i where id = ? and i.status = true and i.vendidos < i.quantidade";
 
-        public static final String UPDATE_VENDIDOS = "update item_produto set vendidos = ? where item_produto.id order by id";
+        public static final String UPDATE_VENDIDOS = "update item_produto set vendidos = ?";
     }
     
     public static class Endereco {
@@ -123,6 +123,10 @@ public class SQLUtil {
                 "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
                 "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id where c.cpf = ?";
 
+        public static final String SELECT_ALL_ADAPTER = "select c. id, c.nome, c.cpf, c.data_nascimento, " +
+                "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
+                "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id";
+
         public static  final  String UPDATE = "update cliente set nome = ?, cpf = ?, sexo = ?, estado_civil = ?," +
                 "ocupacao = ?, data_nascimento = ? where cliente.id order by id";
 
@@ -164,6 +168,8 @@ public class SQLUtil {
                 + COL_DATA_ABERTURA + "," + COL_DATA_FECHAMENTO + " ) values (?,?,?,?,?,?) ";
 
     	public static final String SELECT_DATA = "select * from caixa where data_abertura = ?";
+
+    	public static final String SELECT_ANTERIOR = "select * from caixa where id = (select max(id) from caixa)";
 
     	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ? where caixa.id order by id";
         public static final String UPDATE_DATA = "update caixa set entrada = ?, saldo = ? where caixa.id order by id";
@@ -230,8 +236,13 @@ public class SQLUtil {
                 "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
          " ) values (?,?,?,?,?,?,?,?) returning id";
 
-    	public static final String UPDATE = "update venda set valor_total = ?, desc_geral = ?" +
+    	public static final String SELECT_VENDA = "select v.valor_total, v.desc_geral, v.valor_troco, v.valor_recebido from venda v where id = ?";
+
+        public static final String UPDATE_VENDA = "update venda set valor_total = ?, desc_geral = ?" +
                 "valor_troco = ?, valor_recebido = ?, data_venda = ?" +
+                "where venda.id order by id";
+
+    	public static final String UPDATE_VENDA_CLI_ID = "update venda set cliente_id = ?" +
                 "where venda.id order by id";
     	
     }

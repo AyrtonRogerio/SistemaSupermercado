@@ -14,6 +14,8 @@ public interface IDaoCaixa {
 
 	public Caixa buscarPorData(Date data) throws DaoException;
 
+	public Caixa buscarPorAnterior() throws DaoException;
+
 	public List<Caixa> getAll() throws DaoException;
 
 	public void editar(Caixa caixa) throws DaoException;

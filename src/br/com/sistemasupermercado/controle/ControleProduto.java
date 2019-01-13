@@ -239,7 +239,7 @@ public class ControleProduto implements Initializable {
 
 				cadastrarProduto(fornecedor);
 				System.out.println(fornecedor.getId());
-				fachada.salvarEditarItemProduto(item_Produto, fornecedor.getId());
+				fachada.salvarItemProduto(item_Produto, fornecedor.getId());
 
 
 			contas_a_pagar = new Contas_a_pagar();

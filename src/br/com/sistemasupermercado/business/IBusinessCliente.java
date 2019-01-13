@@ -9,11 +9,15 @@ import java.util.List;
 
 public interface IBusinessCliente {
 
-    public void salvarEditar(Cliente cliente) throws BusinessException;
+    public void salvar(Cliente cliente) throws BusinessException;
+
+    public void editar(Cliente cliente) throws BusinessException;
 
     public Cliente buscarPorId(int id) throws BusinessException;
 
     public ClienteTabAdapter buscarPorCPF(String cpf) throws BusinessException;
+
+    public List<ClienteTabAdapter> getAllAdapter() throws BusinessException;
 
     public List<Cliente> getAll() throws BusinessException;
 

@@ -160,7 +160,7 @@ public class DaoVenda implements IDaoVenda{
 		// TODO Auto-generated method stub
 		try {
 			this.conexao = SQLConections.getInstance();
-			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.UPDATE);
+			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.UPDATE_VENDA);
 			this.statement.setDouble(1, venda.getValor_total());
 			this.statement.setDouble(2, venda.getDesc_geral());
 			this.statement.setDouble(4, venda.getValor_troco());

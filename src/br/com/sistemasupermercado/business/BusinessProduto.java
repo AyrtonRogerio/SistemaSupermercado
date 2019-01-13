@@ -18,19 +18,29 @@ public class BusinessProduto implements IBusinessProduto {
 	}
 
 	@Override
-	public int  salvarEditar(Produto produto) throws BusinessException {
+	public int  salvar(Produto produto) throws BusinessException {
 		try {
 //			validar(produto);
 			if (produto.getId() == null)
 				return daoProduto.salvar(produto);
-			else
-				daoProduto.editar(produto);
+
+
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}
 		return 0;
+	}
+
+	@Override
+	public void editar(Produto produto) throws BusinessException {
+		try {
+			daoProduto.editar(produto);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
 	}
 
 	@Override

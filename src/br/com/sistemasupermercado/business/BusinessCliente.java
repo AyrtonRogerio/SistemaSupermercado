@@ -24,13 +24,12 @@ public class BusinessCliente implements  IBusinessCliente {
 	}
 	
 	@Override
-    public void salvarEditar(Cliente cliente) throws BusinessException {
+    public void salvar(Cliente cliente) throws BusinessException {
 		try {
 //			validar(cliente);
 			if (cliente.getId() == null)
 				 daoCliente.salvar(cliente);
-			else
-				daoCliente.editar(cliente);
+
 		} catch (DaoException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +38,17 @@ public class BusinessCliente implements  IBusinessCliente {
 		
     }
 
-    @Override
+	@Override
+	public void editar(Cliente cliente) throws BusinessException {
+		try {
+			daoCliente.editar(cliente);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
     public Cliente buscarPorId(int id) throws BusinessException {
     	try {
 			return daoCliente.buscarPorId(id);
@@ -54,6 +63,16 @@ public class BusinessCliente implements  IBusinessCliente {
 	public ClienteTabAdapter buscarPorCPF(String cpf) throws BusinessException {
 		try {
 			return daoCliente.buscarPorCPF(cpf);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<ClienteTabAdapter> getAllAdapter() throws BusinessException {
+		try {
+			return daoCliente.getAllAdapter();
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

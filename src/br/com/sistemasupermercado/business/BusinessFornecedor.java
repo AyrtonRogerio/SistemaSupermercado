@@ -18,20 +18,29 @@ public class BusinessFornecedor implements IBusinessFornecedor {
     }
 
     @Override
-    public int salvarEditar(Fornecedor fornecedor) throws BusinessException {
+    public int salvar(Fornecedor fornecedor) throws BusinessException {
 
         try {
             validar(fornecedor);
             if (fornecedor.getId() == null)
               return daoFornecedor.salvar(fornecedor);
-            else
-                daoFornecedor.editar(fornecedor);
+
         } catch (DaoException | ValidacaoException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             throw new BusinessException(e.getMessage());
         }
         return 0;
+    }
+
+    @Override
+    public void editar(Fornecedor fornecedor) throws BusinessException {
+        try {
+            daoFornecedor.editar(fornecedor);
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
     }
 
     @Override

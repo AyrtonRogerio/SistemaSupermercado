@@ -80,15 +80,26 @@ public class ControleLogin implements Initializable {
 			caixa = fachada.buscarPorDataCaixa(date);
 			if (caixa == null){
 				System.out.println("Novo Caixa");
+				Caixa c = fachada.buscarPorAnterior();
 				java.util.Date d = new java.util.Date();
 				caixa = new Caixa();
-				caixa.setEntrada(0.00);
+				if(c != null){
+					caixa.setEntrada(c.getSaldo());
+					caixa.setSaida(0.00);
+					caixa.setSaldo(caixa.getEntrada() - caixa.getSaida());
+					caixa.setData_abertura(d);
+					caixa.setData_fechamento(d);
+				}
+
+				caixa.setEntrada(500.00);
 				caixa.setSaida(0.00);
 				caixa.setSaldo(caixa.getEntrada() - caixa.getSaida());
 				caixa.setData_abertura(d);
 				caixa.setData_fechamento(d);
 
-				fachada.salvarEditarCaixa(caixa, funcionario.getId());
+
+
+				fachada.salvarCaixa(caixa, funcionario.getId());
 			}
 
 		} catch (BusinessException e) {
@@ -104,6 +115,18 @@ public class ControleLogin implements Initializable {
 	public static Caixa getCaixa(){return caixa;}
 
 	public static int getIdCaixa(){
+
+		if(caixa.getId() == null){
+
+			try {
+				java.sql.Date date = new Date(new java.util.Date().getTime());
+				caixa = Fachada.getInstance().buscarPorDataCaixa(date);
+
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return caixa.getId();
 	}
 

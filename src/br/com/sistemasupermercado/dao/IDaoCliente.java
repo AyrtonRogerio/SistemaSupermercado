@@ -14,6 +14,8 @@ public interface IDaoCliente {
 
     public ClienteTabAdapter buscarPorCPF(String cpf) throws DaoException;
 
+    public List<ClienteTabAdapter> getAllAdapter() throws DaoException;
+
     public List<Cliente> getAll() throws DaoException;
 
     public void editar(Cliente cliente) throws DaoException;

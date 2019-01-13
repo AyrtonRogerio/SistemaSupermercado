@@ -103,6 +103,37 @@ public class DaoCaixa implements IDaoCaixa {
 	}
 
 	@Override
+	public Caixa buscarPorAnterior() throws DaoException {
+		// TODO Auto-generated method stub
+		Caixa caixa = null;
+		Funcionario funcionario = null;
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.SELECT_ANTERIOR);
+			this.result = this.statement.executeQuery();
+
+			if (result.next()) {
+				caixa = new Caixa();
+				caixa.setId(result.getInt(1));
+				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
+				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
+				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
+				caixa.setFuncionario_id(funcionario);
+				caixa.setData_abertura(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_ABERTURA).getTime()));
+				caixa.setData_fechamento(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_FECHAMENTO).getTime()));
+
+			}
+			this.conexao.close();
+
+		} catch (SQLException | BusinessException ex) {
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return caixa;
+	}
+
+	@Override
 	public List<Caixa> getAll() throws DaoException {
 		// TODO Auto-generated method stub
 		List<Caixa> caixas = new ArrayList<>();

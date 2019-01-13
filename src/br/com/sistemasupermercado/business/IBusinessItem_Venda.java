@@ -15,7 +15,9 @@ import br.com.sistemasupermercado.model.Item_Venda;
  */
 public interface IBusinessItem_Venda {
 
-	public void salvarEditar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException;
+	public void salvar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException;
+
+	public void editar(Item_Venda item_venda) throws BusinessException;
 
 	public Item_Venda buscarPorId(int id) throws BusinessException;
 
