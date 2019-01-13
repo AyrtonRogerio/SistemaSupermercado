@@ -12,10 +12,7 @@ import java.util.ResourceBundle;
 
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
-import br.com.sistemasupermercado.model.Fornecedor;
-import br.com.sistemasupermercado.model.Item_Produto;
-import br.com.sistemasupermercado.model.Produto;
-import br.com.sistemasupermercado.model.ProdutoTabAdapter;
+import br.com.sistemasupermercado.model.*;
 import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +29,12 @@ public class ControleProduto implements Initializable {
 
 	private Produto produto = null;
 	private Fornecedor fornecedor = null;
+	private List<Fornecedor> fornecedors;
 	private List<ProdutoTabAdapter> produtoTabAdapters;
 	private Item_Produto item_Produto;
+	private Contas_a_pagar contas_a_pagar;
+
+	private double pr_un, pr_var, pr_atac;
 
 	private Fachada fachada = Fachada.getInstance();
 
@@ -125,12 +126,6 @@ public class ControleProduto implements Initializable {
 	private TextField preco_unit_prod_cadastro_field;
 
 	@FXML
-	private TextField preco_varej_prod_cadastro_field;
-
-	@FXML
-	private TextField preco_atac_prod_cadast_field;
-
-	@FXML
 	private TextField porc_varej_prod_cadast_field;
 
 	@FXML
@@ -181,29 +176,42 @@ public class ControleProduto implements Initializable {
 
 
 		if(event.getSource() == novo_prod_button){
+
 			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
+
 		}
 
 		if (event.getSource() == continuar_prod_cadast_button) {
+
 			valores_tab.getTabPane().getSelectionModel().select(valores_tab);
+
 		}
 
 		if(event.getSource() == voltar_prod_cadast_button){
+
 			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
+
 		}
 
 		if (event.getSource() == cont_valores_prod_cadast_button) {
+
 			fornecedor_tab.getTabPane().getSelectionModel().select(fornecedor_tab);
+
 		}
 
 		if(event.getSource() == volt_prod_fornc_button){
+
 			valores_tab.getTabPane().getSelectionModel().select(valores_tab);
+
 		}
 
 		if (event.getSource() == busca_fornec_button) {
+
 			try {
+
 				fornecedor = fachada.buscarPorNomeFornecedor(busca_fornec_field.getText());
-				tabela_fornec.getItems().add(fornecedor);
+				tabela_fornec.getItems().setAll(fornecedor);
+
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -211,25 +219,56 @@ public class ControleProduto implements Initializable {
 		}
 
 		if (event.getSource() == add_fornec_button) {
+
 			fornecedor = tabela_fornec.getSelectionModel().getSelectedItem();
+
 		}
 
 		if (event.getSource() == cadast_forn_button) {
+
 			Dialog<Fornecedor> cadastrarFornecedor = new Dialog<>();
 			cadastrarFornecedor.getDialogPane().setContent(Main.telaFornecedor());
 			cadastrarFornecedor.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 			cadastrarFornecedor.showAndWait();
+
 		}
 
 		if (event.getSource() == finalizar_cadas_prod_button) {
+
 			try {
+
 				cadastrarProduto(fornecedor);
 				System.out.println(fornecedor.getId());
 				fachada.salvarEditarItemProduto(item_Produto, fornecedor.getId());
+
+
+			contas_a_pagar = new Contas_a_pagar();
+
+			contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
+			contas_a_pagar.setStatus(true);
+			contas_a_pagar.setFornecedor_id(fornecedor);
+			contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
+			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + "à " + fornecedor.getNome());
+
+			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(),fornecedor.getId());
+			produtoTabAdapters = fachada.getAllAdapterItemProduto();
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			limparCampos();
+			lista_prod_tabPane.getTabPane().getSelectionModel().select(lista_prod_tabPane);
+
+			list_prod_tab.getItems().setAll(produtoTabAdapters);
+		}
+
+
+
+		if(event.getSource() == editar_prod_button){
+
+
+
+
 		}
 
 	}
@@ -242,6 +281,14 @@ public class ControleProduto implements Initializable {
 		cnpj_forn.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
 		cidade_forn.setCellValueFactory(new PropertyValueFactory<>("cidade"));
 		estado_forn.setCellValueFactory(new PropertyValueFactory<>("estado"));
+
+		try {
+			fornecedors = Fachada.getInstance().getAllFornecedor();
+			tabela_fornec.getItems().setAll(fornecedors);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+
 
 
 		desc_list_tab.setCellValueFactory(new PropertyValueFactory<>("descricao"));
@@ -289,10 +336,11 @@ public class ControleProduto implements Initializable {
 		item_Produto.setCod_barras(Long.parseLong(cod_prod_cadast_field.getText()));
 		item_Produto.setQuantidade(Integer.parseInt(quant_prod_cadast_field.getText()));
 
+
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 
-			System.out.println(cadast_prod_data.getEditor().getText().trim());
+
 			item_Produto.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
 			item_Produto.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
 			item_Produto.setData_validade(format.parse(valid_prod_data.getEditor().getText().trim()));
@@ -305,14 +353,32 @@ public class ControleProduto implements Initializable {
 		item_Produto.setPerecivel(perecivel_prod_cadast_checkB.isSelected());
 		item_Produto.setStatus(status_prod_cadast_checkB.isSelected());
 
-		item_Produto.setPorc_atacado(Double.parseDouble(porc_atac_prod_cadast_field.getText()));
-		item_Produto.setPorc_varejo(Double.parseDouble(porc_varej_prod_cadast_field.getText()));
-		item_Produto.setPreco_unidade(Double.parseDouble(preco_unit_prod_cadastro_field.getText()));
-		item_Produto.setPreco_atacado(Double.parseDouble(preco_atac_prod_cadast_field.getText()));
-		item_Produto.setPreco_varejo(Double.parseDouble(preco_varej_prod_cadastro_field.getText()));
+		pr_un = Double.parseDouble(preco_unit_prod_cadastro_field.getText());
+		pr_var = Double.parseDouble(porc_varej_prod_cadast_field.getText());
+		pr_atac = Double.parseDouble(porc_atac_prod_cadast_field.getText());
+
+
+		item_Produto.setPreco_unidade(pr_un);
+		item_Produto.setPorc_varejo( pr_un + pr_un * pr_var/100);
+		item_Produto.setPorc_atacado( pr_un + pr_un * pr_atac/100);
 
 		item_Produto.setFornecedor_id(forne);
 		item_Produto.setProduto_id(produto);
+	}
+
+	public void limparCampos(){
+
+		nome_prod_cadast_field.clear();
+		marca_prod_cadastro_field.clear();
+		descri_prod_cadast_field.clear();
+
+		cod_prod_cadast_field.clear();
+		quant_prod_cadast_field.clear();
+		perecivel_prod_cadast_checkB.setSelected(false);
+		porc_atac_prod_cadast_field.clear();
+		porc_varej_prod_cadast_field.clear();
+		preco_unit_prod_cadastro_field.clear();
+
 	}
 
 }

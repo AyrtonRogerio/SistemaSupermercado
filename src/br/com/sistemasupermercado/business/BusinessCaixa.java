@@ -1,5 +1,6 @@
 package br.com.sistemasupermercado.business;
 
+import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.dao.DaoCaixa;
@@ -41,6 +42,16 @@ public class BusinessCaixa implements IBusinessCaixa {
 			return daoCaixa.buscarPorId(id);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public Caixa buscarPorData(Date data) throws BusinessException {
+		try {
+			return daoCaixa.buscarPorData(data);
+		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
 		}

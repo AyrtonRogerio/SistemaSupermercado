@@ -10,6 +10,7 @@ public class Venda {
 	private double desc_geral;
 	private double valor_troco;
 	private double valor_total;
+	private double valor_recebido;
 
 	private Cliente cliente_id;
 	private Funcionario funcionario_id;
@@ -54,6 +55,14 @@ public class Venda {
 
 	public void setValor_total(double valor_total) {
 		this.valor_total = valor_total;
+	}
+
+	public double getValor_recebido() {
+		return valor_recebido;
+	}
+
+	public void setValor_recebido(double valor_recebido) {
+		this.valor_recebido = valor_recebido;
 	}
 
 	public Cliente getCliente_id() {

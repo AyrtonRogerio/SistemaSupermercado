@@ -1,5 +1,6 @@
 package br.com.sistemasupermercado.business;
 
+import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
@@ -11,6 +12,8 @@ public interface IBusinessCaixa {
 	public void salvarEditar(Caixa caixa, int funcionario_id) throws BusinessException;
 
 	public Caixa buscarPorId(int id) throws BusinessException;
+
+	public Caixa buscarPorData(Date data) throws BusinessException;
 
 	public List<Caixa> getAll() throws BusinessException;
 

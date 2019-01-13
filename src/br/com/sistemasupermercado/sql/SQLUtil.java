@@ -34,8 +34,6 @@ public class SQLUtil {
     	public static final String COL_DATA_VALIDADE = "data_validade";
     	public static final String COL_DATA_COMPRA = "data_compra";
     	public static final String COL_PRECO_UNIDADE = "preco_unidade";
-    	public static final String COL_PRECO_ATACADO = "preco_atacado";
-    	public static final String COL_PRECO_VAREJO = "preco_varejo";
     	public static final String COL_PORC_ATACADO = "porc_atacado";
     	public static final String COL_PORC_VAREJO = "porc_varejo";
         public static final String COL_QUANTIDADE = "quantidade";
@@ -49,23 +47,27 @@ public class SQLUtil {
 
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + ","  +
-                COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + "," + COL_PRECO_ATACADO + "," +
-                COL_PRECO_VAREJO + "," + COL_PORC_ATACADO + "," + COL_PORC_VAREJO + "," + COL_QUANTIDADE + "," + COL_VENDIDOS + "," + COL_PERECIVEL + "," +
-                COL_STATUS + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
+                COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + ","
+                + COL_PORC_ATACADO + "," + COL_PORC_VAREJO + "," + COL_QUANTIDADE + "," + COL_VENDIDOS + "," + COL_PERECIVEL + "," +
+                COL_STATUS + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
 
         public static final String SELECT_PRODUTO_ALL = "select p.descricao, p.marca, i.cod_barras, " +
-                "i.preco_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
-                "on i.produto_id = p.id";
+                "i.porc_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
+                "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
 
         public static final String SELECT_PROD_LIST_EST_ALL = "select i.id, i.cod_barras, " +
-                "i.quantidade, i.preco_unidade, p.descricao from item_produto i inner join produto p on i.produto_id = p.id";
+                "i.quantidade, i.porc_varejo, p.descricao from item_produto i inner join produto p on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
 
         public static final String SELECT_PROD_LIST_VEND = "select i.id, i.cod_barras, " +
-                "i.quantidade, i.preco_unidade, p.descricao from item_produto i inner join produto p on i.produto_id = p.id where i.id = ?";
+                "i.quantidade, i.porc_varejo, p.descricao from item_produto i inner join produto p on i.produto_id = p.id where i.id = ? and i.status = true and i.vendidos < i.quantidade";
 
         public static  final String UPDATE = "update item_produto set perecivel = ?, status = ?, quantidade = ?, cod_barras = ?, " +
-                "unidade_medida = ?, data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?, preco_atacado = ?," +
-                "preco_varejo = ?, porc_atacado = ?, porc_varejo = ? where item_produto.id order by id";
+                "unidade_medida = ?, data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?," +
+                "porc_atacado = ?, porc_varejo = ? where item_produto.id order by id";
+
+//        public static final String SELECT_VENDIDOS = "select "
+
+        public static final String UPDATE_VENDIDOS = "update item_produto set vendidos = ? where item_produto.id order by id";
     }
     
     public static class Endereco {
@@ -154,11 +156,17 @@ public class SQLUtil {
     	public static final String COL_SAIDA = "saida";
     	public static final String COL_SALDO = "saldo";
     	public static final String COL_FUNCIONARIO = "funcionario_id";
+    	public static final String COL_DATA_ABERTURA = "data_abertura";
+        public static final String COL_DATA_FECHAMENTO = "data_fechamento";
     	
     	public static final String INSERT = "insert into " + NOME_TABELA + "(" 
-    	+ COL_ENTRADA + ","	+ COL_SAIDA + "," + COL_SALDO + "," + COL_FUNCIONARIO + " ) values (?,?,?,?) ";
+    	+ COL_ENTRADA + ","	+ COL_SAIDA + "," + COL_SALDO + "," + COL_FUNCIONARIO + ","
+                + COL_DATA_ABERTURA + "," + COL_DATA_FECHAMENTO + " ) values (?,?,?,?,?,?) ";
+
+    	public static final String SELECT_DATA = "select * from caixa where data_abertura = ?";
 
     	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ? where caixa.id order by id";
+        public static final String UPDATE_DATA = "update caixa set entrada = ?, saldo = ? where caixa.id order by id";
     	
     }
 
@@ -210,6 +218,7 @@ public class SQLUtil {
         public static final String COL_VALOR_TOTAL = "valor_total";
     	public static final String COL_DESC_GERAL = "desc_geral";
         public static final String COL_VALOR_TROCO = "valor_troco";
+        public static final String COL_VALOR_RECEBIDO = "valor_recebido";
     	public static final String COL_DATA_VENDA = "data_venda";
     	public static final String COL_CLIENTE_ID = "cliente_id";
     	public static final String COL_FUNCIONARIO_ID = "funcionario_id";
@@ -217,12 +226,12 @@ public class SQLUtil {
     	
     	public static final String INSERT = "insert into " + NOME_TABELA +
         "(" + COL_VALOR_TOTAL + "," + COL_DESC_GERAL + "," + COL_VALOR_TROCO +
-                "," + COL_DATA_VENDA + "," +  COL_CLIENTE_ID +
+                "," + COL_VALOR_RECEBIDO + "," + COL_DATA_VENDA + "," +  COL_CLIENTE_ID +
                 "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
-         " ) values (?,?,?,?,?,?,?) returning id";
+         " ) values (?,?,?,?,?,?,?,?) returning id";
 
     	public static final String UPDATE = "update venda set valor_total = ?, desc_geral = ?" +
-                "valor_troco = ?, data_venda = ?" +
+                "valor_troco = ?, valor_recebido = ?, data_venda = ?" +
                 "where venda.id order by id";
     	
     }

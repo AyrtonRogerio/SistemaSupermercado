@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleProduto">
@@ -66,8 +67,18 @@
                                  </padding>
                               </GridPane>
                            </top>
+                           <bottom>
+                              <Button fx:id="editar_prod_button" mnemonicParsing="false" onAction="#action" text="Editar" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
                            <center>
-                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="232.0" prefWidth="308.0" BorderPane.alignment="CENTER">
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <TableView fx:id="list_prod_tab" prefHeight="195.0" prefWidth="546.0">
                                       <columns>
@@ -84,18 +95,8 @@
                                        </columnResizePolicy>
                                     </TableView>
                                  </children>
-                              </FlowPane>
+                              </VBox>
                            </center>
-                           <bottom>
-                              <Button fx:id="editar_prod_button" mnemonicParsing="false" onAction="#action" text="Editar" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <BorderPane.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </BorderPane.margin>
-                              </Button>
-                           </bottom>
                         </BorderPane>
                      </content>
                 </Tab>
@@ -284,71 +285,55 @@
                               </FlowPane>
                            </bottom>
                            <center>
-                              <GridPane BorderPane.alignment="CENTER">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label text="Preço Unitário (R$)">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Preço Varejo (R$)" GridPane.columnIndex="1">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Porcentagem Varejo (%)" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Preço Atacado (R$)" GridPane.columnIndex="2">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Porcentagem Atacado (%)" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField fx:id="preco_unit_prod_cadastro_field" onAction="#action" promptText="Preço por unidade..." GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="preco_varej_prod_cadastro_field" onAction="#action" promptText="Preço Varejo..." GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="preco_atac_prod_cadast_field" onAction="#action" promptText="Preço Atacado..." GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="porc_varej_prod_cadast_field" onAction="#action" promptText="Porcentagem Varejo" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </TextField>
-                                    <TextField fx:id="porc_atac_prod_cadast_field" onAction="#action" promptText="Porcentamgem Atacado..." GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </GridPane.margin>
-                                    </TextField>
+                                    <GridPane>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Preço Unitário (R$)">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Porcentagem Varejo (%)" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Porcentagem Atacado (%)" GridPane.columnIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="preco_unit_prod_cadastro_field" onAction="#action" promptText="Preço por unidade..." GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="porc_varej_prod_cadast_field" alignment="CENTER_RIGHT" onAction="#action" text="100" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="porc_atac_prod_cadast_field" alignment="CENTER_RIGHT" onAction="#action" text="50" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                       </children>
+                                    </GridPane>
                                  </children>
-                              </GridPane>
+                              </VBox>
                            </center>
                         </BorderPane>
                      </content>
@@ -377,18 +362,9 @@
                                  </children>
                               </FlowPane>
                            </top>
-                           <center>
-                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="214.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                           <bottom>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <TableView fx:id="tabela_fornec" prefHeight="202.0" prefWidth="600.0">
-                                      <columns>
-                                        <TableColumn fx:id="nome_forn" prefWidth="117.0" text="Nome Fantasia" />
-                                        <TableColumn fx:id="razao_forn" prefWidth="133.0" text="Razão/Social" />
-                                          <TableColumn fx:id="cnpj_forn" prefWidth="141.0" text="CNPJ" />
-                                          <TableColumn fx:id="cidade_forn" prefWidth="130.0" text="Cidade" />
-                                          <TableColumn fx:id="estado_forn" prefWidth="78.0" text="Estado" />
-                                      </columns>
-                                    </TableView>
                                     <Button fx:id="volt_prod_fornc_button" mnemonicParsing="false" onAction="#action" text="Voltar" />
                                     <Button fx:id="add_fornec_button" mnemonicParsing="false" onAction="#action" text="Adicionar Fornecedor">
                                        <FlowPane.margin>
@@ -407,6 +383,21 @@
                                     </Button>
                                  </children>
                               </FlowPane>
+                           </bottom>
+                           <center>
+                              <VBox prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <TableView fx:id="tabela_fornec" prefHeight="202.0" prefWidth="600.0">
+                                      <columns>
+                                        <TableColumn fx:id="nome_forn" prefWidth="117.0" text="Nome Fantasia" />
+                                        <TableColumn fx:id="razao_forn" prefWidth="133.0" text="Razão/Social" />
+                                          <TableColumn fx:id="cnpj_forn" prefWidth="141.0" text="CNPJ" />
+                                          <TableColumn fx:id="cidade_forn" prefWidth="130.0" text="Cidade" />
+                                          <TableColumn fx:id="estado_forn" prefWidth="78.0" text="Estado" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
                            </center>
                         </BorderPane>
                      </content>

@@ -18,8 +18,6 @@ public class Item_Produto {
 	private Date data_fabricacao;
 	private Date data_compra;
 	private double preco_unidade;
-	private double preco_atacado;
-	private double preco_varejo;
 	private double porc_atacado;
 	private double porc_varejo;
 	private Fornecedor fornecedor_id;
@@ -108,22 +106,6 @@ public class Item_Produto {
 
 	public void setPreco_unidade(double preco_unidade) {
 		this.preco_unidade = preco_unidade;
-	}
-
-	public double getPreco_atacado() {
-		return preco_atacado;
-	}
-
-	public void setPreco_atacado(double preco_atacado) {
-		this.preco_atacado = preco_atacado;
-	}
-
-	public double getPreco_varejo() {
-		return preco_varejo;
-	}
-
-	public void setPreco_varejo(double preco_varejo) {
-		this.preco_varejo = preco_varejo;
 	}
 
 	public double getPorc_atacado() {

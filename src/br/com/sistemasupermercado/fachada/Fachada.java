@@ -1,5 +1,6 @@
 package br.com.sistemasupermercado.fachada;
 
+import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.business.*;
@@ -18,6 +19,8 @@ public class Fachada implements IFachada {
 	private IBusinessItem_Produto businessItem_Produto;
 	private IBusinessVenda businessVenda;
 	private IBusinessItem_Venda businessItem_venda;
+	private IBusinessContas_a_Pagar businessContas_a_pagar;
+	private IBusinessContas_a_Receber businessContas_a_receber;
 
 	public static Fachada getInstance() {
 		if (instance == null) {
@@ -37,6 +40,9 @@ public class Fachada implements IFachada {
 		businessItem_Produto = new BusinessItem_Produto();
 		businessVenda = new BusinessVenda();
 		businessItem_venda = new BusinessItem_Venda();
+		businessContas_a_pagar = new BusinessContas_a_Pagar();
+		businessContas_a_receber = new BusinessContas_a_Receber();
+
 	}
 
 	
@@ -76,6 +82,11 @@ public class Fachada implements IFachada {
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessCaixa.buscarPorId(id);
+	}
+
+	@Override
+	public Caixa buscarPorDataCaixa(Date data) throws BusinessException {
+		return this.businessCaixa.buscarPorData(data);
 	}
 
 	@Override
@@ -308,5 +319,61 @@ public class Fachada implements IFachada {
 	public void ativarDesativar_Item_Venda(int id) throws BusinessException {
 		this.businessItem_venda.ativarDesativar(id);
 	}
+
+	//Conta a pagar
+
+	@Override
+	public void salvarConta_a_Pagar(Contas_a_pagar contas_a_pagar, int caixa_id, int fornecedor_id) throws BusinessException {
+			this.businessContas_a_pagar.salvar(contas_a_pagar,caixa_id,fornecedor_id);
+	}
+
+	@Override
+	public void editarConta_a_Pagar(Contas_a_pagar contas_a_pagar) throws BusinessException {
+			this.businessContas_a_pagar.editar(contas_a_pagar);
+	}
+
+	@Override
+	public Contas_a_pagar buscarPorIdConta_a_Pagar(int id) throws BusinessException {
+		return this.businessContas_a_pagar.buscarPorId(id);
+	}
+
+	@Override
+	public List<Contas_a_pagar> getAllConta_a_Pagar() throws BusinessException {
+		return this.businessContas_a_pagar.getAll();
+	}
+
+	@Override
+	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException {
+			this.businessContas_a_pagar.ativarDesativar(id);
+	}
+
+	//Conta a Receber
+
+	@Override
+	public void salvarConta_a_Receber(Contas_a_receber contas_a_receber, int caixa_id, int venda_id) throws BusinessException {
+			this.businessContas_a_receber.salvar(contas_a_receber,caixa_id,venda_id);
+	}
+
+	@Override
+	public void editarConta_a_Receber(Contas_a_receber contas_a_receber) throws BusinessException {
+			this.businessContas_a_receber.editar(contas_a_receber);
+	}
+
+	@Override
+	public Contas_a_receber buscarPorIdConta_a_Receber(int id) throws BusinessException {
+		return this.businessContas_a_receber.buscarPorId(id);
+	}
+
+	@Override
+	public List<Contas_a_receber> getAllConta_a_Receber() throws BusinessException {
+		return this.businessContas_a_receber.getAll();
+	}
+
+	@Override
+	public void ativarDesativarConta_a_Receber(int id) throws BusinessException {
+			this.businessContas_a_receber.ativarDesativar(id);
+	}
+
+
 
 }

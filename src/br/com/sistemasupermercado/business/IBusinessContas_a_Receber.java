@@ -6,6 +6,7 @@ import br.com.sistemasupermercado.model.Contas_a_receber;
 import java.util.List;
 
 public interface IBusinessContas_a_Receber {
+
     public void salvar(Contas_a_receber contas_a_receber, int caixa_id, int venda_id) throws BusinessException;
 
     public void editar(Contas_a_receber contas_a_receber) throws BusinessException;

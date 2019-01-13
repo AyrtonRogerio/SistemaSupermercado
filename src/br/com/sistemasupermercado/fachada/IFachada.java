@@ -1,5 +1,6 @@
 package br.com.sistemasupermercado.fachada;
 
+import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
@@ -21,6 +22,8 @@ public interface IFachada {
 	public void salvarEditarCaixa(Caixa caixa, int funcionario_id) throws BusinessException;
 
 	public Caixa buscarPorIdCaixa(int id) throws BusinessException;
+
+	public Caixa buscarPorDataCaixa(Date data) throws BusinessException;
 
 	public List<Caixa> getAllCaixa() throws BusinessException;
 
@@ -111,7 +114,29 @@ public interface IFachada {
 
 	public void ativarDesativar_Item_Venda(int id) throws BusinessException;
 
+	//Contas a Pagar
 
+	public void salvarConta_a_Pagar(Contas_a_pagar contas_a_pagar, int caixa_id, int fornecedor_id) throws BusinessException;
+
+	public void editarConta_a_Pagar(Contas_a_pagar contas_a_pagar) throws BusinessException;
+
+	public Contas_a_pagar buscarPorIdConta_a_Pagar(int id) throws BusinessException;
+
+	public List<Contas_a_pagar> getAllConta_a_Pagar() throws BusinessException;
+
+	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException;
+
+	//Contas a Receber
+
+	public void salvarConta_a_Receber(Contas_a_receber contas_a_receber, int caixa_id, int venda_id) throws BusinessException;
+
+	public void editarConta_a_Receber(Contas_a_receber contas_a_receber) throws BusinessException;
+
+	public Contas_a_receber buscarPorIdConta_a_Receber(int id) throws BusinessException;
+
+	public List<Contas_a_receber> getAllConta_a_Receber() throws BusinessException;
+
+	public void ativarDesativarConta_a_Receber(int id) throws BusinessException;
 
 
 }

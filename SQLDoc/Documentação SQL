@@ -22,7 +22,9 @@ id serial PRIMARY KEY NOT NULL,
 entrada DOUBLE PRECISION,
 saida DOUBLE PRECISION,
 saldo DOUBLE PRECISION,
-funcionario_id INTEGER REFERECES funcionario(id)
+funcionario_id INTEGER REFERENCES funcionario(id),
+data_abertura DATE,
+data_fechamento DATE
 );
 
 CREATE TABLE produto(
@@ -55,6 +57,7 @@ id serial PRIMARY KEY NOT NULL,
 valor_total DOUBLE PRECISION,
 desc_geral DOUBLE PRECISION,
 valor_troco DOUBLE PRECISION,
+valor_recebido DOUBLE PRECISION,
 data_venda DATE,
 cliente_id INTEGER REFERENCES cliente(id),
 funcionario_id INTEGER REFERENCES funcionario(id),
@@ -89,8 +92,6 @@ data_fabricacao DATE,
 data_validade DATE,
 data_compra DATE,
 preco_unidade DOUBLE PRECISION,
-preco_atacado DOUBLE PRECISION,
-preco_varejo DOUBLE PRECISION,
 porc_atacado DOUBLE PRECISION,
 porc_varejo DOUBLE PRECISION,
 quantidade INTEGER,

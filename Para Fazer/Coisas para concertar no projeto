@@ -1,9 +1,9 @@
 *Concertar busca estoque;
-*Caixa vai ser o operador que logar;
-*Ja deixar a porcentagem de varejo em 100% e atacado a 50;
-*Quando cadastrar o produto ja voltar para a parte de listar produto;
+*Caixa vai ser o operador que logar; Feito - Perguntar a Heldon se é assim
+*Ja deixar a porcentagem de varejo em 100% e atacado a 50; Feito
+*Quando cadastrar o produto ja voltar para a parte de listar produto; Feito
 *Controle de contas a pagar e receber;
-*Nas contas a pagar ter o status de pago ou nao pago;
+*Nas contas a pagar ter o status de pago ou nao pago; Feito
 *Relatorio financeiro dia, mês e ano;
 
 Como tem que ser o relatório:

@@ -6,7 +6,7 @@ public class VendaTabAdapter {
     private int venda_cod_barras;
     private String venda_descricao;
     private int venda_quantidade;
-    private double venda_preco_unidade;
+    private double venda_preco_varejo;
 
     public int getItem() {
         return item;
@@ -40,11 +40,11 @@ public class VendaTabAdapter {
         this.venda_quantidade = venda_quantidade;
     }
 
-    public double getVenda_preco_unidade() {
-        return venda_preco_unidade;
+    public double getVenda_preco_varejo() {
+        return venda_preco_varejo;
     }
 
-    public void setVenda_preco_unidade(double venda_preco_unidade) {
-        this.venda_preco_unidade = venda_preco_unidade;
+    public void setVenda_preco_varejo(double venda_preco_varejo) {
+        this.venda_preco_varejo = venda_preco_varejo;
     }
 }

@@ -165,7 +165,7 @@ public class ControleVenda implements Initializable {
                 item_venda.setQuantidade(Integer.parseInt(qtd_prod_ven_field.getText()));
                 item_venda.setTipo("n sei");
                 item_venda.setValor_desc(0.00);
-                item_venda.setValor_item(item_produto.getPreco_atacado());
+                item_venda.setValor_item(item_produto.getPorc_varejo());
                 item_venda.setItem_produto_id(item_produto);
 
                 item_venda.setVenda_id(venda);

@@ -43,10 +43,11 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setDouble(1, venda.getValor_total());
 			this.statement.setDouble(2, venda.getDesc_geral());
 			this.statement.setDouble(3, venda.getValor_troco());
-			this.statement.setDate(4, new java.sql.Date(venda.getData_venda().getTime()));
-			this.statement.setInt(5, id_cliente);
-			this.statement.setInt(6, id_funcionario);
-			this.statement.setInt(7,id_caixa);
+			this.statement.setDouble(4, venda.getValor_recebido());
+			this.statement.setDate(5, new java.sql.Date(venda.getData_venda().getTime()));
+			this.statement.setInt(6, id_cliente);
+			this.statement.setInt(7, id_funcionario);
+			this.statement.setInt(8,id_caixa);
 
 			this.result = this.statement.executeQuery();
 
@@ -83,6 +84,7 @@ public class DaoVenda implements IDaoVenda{
 				venda.setValor_total(result.getDouble(SQLUtil.Venda.COL_VALOR_TOTAL));
 				venda.setDesc_geral(result.getDouble(SQLUtil.Venda.COL_DESC_GERAL));
 				venda.setValor_troco(result.getDouble(SQLUtil.Venda.COL_VALOR_TROCO));
+				venda.setValor_recebido(result.getDouble(SQLUtil.Venda.COL_VALOR_RECEBIDO));
 				venda.setData_venda(new Date(result.getDate(SQLUtil.Venda.COL_DATA_VENDA).getTime()));
 
 
@@ -130,6 +132,7 @@ public class DaoVenda implements IDaoVenda{
 				venda.setValor_total(result.getDouble(SQLUtil.Venda.COL_VALOR_TOTAL));
 				venda.setDesc_geral(result.getDouble(SQLUtil.Venda.COL_DESC_GERAL));
 				venda.setValor_troco(result.getDouble(SQLUtil.Venda.COL_VALOR_TROCO));
+				venda.setValor_recebido(result.getDouble(SQLUtil.Venda.COL_VALOR_RECEBIDO));
 				venda.setData_venda(new Date(result.getDate(SQLUtil.Venda.COL_DATA_VENDA).getTime()));
 
 				cliente = Fachada.getInstance().buscarPorIdCliente(result.getInt(SQLUtil.Venda.COL_CLIENTE_ID));
@@ -161,7 +164,8 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setDouble(1, venda.getValor_total());
 			this.statement.setDouble(2, venda.getDesc_geral());
 			this.statement.setDouble(4, venda.getValor_troco());
-			this.statement.setDate(5, new java.sql.Date(venda.getData_venda().getTime()));
+			this.statement.setDouble(5, venda.getValor_recebido());
+			this.statement.setDate(6, new java.sql.Date(venda.getData_venda().getTime()));
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);

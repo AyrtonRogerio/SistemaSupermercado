@@ -1,9 +1,6 @@
 package br.com.sistemasupermercado.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,6 +32,8 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.setDouble(2, caixa.getSaida());
 			this.statement.setDouble(3, caixa.getSaldo());
 			this.statement.setInt(4, funcionario_id);
+			this.statement.setDate(5, new java.sql.Date(caixa.getData_abertura().getTime()));
+			this.statement.setDate(6, new java.sql.Date(caixa.getData_fechamento().getTime()));
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +58,41 @@ public class DaoCaixa implements IDaoCaixa {
 				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
 				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
 				caixa.setFuncionario_id(funcionario);
+				caixa.setData_abertura(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_ABERTURA).getTime()));
+				caixa.setData_fechamento(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_FECHAMENTO).getTime()));
 				
+			}
+			this.conexao.close();
+
+		} catch (SQLException | BusinessException ex) {
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return caixa;
+	}
+
+	@Override
+	public Caixa buscarPorData(Date data) throws DaoException {
+		// TODO Auto-generated method stub
+		Caixa caixa = null;
+		Funcionario funcionario = null;
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.SELECT_DATA);
+			this.statement.setDate(1, data);
+			this.result = this.statement.executeQuery();
+
+			if (result.next()) {
+				caixa = new Caixa();
+				caixa.setId(result.getInt(1));
+				caixa.setEntrada(result.getDouble(SQLUtil.Caixa.COL_ENTRADA));
+				caixa.setSaida(result.getDouble(SQLUtil.Caixa.COL_SAIDA));
+				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
+				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
+				caixa.setFuncionario_id(funcionario);
+				caixa.setData_abertura(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_ABERTURA).getTime()));
+				caixa.setData_fechamento(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_FECHAMENTO).getTime()));
+
 			}
 			this.conexao.close();
 
@@ -87,6 +120,8 @@ public class DaoCaixa implements IDaoCaixa {
 				caixa.setSaldo(result.getDouble(SQLUtil.Caixa.COL_SALDO));
 				funcionario = Fachada.getInstance().buscarPorIdFuncionario(result.getInt(SQLUtil.Caixa.COL_FUNCIONARIO));
 				caixa.setFuncionario_id(funcionario);
+				caixa.setData_abertura(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_ABERTURA).getTime()));
+				caixa.setData_fechamento(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_FECHAMENTO).getTime()));
 				caixas.add(caixa);
 			}
 			this.conexao.close();

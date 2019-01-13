@@ -1,5 +1,7 @@
 package br.com.sistemasupermercado.model;
 
+import java.util.Date;
+
 public class Caixa {
 
 	private Integer id;
@@ -7,6 +9,8 @@ public class Caixa {
 	private Double saida;
 	private Double saldo;
 	private Funcionario funcionario_id;
+	private Date data_abertura;
+	private Date data_fechamento;
 
 	public Integer getId() {
 		return id;
@@ -46,5 +50,21 @@ public class Caixa {
 
 	public void setFuncionario_id(Funcionario funcionario_id) {
 		this.funcionario_id = funcionario_id;
+	}
+
+	public Date getData_abertura() {
+		return data_abertura;
+	}
+
+	public void setData_abertura(Date data_abertura) {
+		this.data_abertura = data_abertura;
+	}
+
+	public Date getData_fechamento() {
+		return data_fechamento;
+	}
+
+	public void setData_fechamento(Date data_fechamento) {
+		this.data_fechamento = data_fechamento;
 	}
 }

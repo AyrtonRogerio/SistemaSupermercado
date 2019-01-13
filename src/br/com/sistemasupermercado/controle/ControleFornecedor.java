@@ -28,9 +28,6 @@ public class ControleFornecedor implements Initializable{
 	    private Button cadastrar_forn_button;
 
 	    @FXML
-	    private Button sair_forn_button;
-
-	    @FXML
 	    private TextField nome_forn_field;
 
 	    @FXML
@@ -57,7 +54,13 @@ public class ControleFornecedor implements Initializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	    		
+
+	    		nome_forn_field.clear();
+	    		razao_social_forn_field.clear();
+	    		cnpj_forn_field.clear();
+	    		cidade_forn_field.clear();
+	    		estado_forn_field.clear();
+
 	    	}
 	    	
 	    }
