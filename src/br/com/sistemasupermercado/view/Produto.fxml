@@ -330,6 +330,36 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </GridPane.margin>
                                           </TextField>
+                                          <DatePicker fx:id="venc_parcela_data" onAction="#action" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </DatePicker>
+                                          <Label text="Data de Vencimento" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Parcelas" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="qtd_parc_field" alignment="CENTER_RIGHT" onAction="#action" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="70.0" right="90.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <TextField fx:id="valor_pago_field" alignment="CENTER_RIGHT" onAction="#action" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </TextField>
+                                          <Label text="Valor Pago(R$)" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </Label>
                                        </children>
                                     </GridPane>
                                  </children>

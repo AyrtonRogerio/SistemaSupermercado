@@ -276,7 +276,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.UPDATE_VENDIDOS);
-			this.statement.setLong(1, item_Produto.getVendidos());
+			this.statement.setInt(1, item_Produto.getVendidos());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);

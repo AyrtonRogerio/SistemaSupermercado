@@ -4,10 +4,13 @@ public class Contas_a_receber {
 
     private Integer id;
     private double valor;
+    private double valor_quitado;
+    private double saldo;
     private String descricao;
     private boolean status;
     private Caixa caixa_id;
-    private int pagamento;
+    private int qtd_pgmt;
+    private int qtd_paga;
     private Venda venda_id;
 
     public Integer getId() {
@@ -50,19 +53,43 @@ public class Contas_a_receber {
         this.caixa_id = caixa_id;
     }
 
-    public int getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(int pagamento) {
-        this.pagamento = pagamento;
-    }
-
     public Venda getVenda_id() {
         return venda_id;
     }
 
     public void setVenda_id(Venda venda_id) {
         this.venda_id = venda_id;
+    }
+
+    public double getValor_quitado() {
+        return valor_quitado;
+    }
+
+    public void setValor_quitado(double valor_quitado) {
+        this.valor_quitado = valor_quitado;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public int getQtd_pgmt() {
+        return qtd_pgmt;
+    }
+
+    public void setQtd_pgmt(int qtd_pgmt) {
+        this.qtd_pgmt = qtd_pgmt;
+    }
+
+    public int getQtd_paga() {
+        return qtd_paga;
+    }
+
+    public void setQtd_paga(int qtd_paga) {
+        this.qtd_paga = qtd_paga;
     }
 }

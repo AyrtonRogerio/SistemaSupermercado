@@ -7,10 +7,7 @@ import br.com.sistemasupermercado.principal.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -23,7 +20,8 @@ public class ControleVenda implements Initializable {
 
     private int cont = 1;
     private int venda_id = 0;
-    private double valor_total = 0.00;
+    private double valor_total = 0.00, valorTemp = 0.00;
+    private int qt;
 
     private Caixa caixa;
     private Funcionario funcionario;
@@ -34,6 +32,7 @@ public class ControleVenda implements Initializable {
     private List<Item_Venda> item_vendas;
     private Pagamento pagamento;
     private Cliente cliente;
+    private Contas_a_receber contas_a_receber;
 
     List<EstoqueTabAdapter> estoqueTabAdapters;
 
@@ -45,6 +44,12 @@ public class ControleVenda implements Initializable {
 
     @FXML
     private TextField pr_total_vend_field;
+
+    @FXML
+    private TextField valor_pago_field;
+
+    @FXML
+    private TextField qtd_pgmt_field;
 
     @FXML
     private Button nova_ven_button;
@@ -118,7 +123,7 @@ public class ControleVenda implements Initializable {
                 funcionario = ControleLogin.getFuncionario();
                 item_vendas = new ArrayList<Item_Venda>();
 
-                cliente = Fachada.getInstance().buscarPorIdCliente(2);
+                cliente = Fachada.getInstance().buscarPorIdCliente(1);
 
                 java.util.Date date = new Date();
                 venda.setData_venda(date);
@@ -188,8 +193,9 @@ public class ControleVenda implements Initializable {
 
                 valor_total += item_venda.getValor_item() * item_venda.getQuantidade();
                 pr_total_vend_field.setText(String.valueOf(valor_total));
-
-
+                venda.setValor_total(valor_total);
+                venda.setItem_vendas(item_vendas);
+                qtd_prod_ven_field.clear();
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
@@ -197,8 +203,54 @@ public class ControleVenda implements Initializable {
 
         if(event.getSource() == fin_ven_button){
 
+            contas_a_receber = new Contas_a_receber();
+
+            qt = Integer.parseInt(qtd_pgmt_field.getText());
+
+            venda.setValor_recebido(Double.parseDouble(valor_pago_field.getText()));
 
 
+            if(venda.getValor_recebido() >= venda.getValor_total() && qt == 1) {
+
+                venda.setValor_troco(venda.getValor_recebido() - venda.getValor_total());
+                contas_a_receber.setValor(venda.getValor_total());
+                contas_a_receber.setValor_quitado(venda.getValor_total());
+                contas_a_receber.setQtd_pgmt(qt);
+                contas_a_receber.setQtd_paga(qt);
+                contas_a_receber.setSaldo(contas_a_receber.getValor_quitado());
+                contas_a_receber.setStatus(false);
+
+            } else if(venda.getValor_recebido() < venda.getValor_total() && qt > 1){
+
+                venda.setValor_troco(0.00);
+
+                valorTemp = venda.getValor_total() / qt;
+
+                contas_a_receber.setQtd_pgmt(qt);
+                contas_a_receber.setQtd_paga(1);
+                contas_a_receber.setValor(venda.getValor_total());
+                contas_a_receber.setValor_quitado(valorTemp);
+                contas_a_receber.setSaldo(contas_a_receber.getValor_quitado());
+                contas_a_receber.setStatus(true);
+
+            }
+
+
+            contas_a_receber.setVenda_id(venda);
+            contas_a_receber.setCaixa_id(caixa);
+            contas_a_receber.setDescricao("Conta a receber do cliente em relação a venda" );
+
+
+
+            try {
+
+                Fachada.getInstance().editar_Venda(venda);
+                venda = Fachada.getInstance().buscarPorIdVenda(venda_id);
+                Fachada.getInstance().salvarConta_a_Receber(contas_a_receber,caixa.getId(),venda.getId());
+
+            } catch (BusinessException e) {
+                e.printStackTrace();
+            }
 
 
         }

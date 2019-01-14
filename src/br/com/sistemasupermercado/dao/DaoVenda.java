@@ -163,9 +163,8 @@ public class DaoVenda implements IDaoVenda{
 			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.UPDATE_VENDA);
 			this.statement.setDouble(1, venda.getValor_total());
 			this.statement.setDouble(2, venda.getDesc_geral());
-			this.statement.setDouble(4, venda.getValor_troco());
-			this.statement.setDouble(5, venda.getValor_recebido());
-			this.statement.setDate(6, new java.sql.Date(venda.getData_venda().getTime()));
+			this.statement.setDouble(3, venda.getValor_troco());
+			this.statement.setDouble(4, venda.getValor_recebido());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);

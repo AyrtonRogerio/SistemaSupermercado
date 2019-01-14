@@ -117,8 +117,12 @@ item_produto_id INTEGER REFERENCES item_produto(id)
 
 CREATE TABLE contas_a_pagar(
 id serial PRIMARY KEY NOT NULL,
-valor DOUBLE PRECISION,
 descricao VARCHAR(255),
+valor DOUBLE PRECISION,
+valor_quitado DOUBLE PRECISION,
+qtd_pgmt INTEGER,
+qtd_paga INTEGER,
+data_vencimento DATE,
 caixa_id INTEGER REFERENCES caixa(id),
 fornecedor_id INTEGER REFERENCES fornecedor(id),
 status BOOLEAN
@@ -126,10 +130,13 @@ status BOOLEAN
 
 CREATE TABLE contas_a_receber(
 id serial PRIMARY KEY NOT NULL,
-valor DOUBLE PRECISION,
 descricao VARCHAR(255),
+valor DOUBLE PRECISION,
+valor_quitado DOUBLE PRECISION,
+qtd_pgmt INTEGER,
+qtd_paga INTEGER,
+saldo DOUBLE PRECISION,
 caixa_id INTEGER REFERENCES caixa(id),
-qtd_pagmt INTEGER,
 venda_id INTEGER REFERENCES venda(id),
 status BOOLEAN
 );

@@ -132,6 +132,15 @@ public class ControleProduto implements Initializable {
 	private TextField porc_atac_prod_cadast_field;
 
 	@FXML
+	private DatePicker venc_parcela_data;
+
+	@FXML
+	private TextField qtd_parc_field;
+
+	@FXML
+	private TextField valor_pago_field;
+
+	@FXML
 	private Tab fornecedor_tab;
 
 	@FXML
@@ -241,17 +250,52 @@ public class ControleProduto implements Initializable {
 				System.out.println(fornecedor.getId());
 				fachada.salvarItemProduto(item_Produto, fornecedor.getId());
 
+				double valTemp = 0.00;
+				double valP = 0.00;
+				int qt = 0;
 
 			contas_a_pagar = new Contas_a_pagar();
 
 			contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
-			contas_a_pagar.setStatus(true);
+
+			qt = Integer.parseInt(qtd_parc_field.getText());
+
+			valTemp = contas_a_pagar.getValor() / qt;
+
+			valP = Double.parseDouble(valor_pago_field.getText());
+
+			if(valP >= valTemp){
+
+				contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
+				contas_a_pagar.setQtd_paga(qt);
+				contas_a_pagar.setStatus(false);
+
+
+			} else if(valP < valTemp) {
+
+				contas_a_pagar.setValor_quitado(valP);
+				contas_a_pagar.setQtd_pgmt(qt);
+				contas_a_pagar.setQtd_paga(1);
+				contas_a_pagar.setStatus(true);
+
+
+
+
+			}
+
+				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					contas_a_pagar.setData_vencimento(format.parse(venc_parcela_data.getEditor().getText()));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 			contas_a_pagar.setFornecedor_id(fornecedor);
 			contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
 			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + "à " + fornecedor.getNome());
 
 			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(),fornecedor.getId());
 			produtoTabAdapters = fachada.getAllAdapterItemProduto();
+
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

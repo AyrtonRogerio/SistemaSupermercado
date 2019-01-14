@@ -1,15 +1,9 @@
 package br.com.sistemasupermercado.principal;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import br.com.sistemasupermercado.dao.DaoCommum;
-import br.com.sistemasupermercado.enuns.TipoContato;
-import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.fachada.IFachada;
-import br.com.sistemasupermercado.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,7 +16,7 @@ public class Main extends Application {
 	private static Pane inicio;
 	private static Pane cadastroFornecedor;
 	private static Pane venda;
-	private static Pane caixa;
+	private static Pane pagamentoVenda;
 	private static Scene sceneLogin;
 	private static Scene sceneMenu;
 	private static Scene sceneVenda;
@@ -53,8 +47,8 @@ public class Main extends Application {
 			venda = FXMLLoader.load(getClass().getClassLoader().getResource
 					("br/com/sistemasupermercado/view/Venda.fxml"));
 
-			caixa = FXMLLoader.load(getClass().getClassLoader().getResource
-					("br/com/sistemasupermercado/view/AberturaCaixa.fxml"));
+			pagamentoVenda = FXMLLoader.load(getClass().getClassLoader().getResource
+					("br/com/sistemasupermercado/view/PagamentoVenda.fxml"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,8 +78,8 @@ public class Main extends Application {
 		return venda;
 	}
 
-	public static  Pane telaCaixa(){
-    	return  caixa;
+	public static  Pane telaPagamentoVenda(){
+    	return  pagamentoVenda;
 	}
 
     public static Pane telaFornecedor() {

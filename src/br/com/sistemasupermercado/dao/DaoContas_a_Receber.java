@@ -31,12 +31,15 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Contas_a_Receber.INSERT);
-            this.statement.setDouble(1, contas_a_receber.getValor());
-            this.statement.setString(2, contas_a_receber.getDescricao());
-            this.statement.setInt(3, caixa_id);
-            this.statement.setInt(4, contas_a_receber.getPagamento());
-            this.statement.setInt(5, venda_id);
-            this.statement.setBoolean(6, contas_a_receber.isStatus());
+            this.statement.setString(1, contas_a_receber.getDescricao());
+            this.statement.setDouble(2, contas_a_receber.getValor());
+            this.statement.setDouble(3, contas_a_receber.getValor_quitado());
+            this.statement.setInt(4, contas_a_receber.getQtd_pgmt());
+            this.statement.setInt(5, contas_a_receber.getQtd_paga());
+            this.statement.setDouble(6, contas_a_receber.getSaldo());
+            this.statement.setInt(7, caixa_id);
+            this.statement.setInt(8, venda_id);
+            this.statement.setBoolean(9, contas_a_receber.isStatus());
 
             this.statement.execute();
 
@@ -58,11 +61,14 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
             if (result.next()) {
                 contas_a_receber = new Contas_a_receber();
                 contas_a_receber.setId(result.getInt(1));
-                contas_a_receber.setValor(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR));
                 contas_a_receber.setDescricao(result.getString(SQLUtil.Contas_a_Receber.COL_DESCRICAO));
+                contas_a_receber.setValor(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR));
+                contas_a_receber.setValor_quitado(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR_QUITADO));
+                contas_a_receber.setQtd_pgmt(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PGMT));
+                contas_a_receber.setQtd_paga(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PAGA));
+                contas_a_receber.setSaldo(result.getDouble(SQLUtil.Contas_a_Receber.COL_SALDO));
                 caixa = Fachada.getInstance().buscarPorIdCaixa(result.getInt(SQLUtil.Contas_a_Receber.COL_CAIXA_ID));
                 contas_a_receber.setCaixa_id(caixa);
-                contas_a_receber.setPagamento(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PAGMT));
                 venda = Fachada.getInstance().buscarPorIdVenda(result.getInt(SQLUtil.Contas_a_Receber.COL_VENDA_ID));
                 contas_a_receber.setVenda_id(venda);
                 contas_a_receber.setStatus(result.getBoolean(SQLUtil.Contas_a_Receber.COL_STATUS));
@@ -89,11 +95,14 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
             while (result.next()) {
                 contas_a_receber = new Contas_a_receber();
                 contas_a_receber.setId(result.getInt(1));
-                contas_a_receber.setValor(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR));
                 contas_a_receber.setDescricao(result.getString(SQLUtil.Contas_a_Receber.COL_DESCRICAO));
+                contas_a_receber.setValor(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR));
+                contas_a_receber.setValor_quitado(result.getDouble(SQLUtil.Contas_a_Receber.COL_VALOR_QUITADO));
+                contas_a_receber.setQtd_pgmt(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PGMT));
+                contas_a_receber.setQtd_paga(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PAGA));
+                contas_a_receber.setSaldo(result.getDouble(SQLUtil.Contas_a_Receber.COL_SALDO));
                 caixa = Fachada.getInstance().buscarPorIdCaixa(result.getInt(SQLUtil.Contas_a_Receber.COL_CAIXA_ID));
                 contas_a_receber.setCaixa_id(caixa);
-                contas_a_receber.setPagamento(result.getInt(SQLUtil.Contas_a_Receber.COL_QTD_PAGMT));
                 venda = Fachada.getInstance().buscarPorIdVenda(result.getInt(SQLUtil.Contas_a_Receber.COL_VENDA_ID));
                 contas_a_receber.setVenda_id(venda);
                 contas_a_receber.setStatus(result.getBoolean(SQLUtil.Contas_a_Receber.COL_STATUS));
@@ -110,6 +119,19 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
     @Override
     public void editar(Contas_a_receber contas_a_receber) throws DaoException {
+
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Contas_a_Receber.UPDATE);
+            this.statement.setString(1, contas_a_receber.getDescricao());
+            this.statement.setDouble(2, contas_a_receber.getValor());
+            this.statement.setInt(3, contas_a_receber.getQtd_paga());
+            this.statement.setDouble(4, contas_a_receber.getValor_quitado());
+            this.statement.setDouble(5, contas_a_receber.getSaldo());
+            this.statement.setBoolean(6, contas_a_receber.isStatus());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

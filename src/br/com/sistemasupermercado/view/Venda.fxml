@@ -26,8 +26,9 @@
                      <children>
                         <GridPane alignment="TOP_CENTER" prefHeight="86.0" prefWidth="794.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.6666717529297" minWidth="10.0" prefWidth="210.6666717529297" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.6666564941406" minWidth="10.0" prefWidth="193.33334350585938" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.6666717529297" minWidth="10.0" prefWidth="172.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.6666564941406" minWidth="10.0" prefWidth="183.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="243.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="195.3333740234375" />
                           </columnConstraints>
                           <rowConstraints>
@@ -36,7 +37,15 @@
                               <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Quantidade" GridPane.rowIndex="1">
+                              <Label text="Quantidade" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="110.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Preço Unid.(R$)" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -44,31 +53,15 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label text="Preço Unid.(R$)" GridPane.rowIndex="2">
+                              <TextField fx:id="pr_un_prod_ven_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="36.0" prefWidth="136.0" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="qtd_prod_ven_field" alignment="CENTER_RIGHT" onAction="#action" prefHeight="35.0" prefWidth="232.0" promptText="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="210.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="100.0" top="5.0" />
                                  </GridPane.margin>
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="pr_un_prod_ven_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="50.0" prefWidth="280.0" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </TextField>
-                              <Label text="Total(R$)" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label text="Total(R$)" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -76,7 +69,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="pr_total_vend_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="50.0" prefWidth="280.0" promptText="0,00" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <TextField fx:id="pr_total_vend_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -85,6 +78,24 @@
                                  </opaqueInsets>
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label text="Valor Pago(R$)" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="80.0" right="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="valor_pago_field" alignment="CENTER_RIGHT" onAction="#action" promptText="0,00" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="qtd_pgmt_field" alignment="CENTER_RIGHT" onAction="#action" text="1" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="140.0" />
                                  </GridPane.margin>
                               </TextField>
                            </children>
@@ -162,16 +173,28 @@
                      <children>
                         <FlowPane alignment="CENTER" prefHeight="47.0" prefWidth="308.0">
                            <children>
-                              <TextField fx:id="busc_prod_ven_field" onAction="#action" prefHeight="25.0" prefWidth="275.0" promptText="Buscar produto...">
+                              <TextField fx:id="busc_prod_ven_field" onAction="#action" prefHeight="26.0" prefWidth="225.0" promptText="Buscar produto...">
                                  <FlowPane.margin>
                                     <Insets left="5.0" right="5.0" top="10.0" />
                                  </FlowPane.margin>
                               </TextField>
                               <Button fx:id="busc_prod_ven_button" mnemonicParsing="false" onAction="#action" text="Buscar">
                                  <FlowPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets left="5.0" right="5.0" top="10.0" />
                                  </FlowPane.margin>
                               </Button>
+                              <Label text="Qtd:" />
+                              <TextField fx:id="qtd_prod_ven_field" alignment="CENTER_RIGHT" onAction="#action" prefHeight="35.0" prefWidth="47.0" text="1">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <FlowPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </FlowPane.margin>
+                              </TextField>
                               <Button fx:id="adic_prod_ven_button" mnemonicParsing="false" onAction="#action" text="Adicionar">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
