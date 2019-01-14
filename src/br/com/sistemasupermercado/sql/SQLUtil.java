@@ -290,6 +290,15 @@ public class SQLUtil {
                 COL_DESCRICAO + "," + COL_VALOR + "," + COL_VALOR_QUITADO + "," +
                 COL_QTD_PGMT + "," + COL_QTD_PAGA + "," + COL_SALDO + "," + COL_CAIXA_ID + "," +
                 COL_VENDA_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?) returning id";
+        
+        public static final String SELECT_ALL_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga from contas_a_receber c ";
+        
+        public static final String SELECT_A_RECEB_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga from contas_a_receber c where c.status = true";
+        
+        public static final String SELECT_RECEBIDA_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga from contas_a_receber c where c.status = false";
 
         public static final String UPDATE = " update contas_a_receber set descricao = ?, valor = ?, qtd_pgmt = ?, valor_quitado = ?," +
                 "saldo = ?, status = ?";
@@ -314,6 +323,15 @@ public class SQLUtil {
                 COL_QTD_PAGA + "," + COL_DATA_VENC + "," + COL_CAIXA_ID + "," +
                 COL_FORNEC_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?) returning id";
 
+        public static final String SELECT_ALL_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c ";
+        
+        public static final String SELECT_A_PAG_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c where c.status = true";
+        
+        public static final String SELECT_PAGA_ADAPTER = "select c.descricao, c.valor, c.valor_quitado,"
+        		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c where c.status = false";
+        
         public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, fornecedor_id = ?, status = ?";
     }
 

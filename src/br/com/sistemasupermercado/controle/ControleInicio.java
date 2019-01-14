@@ -25,6 +25,8 @@ public class ControleInicio implements Initializable {
 	private Pane CadastroCliente;
 	private Pane CadastroFuncionario;
 	private Pane CadastroProduto;
+	private Pane ContasAPagar;
+	private Pane ContasAReceber;
 	private Caixa caixa;
 
 	@FXML
@@ -104,6 +106,15 @@ public class ControleInicio implements Initializable {
 			vendaDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 			vendaDialog.showAndWait();
 		}
+		
+		if(event.getSource() == financas_contas_pagar_menu) {
+			atualizarTela("contasPagar");
+			
+		}
+		
+		if(event.getSource() == financas_contas_receber_menu) {
+			atualizarTela("contasReceber");
+		}
 
 	}
 
@@ -118,7 +129,11 @@ public class ControleInicio implements Initializable {
 			CadastroProduto = FXMLLoader.load(
 					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Produto.fxml"));
 
+			ContasAPagar = FXMLLoader.load(
+					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/ContasPagar.fxml"));
 
+			ContasAReceber = FXMLLoader.load(
+					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/ContasReceber.fxml"));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -151,6 +166,24 @@ public class ControleInicio implements Initializable {
 			AnchorPane.setRightAnchor(CadastroProduto, 0.0);
 			AnchorPane.setTopAnchor(CadastroProduto, 0.0);
 			pane.getChildren().setAll(CadastroProduto);
+		}
+		
+		if (tela.equalsIgnoreCase("contasPagar")) {
+
+			AnchorPane.setBottomAnchor(ContasAPagar, 0.0);
+			AnchorPane.setLeftAnchor(ContasAPagar, 0.0);
+			AnchorPane.setRightAnchor(ContasAPagar, 0.0);
+			AnchorPane.setTopAnchor(ContasAPagar, 0.0);
+			pane.getChildren().setAll(ContasAPagar);
+		}
+		
+		if (tela.equalsIgnoreCase("contasReceber")) {
+
+			AnchorPane.setBottomAnchor(ContasAReceber, 0.0);
+			AnchorPane.setLeftAnchor(ContasAReceber, 0.0);
+			AnchorPane.setRightAnchor(ContasAReceber, 0.0);
+			AnchorPane.setTopAnchor(ContasAReceber, 0.0);
+			pane.getChildren().setAll(ContasAReceber);
 		}
 	}
 

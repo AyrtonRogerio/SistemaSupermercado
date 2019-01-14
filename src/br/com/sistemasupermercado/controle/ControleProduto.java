@@ -268,6 +268,7 @@ public class ControleProduto implements Initializable {
 
 				contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
 				contas_a_pagar.setQtd_paga(qt);
+				contas_a_pagar.setQtd_pgmt(qt);
 				contas_a_pagar.setStatus(false);
 
 
@@ -277,8 +278,6 @@ public class ControleProduto implements Initializable {
 				contas_a_pagar.setQtd_pgmt(qt);
 				contas_a_pagar.setQtd_paga(1);
 				contas_a_pagar.setStatus(true);
-
-
 
 
 			}

@@ -146,7 +146,11 @@ public interface IFachada {
 
 	public Contas_a_pagar buscarPorIdConta_a_Pagar(int id) throws BusinessException;
 
-	public List<Contas_a_pagar> getAllConta_a_Pagar() throws BusinessException;
+	public List<Contas_a_Pagar_Adapter> getAllConta_a_Pagar() throws BusinessException;
+	
+	public List<Contas_a_Pagar_Adapter> getAll_PagaConta_a_Pagar() throws BusinessException;
+	
+	public List<Contas_a_Pagar_Adapter> getAll_A_PagarConta_a_Pagar() throws BusinessException;
 
 	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException;
 
@@ -158,7 +162,11 @@ public interface IFachada {
 
 	public Contas_a_receber buscarPorIdConta_a_Receber(int id) throws BusinessException;
 
-	public List<Contas_a_receber> getAllConta_a_Receber() throws BusinessException;
+	public List<Contas_a_Receber_Adapter> getAllConta_a_Receber() throws BusinessException;
+	
+	public List<Contas_a_Receber_Adapter> getAll_RecebidaConta_a_Receber() throws BusinessException;
+	
+	public List<Contas_a_Receber_Adapter> getAll_A_ReceberConta_a_Receber() throws BusinessException;
 
 	public void ativarDesativarConta_a_Receber(int id) throws BusinessException;
 

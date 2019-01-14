@@ -398,10 +398,22 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public List<Contas_a_pagar> getAllConta_a_Pagar() throws BusinessException {
+	public List<Contas_a_Pagar_Adapter> getAllConta_a_Pagar() throws BusinessException {
 		return this.businessContas_a_pagar.getAll();
 	}
 
+	@Override
+	public List<Contas_a_Pagar_Adapter> getAll_PagaConta_a_Pagar() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessContas_a_pagar.getAll_Paga();
+	}
+
+	@Override
+	public List<Contas_a_Pagar_Adapter> getAll_A_PagarConta_a_Pagar() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessContas_a_pagar.getAll_A_Pagar();
+	}
+	
 	@Override
 	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException {
 			this.businessContas_a_pagar.ativarDesativar(id);
@@ -425,13 +437,25 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public List<Contas_a_receber> getAllConta_a_Receber() throws BusinessException {
+	public List<Contas_a_Receber_Adapter> getAllConta_a_Receber() throws BusinessException {
 		return this.businessContas_a_receber.getAll();
 	}
 
 	@Override
 	public void ativarDesativarConta_a_Receber(int id) throws BusinessException {
 			this.businessContas_a_receber.ativarDesativar(id);
+	}
+
+	@Override
+	public List<Contas_a_Receber_Adapter> getAll_RecebidaConta_a_Receber() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessContas_a_receber.getAll_Recebida();
+	}
+
+	@Override
+	public List<Contas_a_Receber_Adapter> getAll_A_ReceberConta_a_Receber() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessContas_a_receber.getAll_A_Receber();
 	}
 
 

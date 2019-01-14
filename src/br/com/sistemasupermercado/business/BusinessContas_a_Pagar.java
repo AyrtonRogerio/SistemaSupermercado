@@ -5,6 +5,7 @@ import br.com.sistemasupermercado.dao.IDaoContas_a_Pagar;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
+import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
 import br.com.sistemasupermercado.model.Contas_a_pagar;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class BusinessContas_a_Pagar implements IBusinessContas_a_Pagar {
     }
 
     @Override
-    public List<Contas_a_pagar> getAll() throws BusinessException {
+    public List<Contas_a_Pagar_Adapter> getAll() throws BusinessException {
         try {
             return daoContas_a_pagar.getAll();
         } catch (DaoException e) {
@@ -73,4 +74,30 @@ public class BusinessContas_a_Pagar implements IBusinessContas_a_Pagar {
     public void validar(Contas_a_pagar contas_a_pagar) throws ValidacaoException {
 
     }
+
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessContas_a_Pagar#getAll_Paga()
+	 */
+	@Override
+	public List<Contas_a_Pagar_Adapter> getAll_Paga() throws BusinessException {
+		try {
+            return daoContas_a_pagar.getAll_Paga();
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+	}
+
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessContas_a_Pagar#getAll_A_Pagar()
+	 */
+	@Override
+	public List<Contas_a_Pagar_Adapter> getAll_A_Pagar() throws BusinessException {
+		try {
+            return daoContas_a_pagar.getAll_A_Pagar();
+        } catch (DaoException e) {
+            e.printStackTrace();
+            throw new BusinessException(e.getMessage());
+        }
+	}
 }

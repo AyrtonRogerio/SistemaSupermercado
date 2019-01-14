@@ -12,7 +12,7 @@
    <children>
       <BorderPane style="-fx-background-color: #ccccc2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <MenuBar style="-fx-background-color: #345D7E;" BorderPane.alignment="CENTER">
+            <MenuBar style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" onAction="#action">
                      <graphic>
