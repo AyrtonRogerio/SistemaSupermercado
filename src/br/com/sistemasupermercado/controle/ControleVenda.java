@@ -189,13 +189,15 @@ public class ControleVenda implements Initializable {
                     Fachada.getInstance().salvar_Item_Venda(item_venda, venda_id, item_produto.getId());
                     item_vendas.add(item_venda);
                 }
-                pr_un_prod_ven_field.setText(String.valueOf(item_venda.getValor_item()));
+              
 
                 valor_total += item_venda.getValor_item() * item_venda.getQuantidade();
                 pr_total_vend_field.setText(String.valueOf(valor_total));
                 venda.setValor_total(valor_total);
                 venda.setItem_vendas(item_vendas);
-                qtd_prod_ven_field.clear();
+                qtd_prod_ven_field.setText("1");
+                pr_un_prod_ven_field.clear();
+                
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
@@ -247,7 +249,10 @@ public class ControleVenda implements Initializable {
                 Fachada.getInstance().editar_Venda(venda);
                 venda = Fachada.getInstance().buscarPorIdVenda(venda_id);
                 Fachada.getInstance().salvarConta_a_Receber(contas_a_receber,caixa.getId(),venda.getId());
-
+                caixa.setEntrada(caixa.getEntrada() + contas_a_receber.getValor_quitado());
+                
+                Fachada.getInstance().editarCaixa(caixa);
+                limparCampos();
             } catch (BusinessException e) {
                 e.printStackTrace();
             }
@@ -287,7 +292,26 @@ public class ControleVenda implements Initializable {
 
 
 
+    public void limparCampos() {
+    	
+    	cont = 0; 
+    	
+    	qtd_prod_ven_field.setText("1");
 
+    	info_cx_ven_field.setText("Caixa Livre!");
+    	 
+        pr_un_prod_ven_field.clear();
+
+        pr_total_vend_field.clear();
+
+        valor_pago_field.clear();
+         
+        vend_tab.getItems().clear();
+
+        qtd_pgmt_field.setText("1");
+    	
+    	
+    }
 
 
 

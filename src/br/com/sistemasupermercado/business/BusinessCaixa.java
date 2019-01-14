@@ -37,6 +37,7 @@ public class BusinessCaixa implements IBusinessCaixa {
 	@Override
 	public void editar(Caixa caixa) throws BusinessException {
 		try {
+			caixa.setSaldo(caixa.getEntrada() - caixa.getSaida());
 			daoCaixa.editar(caixa);
 		} catch (DaoException e) {
 			e.printStackTrace();

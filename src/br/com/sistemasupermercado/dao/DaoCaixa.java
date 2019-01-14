@@ -75,6 +75,7 @@ public class DaoCaixa implements IDaoCaixa {
 		// TODO Auto-generated method stub
 		Caixa caixa = null;
 		Funcionario funcionario = null;
+		int id = 0;
 		try {
 
 			this.conexao = SQLConections.getInstance();
@@ -93,6 +94,8 @@ public class DaoCaixa implements IDaoCaixa {
 				caixa.setData_abertura(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_ABERTURA).getTime()));
 				caixa.setData_fechamento(new java.util.Date(result.getDate(SQLUtil.Caixa.COL_DATA_FECHAMENTO).getTime()));
 
+				id = this.result.getInt(1);
+				
 			}
 			this.conexao.close();
 
@@ -139,7 +142,7 @@ public class DaoCaixa implements IDaoCaixa {
 		List<Caixa> caixas = new ArrayList<>();
 		try {
 			this.conexao = SQLConections.getInstance();
-			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Endereco.NOME_TABELA));
+			this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Caixa.NOME_TABELA));
 			this.result = this.statement.executeQuery();
 			Caixa caixa;
 			Funcionario funcionario;
@@ -166,7 +169,16 @@ public class DaoCaixa implements IDaoCaixa {
 	@Override
 	public void editar(Caixa caixa) throws DaoException {
 		// TODO Auto-generated method stub
-		
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.UPDATE);
+			this.statement.setDouble(1, caixa.getEntrada());
+			this.statement.setDouble(2, caixa.getSaida());
+			this.statement.setDouble(3, caixa.getSaldo());
+			this.statement.execute();
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	@Override

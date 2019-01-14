@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Contas_a_Pagar" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="valor_quitado" class="java.lang.Double"/>
+	<field name="qtd_pgmt" class="java.lang.Integer"/>
+	<field name="qtd_paga" class="java.lang.Integer"/>
+	<field name="data_vencimento" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="62" y="0" width="430" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Contas a Pagar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="90" y="60" width="339" height="22" uuid="88d4231e-f014-4b0d-b871-1737ba63a1ae"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Relatórtio do total de Contas a Pagar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="f0bfb1ea-a85a-47cd-a1a4-43f22b45e80f"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Relatório de todas as contas a pagar referente até a data atual do presente documento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="-10" y="3" width="90" height="30" uuid="fc4189df-0761-46e5-8143-da797259794c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ba5b777-6a2c-46bb-a312-5554bf2035f0"/>
+				</reportElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="3" width="100" height="30" uuid="fb47c37e-3c43-4f3e-a565-3faf4f8eaa23">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f1722dd-cc7c-48b5-b133-c7f74850b325"/>
+				</reportElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="3" width="100" height="30" uuid="5500cc40-7d02-4687-ac76-14795e8c7884">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="47cb0257-c12f-4e2c-b603-769349ca4118"/>
+				</reportElement>
+				<text><![CDATA[Valor Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="3" width="100" height="30" uuid="5c38b483-2bdf-4dd3-a3b8-083943e0f1d4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8ef9c84-f149-4104-9884-8f8bd5cefbe8"/>
+				</reportElement>
+				<text><![CDATA[Nº de Pagamentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="3" width="112" height="30" uuid="2984e325-b38f-461b-afec-6234edd440ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8fdf7449-5678-4554-8117-1f2e8ca2bf7c"/>
+				</reportElement>
+				<text><![CDATA[Data de Vencimento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="75" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="a98495d8-3c8d-4fa0-81f5-30c3efc2f766"/>
+			</frame>
+			<textField>
+				<reportElement x="-10" y="15" width="90" height="30" uuid="4eae0c8c-e3ae-4d89-8ca3-83225d49157b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ba5b777-6a2c-46bb-a312-5554bf2035f0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="15" width="100" height="30" uuid="17ef3c31-e4ea-46c8-bc64-42bb0f80ef9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f1722dd-cc7c-48b5-b133-c7f74850b325"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="15" width="100" height="30" uuid="5a377d53-8198-4d5d-a2c0-68999560daba">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="47cb0257-c12f-4e2c-b603-769349ca4118"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valor_quitado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="15" width="100" height="30" uuid="5bba2010-84e4-43bf-94d5-d79fe033b6c4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8ef9c84-f149-4104-9884-8f8bd5cefbe8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{qtd_pgmt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="15" width="100" height="30" uuid="dcc00cca-8cf7-47f5-8a16-a0dcc8e0e7b2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8fdf7449-5678-4554-8117-1f2e8ca2bf7c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{data_vencimento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="62" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fa45a887-615a-4d84-a2d7-8a2219671b3c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

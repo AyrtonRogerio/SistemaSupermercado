@@ -33,6 +33,7 @@ public class ControleProduto implements Initializable {
 	private List<ProdutoTabAdapter> produtoTabAdapters;
 	private Item_Produto item_Produto;
 	private Contas_a_pagar contas_a_pagar;
+	private Caixa caixa;
 
 	private double pr_un, pr_var, pr_atac;
 
@@ -293,6 +294,11 @@ public class ControleProduto implements Initializable {
 			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + "à " + fornecedor.getNome());
 
 			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(),fornecedor.getId());
+			
+			java.sql.Date data = new java.sql.Date(new Date().getTime());
+			caixa = fachada.buscarPorDataCaixa(data);
+			caixa.setSaida(caixa.getSaida() + contas_a_pagar.getValor_quitado());
+			fachada.editarCaixa(caixa);
 			produtoTabAdapters = fachada.getAllAdapterItemProduto();
 
 			} catch (BusinessException e) {

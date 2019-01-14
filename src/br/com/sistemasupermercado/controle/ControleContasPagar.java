@@ -158,7 +158,7 @@ public class ControleContasPagar implements Initializable {
 		});
 
 		try {
-			contas_a_Pagar_All = Fachada.getInstance().getAll_A_PagarConta_a_Pagar();
+			contas_a_Pagar_All = Fachada.getInstance().getAllConta_a_Pagar();
 			hist_tabview.getItems().setAll(contas_a_Pagar_All);
 		} catch (BusinessException e) {
 			e.printStackTrace();
