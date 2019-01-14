@@ -418,8 +418,6 @@ public class ControleProduto implements Initializable {
 		cod_prod_cadast_field.clear();
 		quant_prod_cadast_field.clear();
 		perecivel_prod_cadast_checkB.setSelected(false);
-		porc_atac_prod_cadast_field.clear();
-		porc_varej_prod_cadast_field.clear();
 		preco_unit_prod_cadastro_field.clear();
 
 	}

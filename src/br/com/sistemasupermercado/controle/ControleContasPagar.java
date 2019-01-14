@@ -4,18 +4,28 @@
 package br.com.sistemasupermercado.controle;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.crypto.CipherInputStream;
+
+import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
+import br.com.sistemasupermercado.model.ProdutoTabAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * @author ayrton
@@ -23,6 +33,10 @@ import javafx.scene.control.TextField;
  */
 public class ControleContasPagar implements Initializable {
 
+	private List<Contas_a_Pagar_Adapter> contas_a_Pagar_All = new ArrayList<>();
+	private List<Contas_a_Pagar_Adapter> contas_a_Pagar_List = new ArrayList<>();
+	private List<Contas_a_Pagar_Adapter> contas_a_Pagar_Paga = new ArrayList<>();
+	
 
     @FXML
     private Tab hist_tab;
@@ -119,6 +133,98 @@ public class ControleContasPagar implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		
+		hist_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		hist_val_col.setCellValueFactory(new PropertyValueFactory<>("valor"));
+		hist_val_pg_col.setCellValueFactory(new PropertyValueFactory<>("valor_quitado"));
+		hist_qt_col.setCellValueFactory(new PropertyValueFactory<>("qtd_pgmt"));
+		hist_qt_pg_col.setCellValueFactory(new PropertyValueFactory<>("qtd_paga"));
+		hist_data_venc_col.setCellValueFactory(new PropertyValueFactory<>("data_vencimento"));
+
+		hist_data_venc_col.setCellFactory(coluna -> {
+
+			return new TableCell<Contas_a_Pagar_Adapter, Date>() {
+				protected void updateItem(Date item, boolean empty) {
+
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
+		try {
+			contas_a_Pagar_All = Fachada.getInstance().getAll_A_PagarConta_a_Pagar();
+			hist_tabview.getItems().setAll(contas_a_Pagar_All);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
+		cont_a_pagar_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		cont_a_pagar_val_col.setCellValueFactory(new PropertyValueFactory<>("valor"));
+		cont_a_pagar_val_pg_col.setCellValueFactory(new PropertyValueFactory<>("valor_quitado"));
+		cont_a_pagar_qt_col.setCellValueFactory(new PropertyValueFactory<>("qtd_pgmt"));
+		cont_a_pagar_qt_pg_col.setCellValueFactory(new PropertyValueFactory<>("qtd_paga"));
+		cont_a_pagar_data_ven_col.setCellValueFactory(new PropertyValueFactory<>("data_vencimento"));
+		
+
+		cont_a_pagar_data_ven_col.setCellFactory(coluna -> {
+
+			return new TableCell<Contas_a_Pagar_Adapter, Date>() {
+				protected void updateItem(Date item, boolean empty) {
+
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
+		try {
+			contas_a_Pagar_List = Fachada.getInstance().getAll_A_PagarConta_a_Pagar();
+			cont_a_pagar_tabview.getItems().setAll(contas_a_Pagar_List);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
+		cont_paga_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		cont_paga_val_col.setCellValueFactory(new PropertyValueFactory<>("valor"));
+		cont_paga_val_pg_col.setCellValueFactory(new PropertyValueFactory<>("valor_quitado"));
+		cont_paga_qtd_col.setCellValueFactory(new PropertyValueFactory<>("qtd_pgmt"));
+		cont_paga_qtd_pg_col.setCellValueFactory(new PropertyValueFactory<>("qtd_paga"));
+		cont_paga_data_venc_col.setCellValueFactory(new PropertyValueFactory<>("data_vencimento"));
+		
+
+		cont_paga_data_venc_col.setCellFactory(coluna -> {
+
+			return new TableCell<Contas_a_Pagar_Adapter, Date>() {
+				protected void updateItem(Date item, boolean empty) {
+
+					super.updateItem(item, empty);
+
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
+		try {
+			contas_a_Pagar_Paga = Fachada.getInstance().getAll_PagaConta_a_Pagar();
+			cont_paga_tabview.getItems().setAll(contas_a_Pagar_Paga);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
