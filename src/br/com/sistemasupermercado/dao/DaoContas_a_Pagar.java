@@ -111,6 +111,35 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
     }
     
     @Override
+    public List<Contas_a_Pagar_Adapter> getAllHistorico(String busca) throws DaoException {
+        List<Contas_a_Pagar_Adapter> contas_a_Pagar_Adapters = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Contas_a_Pagar.SELECT_ALL_ADAPTER);
+            this.result = this.statement.executeQuery();
+            Contas_a_Pagar_Adapter contas_a_Pagar_Adapter;
+            while (result.next()) {
+            	contas_a_Pagar_Adapter = new Contas_a_Pagar_Adapter();
+            	contas_a_Pagar_Adapter.setId(result.getInt(1));
+            	contas_a_Pagar_Adapter.setDescricao(result.getString(SQLUtil.Contas_a_Pagar.COL_DESCRICAO));
+            	contas_a_Pagar_Adapter.setValor(result.getDouble(SQLUtil.Contas_a_Pagar.COL_VALOR));
+            	contas_a_Pagar_Adapter.setValor_quitado(result.getDouble(SQLUtil.Contas_a_Pagar.COL_VALOR_QUITADO));
+            	contas_a_Pagar_Adapter.setQtd_pgmt(result.getInt(SQLUtil.Contas_a_Pagar.COL_QTD_PGMT));
+            	contas_a_Pagar_Adapter.setQtd_paga(result.getInt(SQLUtil.Contas_a_Pagar.COL_QTD_PAGA));
+            	contas_a_Pagar_Adapter.setData_vencimento(new java.util.Date(result.getDate(SQLUtil.Contas_a_Pagar.COL_DATA_VENC).getTime()));
+                
+                contas_a_Pagar_Adapters.add(contas_a_Pagar_Adapter);
+
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contas_a_Pagar_Adapters;
+    }
+    
+    @Override
     public List<Contas_a_Pagar_Adapter> getAll_Paga() throws DaoException {
         List<Contas_a_Pagar_Adapter> contas_a_Pagar_Adapters = new ArrayList<>();
         try {

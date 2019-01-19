@@ -15,7 +15,9 @@ public interface IBusinessContas_a_Pagar {
 
     public Contas_a_pagar buscarPorId(int id) throws BusinessException;
 
- public List<Contas_a_Pagar_Adapter> getAll() throws BusinessException;
+    public List<Contas_a_Pagar_Adapter> getAll() throws BusinessException;
+    
+    public List<Contas_a_Pagar_Adapter> getAllHistorico(String busca) throws BusinessException;
     
     public List<Contas_a_Pagar_Adapter> getAll_Paga() throws BusinessException;
     

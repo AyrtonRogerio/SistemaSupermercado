@@ -100,4 +100,19 @@ public class BusinessContas_a_Pagar implements IBusinessContas_a_Pagar {
             throw new BusinessException(e.getMessage());
         }
 	}
+
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessContas_a_Pagar#getAllHistorico(java.lang.String)
+	 */
+	@Override
+	public List<Contas_a_Pagar_Adapter> getAllHistorico(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoContas_a_pagar.getAllHistorico(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 }

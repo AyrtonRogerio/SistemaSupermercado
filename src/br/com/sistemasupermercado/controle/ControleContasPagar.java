@@ -3,6 +3,7 @@
  */
 package br.com.sistemasupermercado.controle;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
 import br.com.sistemasupermercado.model.ProdutoTabAdapter;
+import br.com.sistemasupermercado.view.Relatorio_Contas_Pagar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * @author ayrton
@@ -76,6 +79,9 @@ public class ControleContasPagar implements Initializable {
 
     @FXML
     private Button busc_cont_a_pagar_button;
+    
+    @FXML
+    private Button gerar_rel_button;
 
     @FXML
     private TableView<Contas_a_Pagar_Adapter> cont_a_pagar_tabview;
@@ -125,6 +131,33 @@ public class ControleContasPagar implements Initializable {
     @FXML
     void action(ActionEvent event) {
 
+    	
+    	if(event.getSource() == busc_hist_field) {
+    		
+    		
+    		
+    		
+    	}
+    	
+    	
+    	
+    	if(event.getSource() == gerar_rel_button) {
+    		
+    		Relatorio_Contas_Pagar contas_Pagar = new Relatorio_Contas_Pagar();
+    		
+    		try {
+				contas_Pagar.gerarDocumento(contas_a_Pagar_List, "Contas_a_pagar.jrxml");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JRException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    	}
+    	
+    	
     }
 
 	/* (non-Javadoc)

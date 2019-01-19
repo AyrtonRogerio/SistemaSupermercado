@@ -61,25 +61,5 @@ public class Relatorio_Contas_Pagar {
 		// JasperViewer.viewReport(jasperPrint);
 	
 	}
-	
-//	public static void main(String[] args) {
-//		
-//		List<Contas_a_Pagar_Adapter> contas_a_Pagars = new ArrayList<>();
-//	
-//		try {
-//			contas_a_Pagars = Fachada.getInstance().getAllConta_a_Pagar();
-//			new Documentos().gerarDocumento(contas_a_Pagars, "Contas_a_pagar.jrxml");
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (JRException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (BusinessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
+		
 }

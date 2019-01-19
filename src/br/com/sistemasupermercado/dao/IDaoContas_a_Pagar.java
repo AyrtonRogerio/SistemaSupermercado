@@ -14,6 +14,13 @@ public interface IDaoContas_a_Pagar {
 
     public List<Contas_a_Pagar_Adapter> getAll() throws DaoException;
     
+    /**
+	 * @param busca
+	 * @return
+	 * @throws DaoException
+	 */
+    public List<Contas_a_Pagar_Adapter> getAllHistorico(String busca) throws DaoException;
+    
     public List<Contas_a_Pagar_Adapter> getAll_Paga() throws DaoException;
     
     public List<Contas_a_Pagar_Adapter> getAll_A_Pagar() throws DaoException;
@@ -21,5 +28,8 @@ public interface IDaoContas_a_Pagar {
     public void editar(Contas_a_pagar contas_a_pagar) throws DaoException;
 
     public void ativarDesativar(int id) throws DaoException;
+
+	
+	
 
 }
