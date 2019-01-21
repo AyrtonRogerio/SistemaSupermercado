@@ -24,15 +24,15 @@ public class DaoProduto implements IDaoProduto {
 	public int salvar(Produto produto) throws DaoException {
 		// TODO Auto-generated method stub
 		int id = 0;
+		
 		try {
+			
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Produto.INSERT);
 			this.statement.setString(1, produto.getNome());
 			this.statement.setString(2, produto.getMarca());
 			this.statement.setString(3, produto.getDescricao());
-
 			this.result = this.statement.executeQuery();
-//			statement.execute();
 			
 			if(result.next()) {
 				id = result.getInt(1);

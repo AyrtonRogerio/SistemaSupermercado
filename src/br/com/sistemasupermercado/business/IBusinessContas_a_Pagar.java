@@ -1,10 +1,12 @@
 package br.com.sistemasupermercado.business;
 
 import br.com.sistemasupermercado.exception.BusinessException;
-import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
 import br.com.sistemasupermercado.model.Contas_a_pagar;
+import br.com.sistemasupermercado.model.RelatorioFinanceiro;
+
+import java.sql.Date;
 import java.util.List;
 
 public interface IBusinessContas_a_Pagar {
@@ -22,6 +24,8 @@ public interface IBusinessContas_a_Pagar {
     public List<Contas_a_Pagar_Adapter> getAll_Paga() throws BusinessException;
     
     public List<Contas_a_Pagar_Adapter> getAll_A_Pagar() throws BusinessException;
+    
+    public List<RelatorioFinanceiro> getRelatorio(java.util.Date inicio, java.util.Date fim) throws BusinessException;
 
     public void ativarDesativar(int id) throws BusinessException;
 

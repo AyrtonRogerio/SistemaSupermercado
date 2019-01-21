@@ -7,7 +7,9 @@ import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
 import br.com.sistemasupermercado.model.Contas_a_pagar;
+import br.com.sistemasupermercado.model.RelatorioFinanceiro;
 
+import java.sql.Date;
 import java.util.List;
 
 public class BusinessContas_a_Pagar implements IBusinessContas_a_Pagar {
@@ -109,6 +111,21 @@ public class BusinessContas_a_Pagar implements IBusinessContas_a_Pagar {
 		// TODO Auto-generated method stub
 		try {
 			return daoContas_a_pagar.getAllHistorico(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see br.com.sistemasupermercado.business.IBusinessContas_a_Pagar#getRelatorio(java.sql.Date, java.sql.Date)
+	 */
+	@Override
+	public List<RelatorioFinanceiro> getRelatorio(java.util.Date inicio, java.util.Date fim) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoContas_a_pagar.getRelatorio(inicio, fim);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

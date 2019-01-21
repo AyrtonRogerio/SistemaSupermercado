@@ -88,7 +88,7 @@
                         </ImageView>
                      </graphic>
                      <items>
-                        <MenuItem fx:id="financas_caixa_menu" mnemonicParsing="false" onAction="#action" text="Controle de Caixa" />
+                        <MenuItem fx:id="relatorio_caixa_menu" mnemonicParsing="false" onAction="#action" text="Relatório Geral" />
                         <MenuItem fx:id="financas_contas_pagar_menu" mnemonicParsing="false" onAction="#action" text="Contas a Pagar" />
                         <MenuItem fx:id="financas_contas_receber_menu" mnemonicParsing="false" onAction="#action" text="Contas a Receber" />
                      </items>

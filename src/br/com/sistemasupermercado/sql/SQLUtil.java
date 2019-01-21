@@ -282,14 +282,17 @@ public class SQLUtil {
         public static final String COL_QTD_PGMT = "qtd_pgmt";
         public static final String COL_QTD_PAGA = "qtd_paga";
         public static final String COL_SALDO = "saldo";
+        public static final String COL_DATA_PAG = "data_pagamento";
+        public static final String COL_DATA_VENC = "data_vencimento";
         public static final String COL_CAIXA_ID = "caixa_id";
         public static final String COL_VENDA_ID = "venda_id";
         public static final String COL_STATUS = "status";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" +
                 COL_DESCRICAO + "," + COL_VALOR + "," + COL_VALOR_QUITADO + "," +
-                COL_QTD_PGMT + "," + COL_QTD_PAGA + "," + COL_SALDO + "," + COL_CAIXA_ID + "," +
-                COL_VENDA_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?) returning id";
+                COL_QTD_PGMT + "," + COL_QTD_PAGA + ","  + COL_SALDO + "," + COL_DATA_PAG + "," + COL_DATA_VENC + "," 
+                + COL_CAIXA_ID + "," +
+                COL_VENDA_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?,?,?) returning id";
         
         public static final String SELECT_ALL_ADAPTER = "select c.id, c.descricao, c.valor, c.valor_quitado,"
         		+ "c.qtd_pgmt, c.qtd_paga from contas_a_receber c ";
@@ -313,6 +316,7 @@ public class SQLUtil {
         public static final String COL_VALOR_QUITADO = "valor_quitado";
         public static final String COL_QTD_PGMT = "qtd_pgmt";
         public static final String COL_QTD_PAGA = "qtd_paga";
+        public static final String COL_DATA_PAG = "data_pagamento";
         public static final String COL_DATA_VENC = "data_vencimento";
         public static final String COL_CAIXA_ID = "caixa_id";
         public static final String COL_FORNEC_ID = "fornecedor_id";
@@ -320,8 +324,8 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" +
                 COL_DESCRICAO + "," + COL_VALOR + "," + COL_VALOR_QUITADO + "," + COL_QTD_PGMT + "," +
-                COL_QTD_PAGA + "," + COL_DATA_VENC + "," + COL_CAIXA_ID + "," +
-                COL_FORNEC_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?) returning id";
+                COL_QTD_PAGA + "," + COL_DATA_PAG + "," + COL_DATA_VENC + "," + COL_CAIXA_ID + "," +
+                COL_FORNEC_ID + "," + COL_STATUS + ") values (?,?,?,?,?,?,?,?,?,?) returning id";
 
         public static final String SELECT_ALL_ADAPTER = "select c.id, c.descricao, c.valor, c.valor_quitado,"
         		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c ";
@@ -333,6 +337,10 @@ public class SQLUtil {
         		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c where c.status = false";
         
         public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, fornecedor_id = ?, status = ?";
+    
+        public static final String SELECT_RELATORIO = "select * from contas_a_pagar cc inner join contas_a_receber cv "
+        		+ "on cc.caixa_id = cv.caixa_id and cc.data_vencimento BETWEEN ? "
+        		+ "and ? and cv.data_vencimento BETWEEN ? and ?";
     }
 
     public static String selectAll(String nomeTabela) {

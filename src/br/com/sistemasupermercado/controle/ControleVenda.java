@@ -11,7 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -50,6 +53,12 @@ public class ControleVenda implements Initializable {
 
     @FXML
     private TextField qtd_pgmt_field;
+    
+    @FXML
+    private DatePicker dataPag;
+    
+    @FXML
+    private DatePicker dataVenc;
 
     @FXML
     private Button nova_ven_button;
@@ -215,12 +224,15 @@ public class ControleVenda implements Initializable {
             if(venda.getValor_recebido() >= venda.getValor_total() && qt == 1) {
 
                 venda.setValor_troco(venda.getValor_recebido() - venda.getValor_total());
-                contas_a_receber.setValor(venda.getValor_total());
-                contas_a_receber.setValor_quitado(venda.getValor_total());
-                contas_a_receber.setQtd_pgmt(qt);
-                contas_a_receber.setQtd_paga(qt);
-                contas_a_receber.setSaldo(contas_a_receber.getValor_quitado());
-                contas_a_receber.setStatus(false);
+                contas_a_receber.setValor_total(venda.getValor_total());
+                contas_a_receber.setValor_pago(venda.getValor_total());
+                contas_a_receber.setQtd_pagmt(qt);
+                contas_a_receber.setQtd_pag(qt);
+              
+//                contas_a_receber.setData_pag(new Date());
+//                contas_a_receber.setData_venc(new Date());
+                contas_a_receber.setSaldo(contas_a_receber.getValor_pago());
+                contas_a_receber.setAtivo(false);
 
             } else if(venda.getValor_recebido() < venda.getValor_total() && qt > 1){
 
@@ -228,28 +240,42 @@ public class ControleVenda implements Initializable {
 
                 valorTemp = venda.getValor_total() / qt;
 
-                contas_a_receber.setQtd_pgmt(qt);
-                contas_a_receber.setQtd_paga(1);
-                contas_a_receber.setValor(venda.getValor_total());
-                contas_a_receber.setValor_quitado(valorTemp);
-                contas_a_receber.setSaldo(contas_a_receber.getValor_quitado());
-                contas_a_receber.setStatus(true);
+                contas_a_receber.setQtd_pagmt(qt);
+                contas_a_receber.setQtd_pag(1);
+                contas_a_receber.setValor_total(venda.getValor_total());
+                contas_a_receber.setValor_pago(valorTemp);
+                contas_a_receber.setSaldo(contas_a_receber.getValor_pago());
+                contas_a_receber.setAtivo(true);
 
             }
 
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+            	contas_a_receber.setData_pag(format.parse(dataPag.getEditor().getText().trim()));
+				contas_a_receber.setData_venc(format.parse(dataVenc.getEditor().getText().trim()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+            contas_a_receber.setId_venda(venda);
+            contas_a_receber.setId_caixa(caixa);
+            contas_a_receber.setDesc("Conta a receber do cliente em relação a venda" );
 
-            contas_a_receber.setVenda_id(venda);
-            contas_a_receber.setCaixa_id(caixa);
-            contas_a_receber.setDescricao("Conta a receber do cliente em relação a venda" );
-
-
+            System.out.println(contas_a_receber);
+            System.out.println(caixa);
+            System.out.println(cliente);
+            System.out.println(venda_id);
+            System.out.println(contas_a_receber.getData_pag());
+            System.out.println(contas_a_receber.getData_venc());
+            
 
             try {
 
                 Fachada.getInstance().editar_Venda(venda);
                 venda = Fachada.getInstance().buscarPorIdVenda(venda_id);
                 Fachada.getInstance().salvarConta_a_Receber(contas_a_receber,caixa.getId(),venda.getId());
-                caixa.setEntrada(caixa.getEntrada() + contas_a_receber.getValor_quitado());
+                caixa.setEntrada(caixa.getEntrada() + contas_a_receber.getValor_pago());
                 
                 Fachada.getInstance().editarCaixa(caixa);
                 limparCampos();

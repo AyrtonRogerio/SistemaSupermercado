@@ -25,12 +25,12 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 	}
 
 	@Override
-	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
+	public void salvar(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws BusinessException {
 		
 		try {
 			validar(item_Produto);
 			if (item_Produto.getId() == null)
-				daoItemProduto.salvar(item_Produto, id_fornecedor);
+				daoItemProduto.salvar(item_Produto,produto_id, id_fornecedor);
 
 
 		} catch (DaoException | ValidacaoException e) {

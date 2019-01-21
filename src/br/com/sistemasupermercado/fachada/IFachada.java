@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
-import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.*;
 
 public interface IFachada {
@@ -96,7 +95,7 @@ public interface IFachada {
 	
 	//ItemProduto
 	
-	public void salvarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+	public void salvarItemProduto(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws BusinessException;
 
 	public void editar_Item_Produto(Item_Produto item_produto) throws BusinessException;
 
@@ -151,6 +150,8 @@ public interface IFachada {
 	public List<Contas_a_Pagar_Adapter> getAll_PagaConta_a_Pagar() throws BusinessException;
 	
 	public List<Contas_a_Pagar_Adapter> getAll_A_PagarConta_a_Pagar() throws BusinessException;
+	
+	public List<RelatorioFinanceiro> getRelatorio(java.util.Date inicio, java.util.Date fim) throws BusinessException;
 
 	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException;
 

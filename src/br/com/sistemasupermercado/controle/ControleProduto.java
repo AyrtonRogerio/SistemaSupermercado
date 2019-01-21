@@ -249,7 +249,8 @@ public class ControleProduto implements Initializable {
 
 				cadastrarProduto(fornecedor);
 				System.out.println(fornecedor.getId());
-				fachada.salvarItemProduto(item_Produto, fornecedor.getId());
+				int produto_id = fachada.salvarProduto(produto);
+				fachada.salvarItemProduto(item_Produto, produto_id, fornecedor.getId());
 
 				double valTemp = 0.00;
 				double valP = 0.00;
@@ -270,6 +271,8 @@ public class ControleProduto implements Initializable {
 				contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
 				contas_a_pagar.setQtd_paga(qt);
 				contas_a_pagar.setQtd_pgmt(qt);
+				contas_a_pagar.setData_pagamento(new Date());
+				contas_a_pagar.setData_vencimento(new Date());
 				contas_a_pagar.setStatus(false);
 
 
@@ -278,6 +281,7 @@ public class ControleProduto implements Initializable {
 				contas_a_pagar.setValor_quitado(valP);
 				contas_a_pagar.setQtd_pgmt(qt);
 				contas_a_pagar.setQtd_paga(1);
+				contas_a_pagar.setData_pagamento(new Date());
 				contas_a_pagar.setStatus(true);
 
 
@@ -291,7 +295,7 @@ public class ControleProduto implements Initializable {
 				}
 			contas_a_pagar.setFornecedor_id(fornecedor);
 			contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
-			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + "à " + fornecedor.getNome());
+			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + " à " + fornecedor.getNome());
 
 			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(),fornecedor.getId());
 			

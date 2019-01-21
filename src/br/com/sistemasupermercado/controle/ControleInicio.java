@@ -26,6 +26,7 @@ public class ControleInicio implements Initializable {
 	private Pane CadastroFuncionario;
 	private Pane CadastroProduto;
 	private Pane ContasAPagar;
+	private Pane Relatorio;
 	private Pane ContasAReceber;
 	private Caixa caixa;
 
@@ -60,7 +61,7 @@ public class ControleInicio implements Initializable {
 	private MenuItem cliente_menu;
 
 	@FXML
-	private MenuItem financas_caixa_menu;
+	private MenuItem relatorio_caixa_menu;
 
 	@FXML
 	private MenuItem financas_contas_pagar_menu;
@@ -116,6 +117,10 @@ public class ControleInicio implements Initializable {
 			atualizarTela("contasReceber");
 		}
 
+		if(event.getSource() == relatorio_caixa_menu) {
+			atualizarTela("Relatorio");
+		}
+		
 	}
 
 
@@ -134,6 +139,9 @@ public class ControleInicio implements Initializable {
 
 			ContasAReceber = FXMLLoader.load(
 					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/ContasReceber.fxml"));
+
+			Relatorio = FXMLLoader.load(
+					getClass().getClassLoader().getResource("br/com/sistemasupermercado/view/Relatorio.fxml"));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -184,6 +192,15 @@ public class ControleInicio implements Initializable {
 			AnchorPane.setRightAnchor(ContasAReceber, 0.0);
 			AnchorPane.setTopAnchor(ContasAReceber, 0.0);
 			pane.getChildren().setAll(ContasAReceber);
+		}
+		
+		if (tela.equalsIgnoreCase("Relatorio")) {
+
+			AnchorPane.setBottomAnchor(Relatorio, 0.0);
+			AnchorPane.setLeftAnchor(Relatorio, 0.0);
+			AnchorPane.setRightAnchor(Relatorio, 0.0);
+			AnchorPane.setTopAnchor(Relatorio, 0.0);
+			pane.getChildren().setAll(Relatorio);
 		}
 	}
 

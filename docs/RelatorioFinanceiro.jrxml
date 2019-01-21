@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFinanceiro" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ced95029-b569-4027-895c-af2843a4e088">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="contas_a_receber" class="br.com.sistemasupermercado.model.Contas_a_receber"/>
+	<field name="contas_a_pagar" class="br.com.sistemasupermercado.model.Contas_a_pagar"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="1" y="0" width="554" height="80" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="25"/>
+				</textElement>
+				<text><![CDATA[Relatório de Contas a pagar e a receber]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="105" width="80" height="30" uuid="6ee3f54a-c175-42fc-93d0-7a96b422f99a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[br.com.sistemasupermercado.model.RelatorioFinanceiro.getInicio()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="105" width="78" height="30" uuid="fbc0a3ae-0a7c-4052-8e68-1bae0b932deb"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[br.com.sistemasupermercado.model.RelatorioFinanceiro.getInicio()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="105" width="70" height="20" uuid="34f29c8f-a2e9-4865-a298-15ad4524f66d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Período - 
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="105" width="10" height="20" uuid="ae2d348d-990f-4b9c-ab42-e3b13e0be973"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="1a61a836-d137-48b1-ad67-6ff64600bf93"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="355" y="0" width="167" height="16" uuid="c4c027e2-14f0-46ba-98d4-fcd81f3a6829">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dcebd297-eb56-4a98-86f0-7681da5a7742"/>
+				</reportElement>
+				<text><![CDATA[Contas a receber e recebidas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="139" height="16" uuid="352ed0bd-55eb-4435-af02-72dbe1b61fdd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="41f914a8-0180-49c2-8c4a-5f0a898e1d5a"/>
+				</reportElement>
+				<text><![CDATA[Contas a pagar e pagas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="370" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="a98495d8-3c8d-4fa0-81f5-30c3efc2f766"/>
+				<line>
+					<reportElement x="280" y="0" width="1" height="298" uuid="ff757868-5c4f-4d6a-b169-2c4163255f1a"/>
+				</line>
+				<staticText>
+					<reportElement x="290" y="-1" width="75" height="16" uuid="cab5116b-0583-46d2-9e70-4689338d8dc1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06fd262f-ef1a-4ad6-b27c-ebc02bd60097"/>
+					</reportElement>
+					<text><![CDATA[Descrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="-1" width="50" height="16" uuid="447ae6f2-d277-4f0e-a398-1eb0f2897d00">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0633bccc-4ceb-47ac-85f4-3449317fbbab"/>
+					</reportElement>
+					<text><![CDATA[Total(R$)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="432" y="-1" width="71" height="16" uuid="9b7b7acd-7d6c-49ee-a0fd-7ee9f8676cf7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e7811e2-b2f7-44ee-b113-1999cb0c8733"/>
+					</reportElement>
+					<text><![CDATA[Recebido(R$)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="-1" y="-1" width="81" height="16" uuid="769b7a13-3cb3-4f54-a249-73dc56dc9610">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="673d46e3-4943-4784-8ad0-2f219fca6546"/>
+					</reportElement>
+					<text><![CDATA[Descrição]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="89" y="0" width="51" height="16" uuid="3e831c21-360b-48a3-a269-739284746a83">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ae2e599-f801-4681-a290-17ed3ed7987f"/>
+					</reportElement>
+					<text><![CDATA[Valor(R$)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="149" y="0" width="71" height="16" uuid="01b771d6-4583-4581-a37f-01ea8b52b7da">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f157266-a481-46c5-b53d-aaaeb37b3aae"/>
+					</reportElement>
+					<text><![CDATA[Valor Pg.(R$)]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="295" y="30" width="75" height="30" uuid="9b19c035-126b-40ae-b9ae-74fb2e3cf7b1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06fd262f-ef1a-4ad6-b27c-ebc02bd60097"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_receber}.getDesc()+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="30" width="30" height="30" uuid="0352fce6-9743-4c41-9540-f0c76b987b24">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0633bccc-4ceb-47ac-85f4-3449317fbbab"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_receber}.getValor_total()+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="30" width="26" height="30" uuid="5c5b78cf-8419-4950-b249-ad3c75609398">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7e7811e2-b2f7-44ee-b113-1999cb0c8733"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_receber}.getValor_pago()+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="30" width="81" height="30" uuid="39dabdc6-c77b-467f-9ae2-824858be5bff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="673d46e3-4943-4784-8ad0-2f219fca6546"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_pagar}.getDescricao()+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="30" width="30" height="30" uuid="a448d61f-8fde-4ffc-9598-15ad7fdd7445">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ae2e599-f801-4681-a290-17ed3ed7987f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_pagar}.getValor()+""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="30" width="30" height="30" uuid="fe8f60ea-b506-41aa-9919-dad3259c47ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6f157266-a481-46c5-b53d-aaaeb37b3aae"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{contas_a_pagar}.getValor_quitado()+""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="62" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fa45a887-615a-4d84-a2d7-8a2219671b3c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="87" y="10" width="383" height="42" uuid="f0bfb1ea-a85a-47cd-a1a4-43f22b45e80f"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Relatório das contas a pagar e a receber dos periodos listado a cima.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="183682bc-d976-4756-83e0-6625a3f98ed1"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="0193f9b3-1559-491a-8580-b6988863b6a1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="d00b105e-494b-418b-8ac9-8b1b4824f4f0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="0616f3fe-0354-456f-8911-ec30ec51a5ae"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

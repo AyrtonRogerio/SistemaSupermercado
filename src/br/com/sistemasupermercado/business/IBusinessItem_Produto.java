@@ -16,7 +16,7 @@ import br.com.sistemasupermercado.model.*;
  */
 public interface IBusinessItem_Produto {
 
-	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws BusinessException;
+	public void salvar(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws BusinessException;
 
 	public void editar(Item_Produto item_produto) throws BusinessException;
 

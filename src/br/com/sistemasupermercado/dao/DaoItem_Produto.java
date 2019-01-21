@@ -33,10 +33,11 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#salvar(br.com.sistemasupermercado.model.Item_Produto)
 	 */
 	@Override
-	public void salvar(Item_Produto item_Produto, int id_fornecedor) throws DaoException {
+	public void salvar(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
-			int produto_id = Fachada.getInstance().salvarProduto(item_Produto.getProduto_id());
+			
+//			int produto_id = Fachada.getInstance().salvarProduto(item_Produto.getProduto_id());
 						
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
@@ -55,7 +56,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.setInt(13, id_fornecedor);
 			this.statement.setInt(14, produto_id);
 			this.statement.execute();
-		} catch (SQLException | BusinessException ex) {
+		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
 		}
 

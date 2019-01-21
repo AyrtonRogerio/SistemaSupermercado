@@ -273,9 +273,9 @@ public class Fachada implements IFachada {
 
 	
 	@Override
-	public void salvarItemProduto(Item_Produto item_Produto, int id_fornecedor) throws BusinessException {
+	public void salvarItemProduto(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws BusinessException {
 		// TODO Auto-generated method stub
-		this.businessItem_Produto.salvar(item_Produto, id_fornecedor);
+		this.businessItem_Produto.salvar(item_Produto,produto_id, id_fornecedor);
 	}
 
 	@Override
@@ -415,6 +415,12 @@ public class Fachada implements IFachada {
 	}
 	
 	@Override
+	public List<RelatorioFinanceiro> getRelatorio(java.util.Date inicio, java.util.Date fim) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessContas_a_pagar.getRelatorio(inicio, fim);
+	}
+	
+	@Override
 	public void ativarDesativarConta_a_Pagar(int id) throws BusinessException {
 			this.businessContas_a_pagar.ativarDesativar(id);
 	}
@@ -457,7 +463,5 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return this.businessContas_a_receber.getAll_A_Receber();
 	}
-
-
 
 }

@@ -5,19 +5,17 @@ import java.util.Date;
 public class Contas_a_receber {
 
     private Integer id;
-    private double valor;
-    private double valor_quitado;
+    private double valor_total;
+    private double valor_pago;
     private double saldo;
-    private Date data_pagamento;
-    private Date data_vencimento;
-    private String descricao;
-    private boolean status;
-    private Caixa caixa_id;
-    private int qtd_pgmt;
-    private int qtd_paga;
-    private Venda venda_id;
-    
-    
+    private Date data_pag;
+    private Date data_venc;
+    private String desc;
+    private boolean ativo;
+    private Caixa id_caixa;
+    private int qtd_pagmt;
+    private int qtd_pag;
+    private Venda id_venda;
 	/**
 	 * @return the id
 	 */
@@ -31,28 +29,28 @@ public class Contas_a_receber {
 		this.id = id;
 	}
 	/**
-	 * @return the valor
+	 * @return the valor_total
 	 */
-	public double getValor() {
-		return valor;
+	public double getValor_total() {
+		return valor_total;
 	}
 	/**
-	 * @param valor the valor to set
+	 * @param valor_total the valor_total to set
 	 */
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setValor_total(double valor_total) {
+		this.valor_total = valor_total;
 	}
 	/**
-	 * @return the valor_quitado
+	 * @return the valor_pago
 	 */
-	public double getValor_quitado() {
-		return valor_quitado;
+	public double getValor_pago() {
+		return valor_pago;
 	}
 	/**
-	 * @param valor_quitado the valor_quitado to set
+	 * @param valor_pago the valor_pago to set
 	 */
-	public void setValor_quitado(double valor_quitado) {
-		this.valor_quitado = valor_quitado;
+	public void setValor_pago(double valor_pago) {
+		this.valor_pago = valor_pago;
 	}
 	/**
 	 * @return the saldo
@@ -67,100 +65,103 @@ public class Contas_a_receber {
 		this.saldo = saldo;
 	}
 	/**
-	 * @return the data_pagamento
+	 * @return the data_pag
 	 */
-	public Date getData_pagamento() {
-		return data_pagamento;
+	public Date getData_pag() {
+		return data_pag;
 	}
 	/**
-	 * @param data_pagamento the data_pagamento to set
+	 * @param data_pag the data_pag to set
 	 */
-	public void setData_pagamento(Date data_pagamento) {
-		this.data_pagamento = data_pagamento;
+	public void setData_pag(Date data_pag) {
+		this.data_pag = data_pag;
 	}
 	/**
-	 * @return the data_vencimento
+	 * @return the data_venc
 	 */
-	public Date getData_vencimento() {
-		return data_vencimento;
+	public Date getData_venc() {
+		return data_venc;
 	}
 	/**
-	 * @param data_vencimento the data_vencimento to set
+	 * @param data_venc the data_venc to set
 	 */
-	public void setData_vencimento(Date data_vencimento) {
-		this.data_vencimento = data_vencimento;
+	public void setData_venc(Date data_venc) {
+		this.data_venc = data_venc;
 	}
 	/**
-	 * @return the descricao
+	 * @return the desc
 	 */
-	public String getDescricao() {
-		return descricao;
+	public String getDesc() {
+		return desc;
 	}
 	/**
-	 * @param descricao the descricao to set
+	 * @param desc the desc to set
 	 */
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	/**
-	 * @return the status
+	 * @return the ativo
 	 */
-	public boolean isStatus() {
-		return status;
+	public boolean isAtivo() {
+		return ativo;
 	}
 	/**
-	 * @param status the status to set
+	 * @param ativo the ativo to set
 	 */
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	/**
-	 * @return the caixa_id
+	 * @return the id_caixa
 	 */
-	public Caixa getCaixa_id() {
-		return caixa_id;
+	public Caixa getId_caixa() {
+		return id_caixa;
 	}
 	/**
-	 * @param caixa_id the caixa_id to set
+	 * @param id_caixa the id_caixa to set
 	 */
-	public void setCaixa_id(Caixa caixa_id) {
-		this.caixa_id = caixa_id;
+	public void setId_caixa(Caixa id_caixa) {
+		this.id_caixa = id_caixa;
 	}
 	/**
-	 * @return the qtd_pgmt
+	 * @return the qtd_pagmt
 	 */
-	public int getQtd_pgmt() {
-		return qtd_pgmt;
+	public int getQtd_pagmt() {
+		return qtd_pagmt;
 	}
 	/**
-	 * @param qtd_pgmt the qtd_pgmt to set
+	 * @param qtd_pagmt the qtd_pagmt to set
 	 */
-	public void setQtd_pgmt(int qtd_pgmt) {
-		this.qtd_pgmt = qtd_pgmt;
+	public void setQtd_pagmt(int qtd_pagmt) {
+		this.qtd_pagmt = qtd_pagmt;
 	}
 	/**
-	 * @return the qtd_paga
+	 * @return the qtd_pag
 	 */
-	public int getQtd_paga() {
-		return qtd_paga;
+	public int getQtd_pag() {
+		return qtd_pag;
 	}
 	/**
-	 * @param qtd_paga the qtd_paga to set
+	 * @param qtd_pag the qtd_pag to set
 	 */
-	public void setQtd_paga(int qtd_paga) {
-		this.qtd_paga = qtd_paga;
+	public void setQtd_pag(int qtd_pag) {
+		this.qtd_pag = qtd_pag;
 	}
 	/**
-	 * @return the venda_id
+	 * @return the id_venda
 	 */
-	public Venda getVenda_id() {
-		return venda_id;
+	public Venda getId_venda() {
+		return id_venda;
 	}
 	/**
-	 * @param venda_id the venda_id to set
+	 * @param id_venda the id_venda to set
 	 */
-	public void setVenda_id(Venda venda_id) {
-		this.venda_id = venda_id;
+	public void setId_venda(Venda id_venda) {
+		this.id_venda = id_venda;
 	}
+    
+    
+	
 
 }
