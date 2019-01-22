@@ -23,7 +23,7 @@ public class DaoCommum {
     private static PreparedStatement statement;
     private static ResultSet result;
 
-    public static int salvarEndereco(Endereco end) {
+    public static int salvarEndereco(Endereco end) throws DaoException {
         int id = 0;
         try {
             conexao = SQLConections.getInstance();
@@ -43,11 +43,12 @@ public class DaoCommum {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException("Erro ao salvar endereço do cliente!");
         }
         return id;
     }
 
-    public static void editarEndereco(Endereco end) {
+    public static void editarEndereco(Endereco end) throws DaoException {
         int id = 0;
         try {
             conexao = SQLConections.getInstance();
@@ -64,10 +65,11 @@ public class DaoCommum {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException("Erro ao editar endereço do cliente!");
         }
     }
 
-    public static int salvarContato(Contato contato, int cliente_id) {
+    public static int salvarContato(Contato contato, int cliente_id) throws DaoException {
         int id =0;
     	try {
             conexao = SQLConections.getInstance();
@@ -84,11 +86,12 @@ public class DaoCommum {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException("Erro ao salvar contato do cliente!");
         }
         return id;
     }
 
-    public static void editarContato(Contato contato) {
+    public static void editarContato(Contato contato) throws DaoException {
 
         try {
             conexao = SQLConections.getInstance();
@@ -102,11 +105,12 @@ public class DaoCommum {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException("Erro ao editar contato do cliente!");
         }
 
     }
 
-    public  static  Endereco buscarEndereco(int id){
+    public  static  Endereco buscarEndereco(int id) throws DaoException {
 
     	Endereco end = new Endereco();
         try {
@@ -126,11 +130,12 @@ public class DaoCommum {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Erro ao buscar endereço do cliente!");
         }
         return  end;
     }
     
-    public static Contato buscarContato(Contato cont) {
+    public static Contato buscarContato(Contato cont) throws DaoException {
     	
     	try {
     		conexao = SQLConections.getInstance();
@@ -146,6 +151,7 @@ public class DaoCommum {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new DaoException("Erro ao buscar contato do cliente!");
 		}
     	return cont;
     }

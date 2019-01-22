@@ -30,9 +30,6 @@ public class DaoVenda implements IDaoVenda{
 	private PreparedStatement statement;
 	private ResultSet result;
 	
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoVenda#salvar(br.com.sistemasupermercado.model.Venda)
-	 */
 	@Override
 	public int salvar(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws DaoException {
 		// TODO Auto-generated method stub
@@ -57,13 +54,12 @@ public class DaoVenda implements IDaoVenda{
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar venda!");
 		}
 		return  id;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoVenda#buscarPorId(int)
-	 */
 	@Override
 	public Venda buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
@@ -103,13 +99,12 @@ public class DaoVenda implements IDaoVenda{
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar venda!");
 		}
 		return venda;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoVenda#getAll()
-	 */
 	@Override
 	public List<Venda> getAll() throws DaoException {
 		// TODO Auto-generated method stub
@@ -148,13 +143,12 @@ public class DaoVenda implements IDaoVenda{
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todas as vendas!");
 		}
 		return vendas;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoVenda#editar(br.com.sistemasupermercado.model.Venda)
-	 */
 	@Override
 	public void editar(Venda venda) throws DaoException {
 		// TODO Auto-generated method stub
@@ -168,12 +162,11 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao editar venda!");
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoVenda#ativarDesativar(int)
-	 */
 	@Override
 	public void ativarDesativar(int id) throws DaoException {
 		// TODO Auto-generated method stub

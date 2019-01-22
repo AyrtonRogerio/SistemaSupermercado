@@ -9,12 +9,14 @@ import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Caixa;
 import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.principal.Main;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ControleLogin implements Initializable {
 
@@ -60,13 +62,15 @@ public class ControleLogin implements Initializable {
 			funcionario = fachada.buscarPorLoginFuncionario(login_field.getText(), senha_pass_field.getText());
 
 			if (funcionario == null) {
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Logar", "O usuário não EXISTE!", "Usuário inexiste");	
 				return false;
 			}
+			Mensagem.getInstancia().exibirMensagem(AlertType.CONFIRMATION, "Logado", "Login efetuado", "Logado com sucesso!");
 			return true;
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("controle login");
+			
 			return false;
 		}
 

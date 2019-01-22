@@ -48,6 +48,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoContas_a_Receber.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao salvar conta a receber!");
         }
     }
 
@@ -83,6 +85,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
         } catch (SQLException | BusinessException ex) {
             Logger.getLogger(DaoContas_a_Receber.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar conta a receber!");
         }
         return contas_a_receber;
     }
@@ -111,6 +115,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoContas_a_Receber.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todas as contas a receber!");
         }
         return contas_a_Receber_Adapters;
     }
@@ -139,6 +145,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoContas_a_Receber.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar contas recebidas!");
         }
         return contas_a_Receber_Adapters;
     }
@@ -167,6 +175,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoContas_a_Receber.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar contas a receber!");
         }
         return contas_a_Receber_Adapters;
     }
@@ -185,6 +195,7 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
             this.statement.setBoolean(6, contas_a_receber.isAtivo());
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Erro ao editar conta a receber!");
         }
 
     }

@@ -5,6 +5,7 @@ import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Caixa;
 import br.com.sistemasupermercado.model.Venda;
 import br.com.sistemasupermercado.principal.Main;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -79,13 +81,10 @@ public class ControleInicio implements Initializable {
 	void action(ActionEvent event) {
 
 		if (event.getSource() == cliente_menu) {
-			System.out.println("asdasd");
 			atualizarTela("cliente");
-
 		}
 
 		if (event.getSource() == funcionario_menu) {
-			System.out.println("Funcionario");
 			atualizarTela("funcionario");
 		}
 
@@ -94,7 +93,6 @@ public class ControleInicio implements Initializable {
 		}
 
 		if (event.getSource() == inicioMenu) {
-			System.out.println("ta pegano");
 		}
 
 		if(event.getSource() == nova_venda_menu){
@@ -146,6 +144,7 @@ public class ControleInicio implements Initializable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro em Componentes", "Erro ao carregar componentes!", e.getMessage());
 		}
 	}
 

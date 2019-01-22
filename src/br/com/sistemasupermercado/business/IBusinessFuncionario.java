@@ -22,4 +22,6 @@ public interface IBusinessFuncionario {
 
 	public void validar(Funcionario funcionario) throws ValidacaoException;
 	
+	public void validar(String Login, String Senha) throws ValidacaoException;
+	
 }

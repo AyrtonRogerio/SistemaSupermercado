@@ -48,6 +48,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao salvar conta a pagar!");
 		}
 
 	}
@@ -86,6 +88,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar conta a pagar!");
 		}
 		return contas_a_pagar;
 	}
@@ -116,6 +120,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar todas as contas a pagar!");
 		}
 		return contas_a_Pagar_Adapters;
 	}
@@ -146,6 +152,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar histórico de contas a pagar!");
 		}
 		return contas_a_Pagar_Adapters;
 	}
@@ -176,6 +184,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar as contas pagas!");
 		}
 		return contas_a_Pagar_Adapters;
 	}
@@ -206,6 +216,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar as contas a pagar!");
 		}
 		return contas_a_Pagar_Adapters;
 	}
@@ -281,6 +293,8 @@ public class DaoContas_a_Pagar implements IDaoContas_a_Pagar {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoContas_a_Pagar.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao gerar relatório de contas a pagar!");
 		}
 
 		return financeiros;

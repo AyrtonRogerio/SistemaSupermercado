@@ -168,7 +168,7 @@ public class ControleCliente implements Initializable {
 				tabela_clentes.getItems().setAll(clienteTabAdapter);
 				
 			} catch (BusinessException e) {
-				Mensagem.getInstancia().exibirMnsagem(AlertType.ERROR, "Erro Buscar Cliente", "", e.getMessage());
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro Buscar Cliente", "Erro ao buscar cliente", e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -212,10 +212,11 @@ public class ControleCliente implements Initializable {
 				fachada.salvarCliente(cliente);
 				clienteTabAdapters = fachada.getAllAdapterCliente();
 				tabela_clentes.getItems().setAll(clienteTabAdapters);
-
+				Mensagem.getInstancia().exibirMensagem(AlertType.CONFIRMATION, "Sucesso ao salvar", "Salvo", "O cliente foi salvo com sucesso!");
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro salvar Cliente", "Erro ao salvar o cliente", e.getMessage());
 			}
 
 			limparCampos();
@@ -329,16 +330,16 @@ public class ControleCliente implements Initializable {
 		contatos.add(contato);
 		contatos.add(contato2);
 
-		if(!fone_cont_cliente_field2.getText().isEmpty()) {
-
-			contato3 = new Contato();	
-			contato3.setCliente(cliente);
-			contato3.setTipo(TipoContato.TELEFONE);
-			contato3.setDescricao(fone_cont_cliente_field2.getText());
-			
-			contatos.add(contato3);
-
-		}
+//		if(!fone_cont_cliente_field2.getText().isEmpty()) {
+//
+//			contato3 = new Contato();	
+//			contato3.setCliente(cliente);
+//			contato3.setTipo(TipoContato.TELEFONE);
+//			contato3.setDescricao(fone_cont_cliente_field2.getText());
+//			
+//			contatos.add(contato3);
+//
+//		}
 		
 		
 		cliente.setContatos(contatos);

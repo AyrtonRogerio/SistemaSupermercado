@@ -17,6 +17,7 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Contas_a_Pagar_Adapter;
 import br.com.sistemasupermercado.model.ProdutoTabAdapter;
+import br.com.sistemasupermercado.view.Mensagem;
 import br.com.sistemasupermercado.view.Relatorio_Contas_Pagar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.sf.jasperreports.engine.JRException;
 
@@ -150,6 +152,7 @@ public class ControleContasPagar implements Initializable {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro Gerar relatório", "Erro ao gerar relatório","Arquivo não encontrado " + e.getMessage());
 			} catch (JRException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

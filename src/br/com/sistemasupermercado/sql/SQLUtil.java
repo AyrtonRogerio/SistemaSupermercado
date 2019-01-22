@@ -187,6 +187,11 @@ public class SQLUtil {
     	
     }
 
+    /**
+     * 
+     * @author ayrton
+     *@deprecated
+     */
     public static class Pagamento {
 
         public static final String NOME_TABELA = "pagamento";

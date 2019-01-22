@@ -11,6 +11,7 @@ import br.com.sistemasupermercado.model.Pagamento;
 /**
  * @author ayrton
  * @version 1.0
+ * @deprecated
  * 
  */
 public interface IDaoPagamento {

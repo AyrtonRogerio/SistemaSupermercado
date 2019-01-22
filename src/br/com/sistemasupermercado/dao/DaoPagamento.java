@@ -25,7 +25,7 @@ import br.com.sistemasupermercado.sql.SQLUtil;
 
 /**
  * @author ayrton
- *
+ * @deprecated
  */
 public class DaoPagamento implements IDaoPagamento {
 
@@ -33,12 +33,6 @@ public class DaoPagamento implements IDaoPagamento {
 	private PreparedStatement statement;
 	private ResultSet result;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.sistemasupermercado.dao.IDaoPagamento#salvar(br.com.
-	 * sistemasupermercado.model.Pagamento)
-	 */
 	@Override
 	public void salvar(Pagamento pagamento, int id_cliente, int id_venda) throws DaoException {
 		// TODO Auto-generated method stub
@@ -62,11 +56,6 @@ public class DaoPagamento implements IDaoPagamento {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.sistemasupermercado.dao.IDaoPagamento#buscarPorId(int)
-	 */
 	@Override
 	public Pagamento buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
@@ -110,11 +99,6 @@ public class DaoPagamento implements IDaoPagamento {
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.sistemasupermercado.dao.IDaoPagamento#getAll()
-	 */
 	@Override
 	public List<Pagamento> getAll() throws DaoException {
 		// TODO Auto-generated method stub
@@ -153,12 +137,6 @@ public class DaoPagamento implements IDaoPagamento {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.sistemasupermercado.dao.IDaoPagamento#editar(br.com.
-	 * sistemasupermercado.model.Pagamento)
-	 */
 	@Override
 	public void editar(Pagamento pagamento) throws DaoException {
 		// TODO Auto-generated method stub
@@ -180,11 +158,6 @@ public class DaoPagamento implements IDaoPagamento {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.sistemasupermercado.dao.IDaoPagamento#ativarDesativar(int)
-	 */
 	@Override
 	public void ativarDesativar(int id) throws DaoException {
 		// TODO Auto-generated method stub

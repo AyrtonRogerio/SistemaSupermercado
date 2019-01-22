@@ -3,7 +3,11 @@ package br.com.sistemasupermercado.model;
 import br.com.sistemasupermercado.enuns.FormaPagamento;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author ayrton
+ *@deprecated
+ */
 public class Pagamento {
 
 	private Integer id;

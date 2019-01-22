@@ -34,6 +34,8 @@ public class DaoFuncionario implements IDaoFuncionario {
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar o funcionário!");
 		}
 
 	}
@@ -55,15 +57,17 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
 				funcionario.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
 				funcionario.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
-				System.out.println(funcionario.getNome());
-				System.out.println(funcionario.getCpf());
-				System.out.println(funcionario.getCargo());
-				System.out.println(funcionario.getLogin());
-				System.out.println(funcionario.getSenha());
+//				System.out.println(funcionario.getNome());
+//				System.out.println(funcionario.getCpf());
+//				System.out.println(funcionario.getCargo());
+//				System.out.println(funcionario.getLogin());
+//				System.out.println(funcionario.getSenha());
 			}
 			this.conexao.close();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar o funcionário!");
 		}
 		return funcionario;
 	}
@@ -86,16 +90,18 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
 				funcionario.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
 				funcionarios.add(funcionario);
-				System.out.println(funcionario.getNome());
-				System.out.println(funcionario.getCpf());
-				System.out.println(funcionario.getCargo());
-				System.out.println(funcionario.getLogin());
-				System.out.println(funcionario.getSenha());
+//				System.out.println(funcionario.getNome());
+//				System.out.println(funcionario.getCpf());
+//				System.out.println(funcionario.getCargo());
+//				System.out.println(funcionario.getLogin());
+//				System.out.println(funcionario.getSenha());
 			}
 			this.conexao.close();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todos os funcionário!");
 		}
 		return funcionarios;
 	}
@@ -114,6 +120,8 @@ public class DaoFuncionario implements IDaoFuncionario {
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao editar o funcionário!");
 		}
 	}
 
@@ -123,13 +131,6 @@ public class DaoFuncionario implements IDaoFuncionario {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * br.com.sistemasupermercado.dao.IDaoFuncionario#buscarLogin(java.lang.String,
-	 * java.lang.String)
-	 */
 	@Override
 	public Funcionario buscarLogin(String login, String senha) throws DaoException {
 		try {
@@ -139,8 +140,6 @@ public class DaoFuncionario implements IDaoFuncionario {
 			this.statement.setString(1, login);
 			this.statement.setString(2, senha);
 			this.result = this.statement.executeQuery();
-
-			
 
 			if (result.next()) {
 				func = new Funcionario();
@@ -157,7 +156,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new DaoException("Erro na buscaPorLogin");
+			throw new DaoException("Erro ao buscar funcionário! Login ou Senha incorretos");
 		}
 
 	}

@@ -39,6 +39,8 @@ public class DaoProduto implements IDaoProduto {
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar produto!");
 		}
 		
 		return id;
@@ -63,6 +65,8 @@ public class DaoProduto implements IDaoProduto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar produto!");
 		}
 		return produto;
 	}
@@ -87,6 +91,8 @@ public class DaoProduto implements IDaoProduto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todos os produtos!");
 		}
 		return produtos;
 	}
@@ -105,6 +111,7 @@ public class DaoProduto implements IDaoProduto {
 			this.statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+            throw new DaoException("Erro ao editar produto!");
 		}
 
 	}

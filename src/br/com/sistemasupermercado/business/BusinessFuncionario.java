@@ -79,6 +79,21 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 			throw new BusinessException(e.getMessage());
 		}
 	}
+	@Override
+	public Funcionario buscarPorLogin(String login, String senha) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+		try {
+
+			validar(login,senha);
+			return daoFuncionario.buscarLogin(login,senha);
+		} catch (DaoException | ValidacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+		
+	}
 
 	@Override
 	public void validar(Funcionario funcionario) throws ValidacaoException {
@@ -97,22 +112,25 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 			e.printStackTrace();
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessFuncionario#buscarPorLogin(java.lang.String, java.lang.String)
-	 */
+	
 	@Override
-	public Funcionario buscarPorLogin(String login, String senha) throws BusinessException {
+	public void validar(String login, String Senha) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		
 		try {
-			return daoFuncionario.buscarLogin(login,senha);
+
+			for (Funcionario f : daoFuncionario.getAll()) {
+
+				if (!login.equals(f.getLogin()))
+					throw new ValidacaoException("Usuário não existe!!!");
+				if (!Senha.equals(f.getSenha()))
+					throw new ValidacaoException("Usuário não existe!!!");
+			}
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new BusinessException(e.getMessage());
+			
 		}
-		
 	}
+
 
 }

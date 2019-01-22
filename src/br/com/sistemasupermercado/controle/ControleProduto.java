@@ -14,10 +14,12 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.*;
 import br.com.sistemasupermercado.principal.Main;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -225,6 +227,7 @@ public class ControleProduto implements Initializable {
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Fornecedor não encontrado!", e.getMessage());
 			}
 		}
 
@@ -284,7 +287,6 @@ public class ControleProduto implements Initializable {
 				contas_a_pagar.setData_pagamento(new Date());
 				contas_a_pagar.setStatus(true);
 
-
 			}
 
 				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -292,6 +294,7 @@ public class ControleProduto implements Initializable {
 					contas_a_pagar.setData_vencimento(format.parse(venc_parcela_data.getEditor().getText()));
 				} catch (ParseException e) {
 					e.printStackTrace();
+					Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro na data", e.getMessage());
 				}
 			contas_a_pagar.setFornecedor_id(fornecedor);
 			contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
@@ -306,8 +309,8 @@ public class ControleProduto implements Initializable {
 			produtoTabAdapters = fachada.getAllAdapterItemProduto();
 
 			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Salvar", "Ocorreu um erro ao salvar!", e.getMessage());
 			}
 			limparCampos();
 			lista_prod_tabPane.getTabPane().getSelectionModel().select(lista_prod_tabPane);
@@ -326,8 +329,8 @@ public class ControleProduto implements Initializable {
 				list_prod_tab.getItems().setAll(produtoTabAdapters);
 			
 			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Nenhum produto foi encontrado!",e.getMessage());
 			}
 			
 			
@@ -357,6 +360,7 @@ public class ControleProduto implements Initializable {
 			tabela_fornec.getItems().setAll(fornecedors);
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Não foram encontrados nenhum fornecedor!", e.getMessage());
 		}
 
 
@@ -407,6 +411,7 @@ public class ControleProduto implements Initializable {
 			list_prod_tab.getItems().setAll(produtoTabAdapters);
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Produto não encontrado!", e.getMessage());
 		}
 
 	}
@@ -435,6 +440,7 @@ public class ControleProduto implements Initializable {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas", e.getMessage());
 		}
 
 		item_Produto.setPerecivel(perecivel_prod_cadast_checkB.isSelected());

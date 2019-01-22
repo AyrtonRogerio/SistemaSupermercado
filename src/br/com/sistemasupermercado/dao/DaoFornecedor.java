@@ -41,6 +41,8 @@ public class DaoFornecedor implements IDaoFornecedor {
             
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao salvar o fornecedor!");
         }
         	return id;
     }
@@ -71,6 +73,8 @@ public class DaoFornecedor implements IDaoFornecedor {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar o fornecedor!");
         }
         return fornecedor;
     }
@@ -103,12 +107,14 @@ public class DaoFornecedor implements IDaoFornecedor {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todos os fornecedores!");
         }
         return fornecedores;
 
     }
 
-    public Fornecedor buscarPorNome(String nome) {
+    public Fornecedor buscarPorNome(String nome) throws DaoException {
     	
     	Fornecedor fornecedor = null;
     	try {
@@ -132,6 +138,7 @@ public class DaoFornecedor implements IDaoFornecedor {
     	} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+            throw new DaoException("Erro ao buscar o fornecedor!");
 		}
     	return fornecedor;
     	
@@ -153,6 +160,8 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.result = this.statement.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            throw new DaoException("Erro ao editar o fornecedor!");
         }
     }
 

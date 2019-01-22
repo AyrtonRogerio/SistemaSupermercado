@@ -37,6 +37,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao salvar o caixa!");
 		}
 	}
 
@@ -66,6 +67,7 @@ public class DaoCaixa implements IDaoCaixa {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar o caixa por id!");
 		}
 		return caixa;
 	}
@@ -101,6 +103,7 @@ public class DaoCaixa implements IDaoCaixa {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar o caixa por Data!");
 		}
 		return caixa;
 	}
@@ -132,6 +135,7 @@ public class DaoCaixa implements IDaoCaixa {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar o caixa por Data anterior!");
 		}
 		return caixa;
 	}
@@ -162,6 +166,7 @@ public class DaoCaixa implements IDaoCaixa {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar todos os caixas!");
 		}
 		return caixas;
 	}
@@ -178,6 +183,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao editar o caixa!");
 		}
 	}
 

@@ -34,7 +34,7 @@ public class Mensagem {
 		return instancia;
 	}
 	
-	public void exibirMnsagem(AlertType tipo, String titulo, String cabecalho, String mensagem)	{
+	public void exibirMensagem(AlertType tipo, String titulo, String cabecalho, String mensagem)	{
 		
 		alert.setAlertType(tipo);
 		alert.setTitle(titulo);

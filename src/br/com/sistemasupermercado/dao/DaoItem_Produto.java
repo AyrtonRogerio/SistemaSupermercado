@@ -53,6 +53,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar o produto no estoque!");
 		}
 
 	}
@@ -95,6 +97,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar o produto no estoque!");
 		}
 		return item_Produto;
 	}
@@ -123,13 +127,12 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar o produto no estoque!");
 		}
 		return vendaTabAdapter;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#getAll()
-	 */
 	@Override
 	public List<Item_Produto> getAll() throws DaoException {
 		// TODO Auto-generated method stub
@@ -169,6 +172,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException | BusinessException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todos os produtos!");
 		}
 		return item_Produtos;
 	}
@@ -200,6 +205,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar produtos no estoque!");
 		}
 		return produtoTabAdapters;
 	}
@@ -234,6 +241,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar produto no estoque!");
 		}
 		return produtoTabAdapters;
 	}
@@ -263,6 +272,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar produto em estoque!");
 		}
 		return estoqueTabAdapters;
 	}
@@ -293,6 +304,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar o produto no estoque!");
 		}
 		return estoqueTabAdapters;
 	}
@@ -319,6 +332,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao editar produto no estoque!");
 		}
 	}
 
@@ -333,6 +348,8 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao atualizar a quantidade do produto no estoque!");
 		}
 	}
 

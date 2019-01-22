@@ -1,6 +1,6 @@
 package br.com.sistemasupermercado.dao;
 
-import br.com.sistemasupermercado.enuns.TipoContato;
+
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.ClienteTabAdapter;
@@ -8,9 +8,7 @@ import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +90,7 @@ public class DaoCliente implements IDaoCliente {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
-			throw new DaoException("Erro ao buscar cliente");
+			throw new DaoException("Erro ao buscar cliente!");
 		}
 		return cliente;
 
@@ -102,7 +100,6 @@ public class DaoCliente implements IDaoCliente {
 	public ClienteTabAdapter buscarPorCPF(String busca) throws DaoException {
 
 		ClienteTabAdapter clienteTabAdapter = null;
-		Endereco endereco = null;
 
 		try {
 
@@ -131,7 +128,7 @@ public class DaoCliente implements IDaoCliente {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
-			throw new DaoException("Erro ao buscar cliente");
+			throw new DaoException("Erro ao buscar cliente por!");
 		}
 
 		return clienteTabAdapter;
@@ -147,7 +144,6 @@ public class DaoCliente implements IDaoCliente {
 			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.SELECT_ALL_ADAPTER);
 			this.result = this.statement.executeQuery();
 			ClienteTabAdapter clienteTabAdapter = null;
-			Endereco endereco = null;
 			while(result.next()) {
 				clienteTabAdapter = new ClienteTabAdapter();
 				clienteTabAdapter.setId(result.getInt(1));
@@ -165,7 +161,7 @@ public class DaoCliente implements IDaoCliente {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
-			throw new DaoException("Erro ao buscar cliente");
+			throw new DaoException("Erro ao buscar cliente!");
 		}
 
 		return clienteTabAdapters;
@@ -200,7 +196,7 @@ public class DaoCliente implements IDaoCliente {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
-			throw new DaoException("Erro ao buscar cliente");
+			throw new DaoException("Erro ao buscar todos os clientes!");
 		}
 		return clientes;
 
@@ -226,7 +222,7 @@ public class DaoCliente implements IDaoCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DaoException("Erro ao buscar cliente");
+			throw new DaoException("Erro ao editar o cliente");
 		}
 	}
 

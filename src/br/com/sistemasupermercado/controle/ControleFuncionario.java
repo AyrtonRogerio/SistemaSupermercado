@@ -9,11 +9,13 @@ import java.util.ResourceBundle;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Funcionario;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * @author ayrton
@@ -41,8 +43,6 @@ public class ControleFuncionario implements Initializable {
     @FXML
     private TextField senha_func_field;
 
-//	Fachada fachada = Fachada.getInstance();
-
 	@FXML
 	void action(ActionEvent event) {
 		if (event.getSource() == this.cadastrar_func_button) {
@@ -51,6 +51,7 @@ public class ControleFuncionario implements Initializable {
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Salvar", "Erro ao salvar o funcionário", e.getMessage());
 			}
 		}
 	}

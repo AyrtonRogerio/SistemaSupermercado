@@ -46,6 +46,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar item da venda!");
 		}
 
 	}
@@ -68,14 +70,14 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 				item_Venda.setQuantidade(result.getInt(SQLUtil.Item_Venda.COL_QUANT));
 				item_Venda.setValor_item(result.getDouble(SQLUtil.Item_Venda.COL_VALOR_ITEM));
 				item_Venda.setDesconto(result.getBoolean(SQLUtil.Item_Venda.COL_DESCONTO));
-//				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
-//				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
-				
+	
 			}
 			this.conexao.close();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar item da venda!");
 		}
 		return item_Venda;
 	}
@@ -99,14 +101,14 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 				item_Venda.setQuantidade(result.getInt(SQLUtil.Item_Venda.COL_QUANT));
 				item_Venda.setValor_item(result.getDouble(SQLUtil.Item_Venda.COL_VALOR_ITEM));
 				item_Venda.setDesconto(result.getBoolean(SQLUtil.Item_Venda.COL_DESCONTO));
-//				item_Venda.setVenda_id(result.getInt(SQLUtil.Item_Venda.COL_VENDA_ID));
-//				item_Venda.setItem_produto_id(result.getInt(SQLUtil.Item_Venda.COL_ITEM_PRODUTO_ID));
 				item_Vendas.add(item_Venda);
 			}
 			this.conexao.close();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao buscar todos os itens da venda!");
 		}
 		return item_Vendas;
 	}
@@ -128,6 +130,8 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao editar o item da venda!");
 		}
 	}
 
