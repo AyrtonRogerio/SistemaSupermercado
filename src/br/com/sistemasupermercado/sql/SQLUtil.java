@@ -257,8 +257,8 @@ public class SQLUtil {
     	public static final String SELECT_VENDA = "select v.valor_total, v.desc_geral, v.valor_troco, v.valor_recebido" +
                 " from venda v where id = ?";
 
-        public static final String UPDATE_VENDA = "update venda set valor_total = ?, desc_geral = ?," +
-                "valor_troco = ?, valor_recebido = ? where = id";
+        public static final String UPDATE_VENDA = "update venda set valor_total = ?, desc_geral = ?, " +
+                "valor_troco = ?, valor_recebido = ? where id = ?";
 
     	public static final String UPDATE_VENDA_CLI_ID = "update venda set cliente_id = ? where id = ?";
     	

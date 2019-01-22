@@ -126,7 +126,16 @@ public class ControleVenda implements Initializable {
         if(event.getSource() == nova_ven_button){
 
             try {
-                caixa = ControleLogin.getCaixa();
+                
+            	qtd_prod_ven_field.setDisable(false);
+            	adic_prod_ven_button.setDisable(false);
+            	valor_pago_field.setDisable(false);
+            	qtd_pgmt_field.setDisable(false);
+            	dataPag.setDisable(false);
+            	dataVenc.setDisable(false);
+            	
+            	
+            	caixa = ControleLogin.getCaixa();
                 venda = new Venda();
                 funcionario = ControleLogin.getFuncionario();
                 item_vendas = new ArrayList<Item_Venda>();
@@ -154,6 +163,7 @@ public class ControleVenda implements Initializable {
                 e.printStackTrace();
                 Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao salvar", "Erro na venda", e.getMessage());
             }
+            
 
 
             info_cx_ven_field.setText("Caixa em uso!");
@@ -216,7 +226,12 @@ public class ControleVenda implements Initializable {
         if(event.getSource() == fin_ven_button){
 
             contas_a_receber = new Contas_a_receber();
-
+            try {
+				venda = Fachada.getInstance().buscarPorIdVenda(venda_id);
+			} catch (BusinessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             qt = Integer.parseInt(qtd_pgmt_field.getText());
 
             venda.setValor_recebido(Double.parseDouble(valor_pago_field.getText()));
@@ -274,11 +289,10 @@ public class ControleVenda implements Initializable {
 
             try {
 
-                Fachada.getInstance().editar_Venda(venda);
-                venda = Fachada.getInstance().buscarPorIdVenda(venda_id);
                 Fachada.getInstance().salvarConta_a_Receber(contas_a_receber,caixa.getId(),venda.getId());
                 caixa.setEntrada(caixa.getEntrada() + contas_a_receber.getValor_pago());
                 
+                Fachada.getInstance().editar_Venda(venda);
                 Fachada.getInstance().editarCaixa(caixa);
                 limparCampos();
             } catch (BusinessException e) {
