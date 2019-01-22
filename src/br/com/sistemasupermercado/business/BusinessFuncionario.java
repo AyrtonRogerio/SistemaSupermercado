@@ -91,9 +91,9 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		
 		try {
 
-			validar(login,senha);
+			//validar(login,senha);
 			return daoFuncionario.buscarLogin(login,senha);
-		} catch (DaoException | ValidacaoException e) {
+		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
@@ -133,9 +133,9 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 					throw new ValidacaoException("O CPF já está cadastrado!!!");
 				}
 				
-				if(funcionario.getLogin().equals(f.getLogin())) {
-					throw new ValidacaoException("Login existente!");
-				}
+//				if(funcionario.getLogin().equals(f.getLogin())) {
+//					throw new ValidacaoException("Login existente!");
+//				}
 				
 			}
 		} catch (DaoException e) {
@@ -145,6 +145,10 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		}
 	}
 	
+	
+	/**
+	 * @deprecated
+	 */
 	@Override
 	public void validar(String login, String Senha) throws ValidacaoException {
 		// TODO Auto-generated method stub

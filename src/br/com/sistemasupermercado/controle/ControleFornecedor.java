@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Fornecedor;
+import br.com.sistemasupermercado.model.MaskFieldUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,7 +69,7 @@ public class ControleFornecedor implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		MaskFieldUtil.cnpjField(cnpj_forn_field);
 	}
 
 	public void cadastrarFornecedor() {

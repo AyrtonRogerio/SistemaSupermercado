@@ -48,7 +48,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="pr_un_prod_ven_field" alignment="CENTER_RIGHT" editable="false" onAction="#action" prefHeight="36.0" prefWidth="136.0" promptText="0,00" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="pr_un_prod_ven_field" alignment="CENTER_RIGHT" disable="true" editable="false" onAction="#action" prefHeight="36.0" prefWidth="136.0" promptText="0,00" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
@@ -83,12 +83,12 @@
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="valor_pago_field" alignment="CENTER_RIGHT" onAction="#action" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="valor_pago_field" alignment="CENTER_RIGHT" disable="true" onAction="#action" promptText="0,00" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="qtd_pgmt_field" alignment="CENTER_RIGHT" onAction="#action" prefHeight="26.0" prefWidth="37.0" text="1" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <TextField fx:id="qtd_pgmt_field" alignment="CENTER_RIGHT" disable="true" onAction="#action" prefHeight="26.0" prefWidth="37.0" text="1" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
@@ -101,12 +101,12 @@
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Text>
-                              <DatePicker fx:id="dataVenc" onAction="#action" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                              <DatePicker fx:id="dataVenc" disable="true" onAction="#action" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
                               </DatePicker>
-                              <DatePicker fx:id="dataPag" onAction="#action" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                              <DatePicker fx:id="dataPag" disable="true" onAction="#action" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </GridPane.margin>
@@ -178,7 +178,7 @@
                         <Insets left="5.0" right="5.0" />
                      </FlowPane.margin>
                   </TableView>
-                  <Button fx:id="rem_prod_ven_button" mnemonicParsing="false" text="Remover">
+                  <Button fx:id="rem_prod_ven_button" disable="true" mnemonicParsing="false" text="Remover">
                      <FlowPane.margin>
                         <Insets left="300.0" top="5.0" />
                      </FlowPane.margin>
@@ -212,7 +212,7 @@
                                  </FlowPane.margin>
                               </Button>
                               <Label text="Qtd:" />
-                              <TextField fx:id="qtd_prod_ven_field" alignment="CENTER_RIGHT" onAction="#action" prefHeight="35.0" prefWidth="47.0" text="1">
+                              <TextField fx:id="qtd_prod_ven_field" alignment="CENTER_RIGHT" disable="true" onAction="#action" prefHeight="35.0" prefWidth="47.0" text="1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -223,7 +223,7 @@
                                     <Insets left="5.0" right="5.0" />
                                  </FlowPane.margin>
                               </TextField>
-                              <Button fx:id="adic_prod_ven_button" mnemonicParsing="false" onAction="#action" text="Adicionar">
+                              <Button fx:id="adic_prod_ven_button" disable="true" mnemonicParsing="false" onAction="#action" text="Adicionar">
                                  <FlowPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </FlowPane.margin>

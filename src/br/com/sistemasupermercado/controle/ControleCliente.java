@@ -21,6 +21,8 @@ import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
+import br.com.sistemasupermercado.model.MaskFieldUtil;
+import br.com.sistemasupermercado.principal.Main;
 import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,7 +44,6 @@ public class ControleCliente implements Initializable {
 	private Endereco endereco;
 	private Contato contato;
 	private Contato contato2;
-	private Contato contato3;
 	private List<Contato> contatos;
 
 	@FXML
@@ -229,12 +230,28 @@ public class ControleCliente implements Initializable {
 			end_cliente_tab.getTabPane().getSelectionModel().select(end_cliente_tab);
 
 		}
+		
+		
+		if(event.getSource() == detalhes_cli_button) {
+			Dialog<Contato> dialog = new Dialog<>();
+			
+			dialog.getDialogPane().setContent(Main.telaContato());
+			dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+			dialog.showAndWait();
+			
+			
+		}
 
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		
+		MaskFieldUtil.cpfField(cpf_cliente_field);
+		MaskFieldUtil.foneField(fone_cont_cliente_field1);
+		MaskFieldUtil.cepField(cep_end_cliente_field);
+		
 		sexo_cliente_combo.getItems().setAll(TipoSexo.values());
 		estad_civ_client_combo.getItems().setAll(TipoEstadoCivil.values());
 		ocupacao_cliente_combo.getItems().setAll(TipoOcupacao.values());

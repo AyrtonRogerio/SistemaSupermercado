@@ -65,7 +65,7 @@ public class ControleLogin implements Initializable {
 				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Logar", "O usuário não EXISTE!", "Usuário inexiste");	
 				return false;
 			}
-			Mensagem.getInstancia().exibirMensagem(AlertType.CONFIRMATION, "Logado", "Login efetuado", "Logado com sucesso!");
+			Mensagem.getInstancia().exibirMensagem(AlertType.INFORMATION, "Logado", "Login efetuado", "Logado com sucesso!");
 			return true;
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block

@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class ProdutoTabAdapter {
 
+	private Integer id;
+	private Integer produto_id;
+	private Integer fornecedor_id;
     private String descricao;
     private String marca;
     private long cod_barras;
@@ -72,6 +75,48 @@ public class ProdutoTabAdapter {
 	 */
 	public void setCod_barras(long cod_barras) {
 		this.cod_barras = cod_barras;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the produto_id
+	 */
+	public Integer getProduto_id() {
+		return produto_id;
+	}
+
+	/**
+	 * @param produto_id the produto_id to set
+	 */
+	public void setProduto_id(Integer produto_id) {
+		this.produto_id = produto_id;
+	}
+
+	/**
+	 * @return the fornecedor_id
+	 */
+	public Integer getFornecedor_id() {
+		return fornecedor_id;
+	}
+
+	/**
+	 * @param fornecedor_id the fornecedor_id to set
+	 */
+	public void setFornecedor_id(Integer fornecedor_id) {
+		this.fornecedor_id = fornecedor_id;
 	}
 
 

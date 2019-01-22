@@ -174,6 +174,9 @@ public class ControleProduto implements Initializable {
 	private Button volt_prod_fornc_button;
 
 	@FXML
+    private Button atualiza_button;
+	
+	@FXML
 	private Button add_fornec_button;
 
 	@FXML
@@ -339,9 +342,15 @@ public class ControleProduto implements Initializable {
 
 		if(event.getSource() == editar_prod_button){
 
+		
 
 
-
+		}
+		
+		if(event.getSource() == atualiza_button) {
+			
+			
+			
 		}
 
 	}
@@ -349,6 +358,13 @@ public class ControleProduto implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		
+		MaskFieldUtil.numericField(cod_prod_cadast_field);
+		MaskFieldUtil.numericField(qtd_parc_field);
+		MaskFieldUtil.numericField(quant_prod_cadast_field);
+		MaskFieldUtil.monetaryField(preco_unit_prod_cadastro_field);
+		MaskFieldUtil.monetaryField(valor_pago_field);
+		
 		nome_forn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		razao_forn.setCellValueFactory(new PropertyValueFactory<>("razao_social"));
 		cnpj_forn.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
@@ -372,7 +388,7 @@ public class ControleProduto implements Initializable {
 		estoque_list_tab.setCellValueFactory(new PropertyValueFactory<>("estoque"));
 		data_cadastro_list_tab.setCellValueFactory(new PropertyValueFactory<>("data_cadastro"));
 		status_list_tab.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+		
 		status_list_tab.setCellFactory(coluna -> {
 			return new TableCell<ProdutoTabAdapter, Boolean>(){
 				protected void updateItem(Boolean item, boolean empty) {
@@ -382,9 +398,9 @@ public class ControleProduto implements Initializable {
 						setText(null);
 					} else {
 						if(item)
-							setText("Sim");
+							setText("Em estoque");
 						else
-							setText("Não");
+							setText("Em falta");
 					}
 				}
 			};
@@ -459,6 +475,59 @@ public class ControleProduto implements Initializable {
 		item_Produto.setProduto_id(produto);
 	}
 
+	public void atuaizarProduto() {
+		
+		ProdutoTabAdapter adapter = list_prod_tab.getSelectionModel().getSelectedItem();
+		
+		try {
+			Item_Produto item = Fachada.getInstance().buscarPorIdItemProduto(adapter.getId());
+			Produto produ = Fachada.getInstance().buscarPorIdProduto(adapter.getProduto_id());
+
+			
+			nome_prod_cadast_field.setText(produ.getNome());
+			descri_prod_cadast_field.setText(produ.getDescricao());
+			marca_prod_cadastro_field.setText(produ.getMarca());
+			
+			
+			
+			
+			quant_prod_cadast_field.setText(""+item.getQuantidade());
+			cod_prod_cadast_field.setText(""+item.getCod_barras());
+			
+			status_prod_cadast_checkB.setSelected(item.isStatus());
+			perecivel_prod_cadast_checkB.setSelected(item.isPerecivel());
+			
+			
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			try {
+
+
+				item.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
+				item.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
+				item.setData_validade(format.parse(valid_prod_data.getEditor().getText().trim()));
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas ao editar", e.getMessage());
+			}
+			
+			
+			preco_unit_prod_cadastro_field.setText(""+item.getPreco_unidade());
+			
+			valor_pago_field.setText("");
+			
+			
+			
+//			Fachada.getInstance().editar_Item_Produto(item);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	public void limparCampos(){
 
 		nome_prod_cadast_field.clear();

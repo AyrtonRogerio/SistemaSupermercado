@@ -51,7 +51,7 @@ public class SQLUtil {
         		" from item_produto i inner join produto p \r\n" + 
         		"   on i.produto_id = p.id and i.vendidos < i.quantidade and (i.cod_barras ilike ? or p.descricao ilike ? or p.marca ilike ?)";
         
-        public static final String SELECT_PRODUTO_ALL = "select p.descricao, p.marca, i.cod_barras, " +
+        public static final String SELECT_PRODUTO_ALL = "select p.id, p.descricao, p.marca, i.id, i.fornecedor_id, i.cod_barras, " +
                 "i.porc_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
                 "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
         

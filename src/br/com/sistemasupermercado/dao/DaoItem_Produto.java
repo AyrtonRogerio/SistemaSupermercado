@@ -191,8 +191,10 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			ProdutoTabAdapter produtoTabAdapter;
 			while (result.next()) {
 				produtoTabAdapter = new ProdutoTabAdapter();
+				produtoTabAdapter.setProduto_id(result.getInt(1));
 				produtoTabAdapter.setDescricao(result.getString("descricao"));
 				produtoTabAdapter.setMarca(result.getString("marca"));
+				produtoTabAdapter.setId(result.getInt(4));
 				produtoTabAdapter.setCod_barras(result.getLong("cod_barras"));
 				produtoTabAdapter.setPreco_varejo(result.getDouble("porc_varejo"));
 				produtoTabAdapter.setEstoque(result.getInt("quantidade"));

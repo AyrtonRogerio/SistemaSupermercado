@@ -11,13 +11,13 @@ import br.com.sistemasupermercado.model.Funcionario;
 
 import java.util.List;
 
+/**
+ * @author ayrton
+ */
 public class BusinessCliente implements IBusinessCliente {
 
 	private IDaoCliente daoCliente;
 
-	/**
-	 * 
-	 */
 	public BusinessCliente() {
 
 		daoCliente = new DaoCliente();

@@ -6,6 +6,7 @@ package br.com.sistemasupermercado.controle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.com.sistemasupermercado.model.MaskFieldUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,7 +45,7 @@ public class ControleEditarContato implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		MaskFieldUtil.foneField(fone_field);
 	}
 
 }
