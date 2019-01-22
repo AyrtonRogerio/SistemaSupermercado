@@ -21,10 +21,12 @@ import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Contato;
 import br.com.sistemasupermercado.model.Endereco;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -77,11 +79,11 @@ public class ControleCliente implements Initializable {
 	private TableColumn<ClienteTabAdapter, String> num_cliente_col;
 
 	@FXML
-	private TableColumn<ClienteTabAdapter, String> tipo_cliente_col;
+    private Button detalhes_cli_button;
 
-	@FXML
-	private TableColumn<ClienteTabAdapter, String> contato_cliente_col;
-
+    @FXML
+    private Button editar_cliente_button;
+	
 	@FXML
 	private Tab dados_cliente_tab;
 
@@ -164,8 +166,9 @@ public class ControleCliente implements Initializable {
 
 				clienteTabAdapter = fachada.buscarPorCPFCliente(busca_cliente_field.getText());
 				tabela_clentes.getItems().setAll(clienteTabAdapter);
-
+				
 			} catch (BusinessException e) {
+				Mensagem.getInstancia().exibirMnsagem(AlertType.ERROR, "Erro Buscar Cliente", "", e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -241,8 +244,6 @@ public class ControleCliente implements Initializable {
 		rua_cliente_col.setCellValueFactory(new PropertyValueFactory<>("rua"));
 		bairro_cliente_col.setCellValueFactory(new PropertyValueFactory<>("bairro"));
 		num_cliente_col.setCellValueFactory(new PropertyValueFactory<>("numero"));
-		tipo_cliente_col.setCellValueFactory(new PropertyValueFactory<>("tipo_contato"));
-		contato_cliente_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 
 		try {
 

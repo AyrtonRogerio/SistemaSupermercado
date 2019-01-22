@@ -94,6 +94,30 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 			throw new BusinessException(e.getMessage());
 		}
 	}
+	
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoItemProduto.getAllEstoqueAdapterPorBusca(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapterPorBusca(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoItemProduto.getAllAdapterPorBusca(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 
     @Override
     public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException {
@@ -133,5 +157,6 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 		if(item_Produto.getCod_barras() == 0)
 			throw new ValidacaoException("Informe um nome!!!");
 	}
+
 
 }

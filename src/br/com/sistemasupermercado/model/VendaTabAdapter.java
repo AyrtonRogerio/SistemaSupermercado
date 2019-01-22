@@ -3,7 +3,7 @@ package br.com.sistemasupermercado.model;
 public class VendaTabAdapter {
 
     private int item;
-    private int venda_cod_barras;
+    private long venda_cod_barras;
     private String venda_descricao;
     private int venda_quantidade;
     private double venda_preco_varejo;
@@ -16,13 +16,7 @@ public class VendaTabAdapter {
         this.item = item;
     }
 
-    public int getVenda_cod_barras() {
-        return venda_cod_barras;
-    }
-
-    public void setVenda_cod_barras(int venda_cod_barras) {
-        this.venda_cod_barras = venda_cod_barras;
-    }
+   
 
     public String getVenda_descricao() {
         return venda_descricao;
@@ -47,4 +41,18 @@ public class VendaTabAdapter {
     public void setVenda_preco_varejo(double venda_preco_varejo) {
         this.venda_preco_varejo = venda_preco_varejo;
     }
+
+	/**
+	 * @return the venda_cod_barras
+	 */
+	public long getVenda_cod_barras() {
+		return venda_cod_barras;
+	}
+
+	/**
+	 * @param venda_cod_barras the venda_cod_barras to set
+	 */
+	public void setVenda_cod_barras(long venda_cod_barras) {
+		this.venda_cod_barras = venda_cod_barras;
+	}
 }

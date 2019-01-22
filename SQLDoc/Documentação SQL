@@ -131,15 +131,15 @@ status BOOLEAN
 
 CREATE TABLE contas_a_receber(
 id serial PRIMARY KEY NOT NULL,
-descricao VARCHAR(255),
-valor DOUBLE PRECISION,
-valor_quitado DOUBLE PRECISION,
-qtd_pgmt INTEGER,
-qtd_paga INTEGER,
+descr VARCHAR(255),
+valor_total DOUBLE PRECISION,
+valor_pago DOUBLE PRECISION,
+qtd_pagmt INTEGER,
+qtd_pago INTEGER,
 saldo DOUBLE PRECISION,
-data_pagamento DATE,
-data_vencimento DATE,
+data_pag DATE,
+data_venc DATE,
 caixa_id INTEGER REFERENCES caixa(id),
 venda_id INTEGER REFERENCES venda(id),
-status BOOLEAN
+ativo BOOLEAN
 );

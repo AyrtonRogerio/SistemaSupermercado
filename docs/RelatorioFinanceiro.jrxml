@@ -16,7 +16,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="154" splitType="Stretch">
+		<band height="135" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="1" y="0" width="554" height="80" uuid="1a652692-054a-40f3-ade5-68d8da36626d"/>
 				<textElement verticalAlignment="Middle">
@@ -36,7 +36,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[br.com.sistemasupermercado.model.RelatorioFinanceiro.getInicio()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[br.com.sistemasupermercado.model.RelatorioFinanceiro.getFim()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="110" y="105" width="70" height="20" uuid="34f29c8f-a2e9-4865-a298-15ad4524f66d"/>

@@ -23,6 +23,10 @@ public interface IDaoItem_Produto {
 	public List<ProdutoTabAdapter> getAllAdapter() throws DaoException;
 
 	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws DaoException;
+	
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws DaoException;
+	
+	public List<ProdutoTabAdapter> getAllAdapterPorBusca(String busca) throws DaoException;
 
 	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws DaoException;
 

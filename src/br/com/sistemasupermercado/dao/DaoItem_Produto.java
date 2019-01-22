@@ -28,16 +28,11 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 	private Connection conexao;
 	private PreparedStatement statement;
 	private ResultSet result;
-//	private Fachada fachada = Fachada.getInstance();
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#salvar(br.com.sistemasupermercado.model.Item_Produto)
-	 */
+
 	@Override
 	public void salvar(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws DaoException {
-		// TODO Auto-generated method stub
+		
 		try {
-			
-//			int produto_id = Fachada.getInstance().salvarProduto(item_Produto.getProduto_id());
 						
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.INSERT);
@@ -62,9 +57,6 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#buscarPorId(int)
-	 */
 	@Override
 	public Item_Produto buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
@@ -79,7 +71,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			if (result.next()) {
 				item_Produto = new Item_Produto();
 				item_Produto.setId(result.getInt(1));
-				item_Produto.setCod_barras(result.getInt(SQLUtil.Item_Produto.COL_COD_BARRAS));
+				item_Produto.setCod_barras(result.getLong(SQLUtil.Item_Produto.COL_COD_BARRAS));
 				item_Produto.setUnid_medida(result.getDouble(SQLUtil.Item_Produto.COL_UNIADE_MEDIDA));
 				item_Produto.setData_fabricacao(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_FABRICACAO).getTime()));
 				item_Produto.setData_validade(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_VALIDADE).getTime()));
@@ -120,7 +112,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 			if (result.next()) {
 				vendaTabAdapter = new VendaTabAdapter();
-				vendaTabAdapter.setVenda_cod_barras(result.getInt("cod_barras"));
+				vendaTabAdapter.setVenda_cod_barras(result.getLong("cod_barras"));
 				vendaTabAdapter.setVenda_descricao(result.getString("descricao"));
 				vendaTabAdapter.setVenda_quantidade(result.getInt("quantidade"));
 				vendaTabAdapter.setVenda_preco_varejo(result.getDouble("porc_varejo"));
@@ -152,7 +144,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			while (result.next()) {
 				item_Produto = new Item_Produto();
 				item_Produto.setId(result.getInt(1));
-				item_Produto.setCod_barras(result.getInt(SQLUtil.Item_Produto.COL_COD_BARRAS));
+				item_Produto.setCod_barras(result.getLong(SQLUtil.Item_Produto.COL_COD_BARRAS));
 				item_Produto.setUnid_medida(result.getDouble(SQLUtil.Item_Produto.COL_UNIADE_MEDIDA));
 				item_Produto.setData_fabricacao(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_FABRICACAO).getTime()));
 				item_Produto.setData_validade(new Date(result.getDate(SQLUtil.Item_Produto.COL_DATA_VALIDADE).getTime()));
@@ -196,13 +188,47 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				produtoTabAdapter = new ProdutoTabAdapter();
 				produtoTabAdapter.setDescricao(result.getString("descricao"));
 				produtoTabAdapter.setMarca(result.getString("marca"));
-				produtoTabAdapter.setCod_barras(result.getInt("cod_barras"));
+				produtoTabAdapter.setCod_barras(result.getLong("cod_barras"));
 				produtoTabAdapter.setPreco_varejo(result.getDouble("porc_varejo"));
 				produtoTabAdapter.setEstoque(result.getInt("quantidade"));
 				produtoTabAdapter.setData_cadastro(new java.util.Date(result.getDate("data_compra").getTime()));
 				produtoTabAdapter.setStatus(result.getBoolean("status"));
 
 				produtoTabAdapters.add(produtoTabAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return produtoTabAdapters;
+	}
+	
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapterPorBusca(String busca) throws DaoException {
+		// TODO Auto-generated method stub
+		List<ProdutoTabAdapter> produtoTabAdapters = new ArrayList<>();
+		try {
+			
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.SELECT_PRODUTO_ALL_BUSCA);
+			this.statement.setString(1, "%" + busca + "%");
+			this.statement.setString(2, "%" + busca + "%");
+			this.statement.setString(3, "%" + busca + "%");
+			this.result = this.statement.executeQuery();
+			ProdutoTabAdapter produtoTabAdapter = null;
+			while (result.next()) {
+				produtoTabAdapter = new ProdutoTabAdapter();
+				produtoTabAdapter.setDescricao(result.getString("descricao"));
+				produtoTabAdapter.setMarca(result.getString("marca"));
+				produtoTabAdapter.setCod_barras(result.getLong("cod_barras"));
+				produtoTabAdapter.setPreco_varejo(result.getDouble("porc_varejo"));
+				produtoTabAdapter.setEstoque(result.getInt("quantidade"));
+				produtoTabAdapter.setData_cadastro(new java.util.Date(result.getDate("data_compra").getTime()));
+				produtoTabAdapter.setStatus(result.getBoolean("status"));
+				System.out.println(produtoTabAdapter);
+				produtoTabAdapters.add(produtoTabAdapter);
+				System.out.println(produtoTabAdapters.isEmpty());
 			}
 			this.conexao.close();
 
@@ -228,9 +254,38 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				estoqueTabAdapter = new EstoqueTabAdapter();
 
 				estoqueTabAdapter.setId(result.getInt("id"));
-				estoqueTabAdapter.setCod_barras(result.getInt("cod_barras"));
+				estoqueTabAdapter.setCod_barras(result.getLong("cod_barras"));
 				estoqueTabAdapter.setDescricao(result.getString("descricao"));
-				estoqueTabAdapter.setQuantidade(result.getInt("quantidade"));
+				estoqueTabAdapter.setPreco_unidade(result.getDouble("porc_varejo"));
+				estoqueTabAdapters.add(estoqueTabAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return estoqueTabAdapters;
+	}
+	
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws DaoException {
+		// TODO Auto-generated method stub
+		List<EstoqueTabAdapter> estoqueTabAdapters = new ArrayList<>();
+		try {
+			
+			
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.SELECT_PROD_LIST_EST_ALL_BUSCA);
+			this.statement.setString(1, "%" + busca + "%");
+			this.statement.setString(2, "%" + busca + "%");
+			this.result = this.statement.executeQuery();
+			EstoqueTabAdapter estoqueTabAdapter;
+			while (result.next()) {
+				estoqueTabAdapter = new EstoqueTabAdapter();
+
+				estoqueTabAdapter.setId(result.getInt("id"));
+				estoqueTabAdapter.setCod_barras(result.getLong("cod_barras"));
+				estoqueTabAdapter.setDescricao(result.getString("descricao"));
 				estoqueTabAdapter.setPreco_unidade(result.getDouble("porc_varejo"));
 				estoqueTabAdapters.add(estoqueTabAdapter);
 			}
@@ -242,9 +297,6 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		return estoqueTabAdapters;
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#editar(br.com.sistemasupermercado.model.Item_Produto)
-	 */
 	@Override
 	public void editar(Item_Produto item_Produto) throws DaoException {
 		// TODO Auto-generated method stub
@@ -284,12 +336,10 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.dao.IDaoItem_Produto#ativarDesativar(int)
-	 */
+
 	@Override
 	public void ativarDesativar(int id) throws DaoException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

@@ -9,9 +9,7 @@ import jdk.internal.dynalink.beans.StaticClass;
 
 public class SQLUtil {
 
-	/*
-	 * itemProduto é o estoque
-	*/
+	
     public static class Produto {
 
         public static final String NOME_TABELA = "produto";
@@ -44,19 +42,30 @@ public class SQLUtil {
     	public static final String COL_PRODUTO_ID = "produto_id";
 
 
-
-
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_COD_BARRAS + "," + COL_UNIADE_MEDIDA + ","  +
                 COL_DATA_FABRICACAO + "," + COL_DATA_VALIDADE + "," + COL_DATA_COMPRA + "," + COL_PRECO_UNIDADE + ","
                 + COL_PORC_ATACADO + "," + COL_PORC_VAREJO + "," + COL_QUANTIDADE + "," + COL_VENDIDOS + "," + COL_PERECIVEL + "," +
                 COL_STATUS + "," + COL_FORNECEDOR_ID + "," + COL_PRODUTO_ID + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) returning id";
 
+        public static final String SELECT_PRODUTO_ALL_BUSCA = "select p.descricao, p.marca, i.cod_barras,i.porc_varejo, i.quantidade, i.data_compra, i.status\r\n" + 
+        		" from item_produto i inner join produto p \r\n" + 
+        		"   on i.produto_id = p.id and i.vendidos < i.quantidade and (i.cod_barras ilike ? or p.descricao ilike ? or p.marca ilike ?)";
+        
         public static final String SELECT_PRODUTO_ALL = "select p.descricao, p.marca, i.cod_barras, " +
                 "i.porc_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
                 "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
+        
+        public static final String SELECT_PRODUTO_ALL_POR_BUSCA = "select p.descricao, p.marca, i.cod_barras, " +
+                "i.porc_varejo, i.quantidade, i.data_compra, i.status from item_produto i inner join produto p " +
+                "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
 
+        public static final String SELECT_PROD_LIST_EST_ALL_BUSCA = "select i.id, i.cod_barras, " +
+                "i.porc_varejo, p.descricao from item_produto i inner join produto p " +
+                "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade "
+                + "and (i.cod_barras ilike ? or p.descricao ilike ?)";
+        
         public static final String SELECT_PROD_LIST_EST_ALL = "select i.id, i.cod_barras, " +
-                "i.quantidade, i.porc_varejo, p.descricao from item_produto i inner join produto p " +
+                "i.porc_varejo, p.descricao from item_produto i inner join produto p " +
                 "on i.produto_id = p.id and i.status = true and i.vendidos < i.quantidade";
 
         public static final String SELECT_PROD_LIST_VEND = "select i.id, i.cod_barras, " +
@@ -87,7 +96,7 @@ public class SQLUtil {
         + COL_CEP + "," + COL_NUMERO + "," + COL_BAIRRO + "," + COL_CIDADE + "," + COL_ESTADO
         + " ) values (?,?,?,?,?,?) returning id";
         
-        //public static final String SELECT = " select * from " + NOME_TABELA + " where id = ?";
+        
 
         public static final String UPDATE = "update endereco set rua = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?";
     }
@@ -121,13 +130,13 @@ public class SQLUtil {
         COL_OCUPACAO + "," + COL_DATA_NASCIMENTO + "," +
         COL_ENDERECO_ID + " ) values (?,?,?,?,?,?,?) returning id";
 
-        public static final String SELECT_CPF = "select c. id, c.nome, c.cpf, c.data_nascimento, " +
-                "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
-                "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id where c.cpf = ?";
+        public static final String SELECT_CPF = "select c.id, c.nome, c.cpf, c.data_nascimento, " +
+                "e.rua, e.bairro, e.numero from cliente c inner join endereco e " +
+                "on c.endereco_id = e.id and c.cpf ilike ? or c.nome ilike ? or e.rua ilike ?";
 
         public static final String SELECT_ALL_ADAPTER = "select c. id, c.nome, c.cpf, c.data_nascimento, " +
-                "e.rua, e.bairro, e.numero, f.tipo, f.descricao from cliente c inner join endereco e " +
-                "on c.endereco_id = e.id inner join contato f on f.cliente_id = c.id";
+                "e.rua, e.bairro, e.numero from cliente c inner join endereco e " +
+                "on c.endereco_id = e.id";
 
         public static  final  String UPDATE = "update cliente set nome = ?, cpf = ?, sexo = ?, estado_civil = ?," +
                 "ocupacao = ?, data_nascimento = ?";
@@ -276,17 +285,17 @@ public class SQLUtil {
 
 
         public static final String NOME_TABELA = "contas_a_receber";
-        public static final String COL_DESCRICAO = "descricao";
-        public static final String COL_VALOR = "valor";
-        public static final String COL_VALOR_QUITADO = "valor_quitado";
-        public static final String COL_QTD_PGMT = "qtd_pgmt";
-        public static final String COL_QTD_PAGA = "qtd_paga";
+        public static final String COL_DESCRICAO = "descr";
+        public static final String COL_VALOR = "valor_total";
+        public static final String COL_VALOR_QUITADO = "valor_pago";
+        public static final String COL_QTD_PGMT = "qtd_pagmt";
+        public static final String COL_QTD_PAGA = "qtd_pago";
         public static final String COL_SALDO = "saldo";
-        public static final String COL_DATA_PAG = "data_pagamento";
-        public static final String COL_DATA_VENC = "data_vencimento";
+        public static final String COL_DATA_PAG = "data_pag";
+        public static final String COL_DATA_VENC = "data_venc";
         public static final String COL_CAIXA_ID = "caixa_id";
         public static final String COL_VENDA_ID = "venda_id";
-        public static final String COL_STATUS = "status";
+        public static final String COL_STATUS = "ativo";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" +
                 COL_DESCRICAO + "," + COL_VALOR + "," + COL_VALOR_QUITADO + "," +
@@ -340,7 +349,7 @@ public class SQLUtil {
     
         public static final String SELECT_RELATORIO = "select * from contas_a_pagar cc inner join contas_a_receber cv "
         		+ "on cc.caixa_id = cv.caixa_id and cc.data_vencimento BETWEEN ? "
-        		+ "and ? and cv.data_vencimento BETWEEN ? and ?";
+        		+ "and ? and cv.data_venc BETWEEN ? and ?";
     }
 
     public static String selectAll(String nomeTabela) {

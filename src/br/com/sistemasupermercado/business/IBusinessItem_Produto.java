@@ -27,6 +27,10 @@ public interface IBusinessItem_Produto {
 	public List<ProdutoTabAdapter> getAllAdapter() throws BusinessException;
 
 	public List<EstoqueTabAdapter> getAllEstoqueAdapter() throws BusinessException;
+	
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws BusinessException;
+	
+	public List<ProdutoTabAdapter> getAllAdapterPorBusca(String busca) throws BusinessException;
 
 	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException;
 

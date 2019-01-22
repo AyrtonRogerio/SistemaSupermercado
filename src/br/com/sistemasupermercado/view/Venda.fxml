@@ -158,10 +158,9 @@
                <children>
                   <TableView fx:id="prod_tab" prefHeight="250.0" prefWidth="275.0">
                     <columns>
-                        <TableColumn fx:id="prod_cod_col" prefWidth="75.0" text="Cód." />
-                      <TableColumn fx:id="prod_desc_col" prefWidth="83.0" text="Descrição" />
-                        <TableColumn fx:id="prod_qtd_col" prefWidth="48.0" text="Qtd." />
-                        <TableColumn fx:id="prod_prec_col" prefWidth="68.0" text="Pr.Un." />
+                        <TableColumn fx:id="prod_cod_col" prefWidth="66.0" text="Cód." />
+                      <TableColumn fx:id="prod_desc_col" prefWidth="151.0" text="Descrição" />
+                        <TableColumn fx:id="prod_prec_col" prefWidth="57.0" text="Pr.Un." />
                     </columns>
                      <FlowPane.margin>
                         <Insets left="5.0" right="5.0" />

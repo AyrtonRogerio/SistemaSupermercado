@@ -2,7 +2,6 @@ package br.com.sistemasupermercado.fachada;
 
 import java.sql.Date;
 import java.util.List;
-
 import br.com.sistemasupermercado.business.*;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.model.*;
@@ -303,6 +302,17 @@ public class Fachada implements IFachada {
 		return this.businessItem_Produto.getAllAdapter();
 	}
 
+	@Override
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessItem_Produto.getAllEstoqueAdapterPorBusca(busca);
+	}
+	
+	@Override
+	public List<ProdutoTabAdapter> getAllAdapterPorBuscaItemProduto(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessItem_Produto.getAllAdapterPorBusca(busca);
+	}
 
 	@Override
 	public VendaTabAdapter buscarPorIdVendaAdapterProduto(int id) throws BusinessException {
@@ -463,5 +473,6 @@ public class Fachada implements IFachada {
 		// TODO Auto-generated method stub
 		return this.businessContas_a_receber.getAll_A_Receber();
 	}
+	
 
 }

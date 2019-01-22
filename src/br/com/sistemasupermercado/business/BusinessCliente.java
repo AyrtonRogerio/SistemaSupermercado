@@ -26,11 +26,11 @@ public class BusinessCliente implements  IBusinessCliente {
 	@Override
     public void salvar(Cliente cliente) throws BusinessException {
 		try {
-//			validar(cliente);
+			validar(cliente);
 			if (cliente.getId() == null)
 				 daoCliente.salvar(cliente);
 
-		} catch (DaoException  e) {
+		} catch (DaoException | ValidacaoException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());

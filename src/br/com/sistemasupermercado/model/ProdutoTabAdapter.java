@@ -6,7 +6,7 @@ public class ProdutoTabAdapter {
 
     private String descricao;
     private String marca;
-    private int cod_barras;
+    private long cod_barras;
     private double preco_varejo;
     private int estoque;
     private Date data_cadastro;
@@ -26,14 +26,6 @@ public class ProdutoTabAdapter {
 
     public void setMarca(String marca) {
         this.marca = marca;
-    }
-
-    public int getCod_barras() {
-        return cod_barras;
-    }
-
-    public void setCod_barras(int cod_barras) {
-        this.cod_barras = cod_barras;
     }
 
     public double getPreco_varejo() {
@@ -67,4 +59,20 @@ public class ProdutoTabAdapter {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+	/**
+	 * @return the cod_barras
+	 */
+	public long getCod_barras() {
+		return cod_barras;
+	}
+
+	/**
+	 * @param cod_barras the cod_barras to set
+	 */
+	public void setCod_barras(long cod_barras) {
+		this.cod_barras = cod_barras;
+	}
+
+
 }

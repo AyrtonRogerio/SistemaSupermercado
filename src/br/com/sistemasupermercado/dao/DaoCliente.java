@@ -90,14 +90,16 @@ public class DaoCliente implements IDaoCliente {
 			this.conexao.close();
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar cliente");
 		}
 		return cliente;
 
 	}
 
 	@Override
-	public ClienteTabAdapter buscarPorCPF(String cpf) throws DaoException {
+	public ClienteTabAdapter buscarPorCPF(String busca) throws DaoException {
 
 		ClienteTabAdapter clienteTabAdapter = null;
 		Endereco endereco = null;
@@ -106,7 +108,9 @@ public class DaoCliente implements IDaoCliente {
 
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Cliente.SELECT_CPF);
-			this.statement.setString(1,cpf);
+			this.statement.setString(1,"%" + busca + "%");
+			this.statement.setString(2,"%" + busca + "%");
+			this.statement.setString(3,"%" + busca + "%");
 			this.result = this.statement.executeQuery();
 
 			if (result.next()) {
@@ -119,15 +123,15 @@ public class DaoCliente implements IDaoCliente {
 				clienteTabAdapter.setRua(result.getString("rua"));
 				clienteTabAdapter.setBairro(result.getString("bairro"));
 				clienteTabAdapter.setNumero(result.getString("numero"));
-				clienteTabAdapter.setTipo_contato(result.getString("tipo"));
-				clienteTabAdapter.setDescricao(result.getString("descricao"));
 
 
 			}
 			this.conexao.close();
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar cliente");
 		}
 
 		return clienteTabAdapter;
@@ -154,14 +158,14 @@ public class DaoCliente implements IDaoCliente {
 				clienteTabAdapter.setRua(result.getString("rua"));
 				clienteTabAdapter.setBairro(result.getString("bairro"));
 				clienteTabAdapter.setNumero(result.getString("numero"));
-				clienteTabAdapter.setTipo_contato(result.getString("tipo"));
-				clienteTabAdapter.setDescricao(result.getString("descricao"));
 				clienteTabAdapters.add(clienteTabAdapter);
 			}
 			this.conexao.close();
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar cliente");
 		}
 
 		return clienteTabAdapters;
@@ -194,7 +198,9 @@ public class DaoCliente implements IDaoCliente {
 			this.conexao.close();
 
 		} catch (SQLException ex) {
+			ex.printStackTrace();
 			Logger.getLogger(DaoCliente.class.getName()).log(Level.SEVERE, null, ex);
+			throw new DaoException("Erro ao buscar cliente");
 		}
 		return clientes;
 
@@ -220,6 +226,7 @@ public class DaoCliente implements IDaoCliente {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DaoException("Erro ao buscar cliente");
 		}
 	}
 

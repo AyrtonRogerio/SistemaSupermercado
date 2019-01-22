@@ -7,14 +7,15 @@ import br.com.sistemasupermercado.enuns.TipoContato;
 
 public class Contato {
 
+	/**@author ayrton
+	 * 
+	 * 
+	 */
 	private Integer id;
 	private TipoContato tipo;
 	private Cliente cliente;
 	private String descricao;
 
-	/**
-	 * 
-	 */
 
 
 	public Integer getId() {

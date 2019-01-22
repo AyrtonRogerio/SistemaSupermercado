@@ -106,6 +106,10 @@ public interface IFachada {
 	public List<ProdutoTabAdapter> getAllAdapterItemProduto() throws BusinessException;
 
 	public List<EstoqueTabAdapter> getAllEstoqueAdapterProduto() throws BusinessException;
+	
+	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws BusinessException;
+	
+	public List<ProdutoTabAdapter> getAllAdapterPorBuscaItemProduto(String busca) throws BusinessException;
 
 	public VendaTabAdapter buscarPorIdVendaAdapterProduto(int id) throws BusinessException;
 

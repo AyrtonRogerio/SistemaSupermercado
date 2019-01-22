@@ -57,7 +57,7 @@ public class ControleRelatorio implements Initializable{
 				RelatorioGeral relatorioGeral = new RelatorioGeral();
 				
 				relatorioGeral.gerarDocumento(relatorioFinanceiros, "RelatorioFinanceiro.jrxml");
-				
+				System.out.println(relatorioFinanceiros);
 			} catch (ParseException | BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

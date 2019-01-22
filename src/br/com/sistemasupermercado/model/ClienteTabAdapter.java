@@ -12,19 +12,6 @@ public class ClienteTabAdapter {
     private String rua;
     private String bairro;
     private String numero;
-    private ArrayList<Contato> contatos;
-    private String tipo_contato;
-    private String descricao;
-
-
-    public ArrayList<Contato> getContatos() {
-        return contatos;
-    }
-
-    public void setContatos(ArrayList<Contato> contatos) {
-        this.contatos = contatos;
-    }
-
 
 
     public Integer getId() {
@@ -33,22 +20,6 @@ public class ClienteTabAdapter {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getTipo_contato() {
-        return tipo_contato;
-    }
-
-    public void setTipo_contato(String tipo_contato) {
-        this.tipo_contato = tipo_contato;
     }
 
     public String getNome() {

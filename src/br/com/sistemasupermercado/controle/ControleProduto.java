@@ -316,6 +316,23 @@ public class ControleProduto implements Initializable {
 		}
 
 
+		if(event.getSource() == busca_prod_nome_button) {
+			
+			String d = busca_prod_nome_field.getText();
+			System.out.println(d);
+			try {
+				produtoTabAdapters = Fachada.getInstance().getAllAdapterPorBuscaItemProduto(d);
+				System.out.println(produtoTabAdapters.size());
+				list_prod_tab.getItems().setAll(produtoTabAdapters);
+			
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
 
 		if(event.getSource() == editar_prod_button){
 
@@ -352,6 +369,23 @@ public class ControleProduto implements Initializable {
 		data_cadastro_list_tab.setCellValueFactory(new PropertyValueFactory<>("data_cadastro"));
 		status_list_tab.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+		status_list_tab.setCellFactory(coluna -> {
+			return new TableCell<ProdutoTabAdapter, Boolean>(){
+				protected void updateItem(Boolean item, boolean empty) {
+					super.updateItem(item, empty);
+					
+					if(item == null || empty) {
+						setText(null);
+					} else {
+						if(item)
+							setText("Sim");
+						else
+							setText("Não");
+					}
+				}
+			};
+		});
+		
 		data_cadastro_list_tab.setCellFactory(coluna -> {
 
 			return new TableCell<ProdutoTabAdapter, Date>() {
@@ -370,7 +404,7 @@ public class ControleProduto implements Initializable {
 
 		try {
 			produtoTabAdapters = Fachada.getInstance().getAllAdapterItemProduto();
-			list_prod_tab.getItems().addAll(produtoTabAdapters);
+			list_prod_tab.getItems().setAll(produtoTabAdapters);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

@@ -3,9 +3,8 @@ package br.com.sistemasupermercado.model;
 public class EstoqueTabAdapter {
 
     private int id;
-    private int cod_barras;
+    private long cod_barras;
     private String descricao;
-    private int quantidade;
     private double preco_unidade;
 
     public int getId() {
@@ -16,13 +15,7 @@ public class EstoqueTabAdapter {
         this.id = id;
     }
 
-    public int getCod_barras() {
-        return cod_barras;
-    }
-
-    public void setCod_barras(int cod_barras) {
-        this.cod_barras = cod_barras;
-    }
+  
 
     public String getDescricao() {
         return descricao;
@@ -32,14 +25,6 @@ public class EstoqueTabAdapter {
         this.descricao = descricao;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public double getPreco_unidade() {
         return preco_unidade;
     }
@@ -47,4 +32,18 @@ public class EstoqueTabAdapter {
     public void setPreco_unidade(double preco_unidade) {
         this.preco_unidade = preco_unidade;
     }
+
+	/**
+	 * @return the cod_barras
+	 */
+	public long getCod_barras() {
+		return cod_barras;
+	}
+
+	/**
+	 * @param cod_barras the cod_barras to set
+	 */
+	public void setCod_barras(long cod_barras) {
+		this.cod_barras = cod_barras;
+	}
 }

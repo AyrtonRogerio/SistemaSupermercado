@@ -79,9 +79,6 @@ public class ControleVenda implements Initializable {
     private TableColumn<EstoqueTabAdapter, String> prod_desc_col;
 
     @FXML
-    private TableColumn<EstoqueTabAdapter, Integer> prod_qtd_col;
-
-    @FXML
     private TableColumn<EstoqueTabAdapter, Double> prod_prec_col;
 
     @FXML
@@ -285,6 +282,21 @@ public class ControleVenda implements Initializable {
 
 
         }
+        
+        
+        
+        if(event.getSource() == busc_prod_ven_button) {
+        	
+        	try {
+				estoqueTabAdapters = Fachada.getInstance().getAllEstoqueAdapterPorBusca(busc_prod_ven_field.getText());
+				prod_tab.getItems().setAll(estoqueTabAdapters);
+        	} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	
+        }
 
 
     }
@@ -296,7 +308,6 @@ public class ControleVenda implements Initializable {
 
         prod_cod_col.setCellValueFactory(new PropertyValueFactory<>("cod_barras"));
         prod_desc_col.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        prod_qtd_col.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         prod_prec_col.setCellValueFactory(new PropertyValueFactory<>("preco_unidade"));
 
         try {
