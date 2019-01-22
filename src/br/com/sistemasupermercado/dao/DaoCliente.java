@@ -215,6 +215,7 @@ public class DaoCliente implements IDaoCliente {
 			this.statement.setString(4, cliente.getEstado_civil());
 			this.statement.setString(5, cliente.getOcupacao());
 			this.statement.setDate(6, new java.sql.Date(cliente.getData_nascimento().getTime()));
+			this.statement.setInt(7, cliente.getId());
 			this.statement.execute();
 
 

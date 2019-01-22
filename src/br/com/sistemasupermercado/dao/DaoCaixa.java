@@ -180,6 +180,7 @@ public class DaoCaixa implements IDaoCaixa {
 			this.statement.setDouble(1, caixa.getEntrada());
 			this.statement.setDouble(2, caixa.getSaida());
 			this.statement.setDouble(3, caixa.getSaldo());
+			this.statement.setInt(4, caixa.getId());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);

@@ -117,6 +117,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 			this.statement.setString(3, funcionario.getCargo());
 			this.statement.setString(4, funcionario.getLogin());
 			this.statement.setString(5, funcionario.getSenha());
+			this.statement.setInt(6, funcionario.getId());
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);

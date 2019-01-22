@@ -195,6 +195,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 				produtoTabAdapter.setDescricao(result.getString("descricao"));
 				produtoTabAdapter.setMarca(result.getString("marca"));
 				produtoTabAdapter.setId(result.getInt(4));
+				produtoTabAdapter.setFornecedor_id(result.getInt(5));
 				produtoTabAdapter.setCod_barras(result.getLong("cod_barras"));
 				produtoTabAdapter.setPreco_varejo(result.getDouble("porc_varejo"));
 				produtoTabAdapter.setEstoque(result.getInt("quantidade"));
@@ -319,18 +320,17 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.UPDATE);
-			this.statement.setLong(1, item_Produto.getCod_barras());
-			this.statement.setDouble(2, item_Produto.getUnid_medida());
-			this.statement.setDate(3, new java.sql.Date(item_Produto.getData_fabricacao().getTime()));
-			this.statement.setDate(4, new java.sql.Date(item_Produto.getData_validade().getTime()));
-			this.statement.setDate(5, new java.sql.Date( item_Produto.getData_compra().getTime()));
-			this.statement.setDouble(6, item_Produto.getPreco_unidade());
-			this.statement.setDouble(7, item_Produto.getPorc_atacado());
-			this.statement.setDouble(8, item_Produto.getPorc_varejo());
-			this.statement.setInt(9, item_Produto.getQuantidade());
-			this.statement.setInt(10,item_Produto.getVendidos());
-			this.statement.setBoolean(11, item_Produto.isPerecivel());
-			this.statement.setBoolean(12,item_Produto.isStatus());
+			this.statement.setBoolean(1, item_Produto.isPerecivel());
+			this.statement.setBoolean(2,item_Produto.isStatus());
+			this.statement.setInt(3, item_Produto.getQuantidade());
+			this.statement.setLong(4, item_Produto.getCod_barras());
+			this.statement.setDate(5, new java.sql.Date(item_Produto.getData_fabricacao().getTime()));
+			this.statement.setDate(6, new java.sql.Date(item_Produto.getData_validade().getTime()));
+			this.statement.setDate(7, new java.sql.Date( item_Produto.getData_compra().getTime()));
+			this.statement.setDouble(8, item_Produto.getPreco_unidade());
+			this.statement.setDouble(9, item_Produto.getPorc_atacado());
+			this.statement.setDouble(10, item_Produto.getPorc_varejo());
+			this.statement.setInt(11, item_Produto.getId());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);
@@ -347,6 +347,7 @@ public class DaoItem_Produto implements IDaoItem_Produto {
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Item_Produto.UPDATE_VENDIDOS);
 			this.statement.setInt(1, item_Produto.getVendidos());
+			this.statement.setInt(2, item_Produto.getId());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Produto.class.getName()).log(Level.SEVERE, null, ex);

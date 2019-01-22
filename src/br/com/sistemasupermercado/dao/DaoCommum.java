@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,7 +61,7 @@ public class DaoCommum {
             statement.setString(4, end.getBairro());
             statement.setString(5, end.getCidade());
             statement.setString(6, end.getEstado());
-
+            statement.setInt(7, end.getId());
             statement.execute();
 
 
@@ -98,6 +100,7 @@ public class DaoCommum {
             statement = conexao.prepareStatement(SQLUtil.Contato.UPDATE);
             statement.setString(1, contato.getTipo().getValor());
             statement.setString(2, contato.getDescricao());
+            statement.setInt(3, contato.getId());
 
 
             statement.execute();
@@ -154,5 +157,29 @@ public class DaoCommum {
 			throw new DaoException("Erro ao buscar contato do cliente!");
 		}
     	return cont;
+    }
+    
+public static List<Contato> buscarContato(int id) throws DaoException {
+    	List<Contato> contatos = new ArrayList<>();
+    	try {
+    		conexao = SQLConections.getInstance();
+			statement = conexao.prepareStatement(SQLUtil.Contato.SELECT_ALL);
+			statement.setInt(1, id);
+			result = statement.executeQuery();
+			
+			Contato cont = null;
+			while(result.next()) {
+				cont = new Contato();
+				cont.setId(result.getInt(1));
+				cont.setTipo(TipoContato.getTipoContato(result.getString(SQLUtil.Contato.COL_TIPO)));
+				cont.setDescricao(result.getString(SQLUtil.Contato.COL_DESCRICAO));
+				contatos.add(cont);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DaoException("Erro ao buscar contato do cliente!");
+		}
+    	return contatos;
     }
 }

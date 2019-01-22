@@ -159,6 +159,7 @@ public class DaoVenda implements IDaoVenda{
 			this.statement.setDouble(2, venda.getDesc_geral());
 			this.statement.setDouble(3, venda.getValor_troco());
 			this.statement.setDouble(4, venda.getValor_recebido());
+			this.statement.setInt(5, venda.getId());
 			this.statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);

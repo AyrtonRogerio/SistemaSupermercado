@@ -11,11 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.sistemasupermercado.dao.DaoCommum;
 import br.com.sistemasupermercado.enuns.TipoContato;
 import br.com.sistemasupermercado.enuns.TipoEstadoCivil;
 import br.com.sistemasupermercado.enuns.TipoOcupacao;
 import br.com.sistemasupermercado.enuns.TipoSexo;
 import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Cliente;
 import br.com.sistemasupermercado.model.ClienteTabAdapter;
@@ -233,8 +235,18 @@ public class ControleCliente implements Initializable {
 		
 		
 		if(event.getSource() == detalhes_cli_button) {
-			Dialog<Contato> dialog = new Dialog<>();
+			ClienteTabAdapter c = tabela_clentes.getSelectionModel().getSelectedItem();
+			List<Contato> contatos;
+			try {
+				contatos = DaoCommum.buscarContato(c.getId());
+				ControleContatos.controleContatos.setContatos(contatos);
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
+			
+			Dialog<Contato> dialog = new Dialog<>();	
 			dialog.getDialogPane().setContent(Main.telaContato());
 			dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 			dialog.showAndWait();
@@ -291,11 +303,6 @@ public class ControleCliente implements Initializable {
 		});
 
 	}
-
-//	public void teste(String...strings)
-//	{
-//		
-//	}
 	
 	
 	public void cadastrarCliente() {
@@ -362,6 +369,11 @@ public class ControleCliente implements Initializable {
 		cliente.setContatos(contatos);
 	}
 
+	public static int id(ClienteTabAdapter cli) {
+		
+		return cli.getId();
+	}
+	
 	public void limparCampos(){
 
 		nome_cliente_field.clear();

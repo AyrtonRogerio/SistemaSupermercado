@@ -36,7 +36,10 @@ public class ControleProduto implements Initializable {
 	private Item_Produto item_Produto;
 	private Contas_a_pagar contas_a_pagar;
 	private Caixa caixa;
-
+	private Item_Produto item;
+	private Produto produ;
+	private Fornecedor forneced;
+	
 	private double pr_un, pr_var, pr_atac;
 
 	private Fachada fachada = Fachada.getInstance();
@@ -174,8 +177,8 @@ public class ControleProduto implements Initializable {
 	private Button volt_prod_fornc_button;
 
 	@FXML
-    private Button atualiza_button;
-	
+	private Button atualiza_button;
+
 	@FXML
 	private Button add_fornec_button;
 
@@ -188,9 +191,7 @@ public class ControleProduto implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
-
-
-		if(event.getSource() == novo_prod_button){
+		if (event.getSource() == novo_prod_button) {
 
 			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
 
@@ -202,7 +203,7 @@ public class ControleProduto implements Initializable {
 
 		}
 
-		if(event.getSource() == voltar_prod_cadast_button){
+		if (event.getSource() == voltar_prod_cadast_button) {
 
 			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
 
@@ -214,7 +215,7 @@ public class ControleProduto implements Initializable {
 
 		}
 
-		if(event.getSource() == volt_prod_fornc_button){
+		if (event.getSource() == volt_prod_fornc_button) {
 
 			valores_tab.getTabPane().getSelectionModel().select(valores_tab);
 
@@ -230,7 +231,8 @@ public class ControleProduto implements Initializable {
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Fornecedor não encontrado!", e.getMessage());
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Fornecedor não encontrado!",
+						e.getMessage());
 			}
 		}
 
@@ -254,43 +256,40 @@ public class ControleProduto implements Initializable {
 			try {
 
 				cadastrarProduto(fornecedor);
-				System.out.println(fornecedor.getId());
 				int produto_id = fachada.salvarProduto(produto);
 				fachada.salvarItemProduto(item_Produto, produto_id, fornecedor.getId());
 
+				contas_a_pagar = new Contas_a_pagar();
 				double valTemp = 0.00;
 				double valP = 0.00;
 				int qt = 0;
 
-			contas_a_pagar = new Contas_a_pagar();
+				contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
 
-			contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
+				qt = Integer.parseInt(qtd_parc_field.getText());
 
-			qt = Integer.parseInt(qtd_parc_field.getText());
+				valTemp = contas_a_pagar.getValor() / qt;
 
-			valTemp = contas_a_pagar.getValor() / qt;
+				valP = Double.parseDouble(valor_pago_field.getText());
 
-			valP = Double.parseDouble(valor_pago_field.getText());
+				if (valP >= valTemp) {
 
-			if(valP >= valTemp){
+					contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
+					contas_a_pagar.setQtd_paga(qt);
+					contas_a_pagar.setQtd_pgmt(qt);
+					contas_a_pagar.setData_pagamento(new Date());
+					contas_a_pagar.setData_vencimento(new Date());
+					contas_a_pagar.setStatus(false);
 
-				contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
-				contas_a_pagar.setQtd_paga(qt);
-				contas_a_pagar.setQtd_pgmt(qt);
-				contas_a_pagar.setData_pagamento(new Date());
-				contas_a_pagar.setData_vencimento(new Date());
-				contas_a_pagar.setStatus(false);
+				} else if (valP < valTemp) {
 
+					contas_a_pagar.setValor_quitado(valP);
+					contas_a_pagar.setQtd_pgmt(qt);
+					contas_a_pagar.setQtd_paga(1);
+					contas_a_pagar.setData_pagamento(new Date());
+					contas_a_pagar.setStatus(true);
 
-			} else if(valP < valTemp) {
-
-				contas_a_pagar.setValor_quitado(valP);
-				contas_a_pagar.setQtd_pgmt(qt);
-				contas_a_pagar.setQtd_paga(1);
-				contas_a_pagar.setData_pagamento(new Date());
-				contas_a_pagar.setStatus(true);
-
-			}
+				}
 
 				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 				try {
@@ -299,21 +298,22 @@ public class ControleProduto implements Initializable {
 					e.printStackTrace();
 					Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro na data", e.getMessage());
 				}
-			contas_a_pagar.setFornecedor_id(fornecedor);
-			contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
-			contas_a_pagar.setDescricao("Compra de " + produto.getNome() + " à " + fornecedor.getNome());
+				contas_a_pagar.setFornecedor_id(fornecedor);
+				contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
+				contas_a_pagar.setDescricao("Compra de " + produto.getNome() + " à " + fornecedor.getNome());
 
-			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(),fornecedor.getId());
-			
-			java.sql.Date data = new java.sql.Date(new Date().getTime());
-			caixa = fachada.buscarPorDataCaixa(data);
-			caixa.setSaida(caixa.getSaida() + contas_a_pagar.getValor_quitado());
-			fachada.editarCaixa(caixa);
-			produtoTabAdapters = fachada.getAllAdapterItemProduto();
+				fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(), fornecedor.getId());
+
+				java.sql.Date data = new java.sql.Date(new Date().getTime());
+				caixa = fachada.buscarPorDataCaixa(data);
+				caixa.setSaida(caixa.getSaida() + contas_a_pagar.getValor_quitado());
+				fachada.editarCaixa(caixa);
+				produtoTabAdapters = fachada.getAllAdapterItemProduto();
 
 			} catch (BusinessException e) {
 				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Salvar", "Ocorreu um erro ao salvar!", e.getMessage());
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Salvar", "Ocorreu um erro ao salvar!",
+						e.getMessage());
 			}
 			limparCampos();
 			lista_prod_tabPane.getTabPane().getSelectionModel().select(lista_prod_tabPane);
@@ -321,36 +321,32 @@ public class ControleProduto implements Initializable {
 			list_prod_tab.getItems().setAll(produtoTabAdapters);
 		}
 
+		if (event.getSource() == busca_prod_nome_button) {
 
-		if(event.getSource() == busca_prod_nome_button) {
-			
 			String d = busca_prod_nome_field.getText();
 			System.out.println(d);
 			try {
 				produtoTabAdapters = Fachada.getInstance().getAllAdapterPorBuscaItemProduto(d);
 				System.out.println(produtoTabAdapters.size());
 				list_prod_tab.getItems().setAll(produtoTabAdapters);
-			
+
 			} catch (BusinessException e) {
 				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Nenhum produto foi encontrado!",e.getMessage());
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar",
+						"Nenhum produto foi encontrado!", e.getMessage());
 			}
-			
-			
-		}
-		
-
-		if(event.getSource() == editar_prod_button){
-
-		
-
 
 		}
-		
-		if(event.getSource() == atualiza_button) {
-			
-			
-			
+
+		if (event.getSource() == editar_prod_button) {
+
+			atuaizarProduto();
+			novo_produto_tab.getTabPane().getSelectionModel().select(novo_produto_tab);
+			atualiza_button.setDisable(false);
+		}
+
+		if (event.getSource() == atualiza_button) {
+			salvaProduto(item, produ, forneced);
 		}
 
 	}
@@ -358,13 +354,12 @@ public class ControleProduto implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
 		MaskFieldUtil.numericField(cod_prod_cadast_field);
 		MaskFieldUtil.numericField(qtd_parc_field);
 		MaskFieldUtil.numericField(quant_prod_cadast_field);
 		MaskFieldUtil.monetaryField(preco_unit_prod_cadastro_field);
 		MaskFieldUtil.monetaryField(valor_pago_field);
-		
+
 		nome_forn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		razao_forn.setCellValueFactory(new PropertyValueFactory<>("razao_social"));
 		cnpj_forn.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
@@ -376,10 +371,9 @@ public class ControleProduto implements Initializable {
 			tabela_fornec.getItems().setAll(fornecedors);
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Não foram encontrados nenhum fornecedor!", e.getMessage());
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar",
+					"Não foram encontrados nenhum fornecedor!", e.getMessage());
 		}
-
-
 
 		desc_list_tab.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		marca_list_tab.setCellValueFactory(new PropertyValueFactory<>("marca"));
@@ -388,16 +382,16 @@ public class ControleProduto implements Initializable {
 		estoque_list_tab.setCellValueFactory(new PropertyValueFactory<>("estoque"));
 		data_cadastro_list_tab.setCellValueFactory(new PropertyValueFactory<>("data_cadastro"));
 		status_list_tab.setCellValueFactory(new PropertyValueFactory<>("status"));
-		
+
 		status_list_tab.setCellFactory(coluna -> {
-			return new TableCell<ProdutoTabAdapter, Boolean>(){
+			return new TableCell<ProdutoTabAdapter, Boolean>() {
 				protected void updateItem(Boolean item, boolean empty) {
 					super.updateItem(item, empty);
-					
-					if(item == null || empty) {
+
+					if (item == null || empty) {
 						setText(null);
 					} else {
-						if(item)
+						if (item)
 							setText("Em estoque");
 						else
 							setText("Em falta");
@@ -405,30 +399,30 @@ public class ControleProduto implements Initializable {
 				}
 			};
 		});
-		
+
 		data_cadastro_list_tab.setCellFactory(coluna -> {
 
 			return new TableCell<ProdutoTabAdapter, Date>() {
-				protected void updateItem(Date item, boolean empty) {
 
-					super.updateItem(item, empty);
+	protected void updateItem(Date item, boolean empty) {
 
-					if (item == null || empty) {
-						setText(null);
-					} else {
-						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
-					}
-				}
-			};
-		});
+		super.updateItem(item, empty);
 
-		try {
-			produtoTabAdapters = Fachada.getInstance().getAllAdapterItemProduto();
-			list_prod_tab.getItems().setAll(produtoTabAdapters);
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Produto não encontrado!", e.getMessage());
+		if (item == null || empty) {
+			setText(null);
+		} else {
+			setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
 		}
+	}};});
+
+	try{produtoTabAdapters=Fachada.getInstance().getAllAdapterItemProduto();list_prod_tab.getItems().setAll(produtoTabAdapters);}catch(
+
+	BusinessException e)
+	{
+		e.printStackTrace();
+		Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Produto não encontrado!",
+				e.getMessage());
+	}
 
 	}
 
@@ -444,10 +438,8 @@ public class ControleProduto implements Initializable {
 		item_Produto.setCod_barras(Long.parseLong(cod_prod_cadast_field.getText()));
 		item_Produto.setQuantidade(Integer.parseInt(quant_prod_cadast_field.getText()));
 
-
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-
 
 			item_Produto.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
 			item_Produto.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
@@ -466,69 +458,130 @@ public class ControleProduto implements Initializable {
 		pr_var = Double.parseDouble(porc_varej_prod_cadast_field.getText());
 		pr_atac = Double.parseDouble(porc_atac_prod_cadast_field.getText());
 
-
 		item_Produto.setPreco_unidade(pr_un);
-		item_Produto.setPorc_varejo( pr_un + pr_un * pr_var/100);
-		item_Produto.setPorc_atacado( pr_un + pr_un * pr_atac/100);
+		item_Produto.setPorc_varejo(pr_un + pr_un * pr_var / 100);
+		item_Produto.setPorc_atacado(pr_un + pr_un * pr_atac / 100);
 
 		item_Produto.setFornecedor_id(forne);
 		item_Produto.setProduto_id(produto);
 	}
 
 	public void atuaizarProduto() {
-		
-		ProdutoTabAdapter adapter = list_prod_tab.getSelectionModel().getSelectedItem();
-		
-		try {
-			Item_Produto item = Fachada.getInstance().buscarPorIdItemProduto(adapter.getId());
-			Produto produ = Fachada.getInstance().buscarPorIdProduto(adapter.getProduto_id());
 
+		ProdutoTabAdapter adapter = list_prod_tab.getSelectionModel().getSelectedItem();
+
+		try {
+			
+			 item = Fachada.getInstance().buscarPorIdItemProduto(adapter.getId());
+			
+			 produ = Fachada.getInstance().buscarPorIdProduto(adapter.getProduto_id());
+			
+			 forneced = Fachada.getInstance().buscarPorIdFornecedor(adapter.getFornecedor_id());
 			
 			nome_prod_cadast_field.setText(produ.getNome());
 			descri_prod_cadast_field.setText(produ.getDescricao());
 			marca_prod_cadastro_field.setText(produ.getMarca());
-			
-			
-			
-			
-			quant_prod_cadast_field.setText(""+item.getQuantidade());
-			cod_prod_cadast_field.setText(""+item.getCod_barras());
-			
+
+			quant_prod_cadast_field.setText("" + item.getQuantidade());
+			cod_prod_cadast_field.setText("" + item.getCod_barras());
+
 			status_prod_cadast_checkB.setSelected(item.isStatus());
 			perecivel_prod_cadast_checkB.setSelected(item.isPerecivel());
-			
-			
-			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-			try {
 
 
-				item.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
-				item.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
-				item.setData_validade(format.parse(valid_prod_data.getEditor().getText().trim()));
+			preco_unit_prod_cadastro_field.setText("" + item.getPreco_unidade());
 
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas ao editar", e.getMessage());
-			}
-			
-			
-			preco_unit_prod_cadastro_field.setText(""+item.getPreco_unidade());
-			
 			valor_pago_field.setText("");
+
 			
-			
-			
-//			Fachada.getInstance().editar_Item_Produto(item);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
+
+	public void salvaProduto(Item_Produto item, Produto produto, Fornecedor forneced) {
+		Contas_a_pagar contas_a_pagar = new Contas_a_pagar();
+		
+		double valTemp = 0.00;
+		double valP = 0.00;
+		int qt = 0;
+
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		try {
+
+			item.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
+			item.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
+			item.setData_validade(format.parse(valid_prod_data.getEditor().getText().trim()));
+			
+			
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas ao editar",
+					e.getMessage());
+		}
+		
+		contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
+
+		qt = Integer.parseInt(qtd_parc_field.getText());
+
+		valTemp = contas_a_pagar.getValor() / qt;
+
+		valP = Double.parseDouble(valor_pago_field.getText());
+
+		if (valP >= valTemp) {
+
+			contas_a_pagar.setValor_quitado(contas_a_pagar.getValor());
+			contas_a_pagar.setQtd_paga(qt);
+			contas_a_pagar.setQtd_pgmt(qt);
+			contas_a_pagar.setData_pagamento(new Date());
+			contas_a_pagar.setData_vencimento(new Date());
+			contas_a_pagar.setStatus(false);
+
+		} else if (valP < valTemp) {
+
+			contas_a_pagar.setValor_quitado(valP);
+			contas_a_pagar.setQtd_pgmt(qt);
+			contas_a_pagar.setQtd_paga(1);
+			contas_a_pagar.setData_pagamento(new Date());
+			contas_a_pagar.setStatus(true);
+
+		}
+
+		
+		contas_a_pagar.setFornecedor_id(fornecedor);
+		contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
+		contas_a_pagar.setDescricao("Compra de " + produ.getNome() + " à " + forneced.getNome());
+
+		try {
+			Fachada.getInstance().editarProduto(produto);
+			Fachada.getInstance().editar_Item_Produto(item);
+			
+			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(), forneced.getId());
+			java.sql.Date data = new java.sql.Date(new Date().getTime());
+			caixa = fachada.buscarPorDataCaixa(data);
+			
+			caixa.setSaida(caixa.getSaida() + contas_a_pagar.getValor_quitado());
+			fachada.editarCaixa(caixa);
+			produtoTabAdapters = fachada.getAllAdapterItemProduto();
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
-	public void limparCampos(){
+}
+
+	
+	
+	
+	
+	
+	
+	public void limparCampos() {
 
 		nome_prod_cadast_field.clear();
 		marca_prod_cadastro_field.clear();

@@ -156,6 +156,7 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.statement.setString(3, fornecedor.getCnpj());
             this.statement.setString(4, fornecedor.getEstado());
             this.statement.setString(5, fornecedor.getCidade());
+            this.statement.setInt(6, fornecedor.getId());
 
             this.result = this.statement.executeQuery();
         } catch (SQLException ex) {

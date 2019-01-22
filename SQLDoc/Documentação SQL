@@ -19,7 +19,7 @@ senha VARCHAR(25) NOT NULL
 
 CREATE TABLE caixa(
 id serial PRIMARY KEY NOT NULL,
-entrada DOUBLE PRECISION,
+entrada DOUBLE PRECISION,	
 saida DOUBLE PRECISION,
 saldo DOUBLE PRECISION,
 funcionario_id INTEGER REFERENCES funcionario(id),

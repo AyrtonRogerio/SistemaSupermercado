@@ -187,8 +187,8 @@ public class DaoContas_a_Receber implements  IDaoContas_a_Receber {
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Contas_a_Receber.UPDATE);
-            this.statement.setString(1, contas_a_receber.getDesc());
-            this.statement.setDouble(2, contas_a_receber.getValor_total());
+            this.statement.setDouble(1, contas_a_receber.getValor_total());
+            this.statement.setString(2, contas_a_receber.getDesc());
             this.statement.setInt(3, contas_a_receber.getQtd_pag());
             this.statement.setDouble(4, contas_a_receber.getValor_pago());
             this.statement.setDouble(5, contas_a_receber.getSaldo());

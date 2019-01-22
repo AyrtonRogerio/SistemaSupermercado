@@ -73,13 +73,13 @@ public class SQLUtil {
                 "where i.id = ? and i.status = true and i.vendidos < i.quantidade";
 
         public static  final String UPDATE = "update item_produto set perecivel = ?, status = ?, quantidade = ?, cod_barras = ?, " +
-                "unidade_medida = ?, data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?," +
-                "porc_atacado = ?, porc_varejo = ?";
+                "data_fabricacao = ?, data_validade = ?, data_compra = ?, preco_unidade = ?," +
+                "porc_atacado = ?, porc_varejo = ? where item_produto.id = ?";
 
         public static final String SELECT_VENDIDOS = "select i.vendidos from item_produto i " +
                 "where id = ? and i.status = true and i.vendidos < i.quantidade";
 
-        public static final String UPDATE_VENDIDOS = "update item_produto set vendidos = ?";
+        public static final String UPDATE_VENDIDOS = "update item_produto set vendidos = ? where id = ?";
     }
     
     public static class Endereco {
@@ -98,7 +98,7 @@ public class SQLUtil {
         
         
 
-        public static final String UPDATE = "update endereco set rua = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?";
+        public static final String UPDATE = "update endereco set rua = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ? where id = ?";
     }
 
     public static class Contato {
@@ -108,10 +108,12 @@ public class SQLUtil {
         public static final String COL_DESCRICAO = "descricao";
         public static final String COL_CLIENTE_ID = "cliente_id";
 
+        public static final String SELECT_ALL = "select * from contato where cliente_id = ?";
+        
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_TIPO + ","
         + COL_DESCRICAO + "," + COL_CLIENTE_ID + " ) values (?,?,?)";
 
-        public static  final  String UPDATE = "update contato set tipo = ?, descricao = ?";
+        public static  final  String UPDATE = "update contato set tipo = ?, descricao = ? where id = ?";
     }
 
     public static class Cliente {
@@ -139,7 +141,7 @@ public class SQLUtil {
                 "on c.endereco_id = e.id";
 
         public static  final  String UPDATE = "update cliente set nome = ?, cpf = ?, sexo = ?, estado_civil = ?," +
-                "ocupacao = ?, data_nascimento = ?";
+                "ocupacao = ?, data_nascimento = ? where id = ?";
 
     }
 
@@ -157,7 +159,7 @@ public class SQLUtil {
         + COL_NOME + "," + COL_CPF + "," + COL_CARGO + "," + COL_LOGIN + "," + 
         COL_SENHA + " ) values (?,?,?,?,?) returning id";
         
-        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ?";
+        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where id =?";
         	
         public static final String SELECT_LOGIN = "select * from funcionario where login = ?  and senha = ?";
 
@@ -182,8 +184,8 @@ public class SQLUtil {
 
     	public static final String SELECT_ANTERIOR = "select * from caixa where id = (select max(id) from caixa)";
 
-    	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ?";
-        public static final String UPDATE_DATA = "update caixa set entrada = ?, saldo = ?";
+    	public static final String UPDATE = "update caixa set entrada = ?, saida = ?, saldo = ? where id = ?";
+        public static final String UPDATE_DATA = "update caixa set entrada = ?, saldo = ? where id = ?";
     	
     }
 
@@ -229,7 +231,7 @@ public class SQLUtil {
         public static final String SELECT_NOME = "select * from fornecedor where nome_fantasia = ?";
 
         public static  final String UPDATE = "update fornecedor set nome_fantasia = ?, razao_social = ?, cnpj = ?," +
-                "estado = ?, cidade = ?";
+                "estado = ?, cidade = ? where id = ?";
 
     }
     
@@ -256,9 +258,9 @@ public class SQLUtil {
                 " from venda v where id = ?";
 
         public static final String UPDATE_VENDA = "update venda set valor_total = ?, desc_geral = ?," +
-                "valor_troco = ?, valor_recebido = ?";
+                "valor_troco = ?, valor_recebido = ? where = id";
 
-    	public static final String UPDATE_VENDA_CLI_ID = "update venda set cliente_id = ?";
+    	public static final String UPDATE_VENDA_CLI_ID = "update venda set cliente_id = ? where id = ?";
     	
     }
     
@@ -282,7 +284,7 @@ public class SQLUtil {
     	" ) values (?,?,?,?,?,?,?,?,?) returning id";
 
     	public static final String UPDATE = "update item_venda set valor_desc = ?, porc_promoc = ?, promocao = ?, tipo = ?," +
-                "quant = ?, valor_item = ?, desconto = ?";
+                "quant = ?, valor_item = ?, desconto = ? where id = ?";
     }
 
 
@@ -318,7 +320,7 @@ public class SQLUtil {
         		+ "c.qtd_pgmt, c.qtd_paga from contas_a_receber c where c.status = false";
 
         public static final String UPDATE = " update contas_a_receber set descricao = ?, valor = ?, qtd_pgmt = ?, valor_quitado = ?," +
-                "saldo = ?, status = ?";
+                "saldo = ?, status = ? where id = ?";
 
     }
 
@@ -350,9 +352,9 @@ public class SQLUtil {
         public static final String SELECT_PAGA_ADAPTER = "select c.id, c.descricao, c.valor, c.valor_quitado,"
         		+ "c.qtd_pgmt, c.qtd_paga, c.data_vencimento from contas_a_pagar c where c.status = false";
         
-        public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, fornecedor_id = ?, status = ?";
+        public static final String UPDATE = " update contas_a_receber set valor = ?, descricao = ?, fornecedor_id = ?, status = ? where id = ?";
     
-        public static final String SELECT_RELATORIO = "select * from contas_a_pagar cc inner join contas_a_receber cv "
+        public static final String SELECT_RELATORIO = "select distinct * from contas_a_pagar cc inner join contas_a_receber cv "
         		+ "on cc.caixa_id = cv.caixa_id and cc.data_vencimento BETWEEN ? "
         		+ "and ? and cv.data_venc BETWEEN ? and ?";
     }

@@ -417,7 +417,7 @@
                                     <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                                        <children>
                                           <Button fx:id="volt_prod_fornc_button" mnemonicParsing="false" onAction="#action" text="Voltar" />
-                                          <Button fx:id="atualiza_button" mnemonicParsing="false" onAction="#action" text="Atualizar">
+                                          <Button fx:id="atualiza_button" disable="true" mnemonicParsing="false" onAction="#action" text="Atualizar">
                                              <FlowPane.margin>
                                                 <Insets left="5.0" />
                                              </FlowPane.margin>

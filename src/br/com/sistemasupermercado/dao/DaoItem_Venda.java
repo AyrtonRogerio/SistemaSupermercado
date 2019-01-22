@@ -127,6 +127,7 @@ public class DaoItem_Venda implements IDaoItem_Venda{
 			this.statement.setInt(5, item_Venda.getQuantidade());
 			this.statement.setDouble(6, item_Venda.getValor_item());
 			this.statement.setBoolean(7, item_Venda.isDesconto());
+			this.statement.setInt(8, item_Venda.getId());
 			statement.execute();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoItem_Venda.class.getName()).log(Level.SEVERE, null, ex);
