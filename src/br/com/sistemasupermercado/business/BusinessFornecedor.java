@@ -80,13 +80,33 @@ public class BusinessFornecedor implements IBusinessFornecedor {
     @Override
     public void validar(Fornecedor fornecedor) throws ValidacaoException {
 
-        if(fornecedor.getCnpj() == null)
+    	if(fornecedor == null) {
+    		throw new ValidacaoException("Preencha os campos para prosseguir!!!");
+    	}
+
+    	if(fornecedor.getCnpj() == null) {
             throw new ValidacaoException("Informe um CNPJ!!!");
+        }
+        
+        if(fornecedor.getCidade() == null) {
+            throw new ValidacaoException("Informe um CNPJ!!!");
+        }
+        
+        if(fornecedor.getEstado() == null) {
+            throw new ValidacaoException("Informe um CNPJ!!!");
+        }
+        
+        if(fornecedor.getNome() == null) {
+            throw new ValidacaoException("Informe um CNPJ!!!");
+        }
+        
+        if(fornecedor.getRazao_social() == null) {
+            throw new ValidacaoException("Informe um CNPJ!!!");
+        }
+        
     }
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessFornecedor#buscarPorNome(java.lang.String)
-	 */
+	
 	@Override
 	public Fornecedor buscarPorNome(String nome) throws BusinessException {
 		// TODO Auto-generated method stub

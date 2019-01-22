@@ -4,10 +4,12 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.*;
 import br.com.sistemasupermercado.principal.Main;
+import br.com.sistemasupermercado.view.Mensagem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -150,6 +152,7 @@ public class ControleVenda implements Initializable {
 
             } catch (BusinessException e) {
                 e.printStackTrace();
+                Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao salvar", "Erro na venda", e.getMessage());
             }
 
 
@@ -206,6 +209,7 @@ public class ControleVenda implements Initializable {
                 
             } catch (BusinessException e) {
                 e.printStackTrace();
+                Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao salvar", "Erro ao salvar Itens da Venda!", e.getMessage());
             }
         }
 
@@ -253,6 +257,7 @@ public class ControleVenda implements Initializable {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro na data", e.getMessage());
 			}
             
             contas_a_receber.setId_venda(venda);
@@ -278,6 +283,7 @@ public class ControleVenda implements Initializable {
                 limparCampos();
             } catch (BusinessException e) {
                 e.printStackTrace();
+                Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Ocorreu um erro ao finalizar a venda!",e.getMessage());
             }
 
 
@@ -293,6 +299,7 @@ public class ControleVenda implements Initializable {
         	} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Ocorreu um erro ao buscar o produto!",e.getMessage());
 			}
         	
         	
@@ -315,6 +322,7 @@ public class ControleVenda implements Initializable {
             prod_tab.getItems().setAll(estoqueTabAdapters);
         } catch (BusinessException e) {
             e.printStackTrace();
+            Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Ocorreu um erro ao buscar o produto!",e.getMessage());
         }
 
 

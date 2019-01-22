@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.*;
 
 public interface IFachada {
@@ -37,7 +38,7 @@ public interface IFachada {
 
 
 	// Funcionario
-	public void salvarFuncionario(Funcionario funcionario) throws BusinessException;
+	public void salvarFuncionario(Funcionario funcionario) throws BusinessException, ValidacaoException;
 
 	public void editarFuncionario(Funcionario funcionario) throws BusinessException;
 

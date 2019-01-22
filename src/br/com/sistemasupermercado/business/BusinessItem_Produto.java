@@ -5,6 +5,8 @@ package br.com.sistemasupermercado.business;
 
 import java.util.List;
 
+import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
+
 import br.com.sistemasupermercado.dao.DaoItem_Produto;
 import br.com.sistemasupermercado.dao.IDaoItem_Produto;
 import br.com.sistemasupermercado.exception.BusinessException;
@@ -25,13 +27,12 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 	}
 
 	@Override
-	public void salvar(Item_Produto item_Produto,int produto_id, int id_fornecedor) throws BusinessException {
-		
+	public void salvar(Item_Produto item_Produto, int produto_id, int id_fornecedor) throws BusinessException {
+
 		try {
 			validar(item_Produto);
 			if (item_Produto.getId() == null)
-				daoItemProduto.salvar(item_Produto,produto_id, id_fornecedor);
-
+				daoItemProduto.salvar(item_Produto, produto_id, id_fornecedor);
 
 		} catch (DaoException | ValidacaoException e) {
 			// TODO Auto-generated catch block
@@ -94,7 +95,7 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 			throw new BusinessException(e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public List<EstoqueTabAdapter> getAllEstoqueAdapterPorBusca(String busca) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -119,15 +120,15 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 		}
 	}
 
-    @Override
-    public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException {
-        try {
-            return daoItemProduto.buscarPorIdVendaAdapter(id);
-        } catch (DaoException e) {
-            e.printStackTrace();
-            throw new BusinessException(e.getMessage());
-        }
-    }
+	@Override
+	public VendaTabAdapter buscarPorIdVendaAdapter(int id) throws BusinessException {
+		try {
+			return daoItemProduto.buscarPorIdVendaAdapter(id);
+		} catch (DaoException e) {
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
 
 	@Override
 	public void atualizarVenidos(Item_Produto item_Produto) throws BusinessException {
@@ -154,9 +155,41 @@ public class BusinessItem_Produto implements IBusinessItem_Produto {
 	@Override
 	public void validar(Item_Produto item_Produto) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(item_Produto.getCod_barras() == 0)
-			throw new ValidacaoException("Informe um nome!!!");
-	}
+		if (item_Produto.getCod_barras() == 0)
+			throw new ValidacaoException("O código de barras não pode ser nulo!!!");
 
+		if (item_Produto.getData_compra() == null) {
+			throw new ValidacaoException("A data de compra não pode ser nulo!!!");
+		}
+
+		if (item_Produto.getData_fabricacao() == null) {
+			throw new ValidacaoException("A data de fabicação não pode ser nula!!!");
+		}
+
+		if (item_Produto.getData_validade() == null) {
+			throw new ValidacaoException("A data de validade não pode ser nula!!");
+			
+		}
+
+		if (item_Produto.getFornecedor_id() == null) {
+			throw new ValidacaoException("O fornecedor não pode ser nulo!!!");
+		}
+
+//		if (item_Produto.getId() == 0) {
+//			throw new ValidacaoException("O código de barras não pode ser nulo!!!");
+//		}
+
+		if (item_Produto.getPorc_atacado() < 0.00) {
+			throw new ValidacaoException("O valor não pode ser menos que isso!!!");
+		}
+
+		if (item_Produto.getPorc_varejo() < 0.00) {
+			throw new ValidacaoException("O valor não pode ser menor que isso!!!");
+		}
+
+//		if (item_Produto.getCod_barras() == 0) {
+//			throw new ValidacaoException("O código de barras não pode ser nulo!!!");
+//		}
+	}
 
 }

@@ -8,6 +8,8 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Funcionario;
+import br.com.sistemasupermercado.view.Mensagem;
+import javafx.scene.control.Alert.AlertType;
 
 public class BusinessFuncionario implements IBusinessFuncionario {
 
@@ -19,7 +21,7 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvar(Funcionario funcionario) throws BusinessException {
+	public void salvar(Funcionario funcionario) throws BusinessException, ValidacaoException {
 		// TODO Auto-generated method stub
 		try {
 			validar(funcionario);
@@ -27,10 +29,14 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 				daoFuncionario.salvar(funcionario);
 
 
-		} catch (DaoException | ValidacaoException e) {
+		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
+		} catch (ValidacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ValidacaoException(e.getMessage());
 		}
 	}
 
@@ -98,18 +104,44 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	@Override
 	public void validar(Funcionario funcionario) throws ValidacaoException {
 		// TODO Auto-generated method stub
+
+		if (funcionario.getCargo() == null) {
+			throw new ValidacaoException("O cargo do funcionário não pode ser nulo!");
+		}
+
+		if (funcionario.getCpf() == null) {
+			throw new ValidacaoException("O cpf do funcionário não pode ser nulo!");
+		}
+
+		if (funcionario.getLogin() == null) {
+			throw new ValidacaoException("O Login do funcionário não pode ser nulo!");
+		}
+
+		if (funcionario.getNome() == null) {
+			throw new ValidacaoException("O nome do funcionário não pode ser nulo!");
+		}
+
+		if (funcionario.getSenha() == null) {
+			throw new ValidacaoException("A senha do funcionário não pode ser nulo!");
+		}
+		
 		try {
 
 			for (Funcionario f : daoFuncionario.getAll()) {
 
-				if (funcionario.getNome() == null)
-					throw new ValidacaoException("Informe um nome!!!");
-				if (funcionario.getCpf().equals(f.getCpf()))
+				if (funcionario.getCpf().equals(f.getCpf())) {
 					throw new ValidacaoException("O CPF já está cadastrado!!!");
+				}
+				
+				if(funcionario.getLogin().equals(f.getLogin())) {
+					throw new ValidacaoException("Login existente!");
+				}
+				
 			}
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Não existe funcionário", e.getMessage());
 		}
 	}
 	

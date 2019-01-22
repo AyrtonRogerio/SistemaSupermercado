@@ -18,17 +18,20 @@ public class BusinessProduto implements IBusinessProduto {
 	}
 
 	@Override
-	public int  salvar(Produto produto) throws BusinessException {
+	public int salvar(Produto produto) throws BusinessException {
 		try {
-//			validar(produto);
+			validar(produto);
 			if (produto.getId() == null)
 				return daoProduto.salvar(produto);
-
 
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BusinessException(e.getMessage());
+		} catch (ValidacaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+//			throw new ValidacaoException(e.getMessage());
 		}
 		return 0;
 	}
@@ -82,9 +85,18 @@ public class BusinessProduto implements IBusinessProduto {
 
 	@Override
 	public void validar(Produto produto) throws ValidacaoException {
-		
-		if(produto.getNome() == null)
-			throw new ValidacaoException("Informe um nome!!!");
-	}
 
+		if (produto.getNome() == null) {
+			throw new ValidacaoException("Informe um nome!!!");
+		}
+
+		if (produto.getDescricao() == null) {
+			throw new ValidacaoException("Informe uma descrição!!!");	
+		}
+
+		if (produto.getMarca() == null) {
+			throw new ValidacaoException("Informe uma marca!!!");
+		}
+
+	}
 }

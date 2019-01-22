@@ -8,7 +8,7 @@ import br.com.sistemasupermercado.model.Funcionario;
 
 public interface IBusinessFuncionario {
 
-	public void salvar(Funcionario funcionario) throws BusinessException;
+	public void salvar(Funcionario funcionario) throws BusinessException, ValidacaoException;
 
 	public void editar(Funcionario funcionario) throws BusinessException;
 

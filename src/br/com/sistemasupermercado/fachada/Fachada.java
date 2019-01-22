@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import br.com.sistemasupermercado.business.*;
 import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.*;
 
 public class Fachada implements IFachada {
@@ -117,7 +118,7 @@ public class Fachada implements IFachada {
 	
 	//Funcionário
 	@Override
-	public void salvarFuncionario(Funcionario funcionario) throws BusinessException {
+	public void salvarFuncionario(Funcionario funcionario) throws BusinessException, ValidacaoException {
 		// TODO Auto-generated method stub
 		this.businessFuncionario.salvar(funcionario);
 	}

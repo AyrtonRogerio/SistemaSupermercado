@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.sistemasupermercado.exception.BusinessException;
+import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.fachada.Fachada;
 import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.view.Mensagem;
@@ -52,6 +53,11 @@ public class ControleFuncionario implements Initializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao Salvar", "Erro ao salvar o funcionário", e.getMessage());
+			} catch (ValidacaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao salvar", "Erro ao salvar funcionário", e.getMessage());
+
 			}
 		}
 	}

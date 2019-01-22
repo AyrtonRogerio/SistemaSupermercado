@@ -12,26 +12,16 @@ import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Item_Venda;
 
-/**
- * @author ayrton
- *
- */
 public class BusinessItem_Venda implements IBusinessItem_Venda{
 
 	private IDaoItem_Venda daoItemVenda;
 	
-	/**
-	 * 
-	 */
+
 	public BusinessItem_Venda() {
 	
 		daoItemVenda = new DaoItem_Venda();
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#salvarEditar(br.com.sistemasupermercado.model.Item_Venda)
-	 */
 	@Override
 	public void salvar(Item_Venda item_Venda, int venda_id, int item_produto_id) throws BusinessException {
 		try {
@@ -57,9 +47,6 @@ public class BusinessItem_Venda implements IBusinessItem_Venda{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#buscarPorId(int)
-	 */
 	@Override
 	public Item_Venda buscarPorId(int id) throws BusinessException {
 		try {
@@ -71,10 +58,6 @@ public class BusinessItem_Venda implements IBusinessItem_Venda{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#getAll()
-	 */
-	@Override
 	public List<Item_Venda> getAll() throws BusinessException {
 		try {
 			return daoItemVenda.getAll();
@@ -85,9 +68,6 @@ public class BusinessItem_Venda implements IBusinessItem_Venda{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#ativarDesativar(int)
-	 */
 	@Override
 	public void ativarDesativar(int id) throws BusinessException {
 		try {
@@ -99,13 +79,25 @@ public class BusinessItem_Venda implements IBusinessItem_Venda{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessItem_Venda#validar(br.com.sistemasupermercado.model.Item_Venda)
-	 */
 	@Override
 	public void validar(Item_Venda item_Venda) throws ValidacaoException {
-		if(item_Venda.getTipo() == null)
+		
+		if(item_Venda.getTipo() == null) {
+			throw new ValidacaoException("Não pode ser nulo!");
+		}
+		
+		if(item_Venda.getItem_produto_id() == null) {
+			throw new ValidacaoException("Informe um produto!!!");
+		}
+		
+		if(item_Venda.getVenda_id() == null) {
+			throw new ValidacaoException("!!!");
+		}
+		
+		if(item_Venda.getTipo() == null) {
 			throw new ValidacaoException("Informe um nome!!!");
+		}
+		
 	}
 
 }

@@ -14,7 +14,7 @@ import br.com.sistemasupermercado.model.Pagamento;
 
 /**
  * @author ayrton
- *
+ *@deprecated
  */
 public class BusinessPagamento implements IBusinessPagamento{
 
