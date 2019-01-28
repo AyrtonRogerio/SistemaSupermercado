@@ -2,7 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -10,101 +16,294 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleFuncionario">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistemasupermercado.controle.ControleFuncionario">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <bottom>
-            <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="119.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <top>
+            <FlowPane alignment="TOP_CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="cadastrar_func_button" contentDisplay="CENTER" mnemonicParsing="false" onAction="#action" prefHeight="33.0" prefWidth="110.0" text="Cadastrar" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionário">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
                </children>
             </FlowPane>
-         </bottom>
-         <center>
-            <GridPane alignment="CENTER" hgap="10.0" prefHeight="160.0" prefWidth="600.0" vgap="5.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TextField fx:id="nome_func_field" onAction="#action" prefHeight="33.0" prefWidth="272.0" promptText="Digite aqui..." GridPane.rowIndex="2">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
-                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="68.0" text="Nome:" textAlignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="CPF:" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <TextField fx:id="cpf_func_field" onAction="#action" promptText="Digite aqui..." GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
-                  <Label text="Cargo:" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <TextField fx:id="cargo_func_field" onAction="#action" prefHeight="33.0" prefWidth="169.0" promptText="Digite aqui..." GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
-                  <Label text="Login:" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label text="Senha:" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="login_func_field" onAction="#action" prefWidth="187.0" promptText="Digite aqui..." GridPane.rowIndex="4">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="senha_func_field" onAction="#action" promptText="Digite aqui..." GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </TextField>
-               </children>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-            </GridPane>
-         </center>
-         <top>
-            <FlowPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
          </top>
+         <center>
+            <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab fx:id="list_func_tab" text="Lista de Funcionários">
+                     <content>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <TableView fx:id="tabela_list">
+                                 <columns>
+                                    <TableColumn fx:id="nome_col" prefWidth="84.0" text="Nome" />
+                                    <TableColumn fx:id="cpf_col" prefWidth="95.0" text="CPF" />
+                                    <TableColumn fx:id="cargo_col" prefWidth="72.0" text="Cargo" />
+                                    <TableColumn fx:id="rua_col" prefWidth="106.0" text="Rua" />
+                                    <TableColumn fx:id="bairro_col" prefWidth="144.0" text="Bairro" />
+                                    <TableColumn fx:id="situacao_col" prefWidth="78.0" text="Situação" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="editar_button" mnemonicParsing="false" onAction="#action" text="Editar">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="func_tab" text="Novo Funcionário">
+                     <content>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <BorderPane>
+                                 <bottom>
+                                    <FlowPane alignment="CENTER" columnHalignment="CENTER" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="voltar_func_button" mnemonicParsing="false" onAction="#action" text="Voltar">
+                                             <FlowPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </FlowPane.margin>
+                                          </Button>
+                                          <Button fx:id="cont_func_button" contentDisplay="CENTER" mnemonicParsing="false" onAction="#action" text="Continuar" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </FlowPane>
+                                 </bottom>
+                                 <center>
+                                    <GridPane hgap="10.0" vgap="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="nome_field" onAction="#action" promptText="Insira um nome..." GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label alignment="CENTER" text="Nome:" textAlignment="CENTER" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="CPF:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="cpf_field" onAction="#action" promptText="Insira um CPF..." GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="Cargo:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="cargo_field" onAction="#action" promptText="Insira um cargo..." GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="Login:" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Senha:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="login_field" onAction="#action" promptText="Insira um login..." GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <PasswordField fx:id="senha_field" onAction="#action" prefHeight="33.0" promptText="Insira uma senha..." GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </PasswordField>
+                                          <PasswordField fx:id="conf_senha_field" onAction="#action" prefHeight="33.0" promptText="Confirme a senha..." GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </PasswordField>
+                                          <Label text="Confirmar senha:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <CheckBox fx:id="situacao_cb" mnemonicParsing="false" onAction="#action" selected="true" text="Ativo" visible="false" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </GridPane.margin>
+                                          </CheckBox>
+                                       </children>
+                                    </GridPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="end_tab" text="Endereço">
+                     <content>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <BorderPane>
+                                 <bottom>
+                                    <FlowPane alignment="CENTER" columnHalignment="CENTER" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button fx:id="atualizar_button" disable="true" mnemonicParsing="false" onAction="#action" text="Atualizar">
+                                             <FlowPane.margin>
+                                                <Insets />
+                                             </FlowPane.margin>
+                                          </Button>
+                                          <Button fx:id="voltar_end_button" mnemonicParsing="false" onAction="#action" text="Voltar">
+                                             <FlowPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                             </FlowPane.margin>
+                                          </Button>
+                                          <Button fx:id="cadast_func_button" contentDisplay="CENTER" mnemonicParsing="false" onAction="#action" text="Cadastrar" />
+                                       </children>
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </FlowPane>
+                                 </bottom>
+                                 <center>
+                                    <GridPane hgap="10.0" vgap="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="rua_field" onAction="#action" promptText="Insira uma rua..." GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label alignment="CENTER" text="Rua:" textAlignment="CENTER" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <Label text="Bairro:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="bairro_field" onAction="#action" promptText="Insira um bairro..." GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="Número:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Label>
+                                          <TextField fx:id="num_field" onAction="#action" promptText="Insira um número..." GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="CEP:" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Cidade:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="cep_field" onAction="#action" promptText="Insira um cep..." GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="Estado:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="cidade_field" onAction="#action" promptText="Insira uma cidade..." GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField fx:id="estado_field" onAction="#action" promptText="Insira um estado..." GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </GridPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+               </tabs>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </TabPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

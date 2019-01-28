@@ -38,7 +38,7 @@ public interface IFachada {
 
 
 	// Funcionario
-	public void salvarFuncionario(Funcionario funcionario) throws BusinessException, ValidacaoException;
+	public void salvarFuncionario(Funcionario funcionario, int end) throws BusinessException, ValidacaoException;
 
 	public void editarFuncionario(Funcionario funcionario) throws BusinessException;
 
@@ -67,14 +67,47 @@ public interface IFachada {
 
 	//Pagamento
 	
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 * @param pagamento
+	 * @param id_cliente
+	 * @param id_venda
+	 * @throws BusinessException
+	 */
 	public void salvarPagamento(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 * @param pagamento
+	 * @throws BusinessException
+	 */
 	public void editarPagamento(Pagamento pagamento) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 * @param id
+	 * @return
+	 * @throws BusinessException
+	 */
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 * @return
+	 * @throws BusinessException
+	 */
 	public List<Pagamento> getAllPagamento() throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 * @param id
+	 * @throws BusinessException
+	 */
 	public void ativarDesativarPagamento(int id) throws BusinessException;
 	
 	//Cliente
@@ -122,6 +155,8 @@ public interface IFachada {
 
 	public int salvarVenda(Venda venda, int id_cliente, int id_funcionario, int id_caixa) throws BusinessException;
 
+	public int salvarVenda(Venda venda, int id_funcionario, int id_caixa) throws BusinessException;
+	
 	public void editar_Venda(Venda venda) throws BusinessException;
 
 	public Venda buscarPorIdVenda(int id) throws BusinessException;
@@ -162,12 +197,35 @@ public interface IFachada {
 
 	//Contas a Receber
 
+	/**
+	 * @author ayrton
+	 * @param contas_a_receber
+	 * @param caixa_id
+	 * @param venda_id
+	 * @throws BusinessException
+	 */
 	public void salvarConta_a_Receber(Contas_a_receber contas_a_receber, int caixa_id, int venda_id) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @param contas_a_receber
+	 * @throws BusinessException
+	 */
 	public void editarConta_a_Receber(Contas_a_receber contas_a_receber) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @param id
+	 * @return Conta a receber por ID.
+	 * @throws BusinessException
+	 */
 	public Contas_a_receber buscarPorIdConta_a_Receber(int id) throws BusinessException;
 
+	/**
+	 * @author ayrton
+	 * @return - Retorna um Arraylist de uma classe Adaptada de Contas_a_receber para exibição de informações 
+	 * @throws BusinessException
+	 */
 	public List<Contas_a_Receber_Adapter> getAllConta_a_Receber() throws BusinessException;
 	
 	public List<Contas_a_Receber_Adapter> getAll_RecebidaConta_a_Receber() throws BusinessException;
@@ -176,5 +234,6 @@ public interface IFachada {
 
 	public void ativarDesativarConta_a_Receber(int id) throws BusinessException;
 
+	//Endereco
 
 }

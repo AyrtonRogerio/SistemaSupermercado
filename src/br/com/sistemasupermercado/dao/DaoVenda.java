@@ -61,6 +61,32 @@ public class DaoVenda implements IDaoVenda{
 	}
 
 	@Override
+	public int salvar(Venda venda, int id_funcionario, int id_caixa) throws DaoException {
+		// TODO Auto-generated method stub
+		int id = 0;
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Venda.INSERT_VEND_INI);
+			this.statement.setDate(1, new java.sql.Date(venda.getData_venda().getTime()));
+			this.statement.setInt(2, id_funcionario);
+			this.statement.setInt(3,id_caixa);
+
+			this.result = this.statement.executeQuery();
+
+			if(this.result.next()){
+				id = this.result.getInt(1);
+			}
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoVenda.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+            throw new DaoException("Erro ao salvar venda!");
+		}
+		return  id;
+	}
+
+	
+	@Override
 	public Venda buscarPorId(int id) throws DaoException {
 		// TODO Auto-generated method stub
 		Venda venda = null;

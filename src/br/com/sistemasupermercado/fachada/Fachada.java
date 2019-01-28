@@ -1,6 +1,7 @@
 package br.com.sistemasupermercado.fachada;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import br.com.sistemasupermercado.business.*;
 import br.com.sistemasupermercado.exception.BusinessException;
@@ -14,6 +15,10 @@ public class Fachada implements IFachada {
 	private IBusinessFuncionario businessFuncionario;
 	private IBusinessCaixa businessCaixa;
 	private IBusinessFornecedor businessFornecedor;
+	/**
+	 * @author ayrton
+	 * @deprecated - Classe não utilizada até o momento do projeto. 
+	 */
 	private IBusinessPagamento businessPagamento;
 	private IBusinessCliente businessCliente;
 	private IBusinessItem_Produto businessItem_Produto;
@@ -35,7 +40,7 @@ public class Fachada implements IFachada {
 		businessFuncionario = new BusinessFuncionario();
 		businessCaixa = new BusinessCaixa();
 		businessFornecedor = new BusinessFornecedor();
-		businessPagamento = new BusinessPagamento();
+		//businessPagamento = new BusinessPagamento();
 		businessCliente = new BusinessCliente();
 		businessItem_Produto = new BusinessItem_Produto();
 		businessVenda = new BusinessVenda();
@@ -118,9 +123,9 @@ public class Fachada implements IFachada {
 	
 	//Funcionário
 	@Override
-	public void salvarFuncionario(Funcionario funcionario) throws BusinessException, ValidacaoException {
+	public void salvarFuncionario(Funcionario funcionario, int end) throws BusinessException, ValidacaoException {
 		// TODO Auto-generated method stub
-		this.businessFuncionario.salvar(funcionario);
+		this.businessFuncionario.salvar(funcionario, end);
 	}
 
 	@Override
@@ -202,11 +207,11 @@ public class Fachada implements IFachada {
 		this.businessPagamento.salvar(pagamento, id_cliente,id_venda);
 	}
 
+	
 	@Override
 	public void editarPagamento(Pagamento pagamento) throws BusinessException {
 		this.businessPagamento.editar(pagamento);
 	}
-
 
 	@Override
 	public Pagamento buscarPorIdPagamento(int id) throws BusinessException {
@@ -214,14 +219,12 @@ public class Fachada implements IFachada {
 		return this.businessPagamento.buscarPorId(id);
 	}
 
-	
 	@Override
 	public List<Pagamento> getAllPagamento() throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessPagamento.getAll();
 	}
 
-	
 	@Override
 	public void ativarDesativarPagamento(int id) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -230,39 +233,75 @@ public class Fachada implements IFachada {
 
 	//Cliente
 	
+	/**
+	 * @author ayrton
+	 * @param cliente
+	 * @throws BusinessException
+	 */
 	@Override
 	public void salvarCliente(Cliente cliente) throws BusinessException {
 		// TODO Auto-generated method stub
 		 this.businessCliente.salvar(cliente);
 	}
 
+	/**
+	 * @author ayrton
+	 * @param cliente
+	 * @throws BusinessException
+	 */
 	@Override
 	public void editarCliente(Cliente cliente) throws BusinessException {
 		this.businessCliente.editar(cliente);
 	}
 
+	/**
+	 * @author ayrton
+	 * @param id
+	 * @return {@link Cliente}
+	 * @throws BusinessException
+	 */
 	@Override
 	public Cliente buscarPorIdCliente(int id) throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessCliente.buscarPorId(id);
 	}
 
+	/**
+	 * @author ayrton
+	 * @param cpf
+	 * @return {@link ClienteTabAdapter}
+	 */
 	@Override
 	public ClienteTabAdapter buscarPorCPFCliente(String cpf) throws BusinessException {
 		return this.businessCliente.buscarPorCPF(cpf);
 	}
 
+	/**
+	 * @author ayrton
+	 * @return {@link ArrayList<ClienteTabAdapter>}
+	 * @throws BusinessException
+	 */
 	@Override
 	public List<ClienteTabAdapter> getAllAdapterCliente() throws BusinessException {
 		return this.businessCliente.getAllAdapter();
 	}
 
+	/**
+	 * @author ayrton
+	 * @return {@link ArrayList<ClienteTabAdapter>}
+	 * @throws BusinessException
+	 */
 	@Override
 	public List<Cliente> getAllCliente() throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessCliente.getAll();
 	}
 
+	/**
+	 * @author ayrton
+	 * @param id
+	 * @throws BusinessException
+	 */
 	@Override
 	public void ativarDesativarCliente(int id) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -344,6 +383,12 @@ public class Fachada implements IFachada {
 			return this.businessVenda.salvar(venda, id_cliente, id_funcionario, id_caixa);
 	}
 
+	@Override
+	public int salvarVenda(Venda venda, int id_funcionario, int id_caixa) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessVenda.salvar(venda, id_funcionario, id_caixa);
+	}
+	
 	@Override
 	public void editar_Venda(Venda venda) throws BusinessException {
 		this.businessVenda.editar(venda);

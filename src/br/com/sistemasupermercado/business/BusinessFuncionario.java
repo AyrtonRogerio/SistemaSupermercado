@@ -7,6 +7,7 @@ import br.com.sistemasupermercado.dao.IDaoFuncionario;
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
+import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.view.Mensagem;
 import javafx.scene.control.Alert.AlertType;
@@ -21,12 +22,12 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
-	public void salvar(Funcionario funcionario) throws BusinessException, ValidacaoException {
+	public void salvar(Funcionario funcionario, int end) throws BusinessException, ValidacaoException {
 		// TODO Auto-generated method stub
 		try {
 			validar(funcionario);
 			if (funcionario.getId() == null)
-				daoFuncionario.salvar(funcionario);
+				daoFuncionario.salvar(funcionario, end);
 
 
 		} catch (DaoException e) {

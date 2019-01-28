@@ -134,30 +134,31 @@ public class ControleVenda implements Initializable {
             	dataPag.setDisable(false);
             	dataVenc.setDisable(false);
             	
+            	java.util.Date date = new Date();
+//            	venda.setData_venda(date);
             	
             	caixa = ControleLogin.getCaixa();
-                venda = new Venda();
-                funcionario = ControleLogin.getFuncionario();
+            	funcionario = ControleLogin.getFuncionario();
+                venda = new Venda(date, funcionario, caixa);
+
                 item_vendas = new ArrayList<Item_Venda>();
 
-                cliente = Fachada.getInstance().buscarPorIdCliente(1);
+//                cliente = Fachada.getInstance().buscarPorIdCliente(1);
 
-                java.util.Date date = new Date();
-                venda.setData_venda(date);
-                System.out.println(venda.getData_venda());
-                venda.setCaixa_id(caixa);
-                venda.setFuncionario_id(funcionario);
-                venda.setCliente_id(cliente);
-                venda.setValor_total(0.00);
-                venda.setValor_troco(0.00);
-                venda.setDesc_geral(0.00);
-                venda.setValor_recebido(0.00);
-                venda.setItem_vendas(item_vendas);
+//                System.out.println(venda.getData_venda());
+//                venda.setCaixa_id(caixa);
+//                venda.setFuncionario_id(funcionario);
+//                venda.setCliente_id(cliente);
+//                venda.setValor_total(0.00);
+//                venda.setValor_troco(0.00);
+//                venda.setDesc_geral(0.00);
+//                venda.setValor_recebido(0.00);
+//                venda.setItem_vendas(item_vendas);
                 System.out.println(venda);
-                System.out.println(cliente.getId());
+//                System.out.println(cliente.getId());
                 System.out.println(funcionario.getId());
                 System.out.println(caixa.getId());
-                venda_id = Fachada.getInstance().salvarVenda(venda, cliente.getId(), funcionario.getId(), caixa.getId());
+                venda_id = Fachada.getInstance().salvarVenda(venda, funcionario.getId(), caixa.getId());
 
             } catch (BusinessException e) {
                 e.printStackTrace();
@@ -179,10 +180,10 @@ public class ControleVenda implements Initializable {
             try {
 
                 item_venda = new Item_Venda();
+                
                 EstoqueTabAdapter prod = prod_tab.getSelectionModel().getSelectedItem();
 
                 item_produto = Fachada.getInstance().buscarPorIdItemProduto(prod.getId());
-
                 item_produto.setVendidos(item_produto.getVendidos() + Integer.parseInt(qtd_prod_ven_field.getText()));
 
                 Fachada.getInstance().atualizarVendidos_Item_Produto(item_produto);
@@ -197,7 +198,7 @@ public class ControleVenda implements Initializable {
                 item_venda.setProc_promoc(0.00);
                 item_venda.setPromocao(false);
                 item_venda.setQuantidade(Integer.parseInt(qtd_prod_ven_field.getText()));
-                item_venda.setTipo("n sei");
+                item_venda.setTipo(prod.getDescricao());
                 item_venda.setValor_desc(0.00);
                 item_venda.setValor_item(item_produto.getPorc_varejo());
                 item_venda.setItem_produto_id(item_produto);
@@ -354,26 +355,14 @@ public class ControleVenda implements Initializable {
     public void limparCampos() {
     	
     	cont = 0; 
-    	
     	qtd_prod_ven_field.setText("1");
-
     	info_cx_ven_field.setText("Caixa Livre!");
-    	 
         pr_un_prod_ven_field.clear();
-
         pr_total_vend_field.clear();
-
         valor_pago_field.clear();
-         
         vend_tab.getItems().clear();
-
-        qtd_pgmt_field.setText("1");
-    	
+        qtd_pgmt_field.setText("1");	
     	
     }
-
-
-
-
 
 }

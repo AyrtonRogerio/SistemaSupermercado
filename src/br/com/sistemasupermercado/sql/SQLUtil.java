@@ -153,13 +153,15 @@ public class SQLUtil {
         public static final String COL_CARGO = "cargo";
         public static final String COL_LOGIN = "login";
         public static final String COL_SENHA = "senha";
+        public static final String COL_ENDERECO = "endereco_id";
+        public static final String COL_SITUACAO = "situacao";
         
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" 
         + COL_NOME + "," + COL_CPF + "," + COL_CARGO + "," + COL_LOGIN + "," + 
-        COL_SENHA + " ) values (?,?,?,?,?) returning id";
+        COL_SENHA + "," + COL_ENDERECO + "," + COL_SITUACAO + " ) values (?,?,?,?,?,?,?) returning id";
         
-        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ? where id =?";
+        public static final String UPDATE = "update funcionario set nome = ?, cpf = ?,cargo = ?, login = ?, senha = ?, situacao = ? where id = ?";
         	
         public static final String SELECT_LOGIN = "select * from funcionario where login = ?  and senha = ?";
 
@@ -254,6 +256,11 @@ public class SQLUtil {
                 "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
          " ) values (?,?,?,?,?,?,?,?) returning id";
 
+    	public static final String INSERT_VEND_INI = "insert into " + NOME_TABELA +
+    	        "(" + COL_DATA_VENDA + "," + COL_FUNCIONARIO_ID + "," + COL_CAIXA_ID +
+    	         " ) values (?,?,?) returning id";
+
+    	
     	public static final String SELECT_VENDA = "select v.valor_total, v.desc_geral, v.valor_troco, v.valor_recebido" +
                 " from venda v where id = ?";
 

@@ -4,11 +4,12 @@ import java.util.List;
 
 import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
+import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
 
 public interface IBusinessFuncionario {
 
-	public void salvar(Funcionario funcionario) throws BusinessException, ValidacaoException;
+	public void salvar(Funcionario funcionario, int end) throws BusinessException, ValidacaoException;
 
 	public void editar(Funcionario funcionario) throws BusinessException;
 

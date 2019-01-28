@@ -17,6 +17,57 @@ public class Venda {
 	private Caixa caixa_id;
 	private List<Item_Venda> item_vendas;
 
+	
+	
+	/**
+	 * @param id
+	 * @param data_venda
+	 * @param desc_geral
+	 * @param valor_troco
+	 * @param valor_total
+	 * @param valor_recebido
+	 * @param cliente_id
+	 * @param funcionario_id
+	 * @param caixa_id
+	 * @param item_vendas
+	 */
+	public Venda(Integer id, Date data_venda, double desc_geral, double valor_troco, double valor_total,
+			double valor_recebido, Cliente cliente_id, Funcionario funcionario_id, Caixa caixa_id,
+			List<Item_Venda> item_vendas) {
+		super();
+		this.id = id;
+		this.data_venda = data_venda;
+		this.desc_geral = desc_geral;
+		this.valor_troco = valor_troco;
+		this.valor_total = valor_total;
+		this.valor_recebido = valor_recebido;
+		this.cliente_id = cliente_id;
+		this.funcionario_id = funcionario_id;
+		this.caixa_id = caixa_id;
+		this.item_vendas = item_vendas;
+	}
+
+	/**
+	 * 
+	 */
+	public Venda() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * @param data_venda
+	 * @param funcionario_id
+	 * @param caixa_id
+	 */
+	public Venda(Date data_venda, Funcionario funcionario_id, Caixa caixa_id) {
+		super();
+		this.data_venda = data_venda;
+		this.funcionario_id = funcionario_id;
+		this.caixa_id = caixa_id;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

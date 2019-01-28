@@ -14,22 +14,23 @@ import br.com.sistemasupermercado.model.Pagamento;
 
 /**
  * @author ayrton
- *@deprecated
+ * @deprecated
  */
-public class BusinessPagamento implements IBusinessPagamento{
+public class BusinessPagamento implements IBusinessPagamento {
 
 	private IDaoPagamento daoPagamento;
-	
+
 	/**
-	 * 
+	 * @author ayrton
+	 * @deprecated
 	 */
 	public BusinessPagamento() {
 		daoPagamento = new DaoPagamento();
 	}
-	
-	
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#salvarEditar(br.com.sistemasupermercado.model.Pagamento)
+
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
 	 */
 	@Override
 	public void salvar(Pagamento pagamento, int id_cliente, int id_venda) throws BusinessException {
@@ -37,8 +38,7 @@ public class BusinessPagamento implements IBusinessPagamento{
 		try {
 			validar(pagamento);
 			if (pagamento.getId() == null)
-				daoPagamento.salvar(pagamento, id_cliente,id_venda);
-
+				daoPagamento.salvar(pagamento, id_cliente, id_venda);
 
 		} catch (DaoException | ValidacaoException e) {
 			// TODO Auto-generated catch block
@@ -47,6 +47,10 @@ public class BusinessPagamento implements IBusinessPagamento{
 		}
 	}
 
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
+	 */
 	@Override
 	public void editar(Pagamento pagamento) throws BusinessException {
 		try {
@@ -57,8 +61,9 @@ public class BusinessPagamento implements IBusinessPagamento{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#buscarPorId(int)
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
 	 */
 	@Override
 	public Pagamento buscarPorId(int id) throws BusinessException {
@@ -72,8 +77,9 @@ public class BusinessPagamento implements IBusinessPagamento{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#getAll()
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
 	 */
 	@Override
 	public List<Pagamento> getAll() throws BusinessException {
@@ -87,8 +93,9 @@ public class BusinessPagamento implements IBusinessPagamento{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#ativarDesativar(int)
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
 	 */
 	@Override
 	public void ativarDesativar(int id) throws BusinessException {
@@ -102,13 +109,14 @@ public class BusinessPagamento implements IBusinessPagamento{
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.business.IBusinessPagamento#validar(br.com.sistemasupermercado.model.Pagamento)
+	/**
+	 * @author ayrton
+	 * @deprecated - Método não utilizado no projeto.
 	 */
 	@Override
 	public void validar(Pagamento pagamento) throws ValidacaoException {
 		// TODO Auto-generated method stub
-		if(pagamento.getValor() == 0)
+		if (pagamento.getValor() == 0)
 			throw new ValidacaoException("Sem valor no pagamento!!!");
 	}
 

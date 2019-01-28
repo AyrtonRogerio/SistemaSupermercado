@@ -1,15 +1,22 @@
+/**
+ * 
+ */
 package br.com.sistemasupermercado.model;
 
-public class Funcionario {
+/**
+ * @author ayrton
+ *
+ */
+public class FuncionarioAdapter {
 
 	private Integer id;
 	private String nome;
 	private String cpf;
 	private String cargo;
-	private String login;
-	private String senha;
-	private Endereco endereco;
-	private boolean situacao;
+	private String rua;
+	private String bairro;
+	private Boolean situacao;
+	
 	/**
 	 * @return the id
 	 */
@@ -59,52 +66,42 @@ public class Funcionario {
 		this.cargo = cargo;
 	}
 	/**
-	 * @return the login
+	 * @return the rua
 	 */
-	public String getLogin() {
-		return login;
+	public String getRua() {
+		return rua;
 	}
 	/**
-	 * @param login the login to set
+	 * @param rua the rua to set
 	 */
-	public void setLogin(String login) {
-		this.login = login;
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 	/**
-	 * @return the senha
+	 * @return the bairro
 	 */
-	public String getSenha() {
-		return senha;
+	public String getBairro() {
+		return bairro;
 	}
 	/**
-	 * @param senha the senha to set
+	 * @param bairro the bairro to set
 	 */
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	/**
-	 * @return the endereco
-	 */
-	public Endereco getEndereco() {
-		return endereco;
-	}
-	/**
-	 * @param endereco the endereco to set
-	 */
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 	/**
 	 * @return the situacao
 	 */
-	public boolean isSituacao() {
+	public Boolean getSituacao() {
 		return situacao;
 	}
 	/**
 	 * @param situacao the situacao to set
 	 */
-	public void setSituacao(boolean situacao) {
+	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
 	}
+	
+	
 	
 }

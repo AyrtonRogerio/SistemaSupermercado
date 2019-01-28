@@ -45,6 +45,22 @@ public class BusinessVenda implements IBusinessVenda {
 	}
 
 	@Override
+	public int salvar(Venda venda, int id_funcionario, int id_caixa) throws BusinessException {
+
+		int id = 0;
+		if(venda.getId() == null) {
+			try {
+				id = daoVenda.salvar(venda, id_funcionario, id_caixa);
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new BusinessException(e.getMessage());
+			}
+		}
+		return id;
+	}
+	
+	@Override
 	public void editar(Venda venda) throws BusinessException {
 		try {
 			daoVenda.editar(venda);
@@ -96,5 +112,7 @@ public class BusinessVenda implements IBusinessVenda {
 			throw new ValidacaoException("Impossível realizar a venda!!!");
 		}
 	}
+
+	
 
 }
