@@ -46,6 +46,8 @@ public interface IFachada {
 
 	public List<Funcionario> getAllFuncionario() throws BusinessException;
 	
+	public List<FuncionarioAdapter> getAllAdapterFuncionario() throws BusinessException;
+	
 	public Funcionario buscarPorLoginFuncionario(String login, String senha) throws BusinessException;
 
 	public void ativarDesativarFuncionario(int id) throws BusinessException;

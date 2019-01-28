@@ -9,6 +9,7 @@ import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
+import br.com.sistemasupermercado.model.FuncionarioAdapter;
 import br.com.sistemasupermercado.view.Mensagem;
 import javafx.scene.control.Alert.AlertType;
 
@@ -68,6 +69,18 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 		// TODO Auto-generated method stub
 		try {
 			return daoFuncionario.getAll();
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	@Override
+	public List<FuncionarioAdapter> getAllAdapter() throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoFuncionario.getAllAdapter();
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -168,6 +181,7 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 			
 		}
 	}
+
 
 
 }

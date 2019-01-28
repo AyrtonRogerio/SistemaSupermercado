@@ -6,6 +6,7 @@ import br.com.sistemasupermercado.exception.BusinessException;
 import br.com.sistemasupermercado.exception.ValidacaoException;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
+import br.com.sistemasupermercado.model.FuncionarioAdapter;
 
 public interface IBusinessFuncionario {
 
@@ -16,6 +17,8 @@ public interface IBusinessFuncionario {
 	public Funcionario buscarPorId(int id) throws BusinessException;
 
 	public List<Funcionario> getAll() throws BusinessException;
+	
+	public List<FuncionarioAdapter> getAllAdapter() throws BusinessException;
 	
 	public Funcionario buscarPorLogin(String login, String senha) throws BusinessException;
 

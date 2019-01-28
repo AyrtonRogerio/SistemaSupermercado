@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import br.com.sistemasupermercado.exception.DaoException;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
+import br.com.sistemasupermercado.model.FuncionarioAdapter;
 import br.com.sistemasupermercado.sql.SQLConections;
 import br.com.sistemasupermercado.sql.SQLUtil;
 
@@ -104,11 +105,45 @@ public class DaoFuncionario implements IDaoFuncionario {
 		}
 		return funcionarios;
 	}
+	
+	public List<FuncionarioAdapter> getAllAdapter() throws DaoException {
+		// TODO Auto-generated method stub
+		List<FuncionarioAdapter> funcionarioAdapters = new ArrayList<>();
+		try {
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.SELECT_FUNC_ADAPTER);
+			this.result = this.statement.executeQuery();
+			FuncionarioAdapter funcionarioAdapter = null;
+			
+			while (result.next()) {
+				funcionarioAdapter = new FuncionarioAdapter();
+				funcionarioAdapter.setId(result.getInt(1));
+				funcionarioAdapter.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
+				funcionarioAdapter.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+				funcionarioAdapter.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
+				funcionarioAdapter.setRua(result.getString("rua"));
+				funcionarioAdapter.setBairro(result.getString("bairro"));
+				funcionarioAdapter.setSituacao(result.getBoolean(SQLUtil.Funcionario.COL_SITUACAO));
+				
+				funcionarioAdapters.add(funcionarioAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar todos os funcionário!");
+		}
+		return funcionarioAdapters;
+	}
 
 	@Override
 	public void editar(Funcionario funcionario) throws DaoException {
 		// TODO Auto-generated method stub
 		try {
+			
+			DaoCommum.editarEndereco(funcionario.getEndereco());
+			
 			this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.UPDATE);
 			this.statement.setString(1, funcionario.getNome());

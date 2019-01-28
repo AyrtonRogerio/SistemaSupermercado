@@ -145,9 +145,12 @@ public class Fachada implements IFachada {
 		return this.businessFuncionario.getAll();
 	}
 	
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.fachada.IFachada#buscarPorLoginFuncionario(java.lang.String, java.lang.String)
-	 */
+	@Override
+	public List<FuncionarioAdapter> getAllAdapterFuncionario() throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessFuncionario.getAllAdapter();
+	}
+	
 	@Override
 	public Funcionario buscarPorLoginFuncionario(String login, String senha) throws BusinessException {
 		// TODO Auto-generated method stub
@@ -184,9 +187,6 @@ public class Fachada implements IFachada {
 		return this.businessFornecedor.getAll();
 	}
 	
-	/* (non-Javadoc)
-	 * @see br.com.sistemasupermercado.fachada.IFachada#buscarPorNomeFornecedor(java.lang.String)
-	 */
 	@Override
 	public Fornecedor buscarPorNomeFornecedor(String nome) throws BusinessException {
 		// TODO Auto-generated method stub
