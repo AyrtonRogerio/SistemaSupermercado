@@ -29,9 +29,6 @@
                 <Menu mnemonicParsing="false">
                   <items>
                     <MenuItem fx:id="novo_produto_menu" mnemonicParsing="false" onAction="#action" text="Produto" />
-                        <MenuItem fx:id="exibir_produto_menu" mnemonicParsing="false" onAction="#action" text="Exibir " />
-                        <MenuItem fx:id="alterar_produto_menu" mnemonicParsing="false" onAction="#action" text="Alterar" />
-                        <MenuItem fx:id="remover_produto_menu" mnemonicParsing="false" onAction="#action" text="Remover" />
                   </items>
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
@@ -44,8 +41,6 @@
                   <Menu mnemonicParsing="false">
                     <items>
                       <MenuItem fx:id="nova_venda_menu" mnemonicParsing="false" onAction="#action" text="Venda" />
-                        <MenuItem fx:id="historico_venda_menu" mnemonicParsing="false" onAction="#action" text="Histórico" />
-                        <MenuItem fx:id="relatorio_venda_menu" mnemonicParsing="false" onAction="#action" text="Relatório" />
                     </items>
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0">
@@ -98,7 +93,7 @@
                     <MenuItem fx:id="ajuda_menu" mnemonicParsing="false" onAction="#action" text="Ajuda" />
                   </items>
                      <graphic>
-                        <ImageView fitHeight="60.0" fitWidth="60.0">
+                        <ImageView disable="true" fitHeight="60.0" fitWidth="60.0">
                            <image>
                               <Image url="@../../../../../res/icons8-ajuda-50.png" />
                            </image>

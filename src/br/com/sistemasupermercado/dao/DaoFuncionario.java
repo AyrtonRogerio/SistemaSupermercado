@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.sistemasupermercado.exception.DaoException;
+import br.com.sistemasupermercado.model.ClienteTabAdapter;
 import br.com.sistemasupermercado.model.Endereco;
 import br.com.sistemasupermercado.model.Funcionario;
 import br.com.sistemasupermercado.model.FuncionarioAdapter;
@@ -35,7 +36,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 			this.statement.setString(5, funcionario.getSenha());
 			this.statement.setInt(6, end);
 			this.statement.setBoolean(7, funcionario.isSituacao());
-			statement.execute();
+			statement.executeQuery();
 		} catch (SQLException ex) {
 			Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
 			ex.printStackTrace();
@@ -62,6 +63,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 				funcionario.setCargo(result.getString(SQLUtil.Funcionario.COL_CARGO));
 				funcionario.setLogin(result.getString(SQLUtil.Funcionario.COL_LOGIN));
 				funcionario.setSenha(result.getString(SQLUtil.Funcionario.COL_SENHA));
+				funcionario.setSituacao(result.getBoolean(SQLUtil.Funcionario.COL_SITUACAO));
 				endereco = DaoCommum.buscarEndereco(result.getInt(SQLUtil.Funcionario.COL_ENDERECO));
 				funcionario.setEndereco(endereco);
 			}
@@ -72,6 +74,41 @@ public class DaoFuncionario implements IDaoFuncionario {
 			throw new DaoException("Erro ao buscar o funcionário!");
 		}
 		return funcionario;
+	}
+	
+	@Override
+	public List<FuncionarioAdapter> buscarPorBusca(String busca) throws DaoException {
+		// TODO Auto-generated method stub
+		List<FuncionarioAdapter> funcionarioAdapters = new ArrayList<>();
+		try {
+
+			this.conexao = SQLConections.getInstance();
+			this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.SELECT_POR_BUSCA);
+			this.statement.setString(1,"%" + busca + "%");
+			this.statement.setString(2,"%" + busca + "%");
+			this.statement.setString(3,"%" + busca + "%");
+			this.statement.setString(4,"%" + busca + "%");
+			this.result = this.statement.executeQuery();
+
+			FuncionarioAdapter funcionarioAdapter = null;
+			while(result.next()) {
+				funcionarioAdapter = new FuncionarioAdapter();
+				funcionarioAdapter.setId(result.getInt(1));
+				funcionarioAdapter.setNome(result.getString("nome"));
+				funcionarioAdapter.setCpf(result.getString("cpf"));
+				funcionarioAdapter.setCargo(result.getString("cargo"));
+				funcionarioAdapter.setRua(result.getString("rua"));
+				funcionarioAdapter.setBairro(result.getString("bairro"));
+				funcionarioAdapter.setSituacao(result.getBoolean("situacao"));
+				funcionarioAdapters.add(funcionarioAdapter);
+			}
+			this.conexao.close();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			throw new DaoException("Erro ao buscar Funcionário!");
+		}
+		return funcionarioAdapters;
 	}
 
 	@Override

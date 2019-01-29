@@ -39,7 +39,7 @@ public class ControleProduto implements Initializable {
 	private Item_Produto item;
 	private Produto produ;
 	private Fornecedor forneced;
-	
+
 	private double pr_un, pr_var, pr_atac;
 
 	private Fachada fachada = Fachada.getInstance();
@@ -223,16 +223,21 @@ public class ControleProduto implements Initializable {
 
 		if (event.getSource() == busca_fornec_button) {
 
-			try {
+			if (!(busca_fornec_field.getText().trim().isEmpty())) {
+				try {
 
-				fornecedor = fachada.buscarPorNomeFornecedor(busca_fornec_field.getText());
-				tabela_fornec.getItems().setAll(fornecedor);
+					fornecedors = fachada.buscarPorNomeFornecedor(busca_fornec_field.getText());
+					tabela_fornec.getItems().setAll(fornecedors);
 
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Fornecedor não encontrado!",
-						e.getMessage());
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar",
+							"Fornecedor não encontrado!", e.getMessage());
+				}
+			} else {
+				Mensagem.getInstancia().exibirMensagem(AlertType.WARNING, "Campo vazio", "Campo Vazio!",
+						"Informe algo para a busca!");
 			}
 		}
 
@@ -323,17 +328,20 @@ public class ControleProduto implements Initializable {
 
 		if (event.getSource() == busca_prod_nome_button) {
 
-			String d = busca_prod_nome_field.getText();
-			System.out.println(d);
-			try {
-				produtoTabAdapters = Fachada.getInstance().getAllAdapterPorBuscaItemProduto(d);
-				System.out.println(produtoTabAdapters.size());
-				list_prod_tab.getItems().setAll(produtoTabAdapters);
+			if (!(busca_prod_nome_field.getText().trim().isEmpty())) {
+				try {
+					produtoTabAdapters = Fachada.getInstance()
+							.getAllAdapterPorBuscaItemProduto(busca_prod_nome_field.getText());
+					System.out.println(produtoTabAdapters.size());
+					list_prod_tab.getItems().setAll(produtoTabAdapters);
 
-			} catch (BusinessException e) {
-				e.printStackTrace();
-				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar",
-						"Nenhum produto foi encontrado!", e.getMessage());
+				} catch (BusinessException e) {
+					e.printStackTrace();
+					Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar",
+							"Nenhum produto foi encontrado!", e.getMessage());
+				}
+			} else {
+				Mensagem.getInstancia().exibirMensagem(AlertType.WARNING, "Campo vazio", "Campo vazio!", "Informe algo para a busca!");
 			}
 
 		}
@@ -404,25 +412,29 @@ public class ControleProduto implements Initializable {
 
 			return new TableCell<ProdutoTabAdapter, Date>() {
 
-	protected void updateItem(Date item, boolean empty) {
+				protected void updateItem(Date item, boolean empty) {
 
-		super.updateItem(item, empty);
+					super.updateItem(item, empty);
 
-		if (item == null || empty) {
-			setText(null);
-		} else {
-			setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					if (item == null || empty) {
+						setText(null);
+					} else {
+						setText(new SimpleDateFormat("dd/MM/yyyy").format(item));
+					}
+				}
+			};
+		});
+
+		try {
+			produtoTabAdapters = Fachada.getInstance().getAllAdapterItemProduto();
+			list_prod_tab.getItems().setAll(produtoTabAdapters);
+		} catch (
+
+		BusinessException e) {
+			e.printStackTrace();
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Produto não encontrado!",
+					e.getMessage());
 		}
-	}};});
-
-	try{produtoTabAdapters=Fachada.getInstance().getAllAdapterItemProduto();list_prod_tab.getItems().setAll(produtoTabAdapters);}catch(
-
-	BusinessException e)
-	{
-		e.printStackTrace();
-		Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar", "Produto não encontrado!",
-				e.getMessage());
-	}
 
 	}
 
@@ -471,13 +483,13 @@ public class ControleProduto implements Initializable {
 		ProdutoTabAdapter adapter = list_prod_tab.getSelectionModel().getSelectedItem();
 
 		try {
-			
-			 item = Fachada.getInstance().buscarPorIdItemProduto(adapter.getId());
-			
-			 produ = Fachada.getInstance().buscarPorIdProduto(adapter.getProduto_id());
-			
-			 forneced = Fachada.getInstance().buscarPorIdFornecedor(adapter.getFornecedor_id());
-			
+
+			item = Fachada.getInstance().buscarPorIdItemProduto(adapter.getId());
+
+			produ = Fachada.getInstance().buscarPorIdProduto(adapter.getProduto_id());
+
+			forneced = Fachada.getInstance().buscarPorIdFornecedor(adapter.getFornecedor_id());
+
 			nome_prod_cadast_field.setText(produ.getNome());
 			descri_prod_cadast_field.setText(produ.getDescricao());
 			marca_prod_cadastro_field.setText(produ.getMarca());
@@ -488,12 +500,10 @@ public class ControleProduto implements Initializable {
 			status_prod_cadast_checkB.setSelected(item.isStatus());
 			perecivel_prod_cadast_checkB.setSelected(item.isPerecivel());
 
-
 			preco_unit_prod_cadastro_field.setText("" + item.getPreco_unidade());
 
 			valor_pago_field.setText("");
 
-			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -503,28 +513,25 @@ public class ControleProduto implements Initializable {
 
 	public void salvaProduto(Item_Produto item, Produto produto, Fornecedor forneced) {
 		Contas_a_pagar contas_a_pagar = new Contas_a_pagar();
-		
+
 		double valTemp = 0.00;
 		double valP = 0.00;
 		int qt = 0;
 
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		
+
 		try {
 
 			item.setData_compra(format.parse(cadast_prod_data.getEditor().getText().trim()));
 			item.setData_fabricacao(format.parse(fabric_prod_data.getEditor().getText().trim()));
 			item.setData_validade(format.parse(valid_prod_data.getEditor().getText().trim()));
-			
-			
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas ao editar",
-					e.getMessage());
+			Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro", "Erro nas datas ao editar", e.getMessage());
 		}
-		
+
 		contas_a_pagar.setValor(pr_un * Double.parseDouble(quant_prod_cadast_field.getText().trim()));
 
 		qt = Integer.parseInt(qtd_parc_field.getText());
@@ -552,7 +559,6 @@ public class ControleProduto implements Initializable {
 
 		}
 
-		
 		contas_a_pagar.setFornecedor_id(fornecedor);
 		contas_a_pagar.setCaixa_id(ControleLogin.getCaixa());
 		contas_a_pagar.setDescricao("Compra de " + produ.getNome() + " à " + forneced.getNome());
@@ -560,11 +566,11 @@ public class ControleProduto implements Initializable {
 		try {
 			Fachada.getInstance().editarProduto(produto);
 			Fachada.getInstance().editar_Item_Produto(item);
-			
+
 			fachada.salvarConta_a_Pagar(contas_a_pagar, ControleLogin.getIdCaixa(), forneced.getId());
 			java.sql.Date data = new java.sql.Date(new Date().getTime());
 			caixa = fachada.buscarPorDataCaixa(data);
-			
+
 			caixa.setSaida(caixa.getSaida() + contas_a_pagar.getValor_quitado());
 			fachada.editarCaixa(caixa);
 			produtoTabAdapters = fachada.getAllAdapterItemProduto();
@@ -572,21 +578,16 @@ public class ControleProduto implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-}
 
-	
-	
-	
-	
-	
-	
+	}
+
 	public void limparCampos() {
 
 		nome_prod_cadast_field.clear();
 		marca_prod_cadastro_field.clear();
 		descri_prod_cadast_field.clear();
 
+		valor_pago_field.clear();
 		cod_prod_cadast_field.clear();
 		quant_prod_cadast_field.clear();
 		perecivel_prod_cadast_checkB.setSelected(false);

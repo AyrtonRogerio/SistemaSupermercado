@@ -114,16 +114,21 @@ public class DaoFornecedor implements IDaoFornecedor {
 
     }
 
-    public Fornecedor buscarPorNome(String nome) throws DaoException {
-    	
-    	Fornecedor fornecedor = null;
+    public List<Fornecedor> buscarPorNome(String nome) throws DaoException {
+
+    	List<Fornecedor> fornecedors = new ArrayList<>();
     	try {
     		this.conexao = SQLConections.getInstance();
 			this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.SELECT_NOME);
-			this.statement.setString(1, nome);
+			this.statement.setString(1, "%" + nome + "%");
+			this.statement.setString(2, "%" + nome + "%");
+			this.statement.setString(3, "%" + nome + "%");
+			this.statement.setString(4, "%" + nome + "%");
+			this.statement.setString(5, "%" + nome + "%");
 			this.result = statement.executeQuery();
+			Fornecedor fornecedor = null;
 			
-			if(result.next()) {
+			while(result.next()) {
 				fornecedor = new Fornecedor();
 				
 				fornecedor.setId(result.getInt(1));
@@ -133,6 +138,7 @@ public class DaoFornecedor implements IDaoFornecedor {
 				fornecedor.setCidade(result.getString(SQLUtil.Fornecedor.COL_CIDADE));
 				fornecedor.setEstado(result.getString(SQLUtil.Fornecedor.COL_ESTADO));
 				
+				fornecedors.add(fornecedor);
 			}
 			
     	} catch (SQLException e) {
@@ -140,7 +146,7 @@ public class DaoFornecedor implements IDaoFornecedor {
 			e.printStackTrace();
             throw new DaoException("Erro ao buscar o fornecedor!");
 		}
-    	return fornecedor;
+    	return fornecedors;
     	
     }
     

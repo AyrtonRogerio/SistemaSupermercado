@@ -15,6 +15,8 @@ public interface IBusinessFuncionario {
 	public void editar(Funcionario funcionario) throws BusinessException;
 
 	public Funcionario buscarPorId(int id) throws BusinessException;
+	
+	public List<FuncionarioAdapter> burcarPorBuscaFuncionario(String busca) throws BusinessException;
 
 	public List<Funcionario> getAll() throws BusinessException;
 	

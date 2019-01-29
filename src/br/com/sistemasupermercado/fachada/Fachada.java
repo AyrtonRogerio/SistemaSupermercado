@@ -140,6 +140,12 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
+	public List<FuncionarioAdapter> buscarPorBuscaFuncionario(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		return this.businessFuncionario.burcarPorBuscaFuncionario(busca);
+	}
+	
+	@Override
 	public List<Funcionario> getAllFuncionario() throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessFuncionario.getAll();
@@ -188,7 +194,7 @@ public class Fachada implements IFachada {
 	}
 	
 	@Override
-	public Fornecedor buscarPorNomeFornecedor(String nome) throws BusinessException {
+	public List<Fornecedor> buscarPorNomeFornecedor(String nome) throws BusinessException {
 		// TODO Auto-generated method stub
 		return this.businessFornecedor.buscarPorNome(nome);
 	}

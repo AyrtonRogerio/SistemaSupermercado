@@ -45,7 +45,7 @@ public class DaoCommum {
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCommum.class.getName()).log(Level.SEVERE, null, ex);
-            throw new DaoException("Erro ao salvar endereço do cliente!");
+            throw new DaoException("Erro ao salvar endereço!");
         }
         return id;
     }

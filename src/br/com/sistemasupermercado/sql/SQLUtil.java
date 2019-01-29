@@ -162,6 +162,10 @@ public class SQLUtil {
 		public static final String SELECT_FUNC_ADAPTER = "select f.id, f.nome, f.cpf, f.cargo, f.situacao, e.rua, "
 				+ "e.bairro from funcionario f inner join endereco e on f.endereco_id = e.id";
 
+		public static final String SELECT_POR_BUSCA = "select distinct f.id, f.nome, f.cpf, f.cargo, f.situacao, e.rua, "
+				+ "e.bairro from funcionario f inner join endereco e on f.endereco_id = e.id "
+				+ "and f.nome ilike ? or f.cpf ilike ? or f.cargo ilike ? or e.rua ilike ? where f.endereco_id = e.id";
+
 	}
 
 	public static class Caixa {
@@ -225,7 +229,8 @@ public class SQLUtil {
 		public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_NOME + "," + COL_RAZAO_SOCIAL + ","
 				+ COL_CNPJ + "," + COL_ESTADO + "," + COL_CIDADE + " ) values (?,?,?,?,?) returning id ";
 
-		public static final String SELECT_NOME = "select * from fornecedor where nome_fantasia = ?";
+		public static final String SELECT_NOME = "select * from fornecedor where nome_fantasia ilike ? "
+				+ "or razao_social ilike ? or cnpj ilike ? or estado ilike ? or cidade ilike ?";
 
 		public static final String UPDATE = "update fornecedor set nome_fantasia = ?, razao_social = ?, cnpj = ?,"
 				+ "estado = ?, cidade = ? where id = ?";

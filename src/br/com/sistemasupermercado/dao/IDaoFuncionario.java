@@ -12,6 +12,8 @@ public interface IDaoFuncionario {
 	public void salvar(Funcionario funcionario, int end) throws DaoException;
 
 	public Funcionario buscarPorId(int id) throws DaoException;
+	
+	public List<FuncionarioAdapter> buscarPorBusca(String busca) throws DaoException;
 
 	public List<Funcionario> getAll() throws DaoException;
 	

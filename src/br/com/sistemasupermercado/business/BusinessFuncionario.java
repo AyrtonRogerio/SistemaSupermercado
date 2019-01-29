@@ -65,6 +65,19 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 	}
 
 	@Override
+	public List<FuncionarioAdapter> burcarPorBuscaFuncionario(String busca) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			return daoFuncionario.buscarPorBusca(busca);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BusinessException(e.getMessage());
+		}
+	}
+
+	
+	@Override
 	public List<Funcionario> getAll() throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
@@ -181,7 +194,6 @@ public class BusinessFuncionario implements IBusinessFuncionario {
 			
 		}
 	}
-
 
 
 }

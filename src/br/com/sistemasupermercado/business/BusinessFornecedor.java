@@ -108,7 +108,7 @@ public class BusinessFornecedor implements IBusinessFornecedor {
 
 	
 	@Override
-	public Fornecedor buscarPorNome(String nome) throws BusinessException {
+	public List<Fornecedor> buscarPorNome(String nome) throws BusinessException {
 		// TODO Auto-generated method stub
 		try {
 			return daoFornecedor.buscarPorNome(nome);

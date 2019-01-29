@@ -16,7 +16,7 @@ public interface IBusinessFornecedor {
 
     public List<Fornecedor> getAll() throws BusinessException;
 
-    public Fornecedor buscarPorNome(String nome) throws BusinessException;
+    public List<Fornecedor> buscarPorNome(String nome) throws BusinessException;
     
     public void ativarDesativar(int id) throws BusinessException;
 

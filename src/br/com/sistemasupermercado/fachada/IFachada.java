@@ -43,6 +43,8 @@ public interface IFachada {
 	public void editarFuncionario(Funcionario funcionario) throws BusinessException;
 
 	public Funcionario buscarPorIdFuncionario(int id) throws BusinessException;
+	
+	public List<FuncionarioAdapter> buscarPorBuscaFuncionario(String busca) throws BusinessException;
 
 	public List<Funcionario> getAllFuncionario() throws BusinessException;
 	
@@ -60,7 +62,7 @@ public interface IFachada {
 
 	public Fornecedor buscarPorIdFornecedor(int id) throws BusinessException;
 
-	public Fornecedor buscarPorNomeFornecedor(String nome) throws BusinessException;
+	public List<Fornecedor> buscarPorNomeFornecedor(String nome) throws BusinessException;
 	
 	public List<Fornecedor> getAllFornecedor() throws BusinessException;
 

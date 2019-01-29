@@ -52,6 +52,9 @@ public class ControleFuncionario implements Initializable {
 
     @FXML
     private Button busca_button;
+    
+    @FXML
+    private Button novo_func_button;
 	
 	@FXML
 	private TableView<FuncionarioAdapter> tabela_list;
@@ -140,6 +143,27 @@ public class ControleFuncionario implements Initializable {
 	@FXML
 	void action(ActionEvent event) {
 
+		if(event.getSource() == busca_button) {
+			
+			
+			if(!(busca_field.getText().trim().isEmpty())) {
+				try {
+					tabela_list.getItems().clear();
+					adapters = fachada.buscarPorBuscaFuncionario(busca_field.getText());
+					tabela_list.getItems().setAll(adapters);
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			} else {
+				Mensagem.getInstancia().exibirMensagem(AlertType.WARNING, "Atenção", "Campo vazio!", "Informe algo para pesquisa!");
+			}
+			
+			
+		}
+		
+		
 		if (event.getSource() == cadast_func_button) {
 			try {
 
@@ -172,10 +196,21 @@ public class ControleFuncionario implements Initializable {
 				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao salvar",
 						"Erro ao salvar endereço do funcionário", e.getMessage());
 			}
+			limparCampos();
+			try {
+				adapters = fachada.getAllAdapterFuncionario();
+				tabela_list.getItems().setAll(adapters);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Mensagem.getInstancia().exibirMensagem(AlertType.ERROR, "Erro ao buscar!", "Erro ao buscar funcionário!", e.getMessage());
+			}
+			list_func_tab.getTabPane().getSelectionModel().select(list_func_tab);
 		}
 
 		if (event.getSource() == editar_button) {
 
+			func_tab.getTabPane().getSelectionModel().select(func_tab);
 			situacao_cb.setVisible(true);
 			carregarFunc();
 			atualizar_button.setDisable(false);
@@ -193,8 +228,34 @@ public class ControleFuncionario implements Initializable {
 			}
 			tabela_list.getItems().setAll(adapters);
 			atualizar_button.setDisable(true);
+			
+			list_func_tab.getTabPane().getSelectionModel().select(list_func_tab);
 		}
 
+		if(event.getSource() == novo_func_button) {
+			
+			func_tab.getTabPane().getSelectionModel().select(func_tab);
+			
+		}
+		
+		if(event.getSource() == cont_func_button) {
+			
+			end_tab.getTabPane().getSelectionModel().select(end_tab);
+			
+		}
+		
+		if(event.getSource() == voltar_func_button) {
+			
+			list_func_tab.getTabPane().getSelectionModel().select(list_func_tab);
+			
+		}
+		
+		if(event.getSource() == voltar_end_button) {
+			
+			func_tab.getTabPane().getSelectionModel().select(func_tab);
+			
+		}
+		
 	}
 
 	@Override
@@ -262,7 +323,8 @@ public class ControleFuncionario implements Initializable {
 		login_field.setText(func.getLogin());
 		senha_field.setText(func.getSenha());
 		conf_senha_field.setText(func.getSenha());
-		situacao_cb.setSelected(funcionario.isSituacao());
+		situacao_cb.setVisible(true);
+		situacao_cb.setSelected(func.isSituacao());
 
 		rua_field.setText(func.getEndereco().getRua());
 		num_field.setText(func.getEndereco().getNumero());
@@ -275,12 +337,7 @@ public class ControleFuncionario implements Initializable {
 
 	public void atualizar(Funcionario func) {
 
-		endereco.setRua(rua_field.getText());
-		endereco.setNumero(num_field.getText());
-		endereco.setEstado(estado_field.getText());
-		endereco.setCidade(cidade_field.getText());
-		endereco.setCep(cep_field.getText());
-		endereco.setBairro(bairro_field.getText());
+	
 
 		func.setNome(nome_field.getText());
 		func.setCpf(cpf_field.getText());
@@ -288,6 +345,15 @@ public class ControleFuncionario implements Initializable {
 		func.setLogin(login_field.getText());
 		func.setSenha(senha_field.getText());
 		func.setSituacao(situacao_cb.isSelected());
+		endereco = func.getEndereco();
+		
+		endereco.setRua(rua_field.getText());
+		endereco.setNumero(num_field.getText());
+		endereco.setEstado(estado_field.getText());
+		endereco.setCidade(cidade_field.getText());
+		endereco.setCep(cep_field.getText());
+		endereco.setBairro(bairro_field.getText());
+		
 		func.setEndereco(endereco);
 
 		try {
@@ -301,6 +367,7 @@ public class ControleFuncionario implements Initializable {
 					"Erro ao atualizar funcionário", e.getMessage());
 		}
 
+		limparCampos();
 	}
 
 	public void limparCampos() {

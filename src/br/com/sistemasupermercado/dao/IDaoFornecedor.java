@@ -13,7 +13,7 @@ public interface IDaoFornecedor {
 
     public List<Fornecedor> getAll() throws DaoException;
 
-    public Fornecedor buscarPorNome(String nome) throws DaoException;
+    public List<Fornecedor> buscarPorNome(String nome) throws DaoException;
     
     public void editar(Fornecedor fornecedor) throws DaoException;
 
